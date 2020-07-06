@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Capoun</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_deal">Deal</string>
+    <string name="title_add_coupon">Add Coupon</string>
+    <string name="title_more">More</string>
+</resources>
