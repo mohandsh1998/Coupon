@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Capoun</string>
+    <string name="lang">en</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -7,4 +8,40 @@
     <string name="title_deal">Deal</string>
     <string name="title_add_coupon">Add Coupon</string>
     <string name="title_more">More</string>
+    <string name="title_filter">Filter</string>
+    <string name="search_hint">What would you like to find ?</string>
+    <string name="what_would_you_like_to_find">What would you like to find ?</string>
+    <string name="desc_add_capoun">If you have a store and want to suggest a coupon, you can fill out Data and send it and Steam will respond to your request</string>
+    <string name="email">Email</string>
+    <string name="whats_up">Whats up</string>
+    <string name="store">Store</string>
+    <string name="brand">Brand</string>
+    <string name="description">Description</string>
+    <string name="coupon">Coupon</string>
+    <string name="send">Send</string>
+    <string name="used_coupons">Used Coupons</string>
+    <string name="follow_us_on_instagram">Follow us on Instagram</string>
+    <string name="desc_welcome">The best discounts, discount codes, discount coupons for online stores and your favorite shopping sites in Saudi Arabia, UAE and more.</string>
+    <string name="start">Start</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="or">Or</string>
+    <string name="don_t_have_an_account">Don’t have an Account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="share_app">Share app</string>
+    <string name="change_password">Change Password</string>
+    <string name="more_setting">More setting</string>
+    <string name="setting_app">Setting App</string>
+    <string name="help">Help</string>
+    <string name="contact_us">Contact us</string>
+    <string name="logout">Logout</string>
+    <string name="this_filed_is_empty">This filed is empty</string>
+    <string name="full_name">Full name</string>
+    <string name="email_invalid">This email invalid</string>
+    <string name="password_must_be_more_than_6">Password length must be more than 6</string>
+    <string name="problem_when_try_to_connect">There is a problem when trying to connect</string>
+    <string name="register_now">Register Now</string>
 </resources>
