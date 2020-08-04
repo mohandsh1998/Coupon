@@ -35,9 +35,8 @@ public class HomeViewModel extends BaseViewModel {
     MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
     // coupons that will show in category
     MutableLiveData<List<CouponHomeResponse.Coupon>> coupons = new MutableLiveData<>();
-    //
     public MutableLiveData<Boolean> isLastPage = new MutableLiveData<>();
-
+    public int currentPageCoupons;
     private StorageSharedPreferences mSharedPreferences;
 
     public HomeViewModel(@NonNull Application application) {
@@ -113,6 +112,7 @@ public class HomeViewModel extends BaseViewModel {
 
     // this method will call getAllCouponsCategory from repository to get all coupons to category from server
     public void getAllCouponsCategory(int idCategory, int page) {
+        currentPageCoupons = page;
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
@@ -145,6 +145,7 @@ public class HomeViewModel extends BaseViewModel {
 
     // this method will call getAllCouponsCompany from repository to get all coupons to company from server
     public void getCouponsCompany(int idCompany, int page) {
+        currentPageCoupons = page;
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCompany from repository

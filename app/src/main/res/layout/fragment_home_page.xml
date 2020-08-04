@@ -12,23 +12,21 @@
             type="com.mohannad.coupon.view.ui.home.HomeViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/ly_nested_scrollview"
+    <FrameLayout
+        android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         tools:context=".view.ui.home.HomePageFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmerFrameLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="@{homeViewModel.dataLoadingCompanies? View.VISIBLE:View.GONE}"
-                app:layout_constraintBottom_toTopOf="@id/barrier3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -53,69 +51,16 @@
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:scrollbars="none"
-                app:layout_constraintBottom_toTopOf="@id/barrier3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/img_all_companies"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:elevation="16dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/shape_white_with_border_pink_radius_9dp"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_all_company"
-                        android:visibility="@{homeViewModel.dataLoadingCompanies? View.GONE:View.VISIBLE}" />
-
-                    <TextView
-                        android:id="@+id/tv_all_company"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/img_all_companies"
-                        android:layout_alignStart="@id/img_all_companies"
-                        android:layout_alignEnd="@id/img_all_companies"
-                        android:gravity="center"
-                        android:text="@string/all"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:visibility="@{homeViewModel.dataLoadingCompanies? View.GONE:View.VISIBLE}" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_companies"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/img_all_companies"
-                        android:visibility="visible"
-                        tools:itemCount="1"
-                        tools:listitem="@layout/item_company_rv" />
-                </RelativeLayout>
-            </HorizontalScrollView>
-
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmerFrameLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="@{homeViewModel.dataLoadingCoupons? View.VISIBLE:View.GONE}"
+                android:layout_marginTop="24dp"
+                android:visibility="@{(homeViewModel.dataLoadingCoupons &amp;&amp; homeViewModel.currentPageCoupons == 1)? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier3">
+                app:layout_constraintTop_toBottomOf="@id/shimmerFrameLayout"
+                app:layout_goneMarginTop="120dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -136,23 +81,30 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_coupons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/progressBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier3"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_coupon_rv" />
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier3"
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="horizontalScrollView,shimmerFrameLayout"
-                tools:layout_editor_absoluteY="2632dp" />
-
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="@{(homeViewModel.dataLoadingCoupons &amp;&amp; homeViewModel.currentPageCoupons > 1)? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 </layout>

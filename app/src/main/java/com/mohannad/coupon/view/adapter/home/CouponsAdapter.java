@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
+import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
 import com.mohannad.coupon.databinding.ItemAdsRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
 import com.mohannad.coupon.databinding.ItemTitleRvBinding;
@@ -24,18 +26,22 @@ import com.mohannad.coupon.databinding.ItemTitleRvBinding;
 import java.util.List;
 
 public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseViewHolder> {
+    private final int VIEW_TYPE_COMPANIES = 0;
     private final int VIEW_TYPE_COUPONS = 1;
     private final int VIEW_TYPE_ADS = 2;
     private final int VIEW_TYPE_TITLE = 3;
+    private boolean selectedAll = true;
     private Context mContext;
-    private List<CouponHomeResponse.Coupon> couponList;
     private Animation shake;
-
+    private CompaniesAdapter companiesAdapter;
+    private List<CouponHomeResponse.Coupon> couponList;
     private CouponClickListener couponClickListener;
 
-    public CouponsAdapter(Context mContext, List<CouponHomeResponse.Coupon> couponList, CouponClickListener couponClickListener) {
+    public CouponsAdapter(Context mContext, List<CouponHomeResponse.Coupon> couponList,
+                          CompaniesAdapter companiesAdapter, CouponClickListener couponClickListener) {
         this.mContext = mContext;
         this.couponList = couponList;
+        this.companiesAdapter = companiesAdapter;
         // animation when copy coupon
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
         this.couponClickListener = couponClickListener;
@@ -43,12 +49,16 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
 
     @Override
     public int getItemViewType(int position) {
-        if (couponList.get(position).getType().equals("coupon")) {
-            return VIEW_TYPE_COUPONS;
-        } else if (couponList.get(position).getType().equals("ads")) {
-            return VIEW_TYPE_ADS;
+        if (position == 0) {
+            return VIEW_TYPE_COMPANIES;
         } else {
-            return VIEW_TYPE_TITLE;
+            if (couponList.get(position - 1).getType().equals("coupon")) {
+                return VIEW_TYPE_COUPONS;
+            } else if (couponList.get(position - 1).getType().equals("ads")) {
+                return VIEW_TYPE_ADS;
+            } else {
+                return VIEW_TYPE_TITLE;
+            }
         }
     }
 
@@ -56,6 +66,9 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
+            case VIEW_TYPE_COMPANIES:
+                return new CompaniesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                        R.layout.companies_layout, parent, false));
             case VIEW_TYPE_COUPONS:
                 return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                         R.layout.item_coupon_rv, parent, false));
@@ -72,12 +85,17 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        holder.onBind(position);
+        holder.onBind(position - 1);
     }
 
     @Override
     public int getItemCount() {
-        return couponList.size();
+        return couponList == null ? 0 : couponList.size() + 1;
+    }
+
+    public void selectAllView(boolean selected) {
+        selectedAll = selected;
+        notifyDataSetChanged();
     }
 
     public void addAll(List<CouponHomeResponse.Coupon> coupons) {
@@ -88,6 +106,45 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
     public void clear() {
         this.couponList.clear();
     }
+
+    // view holder for companies
+    class CompaniesViewHolder extends BaseViewHolder {
+        CompaniesLayoutBinding companiesLayoutBinding;
+
+        public CompaniesViewHolder(CompaniesLayoutBinding companiesLayoutBinding) {
+            super(companiesLayoutBinding);
+            this.companiesLayoutBinding = companiesLayoutBinding;
+            this.companiesLayoutBinding.rvCompanies.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
+            this.companiesLayoutBinding.rvCompanies.setHasFixedSize(true);
+            this.companiesLayoutBinding.rvCompanies.setAdapter(companiesAdapter);
+        }
+
+        @Override
+        public void onBind(int position) {
+            super.onBind(position);
+            if (selectedAll) {
+                // add border on all coupons
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_with_border_pink_radius_9dp));
+                // add shadow
+                this.companiesLayoutBinding.imgAllCompanies.setElevation(24);
+            } else {
+                // remove border
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_radius_9dp));
+                // remove shadow
+                this.companiesLayoutBinding.imgAllCompanies.setElevation(0);
+            }
+            this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {
+                selectedAll = true;
+                couponClickListener.onClickAllCoupons();
+            });
+        }
+
+        @Override
+        public int getCurrentPosition() {
+            return super.getCurrentPosition();
+        }
+    }
+
 
     // view holder for coupons
     class CouponViewHolder extends BaseViewHolder {
@@ -223,6 +280,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
 
     public interface CouponClickListener {
         void copyCoupon(int position, CouponHomeResponse.Coupon coupon);
+
+        void onClickAllCoupons();
     }
 
 }
