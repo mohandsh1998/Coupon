@@ -9,7 +9,7 @@
 
         <variable
             name="loginViewModel"
-            type="com.mohannad.coupon.view.ui.auth.LoginViewModel" />
+            type="com.mohannad.coupon.view.ui.auth.login.LoginViewModel" />
 
     </data>
 
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".view.ui.auth.LoginActivity">
+        tools:context=".view.ui.auth.login.LoginActivity">
 
         <ImageView
             android:id="@+id/imageView"
@@ -113,8 +113,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="48dp"
             android:background="@drawable/shape_btn_raduis_22dp"
-            android:text="@string/login"
             android:onClick="@{(view) -> loginViewModel.onClick()}"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -190,6 +190,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.45" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

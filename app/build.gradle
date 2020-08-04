@@ -42,11 +42,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //glide -> Image Loader Library
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //dialog
     implementation 'com.tapadoo.android:alerter:6.1.0'
+    //Viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    //shimmer loading
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
 
 }

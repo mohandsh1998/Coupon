@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="homeViewModel"
+            type="com.mohannad.coupon.view.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ly_nested_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".view.ui.home.HomePageFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{homeViewModel.dataLoadingCompanies? View.VISIBLE:View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/barrier3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_company_layout" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toTopOf="@id/barrier3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_all_companies"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:elevation="16dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/shape_white_with_border_pink_radius_9dp"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_all_company"
+                        android:visibility="@{homeViewModel.dataLoadingCompanies? View.GONE:View.VISIBLE}" />
+
+                    <TextView
+                        android:id="@+id/tv_all_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img_all_companies"
+                        android:layout_alignStart="@id/img_all_companies"
+                        android:layout_alignEnd="@id/img_all_companies"
+                        android:gravity="center"
+                        android:text="@string/all"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:visibility="@{homeViewModel.dataLoadingCompanies? View.GONE:View.VISIBLE}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_companies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/img_all_companies"
+                        android:visibility="visible"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_company_rv" />
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{homeViewModel.dataLoadingCoupons? View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/shimmer_place_holder_coupon_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_coupon_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_coupon_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_coupon_layout" />
+
+                    <include layout="@layout/shimmer_place_holder_coupon_layout" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_coupons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier3"
+                tools:listitem="@layout/item_coupon_rv" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="horizontalScrollView,shimmerFrameLayout"
+                tools:layout_editor_absoluteY="2632dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

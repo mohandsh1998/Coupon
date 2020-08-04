@@ -25,6 +25,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ly_used_coupon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -36,7 +37,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_coupon_24dp" />
 
@@ -71,7 +72,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_instagram" />
 
@@ -95,16 +96,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ly_share_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:id="@+id/ly_share_app"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_share" />
 
@@ -128,6 +129,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ly_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -138,7 +140,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_lock" />
 
@@ -171,6 +173,7 @@
                 android:textSize="18sp" />
 
             <LinearLayout
+                android:id="@+id/ly_setting_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -179,7 +182,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_coupon_24dp" />
 
@@ -213,7 +216,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_coupon_24dp" />
 
@@ -237,6 +240,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ly_contact_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -245,7 +249,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_contact_us" />
 
@@ -279,7 +283,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_logout" />
 
@@ -313,7 +317,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gray1_raduis_9dp"
+                    android:background="@drawable/shape_gray1_radius_9dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_register_now" />
 

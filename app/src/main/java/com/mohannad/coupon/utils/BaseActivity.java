@@ -2,6 +2,7 @@ package com.mohannad.coupon.utils;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,13 +27,14 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    public static void showDialog(AppCompatActivity activity, String message, int color) {
-        Alerter.create(activity)
-                .setText(message)
-                .setDuration(2000)
-                .enableVibration(true)
-                .enableSwipeToDismiss()
-                .setBackgroundColorRes(color)
-                .show();
+    public void showDialog(AppCompatActivity activity, String message, int color) {
+//        Alerter.create(activity)
+//                .setText(message)
+//                .setDuration(2000)
+//                .enableVibration(true)
+//                .enableSwipeToDismiss()
+//                .setBackgroundColorRes(color)
+//                .show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

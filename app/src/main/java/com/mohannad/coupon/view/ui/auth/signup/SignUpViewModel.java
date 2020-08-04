@@ -1,4 +1,4 @@
-package com.mohannad.coupon.view.ui.auth;
+package com.mohannad.coupon.view.ui.auth.signup;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -57,7 +57,7 @@ public class SignUpViewModel extends BaseViewModel {
                                 mSharedPreferences.saveLogInSate(true);
                                 mSharedPreferences.saveEmail(response.getUser().getEmail());
                                 mSharedPreferences.saveUserName(response.getUser().getName());
-                                mSharedPreferences.saveAuthToken(response.getUser().getToken());
+                                mSharedPreferences.saveAuthToken("Bearer " + response.getUser().getToken());
                                 toastMessageSuccess.setValue(response.getMsg());
                                 success.setValue(true);
                             } else {

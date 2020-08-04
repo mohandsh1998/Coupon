@@ -44,4 +44,19 @@
     <string name="password_must_be_more_than_6">Password length must be more than 6</string>
     <string name="problem_when_try_to_connect">There is a problem when trying to connect</string>
     <string name="register_now">Register Now</string>
+    <string name="discount">Discount</string>
+    <string name="shop_now">Shop now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="coupons_have_been_used">Coupons Have Been Used</string>
+    <string name="last_used">Last Used</string>
+    <string name="copy_coupon">Copy Coupon</string>
+    <string name="coupon_has_ended">Coupon has ended</string>
+    <string name="all">All</string>
+    <string name="how_was_your_experience">How Was Your Experience?</string>
+    <string name="tell_us_if_it_works_well">Tell Us If It Works Well</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="times">Times</string>
+    <string name="coupon_was_copied">Coupon was copied</string>
 </resources>

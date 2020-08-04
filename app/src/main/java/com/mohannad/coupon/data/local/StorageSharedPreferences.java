@@ -11,13 +11,19 @@ public class StorageSharedPreferences {
     private static String TOKEN_FCM_KEY = "token_fcm";
     private static String USER_NAME_KEY = "user_name";
     private static String EMAIL_KEY = "email";
+    private static final String IS_FIRST_TIME_LAUNCH_KEY = "IsFirstTimeLaunch";
     private static String PASSWORD_KEY = "password";
+    private static String COUNTRY_NAME_KEY = "country_name";
+    private static String COUNTRY_ID_KEY = "country_id";
     private static final boolean LOG_IN_STATE = false;
     private static final String AUTH_TOKEN = null;
     private static final String TOKEN_FCM = null;
     private static final String USER_NAME = null;
     private static final String EMAIL = null;
     private static final String PASSWORD = null;
+    private static final String COUNTRY_NAME = null;
+    private static final int COUNTRY_ID = -1;
+    private static final boolean IS_FIRST_TIME_LAUNCH = true;
 
     private Context mContext;
 
@@ -83,7 +89,31 @@ public class StorageSharedPreferences {
         return getSharedPreferences().getString(TOKEN_FCM_KEY, TOKEN_FCM);
     }
 
-    public void logout(){
+    public void saveCountryName(String countryName) {
+        getPreferencesEditor().putString(COUNTRY_NAME_KEY, countryName).commit();
+    }
+
+    public String getCountryName() {
+        return getSharedPreferences().getString(COUNTRY_NAME_KEY, COUNTRY_NAME);
+    }
+
+    public void saveCountryID(int countryID) {
+        getPreferencesEditor().putInt(COUNTRY_ID_KEY, countryID).commit();
+    }
+
+    public int getCountryID() {
+        return getSharedPreferences().getInt(COUNTRY_ID_KEY, COUNTRY_ID);
+    }
+
+    public void setFirstTimeLaunch(boolean isFirstTime) {
+        getPreferencesEditor().putBoolean(IS_FIRST_TIME_LAUNCH_KEY, isFirstTime).commit();
+    }
+
+    public boolean isFirstTimeLaunch() {
+        return getSharedPreferences().getBoolean(IS_FIRST_TIME_LAUNCH_KEY, IS_FIRST_TIME_LAUNCH);
+    }
+
+    public void logout() {
         saveLogInSate(false);
         saveAuthToken(null);
         saveUserName(null);

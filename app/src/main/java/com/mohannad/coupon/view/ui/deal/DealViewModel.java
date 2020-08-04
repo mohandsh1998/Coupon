@@ -1,19 +1,53 @@
 package com.mohannad.coupon.view.ui.deal;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DealViewModel extends ViewModel {
+import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ResponseServer;
+import com.mohannad.coupon.data.model.DealResponse;
+import com.mohannad.coupon.data.model.HelpResponse;
+import com.mohannad.coupon.repository.DealRepository;
+import com.mohannad.coupon.repository.HelpRepository;
+import com.mohannad.coupon.utils.BaseViewModel;
 
-    private MutableLiveData<String> mText;
+import java.util.List;
 
-    public DealViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is deal fragment");
+public class DealViewModel extends BaseViewModel {
+    DealRepository dealRepository;
+    MutableLiveData<List<DealResponse.DealItem>> deals = new MutableLiveData<>();
+    MutableLiveData<List<DealResponse.DealsAds>> adsDeal = new MutableLiveData<>();
+
+    public DealViewModel(@NonNull Application application) {
+        super(application);
+        dealRepository = DealRepository.newInstance();
+        getDeals();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    private void getDeals() {
+        dataLoading.setValue(true);
+        dealRepository.getDeals(getApplication().getString(R.string.lang), 1, 1, new ResponseServer<LiveData<DealResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<DealResponse> response) {
+                dataLoading.setValue(false);
+                if (response != null && response.getValue() != null) {
+                    if (response.getValue().isStatus()) {
+                        deals.setValue(response.getValue().getDeal().getDealItems());
+                        adsDeal.setValue(response.getValue().getDealsAds());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                dataLoading.setValue(false);
+                // show error msg
+                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+            }
+        });
     }
 }

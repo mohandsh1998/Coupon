@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_company_item_favorite_rv"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_company_name_item_favorite_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_company_item_favorite_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_company_item_favorite_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_company_item_favorite_rv"
+                tools:text="Careem" />
+
+            <TextView
+                android:id="@+id/tv_shop_now_item_favorite_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_orange_raduis_9dp"
+                android:padding="8dp"
+                android:text="@string/shop_now"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_company_item_favorite_rv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_company_item_favorite_rv" />
+
+            <TextView
+                android:id="@+id/tv_desc_item_favorite_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black0"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_favorite_rv"
+                app:layout_constraintStart_toStartOf="@+id/img_company_item_favorite_rv"
+                app:layout_constraintTop_toBottomOf="@+id/img_company_item_favorite_rv"
+                tools:text="Off All Products Shop Name 17%+ Free Shipping" />
+
+            <TextView
+                android:id="@+id/tv_text_num_times_used_item_deal_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/coupons_have_been_used"
+                android:textColor="@color/gray0"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_desc_item_favorite_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_favorite_rv" />
+
+            <TextView
+                android:id="@+id/tv_num_times_used_item_deal_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_text_num_times_used_item_deal_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_favorite_rv"
+                tools:text="200 times" />
+
+            <TextView
+                android:id="@+id/tv_text_last_date_used_item_deal_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/last_used"
+                android:textColor="@color/gray0"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_desc_item_favorite_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_text_num_times_used_item_deal_rv" />
+
+            <TextView
+                android:id="@+id/tv_last_date_used_item_deal_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_text_last_date_used_item_deal_rv"
+                app:layout_constraintStart_toEndOf="@+id/tv_text_last_date_used_item_deal_rv"
+                app:layout_constraintTop_toTopOf="@+id/tv_text_last_date_used_item_deal_rv"
+                tools:text="2 Minutes Ago" />
+
+            <ImageView
+                android:id="@+id/img_delete_coupon_item_favorite_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_remove"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_text_last_date_used_item_deal_rv" />
+
+            <ImageView
+                android:id="@+id/img_share_item_favorite_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_share"
+                app:layout_constraintBottom_toBottomOf="@+id/img_delete_coupon_item_favorite_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_delete_coupon_item_favorite_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_delete_coupon_item_favorite_rv" />
+
+            <TextView
+                android:id="@+id/tv_copy_coupon_item_favorite_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:gravity="center"
+                android:text="@string/copy_coupon"
+                android:textColor="@color/pink"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_favorite_rv"
+                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_favorite_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_share_item_favorite_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_share_item_favorite_rv" />
+
+            <TextView
+                android:id="@+id/tv_coupon_ended_item_favorite_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:gravity="center"
+                android:text="@string/coupon_has_ended"
+                android:textColor="@color/gray0"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_favorite_rv"
+                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_favorite_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_share_item_favorite_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_share_item_favorite_rv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,4 +1,4 @@
-package com.mohannad.coupon.view.ui.auth;
+package com.mohannad.coupon.view.ui.auth.login;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -54,7 +54,7 @@ public class LoginViewModel extends BaseViewModel {
                                 mSharedPreferences.saveLogInSate(true);
                                 mSharedPreferences.saveEmail(response.getUser().getEmail());
                                 mSharedPreferences.saveUserName(response.getUser().getName());
-                                mSharedPreferences.saveAuthToken(response.getUser().getToken());
+                                mSharedPreferences.saveAuthToken("Bearer " +response.getUser().getToken());
                                 success.setValue(true);
                             } else {
                                 // failed to login

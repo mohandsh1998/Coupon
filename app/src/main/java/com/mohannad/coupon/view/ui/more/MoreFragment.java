@@ -1,10 +1,7 @@
 package com.mohannad.coupon.view.ui.more;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -22,9 +19,13 @@ import android.view.ViewGroup;
 import com.mohannad.coupon.BuildConfig;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.databinding.FragmentMoreBinding;
-import com.mohannad.coupon.view.ui.auth.SignUpActivity;
+import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordActivity;
+import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
+import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.help.HelpActivity;
+import com.mohannad.coupon.view.ui.setting.SettingActivity;
 import com.mohannad.coupon.view.ui.splash.SplashActivity;
+import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
 
 public class MoreFragment extends Fragment {
 
@@ -79,6 +80,19 @@ public class MoreFragment extends Fragment {
         binding.lyHelp.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), HelpActivity.class));
         });
+        binding.lyContactUs.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), ContactUsActivity.class));
+        });
+        binding.lySettingApp.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), SettingActivity.class));
+        });
+        binding.lyUsedCoupon.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), UsedCouponActivity.class));
+        });
+        binding.lyChangePassword.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
+        });
+
     }
 
     private void openInstagram() {
