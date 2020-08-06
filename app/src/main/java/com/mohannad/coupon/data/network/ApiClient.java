@@ -23,11 +23,6 @@ public class ApiClient {
 
     public static Retrofit getClient() {
         if (retrofit == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .excludeFieldsWithoutExposeAnnotation()
-                    .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                    .create();
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)

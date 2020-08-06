@@ -172,7 +172,14 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
                 itemCouponRvBinding.getRoot().startAnimation(shake);
                 couponClickListener.copyCoupon(position, coupon);
             });
-
+            // when user click to add coupon or remove to favorite
+            itemCouponRvBinding.imgFavoriteCouponItemCouponRv.setOnClickListener(v -> {
+                couponClickListener.addToFavoriteCoupon(position, coupon);
+            });
+            // when user click to share coupon
+            itemCouponRvBinding.imgShareItemCouponRv.setOnClickListener(v -> {
+                couponClickListener.shareCoupon(position, coupon);
+            });
             // description coupon
             itemCouponRvBinding.tvDescItemCouponRv.setText(coupon.getDesc());
             // load img company
@@ -279,6 +286,10 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
     }
 
     public interface CouponClickListener {
+        void shareCoupon(int position, CouponHomeResponse.Coupon coupon);
+
+        void addToFavoriteCoupon(int position, CouponHomeResponse.Coupon coupon);
+
         void copyCoupon(int position, CouponHomeResponse.Coupon coupon);
 
         void onClickAllCoupons();

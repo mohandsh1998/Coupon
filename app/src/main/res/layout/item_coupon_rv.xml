@@ -176,7 +176,7 @@
                 tools:text="2 Minutes Ago" />
 
             <ImageView
-                android:id="@+id/img_delete_coupon_item_coupon_rv"
+                android:id="@+id/img_favorite_coupon_item_coupon_rv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -195,9 +195,9 @@
                 android:background="@drawable/shape_gray1_radius_9dp"
                 android:padding="8dp"
                 android:src="@drawable/ic_share"
-                app:layout_constraintBottom_toBottomOf="@+id/img_delete_coupon_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/img_delete_coupon_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/img_delete_coupon_item_coupon_rv" />
+                app:layout_constraintBottom_toBottomOf="@+id/img_favorite_coupon_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_favorite_coupon_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_favorite_coupon_item_coupon_rv" />
 
             <TextView
                 android:id="@+id/tv_copy_coupon_item_coupon_rv"
@@ -236,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="top"
-                app:constraint_referenced_ids="img_delete_coupon_item_coupon_rv,img_share_item_coupon_rv,tv_copy_coupon_item_coupon_rv" />
+                app:constraint_referenced_ids="img_favorite_coupon_item_coupon_rv,img_share_item_coupon_rv,tv_copy_coupon_item_coupon_rv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

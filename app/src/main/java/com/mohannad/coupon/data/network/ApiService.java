@@ -3,10 +3,12 @@ package com.mohannad.coupon.data.network;
 import com.mohannad.coupon.data.model.AuthResponse;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
+import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
+import com.mohannad.coupon.data.model.MessageResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -79,5 +81,15 @@ public interface ApiService {
                                                   @Header("country-id") int countryId,
                                                   @Path("idCompany") int idCompany,
                                                   @Query("page") int page);
+
+    // copy coupon by user
+    @POST("/api/coupon/{idCoupon}/copy")
+    Call<CopyCouponResponse> copyCoupon(@Header("lang") String lang,
+                                        @Path("idCoupon") int idCoupon);
+    // add or remove coupon to favorite
+    @POST("/api/favorite/coupon/{idCoupon}")
+    Call<MessageResponse> addOrRemoveCouponFavorite(@Header("lang") String lang,
+                                                    @Header("Authorization") String token,
+                                                    @Path("idCoupon") int idCoupon);
 
 }

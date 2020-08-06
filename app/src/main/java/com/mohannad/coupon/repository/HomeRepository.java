@@ -9,8 +9,10 @@ import androidx.lifecycle.MutableLiveData;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
+import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
+import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.network.ApiClient;
 import com.mohannad.coupon.data.network.ApiService;
 
@@ -101,6 +103,46 @@ public class HomeRepository {
 
             @Override
             public void onFailure(@NonNull Call<CouponHomeResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Home onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    // this method will using to increase the number of times the coupon is copied on SERVER SIDE
+    public void copyCoupon(String lang, int idCoupon, ResponseServer<LiveData<CopyCouponResponse>> responseServer) {
+        MutableLiveData<CopyCouponResponse> couponCopied = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.copyCoupon(lang, idCoupon).enqueue(new Callback<CopyCouponResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CopyCouponResponse> call, @NonNull Response<CopyCouponResponse> response) {
+                couponCopied.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), couponCopied);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CopyCouponResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Home onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    // this method will using to add or remove the coupon to favorite on SERVER SIDE
+    public void addOrRemoveCouponFavorite(String lang, String token, int idCoupon, ResponseServer<LiveData<MessageResponse>> responseServer) {
+        MutableLiveData<MessageResponse> message = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.addOrRemoveCouponFavorite(lang, token, idCoupon).enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                message.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), message);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "Home onFailure" + call.toString());
                 responseServer.onFailure(t.getMessage());
                 t.printStackTrace();

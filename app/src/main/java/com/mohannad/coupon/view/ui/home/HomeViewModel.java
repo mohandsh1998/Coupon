@@ -13,8 +13,10 @@ import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
+import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
+import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.repository.HelpRepository;
 import com.mohannad.coupon.repository.HomeRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
@@ -175,4 +177,43 @@ public class HomeViewModel extends BaseViewModel {
             }
         });
     }
+
+    // this method will call copyCoupon  from repository to increase the number of times the coupon is copied on SERVER
+    public void copyCoupon(int idCoupon) {
+        // call copyCoupon from repository
+        homeRepository.copyCoupon(getApplication().getString(R.string.lang), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<CopyCouponResponse> response) {
+            }
+
+            @Override
+            public void onFailure(String message) {
+            }
+        });
+    }
+
+    // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
+    public void addOrRemoveCouponFavorite(int idCoupon) {
+        // call addOrRemoveCouponFavorite from repository
+        homeRepository.addOrRemoveCouponFavorite(getApplication().getString(R.string.lang), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+                // check if status success
+                if (status) {
+                    if (response != null && response.getValue() != null) {
+                        if (response.getValue().isStatus()) {
+                            toastMessageSuccess.setValue(response.getValue().getMessage());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                // show error msg
+                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+            }
+        });
+    }
+
 }

@@ -1,6 +1,9 @@
 package com.mohannad.coupon.view.ui.home;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -23,6 +26,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.databinding.FragmentHomePageBinding;
@@ -31,8 +35,11 @@ import com.mohannad.coupon.utils.PaginationListener;
 import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
+import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
 
 import java.util.ArrayList;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class HomePageFragment extends BaseFragment {
     private static final String TAG = "HomePageFragment";
@@ -50,6 +57,7 @@ public class HomePageFragment extends BaseFragment {
     private Context mContext;
     FragmentHomePageBinding binding;
     HomeViewModel homeViewModel;
+    private StorageSharedPreferences storageSharedPreferences;
     // adapter companies
     private CompaniesAdapter companiesAdapter;
     // adapter coupons
@@ -98,6 +106,7 @@ public class HomePageFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        storageSharedPreferences = new StorageSharedPreferences(mContext);
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(homeViewModel);
         binding.setLifecycleOwner(this);
@@ -125,7 +134,11 @@ public class HomePageFragment extends BaseFragment {
         couponsAdapter = new CouponsAdapter(requireActivity(), coupons, companiesAdapter, new CouponsAdapter.CouponClickListener() {
             @Override
             public void copyCoupon(int position, CouponHomeResponse.Coupon coupon) {
+                // copy code coupon
+                copyText(coupon.getCouponCode());
+                // show dialog
                 showSnackbar(binding.lyContainer, getString(R.string.coupon_was_copied)).show();
+                homeViewModel.copyCoupon(coupon.getId());
             }
 
             @Override
@@ -143,6 +156,19 @@ public class HomePageFragment extends BaseFragment {
                 // get all coupons to category
                 fetchAllCouponsCategory();
             }
+
+            @Override
+            public void shareCoupon(int position, CouponHomeResponse.Coupon coupon) {
+
+            }
+
+            @Override
+            public void addToFavoriteCoupon(int position, CouponHomeResponse.Coupon coupon) {
+                if (storageSharedPreferences.getLogInState())
+                    homeViewModel.addOrRemoveCouponFavorite(coupon.getId());
+                else startActivity(new Intent(mContext, LoginActivity.class));
+            }
+
         });
         linearLayoutManager = new LinearLayoutManager(requireContext());
         binding.rvCoupons.setLayoutManager(linearLayoutManager);
@@ -153,6 +179,10 @@ public class HomePageFragment extends BaseFragment {
 
         homeViewModel.companies.observe(requireActivity(), companiesAdapter::addAll);
         homeViewModel.coupons.observe(requireActivity(), couponsAdapter::addAll);
+        // display success msg
+        homeViewModel.toastMessageSuccess.observe(requireActivity(), msg -> {
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        });
         // display error msg
         homeViewModel.toastMessageFailed.observe(requireActivity(), msg -> {
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();

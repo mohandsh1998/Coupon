@@ -1,5 +1,7 @@
 package com.mohannad.coupon.utils;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.mohannad.coupon.R;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class BaseFragment extends Fragment {
     public void loadImage(Context context, String link, ImageView imageView) {
@@ -49,5 +53,11 @@ public class BaseFragment extends Fragment {
 
         snackBarView.addView(snackView, 0);
         return snackbar;
+    }
+
+    public void copyText(String code) {
+        ClipboardManager clipboard = (ClipboardManager) requireActivity().getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", code);
+        clipboard.setPrimaryClip(clip);
     }
 }
