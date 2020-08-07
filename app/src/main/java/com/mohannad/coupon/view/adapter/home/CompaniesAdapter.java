@@ -99,8 +99,6 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
             // click listener when select company
             itemView.getRoot().setOnClickListener(v -> {
                 if (selectedItem != getAdapterPosition()) {
-                    // this call to remove border item selected to company previous
-                    notifyItemChanged(selectedItem);
                     // change position selectedItem
                     selectedItem = getAdapterPosition();
                     // add border on selected company

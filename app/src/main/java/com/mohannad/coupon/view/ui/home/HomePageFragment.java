@@ -36,6 +36,7 @@ import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
+import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
 
@@ -139,6 +140,22 @@ public class HomePageFragment extends BaseFragment {
                 // show dialog
                 showSnackbar(binding.lyContainer, getString(R.string.coupon_was_copied)).show();
                 homeViewModel.copyCoupon(coupon.getId());
+            }
+
+            @Override
+            public void shopNowCoupon(int position, CouponHomeResponse.Coupon coupon) {
+                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+            }
+
+            @Override
+            public void shopNowAds(int position, CouponHomeResponse.Coupon coupon) {
+                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+            }
+
+
+            @Override
+            public void answerQuestion(int position, CouponHomeResponse.Coupon coupon, boolean answer) {
+
             }
 
             @Override

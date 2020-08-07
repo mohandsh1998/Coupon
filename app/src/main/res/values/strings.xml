@@ -59,4 +59,5 @@
     <string name="no">No</string>
     <string name="times">Times</string>
     <string name="coupon_was_copied">Coupon was copied</string>
+    <string name="back_to_app">Back To App</string>
 </resources>

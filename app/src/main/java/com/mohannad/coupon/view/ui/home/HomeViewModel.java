@@ -31,6 +31,8 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> dataLoadingCompanies = new MutableLiveData<>();
     // loading coupons
     public MutableLiveData<Boolean> dataLoadingCoupons = new MutableLiveData<>();
+    // add to favorite
+    public MutableLiveData<Boolean> successAddOrRemoveToFavorite = new MutableLiveData<>();
     // categories that will show in tabs
     MutableLiveData<List<CategoriesResponse.Category>> categoriesTabs = new MutableLiveData<>();
     // Companies that will show in category
@@ -118,7 +120,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
-        homeRepository.getAllCouponsCategory(getApplication().getString(R.string.lang), 1, idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCategory(getApplication().getString(R.string.lang), 1, mSharedPreferences.getAuthToken(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -151,7 +153,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCompany from repository
-        homeRepository.getAllCouponsCompany(getApplication().getString(R.string.lang), 1, idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCompany(getApplication().getString(R.string.lang), 1, mSharedPreferences.getAuthToken(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -202,6 +204,7 @@ public class HomeViewModel extends BaseViewModel {
                 if (status) {
                     if (response != null && response.getValue() != null) {
                         if (response.getValue().isStatus()) {
+                            successAddOrRemoveToFavorite.setValue(true);
                             toastMessageSuccess.setValue(response.getValue().getMessage());
                         }
                     }
@@ -210,6 +213,7 @@ public class HomeViewModel extends BaseViewModel {
 
             @Override
             public void onFailure(String message) {
+                successAddOrRemoveToFavorite.setValue(false);
                 // show error msg
                 toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
             }

@@ -72,6 +72,7 @@ public interface ApiService {
     @GET("/api/store/{idCategory}/coupon/")
     Call<CouponHomeResponse> getAllCouponsCategory(@Header("lang") String lang,
                                                    @Header("country-id") int countryId,
+                                                   @Header("Authorization") String token,
                                                    @Path("idCategory") int idCategory,
                                                    @Query("page") int page);
 
@@ -79,6 +80,7 @@ public interface ApiService {
     @GET("/api/company/{idCompany}/coupon/")
     Call<CouponHomeResponse> getAllCouponsCompany(@Header("lang") String lang,
                                                   @Header("country-id") int countryId,
+                                                  @Header("Authorization") String token,
                                                   @Path("idCompany") int idCompany,
                                                   @Query("page") int page);
 

@@ -99,6 +99,8 @@ public class CouponHomeResponse {
         private String image;
         @SerializedName("ads_type")
         private String adsType;
+        @SerializedName("in_favorite")
+        private boolean inFavorite;
 
         public int getId() {
             return id;
@@ -154,6 +156,14 @@ public class CouponHomeResponse {
 
         public String getAdsType() {
             return adsType;
+        }
+
+        public boolean isInFavorite() {
+            return inFavorite;
+        }
+
+        public void setInFavorite(boolean inFavorite) {
+            this.inFavorite = inFavorite;
         }
     }
 }

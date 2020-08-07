@@ -71,10 +71,10 @@ public class HomeRepository {
     }
 
     // this method will using to get all coupons for category from SERVER SIDE
-    public void getAllCouponsCategory(String lang, int idCountry, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
+    public void getAllCouponsCategory(String lang, int idCountry, String token, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
         MutableLiveData<CouponHomeResponse> coupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAllCouponsCategory(lang, idCountry, idCategory, page).enqueue(new Callback<CouponHomeResponse>() {
+        apiService.getAllCouponsCategory(lang, idCountry, token, idCategory, page).enqueue(new Callback<CouponHomeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CouponHomeResponse> call, @NonNull Response<CouponHomeResponse> response) {
                 coupons.setValue(response.body());
@@ -91,10 +91,10 @@ public class HomeRepository {
     }
 
     // this method will using to get all coupons for company from SERVER SIDE
-    public void getAllCouponsCompany(String lang, int idCountry, int idCompany, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
+    public void getAllCouponsCompany(String lang, int idCountry, String token, int idCompany, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
         MutableLiveData<CouponHomeResponse> coupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAllCouponsCompany(lang, idCountry, idCompany, page).enqueue(new Callback<CouponHomeResponse>() {
+        apiService.getAllCouponsCompany(lang, idCountry, token, idCompany, page).enqueue(new Callback<CouponHomeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CouponHomeResponse> call, @NonNull Response<CouponHomeResponse> response) {
                 coupons.setValue(response.body());
