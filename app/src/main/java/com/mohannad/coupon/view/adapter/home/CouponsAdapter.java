@@ -168,6 +168,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
         public CouponViewHolder(@NonNull ItemCouponRvBinding itemCouponRvBinding) {
             super(itemCouponRvBinding);
             this.itemCouponRvBinding = itemCouponRvBinding;
+            this.itemCouponRvBinding.imgFavoriteCouponItemCouponRv.setVisibility(View.VISIBLE);
+            this.itemCouponRvBinding.imgDeleteCouponItemCouponRv.setVisibility(View.GONE);
         }
 
         @Override
