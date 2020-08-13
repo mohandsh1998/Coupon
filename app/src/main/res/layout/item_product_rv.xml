@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_company_item_product_rv"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_product_name_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_company_item_product_rv"
+                tools:text="Careem" />
+
+            <ImageView
+                android:id="@+id/img_video_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_play_circle_outline_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/img_company_item_product_rv"
+                app:layout_constraintEnd_toEndOf="@+id/img_company_item_product_rv"
+                app:layout_constraintStart_toStartOf="@+id/img_company_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_company_item_product_rv" />
+
+            <TextView
+                android:id="@+id/tv_reviews_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:drawableStart="@drawable/ic_baseline_star_24"
+                android:drawablePadding="4dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_product_name_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/tv_product_name_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/tv_product_name_item_product_rv"
+                android:text="15" />
+
+            <TextView
+                android:id="@+id/tv_desc_item_product_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/black0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_product_name_item_product_rv"
+                tools:text="Off All Products Shop Name 17%+ Free Shipping" />
+
+            <TextView
+                android:id="@+id/tv_review_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/reviews"
+                android:textColor="@color/gray3"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num_reviews_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/tv_num_reviews_item_product_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_product_rv" />
+
+
+            <TextView
+                android:id="@+id/tv_num_reviews_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tv_desc_item_product_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_product_rv"
+                android:text="200" />
+
+            <TextView
+                android:id="@+id/tv_orders_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/last_used"
+                android:textColor="@color/gray3"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num_order_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/tv_num_order_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/tv_num_order_item_product_rv" />
+
+            <TextView
+                android:id="@+id/tv_num_order_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/orange"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_review_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/tv_review_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/tv_review_item_product_rv"
+                android:text="1520" />
+
+            <ImageView
+                android:id="@+id/img_favorite_product_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_num_reviews_item_product_rv" />
+
+            <ImageView
+                android:id="@+id/img_delete_product_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_remove"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"
+                app:layout_constraintTop_toBottomOf="@+id/tv_num_reviews_item_product_rv" />
+
+            <ImageView
+                android:id="@+id/img_share_item_product_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_share"
+                app:layout_constraintBottom_toBottomOf="@+id/img_favorite_product_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/barrier2"
+                app:layout_constraintTop_toTopOf="@+id/img_favorite_product_item_product_rv" />
+
+            <TextView
+                android:id="@+id/tv_copy_coupon_item_product_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/shape_gray1_radius_9dp"
+                android:gravity="center"
+                android:text="@string/copy_coupon"
+                android:textColor="@color/pink"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_product_rv"
+                app:layout_constraintEnd_toEndOf="@+id/tv_desc_item_product_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_share_item_product_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_share_item_product_rv" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="img_favorite_product_item_product_rv,img_delete_product_item_product_rv"
+                tools:layout_editor_absoluteX="379dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

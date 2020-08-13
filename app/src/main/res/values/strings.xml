@@ -60,4 +60,6 @@
     <string name="times">Times</string>
     <string name="coupon_was_copied">Coupon was copied</string>
     <string name="back_to_app">Back To App</string>
+    <string name="reviews">Reviews</string>
+    <string name="products">Products</string>
 </resources>

@@ -9,6 +9,7 @@ import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
+import com.mohannad.coupon.data.model.ProductsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -88,10 +89,32 @@ public interface ApiService {
     @POST("/api/coupon/{idCoupon}/copy")
     Call<CopyCouponResponse> copyCoupon(@Header("lang") String lang,
                                         @Path("idCoupon") int idCoupon);
+
     // add or remove coupon to favorite
     @POST("/api/favorite/coupon/{idCoupon}")
     Call<MessageResponse> addOrRemoveCouponFavorite(@Header("lang") String lang,
                                                     @Header("Authorization") String token,
                                                     @Path("idCoupon") int idCoupon);
+
+    // all products for category
+    @GET("/api/products/{idTitle}")
+    Call<ProductsResponse> getAllProductsCategory(@Header("lang") String lang,
+                                                  @Header("Authorization") String token,
+                                                  @Path("idTitle") int idTitle,
+                                                  @Query("store_id") int idCategory);
+
+    // all products for company
+    @GET("/api/products/{idTitle}")
+    Call<ProductsResponse> getAllProductsCompany(@Header("lang") String lang,
+                                                 @Header("Authorization") String token,
+                                                 @Path("idTitle") int idTitle,
+                                                 @Query("company_id") int idCompany);
+
+
+    // add or remove product to favorite
+    @POST("/api/favorite/product/{idProduct}")
+    Call<MessageResponse> addOrRemoveProductFavorite(@Header("lang") String lang,
+                                                    @Header("Authorization") String token,
+                                                    @Path("idProduct") int idProduct);
 
 }

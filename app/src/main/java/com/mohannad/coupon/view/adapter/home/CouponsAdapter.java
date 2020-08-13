@@ -37,6 +37,9 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
     private List<CouponHomeResponse.Coupon> couponList;
     private CouponClickListener couponClickListener;
     private int shopItem;
+    private int copyItem;
+    // tag to start animation when copy coupon only
+    private boolean startAnimation = false;
 
     public CouponsAdapter(Context mContext, List<CouponHomeResponse.Coupon> couponList,
                           CompaniesAdapter companiesAdapter, CouponClickListener couponClickListener) {
@@ -47,10 +50,16 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
         this.couponClickListener = couponClickListener;
         shopItem = -1;
+        copyItem = -1;
     }
 
     public void setShopItem(int position) {
         shopItem = position;
+        notifyDataSetChanged();
+    }
+
+    public void setCopyItem(int position) {
+        copyItem = position;
         notifyDataSetChanged();
     }
 
@@ -112,6 +121,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
 
     public void clear() {
         shopItem = -1;
+        copyItem = -1;
         this.couponList.clear();
     }
 
@@ -214,13 +224,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
 
             // when the user click to copy coupon
             itemCouponRvBinding.tvCopyCouponItemCouponRv.setOnClickListener(v -> {
-                // change code text
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
-                // change background
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_stroke_pink_raduis_9dp));
-                // start animation
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.startAnimation(shake);
-                itemCouponRvBinding.getRoot().startAnimation(shake);
+                setCopyItem(position);
+                startAnimation = true;
                 couponClickListener.copyCoupon(position, coupon);
             });
             // when the user click to add coupon or remove to favorite
@@ -259,6 +264,25 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
             } else {
                 visibleOrHideQuestionViews(false);
                 visibleOrHideContentCouponViews(true);
+            }
+            // check if position == coupon has been copied -> will show code coupon
+            // if not -> hide code coupon and show copy coupon text
+            if (position == copyItem) {
+                // change text to code coupon
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
+                // change background
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_stroke_pink_raduis_9dp));
+                if (startAnimation) {
+                    // start animation
+                    itemCouponRvBinding.tvCopyCouponItemCouponRv.startAnimation(shake);
+                    itemCouponRvBinding.getRoot().startAnimation(shake);
+                    startAnimation = false;
+                }
+            } else {
+                // change code coupon to text copy coupon
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.copy_coupon));
+                // change background
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }
         }
 
@@ -349,6 +373,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
             super.onBind(position);
             CouponHomeResponse.Coupon coupon = couponList.get(position);
             itemTitleRvBinding.tvTitleTopProduct.setText(coupon.getTitle());
+            this.itemTitleRvBinding.getRoot().setOnClickListener(v -> couponClickListener.openProductActivity(position, coupon));
         }
 
         @Override
@@ -386,6 +411,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
         void shopNowAds(int position, CouponHomeResponse.Coupon coupon);
 
         void answerQuestion(int position, CouponHomeResponse.Coupon coupon, boolean answer);
+
+        void openProductActivity(int position, CouponHomeResponse.Coupon coupon);
 
         void onClickAllCoupons();
     }

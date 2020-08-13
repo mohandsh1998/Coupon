@@ -31,7 +31,7 @@ public class HelpActivity extends BaseActivity {
 
         model.helpContents.observe(this, helpAdapter::addAll);
         model.toastMessageFailed.observe(this, msg -> {
-            showAlertDialog(msg);
+            showAlertDialog(binding.lyContainer, msg);
         });
     }
 }

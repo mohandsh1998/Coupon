@@ -9,18 +9,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.IntegerRes;
+import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.mohannad.coupon.R;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class BaseFragment extends Fragment {
+
     public void loadImage(Context context, String link, ImageView imageView) {
         Glide.with(context)
                 .load(link)
@@ -28,8 +27,21 @@ public class BaseFragment extends Fragment {
                 .into(imageView);
     }
 
+    public void showDefaultDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_pink).show();
+    }
+
+    public void showSuccessDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_green).show();
+    }
+
+
+    public void showAlertDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_red).show();
+    }
+
     // show snackbar dialog
-    public Snackbar showSnackbar(View view, String msg) {
+    public Snackbar showSnackbar(View view, String msg, @DrawableRes int background) {
         // Create the Snackbar
         Snackbar snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
         // 15 is margin from all the sides for snackbar
@@ -42,7 +54,7 @@ public class BaseFragment extends Fragment {
         // White background
         snackbar.getView().setBackgroundColor(Color.WHITE);
         // for rounded edges
-        snackbar.getView().setBackground(getResources().getDrawable(R.drawable.shape_snake_bar));
+        snackbar.getView().setBackground(getResources().getDrawable(background));
 
         Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
         FrameLayout.LayoutParams parentParams = (FrameLayout.LayoutParams) snackBarView.getLayoutParams();

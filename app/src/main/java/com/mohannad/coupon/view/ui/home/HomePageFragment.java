@@ -36,6 +36,7 @@ import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
+import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
@@ -138,7 +139,7 @@ public class HomePageFragment extends BaseFragment {
                 // copy code coupon
                 copyText(coupon.getCouponCode());
                 // show dialog
-                showSnackbar(binding.lyContainer, getString(R.string.coupon_was_copied)).show();
+                showDefaultDialog(binding.lyContainer, getString(R.string.coupon_was_copied));
                 homeViewModel.copyCoupon(coupon.getId());
             }
 
@@ -156,6 +157,30 @@ public class HomePageFragment extends BaseFragment {
             @Override
             public void answerQuestion(int position, CouponHomeResponse.Coupon coupon, boolean answer) {
 
+            }
+
+            @Override
+            public void openProductActivity(int position, CouponHomeResponse.Coupon coupon) {
+                // open products activity
+                Intent intent = new Intent(mContext, ProductsActivity.class);
+                // id title in items
+                intent.putExtra("idTitle", coupon.getId());
+                // check when click on item title to get products for category or company
+                switch (requestType) {
+                    // category products
+                    case ALL_COUPONS_CATEGORY:
+                        // this will send type and id category to products activity and get the products for category
+                        intent.putExtra("type", "category");
+                        intent.putExtra("idCategory", idCategory);
+                        break;
+                    // company products
+                    case COUPONS_COMPANY:
+                        // this will send type and id company to products activity and get the products for company
+                        intent.putExtra("type", "company");
+                        intent.putExtra("idCompany", idCompany);
+                        break;
+                }
+                startActivity(intent);
             }
 
             @Override

@@ -26,6 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
+import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.deal.SlideAdsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.deal.DealViewModel;
@@ -33,7 +34,7 @@ import com.mohannad.coupon.view.ui.deal.DealViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     private Context mContext;
     private FragmentHomeBinding binding;
     ArrayList<CategoriesResponse.Category> categoriesTabs = new ArrayList<>();

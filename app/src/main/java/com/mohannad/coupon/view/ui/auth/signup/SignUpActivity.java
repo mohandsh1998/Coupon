@@ -26,10 +26,10 @@ public class SignUpActivity extends BaseActivity {
             if (success) startActivity(new Intent(this, MainActivity.class));
         });
         model.toastMessageSuccess.observe(this, msg -> {
-            showSuccessDialog(msg);
+            showSuccessDialog(binding.lyContainer, msg);
         });
         model.toastMessageFailed.observe(this, msg -> {
-            showAlertDialog(msg);
+            showAlertDialog(binding.lyContainer, msg);
         });
         binding.tvLogin.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));

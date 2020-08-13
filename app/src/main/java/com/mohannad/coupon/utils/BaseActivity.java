@@ -1,14 +1,20 @@
 package com.mohannad.coupon.utils;
 
-import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mohannad.coupon.R;
-import com.tapadoo.alerter.Alerter;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -17,24 +23,48 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    public void showSuccessDialog(String message) {
-        showDialog(this, message, R.color.green);
+    public void showDefaultDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_pink).show();
+    }
+
+    public void showSuccessDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_green).show();
     }
 
 
-    public void showAlertDialog(String message) {
-        showDialog(this, message, R.color.red);
-
+    public void showAlertDialog(View view, String message) {
+        showSnackbar(view, message, R.drawable.shape_snake_bar_red).show();
     }
 
-    public void showDialog(AppCompatActivity activity, String message, int color) {
-//        Alerter.create(activity)
-//                .setText(message)
-//                .setDuration(2000)
-//                .enableVibration(true)
-//                .enableSwipeToDismiss()
-//                .setBackgroundColorRes(color)
-//                .show();
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    // show snackbar dialog
+    public Snackbar showSnackbar(View view, String msg, @DrawableRes int background) {
+        // Create the Snackbar
+        Snackbar snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
+        // 15 is margin from all the sides for snackbar
+        int marginFromSides = 15;
+
+        //inflate view
+        View snackView = getLayoutInflater().inflate(R.layout.snackbar_layout, null);
+        TextView tvMsg = snackView.findViewById(R.id.tv_msg_snack_bar);
+        tvMsg.setText(msg);
+        // White background
+        snackbar.getView().setBackgroundColor(Color.WHITE);
+        // for rounded edges
+        snackbar.getView().setBackground(getResources().getDrawable(background));
+
+        Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
+        FrameLayout.LayoutParams parentParams = (FrameLayout.LayoutParams) snackBarView.getLayoutParams();
+        parentParams.setMargins(marginFromSides, 0, marginFromSides, marginFromSides);
+        parentParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
+        parentParams.width = FrameLayout.LayoutParams.MATCH_PARENT;
+        snackBarView.setLayoutParams(parentParams);
+
+        snackBarView.addView(snackView, 0);
+        return snackbar;
+    }
+    public void copyText(String code) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", code);
+        clipboard.setPrimaryClip(clip);
     }
 }
