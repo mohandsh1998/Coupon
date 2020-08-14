@@ -22,10 +22,11 @@ import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
 import com.mohannad.coupon.databinding.ItemAdsRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
 import com.mohannad.coupon.databinding.ItemTitleRvBinding;
+import com.mohannad.coupon.utils.BaseViewHolder;
 
 import java.util.List;
 
-public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseViewHolder> {
+public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private final int VIEW_TYPE_COMPANIES = 0;
     private final int VIEW_TYPE_COUPONS = 1;
     private final int VIEW_TYPE_ADS = 2;
@@ -379,23 +380,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<CouponsAdapter.BaseView
         @Override
         public int getCurrentPosition() {
             return super.getCurrentPosition();
-        }
-    }
-
-    public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
-
-        private int mCurrentPosition;
-
-        public BaseViewHolder(ViewDataBinding itemView) {
-            super(itemView.getRoot());
-        }
-
-        public void onBind(int position) {
-            mCurrentPosition = position;
-        }
-
-        public int getCurrentPosition() {
-            return mCurrentPosition;
         }
     }
 

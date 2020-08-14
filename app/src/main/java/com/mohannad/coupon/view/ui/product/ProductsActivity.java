@@ -97,6 +97,9 @@ public class ProductsActivity extends BaseActivity {
         productsBinding.rvProductsActivityProducts.setAdapter(productAdapter);
         productsBinding.rvProductsActivityProducts.setHasFixedSize(true);
         model.products.observe(this, productAdapter::addAll);
+        model.toastMessageSuccess.observe(this, msg -> {
+            showSuccessDialog(productsBinding.lyContainer, msg);
+        });
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(productsBinding.lyContainer, msg);
         });

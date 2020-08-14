@@ -39,6 +39,14 @@ public class FavoriteResponse {
         private String companyName;
         @SerializedName("company_image")
         private String companyImage;
+        @SerializedName("name")
+        private String nameProduct;
+        @SerializedName("image")
+        private String image;
+        @SerializedName("file_path")
+        private String filePath;
+        @SerializedName("type")
+        private String type; // coupon or product
 
         public int getId() {
             return id;
@@ -78,6 +86,22 @@ public class FavoriteResponse {
 
         public String getCompanyImage() {
             return companyImage;
+        }
+
+        public String getNameProduct() {
+            return nameProduct;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public String getFilePath() {
+            return filePath;
+        }
+
+        public String getType() {
+            return type;
         }
     }
 }

@@ -93,7 +93,6 @@ public class ProductsViewModel extends BaseViewModel {
                 if (status) {
                     if (response != null && response.getValue() != null) {
                         if (response.getValue().isStatus()) {
-                            success.setValue(true);
                             toastMessageSuccess.setValue(response.getValue().getMessage());
                         }
                     }
@@ -102,7 +101,6 @@ public class ProductsViewModel extends BaseViewModel {
 
             @Override
             public void onFailure(String message) {
-                success.setValue(false);
                 // show error msg
                 toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
             }

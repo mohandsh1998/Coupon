@@ -223,11 +223,11 @@ public class HomePageFragment extends BaseFragment {
         homeViewModel.coupons.observe(requireActivity(), couponsAdapter::addAll);
         // display success msg
         homeViewModel.toastMessageSuccess.observe(requireActivity(), msg -> {
-            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+            showSuccessDialog(binding.lyContainer, msg);
         });
         // display error msg
         homeViewModel.toastMessageFailed.observe(requireActivity(), msg -> {
-            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+            showAlertDialog(binding.lyContainer, msg);
         });
         homeViewModel.isLastPage.observe(requireActivity(), lastPage -> {
             this.mIsLastPage = lastPage;
