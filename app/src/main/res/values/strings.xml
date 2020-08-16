@@ -41,6 +41,7 @@
     <string name="this_filed_is_empty">This filed is empty</string>
     <string name="full_name">Full name</string>
     <string name="email_invalid">This email invalid</string>
+    <string name="mobile_invalid">This mobile invalid</string>
     <string name="password_must_be_more_than_6">Password length must be more than 6</string>
     <string name="problem_when_try_to_connect">There is a problem when trying to connect</string>
     <string name="register_now">Register Now</string>

@@ -4,6 +4,7 @@ import com.mohannad.coupon.data.model.AuthResponse;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
+import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.data.model.FavoriteResponse;
@@ -116,5 +117,9 @@ public interface ApiService {
     Call<MessageResponse> addOrRemoveProductFavorite(@Header("lang") String lang,
                                                     @Header("Authorization") String token,
                                                     @Path("idProduct") int idProduct);
+
+    // all countries
+    @GET("/api/countries")
+    Call<CountryResponse> getCountries(@Header("lang") String lang);
 
 }
