@@ -115,11 +115,24 @@ public interface ApiService {
     // add or remove product to favorite
     @POST("/api/favorite/product/{idProduct}")
     Call<MessageResponse> addOrRemoveProductFavorite(@Header("lang") String lang,
-                                                    @Header("Authorization") String token,
-                                                    @Path("idProduct") int idProduct);
+                                                     @Header("Authorization") String token,
+                                                     @Path("idProduct") int idProduct);
 
     // all countries
     @GET("/api/countries")
     Call<CountryResponse> getCountries(@Header("lang") String lang);
+
+    // send suggestion coupon
+    @FormUrlEncoded
+    @POST("/api/suggestion-coupon/create")
+    Call<MessageResponse> suggestionCoupon(
+            @Header("lang") String lang,
+            @Field("email") String email,
+            @Field("country_id") int countryId,
+            @Field("coupon_code") String couponCode,
+            @Field("company_id") int companyId,
+            @Field("mobile") String mobile,
+            @Field("desc") String desc
+    );
 
 }

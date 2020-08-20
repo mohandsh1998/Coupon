@@ -19,8 +19,9 @@
         tools:context=".view.ui.coupon.AddCouponFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_desc_add_capoun"
@@ -39,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@{safeUnbox(addCouponViewModel.errorEmail != null) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:background="@{addCouponViewModel.errorEmail != null ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc_add_capoun"
@@ -76,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:text="@={addCouponViewModel.errorEmail}"
                 android:textColor="@color/red"
-                android:visibility="@{safeUnbox(addCouponViewModel.errorEmail != null) ?  View.VISIBLE : View.GONE}"
+                android:visibility="@{addCouponViewModel.errorEmail != null ?  View.VISIBLE : View.GONE}"
                 app:layout_constraintStart_toStartOf="@+id/ly_email"
                 app:layout_constraintTop_toBottomOf="@+id/ly_email" />
 
@@ -131,11 +132,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/ly_mobile" />
 
             <LinearLayout
-                android:id="@+id/ly_store"
+                android:id="@+id/ly_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@{safeUnbox(addCouponViewModel.errorStore) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:background="@{safeUnbox(addCouponViewModel.errorCategory) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/ly_mobile"
@@ -153,40 +154,37 @@
                     android:layout_height="match_parent"
                     android:background="@color/gray0" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/spinner_categories"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="@string/store"
-                    android:inputType="text"
-                    android:text="@={addCouponViewModel.store}"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_store_error_fragment_add_coupon"
+                android:id="@+id/tv_category_error_fragment_add_coupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/this_filed_is_empty"
                 android:textColor="@color/red"
-                android:visibility="@{safeUnbox(addCouponViewModel.errorStore) ?  View.VISIBLE : View.GONE}"
-                app:layout_constraintStart_toStartOf="@+id/ly_store"
-                app:layout_constraintTop_toBottomOf="@+id/ly_store" />
+                android:visibility="@{safeUnbox(addCouponViewModel.errorCategory) ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@+id/ly_category"
+                app:layout_constraintTop_toBottomOf="@+id/ly_category" />
 
             <LinearLayout
-                android:id="@+id/ly_brand"
+                android:id="@+id/ly_company"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@{safeUnbox(addCouponViewModel.errorBrand) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:background="@{safeUnbox(addCouponViewModel.errorCompany) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/ly_store"
-                app:layout_constraintStart_toStartOf="@+id/ly_store"
-                app:layout_constraintTop_toBottomOf="@id/tv_store_error_fragment_add_coupon">
+                app:layout_constraintEnd_toEndOf="@+id/ly_category"
+                app:layout_constraintStart_toStartOf="@+id/ly_category"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_error_fragment_add_coupon">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -199,28 +197,26 @@
                     android:layout_height="match_parent"
                     android:background="@color/gray0" />
 
-                <EditText
+                <Spinner
+                    android:id="@+id/spinner_companies"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="@string/brand"
-                    android:inputType="text"
-                    android:text="@={addCouponViewModel.brand}"
+                    android:hint="@string/company"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_brand_error_fragment_add_coupon"
+                android:id="@+id/tv_company_error_fragment_add_coupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/this_filed_is_empty"
                 android:textColor="@color/red"
-                android:visibility="@{safeUnbox(addCouponViewModel.errorBrand) ?  View.VISIBLE : View.GONE}"
-                app:layout_constraintStart_toStartOf="@+id/ly_brand"
-                app:layout_constraintTop_toBottomOf="@+id/ly_brand" />
+                android:visibility="@{safeUnbox(addCouponViewModel.errorCompany) ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@+id/ly_company"
+                app:layout_constraintTop_toBottomOf="@+id/ly_company" />
 
             <LinearLayout
                 android:id="@+id/ly_description"
@@ -230,9 +226,9 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorDescription) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/ly_brand"
-                app:layout_constraintStart_toStartOf="@+id/ly_brand"
-                app:layout_constraintTop_toBottomOf="@id/tv_brand_error_fragment_add_coupon">
+                app:layout_constraintEnd_toEndOf="@+id/ly_company"
+                app:layout_constraintStart_toStartOf="@+id/ly_company"
+                app:layout_constraintTop_toBottomOf="@id/tv_company_error_fragment_add_coupon">
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -1,5 +1,7 @@
 package com.mohannad.coupon.data.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -29,6 +31,12 @@ public class CategoriesResponse {
         }
 
         public String getName() {
+            return name;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
             return name;
         }
     }
