@@ -149,7 +149,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/shape_gray1_radius_9dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_remove"
+                android:src="@drawable/ic_baseline_favorite_24"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"

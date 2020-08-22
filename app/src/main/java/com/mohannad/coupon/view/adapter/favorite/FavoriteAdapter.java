@@ -216,6 +216,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             if (TextUtils.isEmpty(favorite.getFilePath())) {
                 // hide icon video
                 this.itemProductRvBinding.imgVideoItemProductRv.setVisibility(View.GONE);
+                this.itemProductRvBinding.imgCompanyItemProductRv.setOnClickListener(v -> {
+                    favoriteClickListener.openImage(favorite);
+                });
             } else {
                 // show icon video
                 this.itemProductRvBinding.imgVideoItemProductRv.setVisibility(View.VISIBLE);
@@ -283,6 +286,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void deleteProductFromFavorite(int position, FavoriteResponse.Favorite favorite);
 
         void copyCoupon(int position, FavoriteResponse.Favorite favorite);
+
+        void openImage(FavoriteResponse.Favorite favorite);
 
         void openVideo(FavoriteResponse.Favorite favorite);
 

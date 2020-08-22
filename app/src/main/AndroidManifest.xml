@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.ui.image.ImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".view.ui.search.SearchActivity"
             android:label="@string/results"
             android:parentActivityName=".view.ui.search.SearchActivity">

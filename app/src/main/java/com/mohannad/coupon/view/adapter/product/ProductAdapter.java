@@ -96,6 +96,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             if (TextUtils.isEmpty(product.getFilePath())) {
                 // hide icon video
                 this.itemView.imgVideoItemProductRv.setVisibility(View.GONE);
+                this.itemView.imgCompanyItemProductRv.setOnClickListener(v -> {
+                    productClickListener.openImage(product);
+                });
             } else {
                 // show icon video
                 this.itemView.imgVideoItemProductRv.setVisibility(View.VISIBLE);
@@ -169,6 +172,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         void addToFavoriteProduct(int position, ProductsResponse.Product product);
 
         void copyCoupon(int position, ProductsResponse.Product product);
+
+        void openImage(ProductsResponse.Product product);
 
         void openVideo(ProductsResponse.Product product);
 

@@ -16,6 +16,7 @@ import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.view.adapter.product.ProductAdapter;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
 import com.mohannad.coupon.view.ui.auth.login.LoginViewModel;
+import com.mohannad.coupon.view.ui.image.ImageActivity;
 import com.mohannad.coupon.view.ui.video.VideoActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
@@ -84,6 +85,11 @@ public class ProductsActivity extends BaseActivity {
             }
 
             @Override
+            public void openImage(ProductsResponse.Product product) {
+                startActivity(new Intent(ProductsActivity.this, ImageActivity.class).putExtra("imageUrl", product.getImage()));
+            }
+
+            @Override
             public void openVideo(ProductsResponse.Product product) {
                 startActivity(new Intent(ProductsActivity.this, VideoActivity.class).putExtra("url", product.getFilePath()));
             }
@@ -98,7 +104,7 @@ public class ProductsActivity extends BaseActivity {
         productsBinding.rvProductsActivityProducts.setHasFixedSize(true);
         model.products.observe(this, productAdapter::addAll);
         model.toastMessageSuccess.observe(this, msg -> {
-            showSuccessDialog(productsBinding.lyContainer, msg);
+            showDefaultDialog(productsBinding.lyContainer, msg);
         });
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(productsBinding.lyContainer, msg);

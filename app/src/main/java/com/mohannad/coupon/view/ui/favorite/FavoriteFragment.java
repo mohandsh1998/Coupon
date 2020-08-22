@@ -23,6 +23,7 @@ import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.favorite.FavoriteAdapter;
 import com.mohannad.coupon.view.ui.deal.DealViewModel;
 import com.mohannad.coupon.view.ui.home.HomeViewModel;
+import com.mohannad.coupon.view.ui.image.ImageActivity;
 import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.video.VideoActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
@@ -76,6 +77,11 @@ public class FavoriteFragment extends BaseFragment {
                     }
 
                     @Override
+                    public void openImage(FavoriteResponse.Favorite favorite) {
+                        startActivity(new Intent(requireContext(), ImageActivity.class).putExtra("imageUrl", favorite.getImage()));
+                    }
+
+                    @Override
                     public void openVideo(FavoriteResponse.Favorite favorite) {
                         startActivity(new Intent(requireContext(), VideoActivity.class).putExtra("url", favorite.getFilePath()));
                     }
@@ -89,7 +95,7 @@ public class FavoriteFragment extends BaseFragment {
         fragmentFavoriteBinding.rvCouponsFragmentFavorite.setAdapter(favoriteAdapter);
         favoriteViewModel.favorites.observe(requireActivity(), favoriteAdapter::addAll);
         favoriteViewModel.toastMessageSuccess.observe(requireActivity(), msg -> {
-            showSuccessDialog(fragmentFavoriteBinding.lyContainer, msg);
+            showDefaultDialog(fragmentFavoriteBinding.lyContainer, msg);
         });
         // display error msg
         favoriteViewModel.toastMessageFailed.observe(requireActivity(), msg -> {

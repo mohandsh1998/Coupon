@@ -2,10 +2,12 @@ package com.mohannad.coupon.utils;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.mohannad.coupon.R;
 
@@ -67,4 +70,12 @@ public class BaseActivity extends AppCompatActivity {
         ClipData clip = ClipData.newPlainText("label", code);
         clipboard.setPrimaryClip(clip);
     }
+
+    public void loadImage(Context context, String link, ImageView imageView) {
+        Glide.with(context)
+                .load(link)
+                //  .placeholder(R.drawable.loading_spinner)
+                .into(imageView);
+    }
+
 }
