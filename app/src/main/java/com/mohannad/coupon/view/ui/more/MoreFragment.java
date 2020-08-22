@@ -64,6 +64,12 @@ public class MoreFragment extends Fragment {
         binding.lyOpenInstagram.setOnClickListener(v -> {
             openInstagram();
         });
+        binding.lyOpenSnapchat.setOnClickListener(v -> {
+            openSnapChat();
+        });
+        binding.lyOpenTelegram.setOnClickListener(v -> {
+            openTelegram();
+        });
         binding.lyShareApp.setOnClickListener(v -> {
             shareApp();
         });
@@ -116,5 +122,19 @@ public class MoreFragment extends Fragment {
                         + "\n AppStore : " + "https://app.store");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    private void openSnapChat() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + "mohandsh1998"));
+            intent.setPackage("com.snapchat.android");
+            startActivity(intent);
+        } catch (Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + "mohandsh1998")));
+        }
+    }
+
+    private void openTelegram() {
+
     }
 }
