@@ -135,4 +135,14 @@ public interface ApiService {
             @Field("desc") String desc
     );
 
+    // change password
+    @FormUrlEncoded
+    @POST("/api/change-password")
+    Call<MessageResponse> changePassword(
+            @Header("lang") String lang,
+            @Header("Authorization") String token,
+            @Field("old_password") String oldPassword,
+            @Field("new_password") String newPassword,
+            @Field("new_password_confirmation") String newPasswordConfirmation
+    );
 }
