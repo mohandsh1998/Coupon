@@ -18,6 +18,9 @@ public class HelpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelpBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_help);
+        HelpViewModel model = new ViewModelProvider(this).get(HelpViewModel.class);
+        binding.setHelpViewModel(model);
+        binding.setLifecycleOwner(this);
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
@@ -25,9 +28,6 @@ public class HelpActivity extends BaseActivity {
         }
         HelpAdapter helpAdapter = new HelpAdapter(new ArrayList<>());
         binding.rvHelpItems.setAdapter(helpAdapter);
-        HelpViewModel model = new ViewModelProvider(this).get(HelpViewModel.class);
-        binding.setHelpViewModel(model);
-        binding.setLifecycleOwner(this);
 
         model.helpContents.observe(this, helpAdapter::addAll);
         model.toastMessageFailed.observe(this, msg -> {

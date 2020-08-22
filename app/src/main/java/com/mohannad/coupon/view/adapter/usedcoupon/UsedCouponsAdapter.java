@@ -1,4 +1,4 @@
-package com.mohannad.coupon.view.adapter.home;
+package com.mohannad.coupon.view.adapter.usedcoupon;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,24 +17,18 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
 import com.mohannad.coupon.databinding.ItemAdsRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
 import com.mohannad.coupon.databinding.ItemTitleRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
+import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 
 import java.util.List;
 
-public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private final int VIEW_TYPE_COMPANIES = 0;
-    private final int VIEW_TYPE_COUPONS = 1;
-    private final int VIEW_TYPE_ADS = 2;
-    private final int VIEW_TYPE_TITLE = 3;
-    private boolean selectedAll = true;
+public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private Context mContext;
     private Animation shake;
-    private CompaniesAdapter companiesAdapter;
     private List<Coupon> couponList;
     private CouponClickListener couponClickListener;
     private int shopItem;
@@ -43,11 +36,9 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     // tag to start animation when copy coupon only
     private boolean startAnimation = false;
 
-    public CouponsAdapter(Context mContext, List<Coupon> couponList,
-                          CompaniesAdapter companiesAdapter, CouponClickListener couponClickListener) {
+    public UsedCouponsAdapter(Context mContext, List<Coupon> couponList, CouponClickListener couponClickListener) {
         this.mContext = mContext;
         this.couponList = couponList;
-        this.companiesAdapter = companiesAdapter;
         // animation when copy coupon
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
         this.couponClickListener = couponClickListener;
@@ -65,55 +56,21 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return VIEW_TYPE_COMPANIES;
-        } else {
-            if (couponList.get(position - 1).getType().equals("coupon")) {
-                return VIEW_TYPE_COUPONS;
-            } else if (couponList.get(position - 1).getType().equals("ads")) {
-                return VIEW_TYPE_ADS;
-            } else {
-                return VIEW_TYPE_TITLE;
-            }
-        }
-    }
-
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE_COMPANIES:
-                return new CompaniesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.companies_layout, parent, false));
-            case VIEW_TYPE_COUPONS:
-                return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_coupon_rv, parent, false));
-            case VIEW_TYPE_ADS:
-                return new AdsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_ads_rv, parent, false));
-            case VIEW_TYPE_TITLE:
-                return new TitleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_title_rv, parent, false));
-            default:
-                return null;
-        }
+        return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_coupon_rv, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        holder.onBind(position - 1);
+        holder.onBind(position);
     }
 
     @Override
     public int getItemCount() {
-        return couponList == null ? 0 : couponList.size() + 1;
-    }
-
-    public void selectAllView(boolean selected) {
-        selectedAll = selected;
-        notifyDataSetChanged();
+        return couponList == null ? 0 : couponList.size();
     }
 
     public void addAll(List<Coupon> coupons) {
@@ -135,43 +92,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
-    // view holder for companies
-    class CompaniesViewHolder extends BaseViewHolder {
-        CompaniesLayoutBinding companiesLayoutBinding;
-
-        public CompaniesViewHolder(CompaniesLayoutBinding companiesLayoutBinding) {
-            super(companiesLayoutBinding);
-            this.companiesLayoutBinding = companiesLayoutBinding;
-            this.companiesLayoutBinding.rvCompanies.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
-            this.companiesLayoutBinding.rvCompanies.setHasFixedSize(true);
-            this.companiesLayoutBinding.rvCompanies.setAdapter(companiesAdapter);
-        }
-
-        @Override
-        public void onBind(int position) {
-            super.onBind(position);
-            if (selectedAll) {
-                // add border on all coupons
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_with_border_pink_radius_9dp));
-                // add shadow
-                this.companiesLayoutBinding.imgAllCompanies.setElevation(24);
-            } else {
-                // remove border
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_radius_9dp));
-                // remove shadow
-                this.companiesLayoutBinding.imgAllCompanies.setElevation(0);
-            }
-            this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {
-                selectedAll = true;
-                couponClickListener.onClickAllCoupons();
-            });
-        }
-
-        @Override
-        public int getCurrentPosition() {
-            return super.getCurrentPosition();
-        }
-    }
 
     // view holder for coupons
     class CouponViewHolder extends BaseViewHolder {
@@ -326,63 +246,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    // view holder for ads
-    class AdsViewHolder extends BaseViewHolder {
-        private ItemAdsRvBinding itemAdsRvBinding;
-
-        public AdsViewHolder(ItemAdsRvBinding itemAdsRvBinding) {
-            super(itemAdsRvBinding);
-            this.itemAdsRvBinding = itemAdsRvBinding;
-        }
-
-        @Override
-        public void onBind(int position) {
-            super.onBind(position);
-            Coupon coupon = couponList.get(position);
-            // title ads
-            this.itemAdsRvBinding.tvTitleItemAdsRv.setText(coupon.getTitle());
-            // desc ads
-            this.itemAdsRvBinding.tvDescItemAdsRv.setText(coupon.getDesc());
-            // load img ads
-            Glide.with(mContext)
-                    .load(coupon.getImage())
-                    //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
-                    .into(this.itemAdsRvBinding.imgAdsItemAdsRv);
-            // when the user click to shop now
-            this.itemAdsRvBinding.tvShopNowItemAdsRv.setOnClickListener(v -> {
-                couponClickListener.shopNowAds(position, coupon);
-            });
-        }
-
-        @Override
-        public int getCurrentPosition() {
-            return super.getCurrentPosition();
-        }
-    }
-
-    // view holder for title top products
-    class TitleViewHolder extends BaseViewHolder {
-        ItemTitleRvBinding itemTitleRvBinding;
-
-        public TitleViewHolder(ItemTitleRvBinding itemTitleRvBinding) {
-            super(itemTitleRvBinding);
-            this.itemTitleRvBinding = itemTitleRvBinding;
-        }
-
-        @Override
-        public void onBind(int position) {
-            super.onBind(position);
-            Coupon coupon = couponList.get(position);
-            itemTitleRvBinding.tvTitleTopProduct.setText(coupon.getTitle());
-            this.itemTitleRvBinding.getRoot().setOnClickListener(v -> couponClickListener.openProductActivity(position, coupon));
-        }
-
-        @Override
-        public int getCurrentPosition() {
-            return super.getCurrentPosition();
-        }
-    }
 
     public interface CouponClickListener {
         void shareCoupon(int position, Coupon coupon);
@@ -393,13 +256,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         void shopNowCoupon(int position, Coupon coupon);
 
-        void shopNowAds(int position, Coupon coupon);
-
         void answerQuestion(int position, Coupon coupon, boolean answer);
-
-        void openProductActivity(int position, Coupon coupon);
-
-        void onClickAllCoupons();
     }
 
 }

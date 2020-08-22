@@ -14,6 +14,7 @@ import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
+import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
@@ -38,7 +39,7 @@ public class HomeViewModel extends BaseViewModel {
     // Companies that will show in category
     MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
     // coupons that will show in category
-    MutableLiveData<List<CouponHomeResponse.Coupon>> coupons = new MutableLiveData<>();
+    MutableLiveData<List<Coupon>> coupons = new MutableLiveData<>();
     public MutableLiveData<Boolean> isLastPage = new MutableLiveData<>();
     public int currentPageCoupons;
     private StorageSharedPreferences mSharedPreferences;
@@ -183,7 +184,7 @@ public class HomeViewModel extends BaseViewModel {
     // this method will call copyCoupon  from repository to increase the number of times the coupon is copied on SERVER
     public void copyCoupon(int idCoupon) {
         // call copyCoupon from repository
-        homeRepository.copyCoupon(getApplication().getString(R.string.lang), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
+        homeRepository.copyCoupon(getApplication().getString(R.string.lang), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CopyCouponResponse> response) {
             }

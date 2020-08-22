@@ -11,6 +11,7 @@ import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.ProductsResponse;
+import com.mohannad.coupon.data.model.UsedCouponResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -89,6 +90,7 @@ public interface ApiService {
     // copy coupon by user
     @POST("/api/coupon/{idCoupon}/copy")
     Call<CopyCouponResponse> copyCoupon(@Header("lang") String lang,
+                                        @Header("Authorization") String token,
                                         @Path("idCoupon") int idCoupon);
 
     // add or remove coupon to favorite
@@ -155,4 +157,10 @@ public interface ApiService {
             @Field("email") String email,
             @Field("content") String content
     );
+
+    // used coupons by user
+    @GET("/api/used/coupon/")
+    Call<UsedCouponResponse> getUsedCoupons(@Header("lang") String lang,
+                                            @Header("Authorization") String token);
+
 }

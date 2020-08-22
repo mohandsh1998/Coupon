@@ -28,6 +28,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CompaniesResponse;
+import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.databinding.FragmentHomePageBinding;
 import com.mohannad.coupon.utils.BaseFragment;
@@ -70,7 +71,7 @@ public class HomePageFragment extends BaseFragment {
     private boolean mIsLoading;
 
     ArrayList<CompaniesResponse.Company> companies = new ArrayList<>();
-    ArrayList<CouponHomeResponse.Coupon> coupons = new ArrayList<>();
+    ArrayList<Coupon> coupons = new ArrayList<>();
 
     public HomePageFragment() {
         // Required empty public constructor
@@ -135,7 +136,7 @@ public class HomePageFragment extends BaseFragment {
         // initialization an adapter for coupons
         couponsAdapter = new CouponsAdapter(requireActivity(), coupons, companiesAdapter, new CouponsAdapter.CouponClickListener() {
             @Override
-            public void copyCoupon(int position, CouponHomeResponse.Coupon coupon) {
+            public void copyCoupon(int position, Coupon coupon) {
                 // copy code coupon
                 copyText(coupon.getCouponCode());
                 // show dialog
@@ -144,23 +145,23 @@ public class HomePageFragment extends BaseFragment {
             }
 
             @Override
-            public void shopNowCoupon(int position, CouponHomeResponse.Coupon coupon) {
+            public void shopNowCoupon(int position, Coupon coupon) {
                 startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
             }
 
             @Override
-            public void shopNowAds(int position, CouponHomeResponse.Coupon coupon) {
+            public void shopNowAds(int position, Coupon coupon) {
                 startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
             }
 
 
             @Override
-            public void answerQuestion(int position, CouponHomeResponse.Coupon coupon, boolean answer) {
+            public void answerQuestion(int position, Coupon coupon, boolean answer) {
 
             }
 
             @Override
-            public void openProductActivity(int position, CouponHomeResponse.Coupon coupon) {
+            public void openProductActivity(int position, Coupon coupon) {
                 // open products activity
                 Intent intent = new Intent(mContext, ProductsActivity.class);
                 // id title in items
@@ -200,12 +201,12 @@ public class HomePageFragment extends BaseFragment {
             }
 
             @Override
-            public void shareCoupon(int position, CouponHomeResponse.Coupon coupon) {
+            public void shareCoupon(int position, Coupon coupon) {
 
             }
 
             @Override
-            public void addToFavoriteCoupon(int position, CouponHomeResponse.Coupon coupon) {
+            public void addToFavoriteCoupon(int position, Coupon coupon) {
                 if (storageSharedPreferences.getLogInState())
                     homeViewModel.addOrRemoveCouponFavorite(coupon.getId());
                 else startActivity(new Intent(mContext, LoginActivity.class));
@@ -223,7 +224,7 @@ public class HomePageFragment extends BaseFragment {
         homeViewModel.coupons.observe(requireActivity(), couponsAdapter::addAll);
         // display success msg
         homeViewModel.toastMessageSuccess.observe(requireActivity(), msg -> {
-            showSuccessDialog(binding.lyContainer, msg);
+            showDefaultDialog(binding.lyContainer, msg);
         });
         // display error msg
         homeViewModel.toastMessageFailed.observe(requireActivity(), msg -> {

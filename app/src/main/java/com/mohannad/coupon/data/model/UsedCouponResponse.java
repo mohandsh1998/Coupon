@@ -2,17 +2,19 @@ package com.mohannad.coupon.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CopyCouponResponse {
+import java.util.List;
+
+public class UsedCouponResponse {
     @SerializedName("status")
     private boolean status;
-    @SerializedName("coupon")
-    private Coupon coupon;
+    @SerializedName("coupons")
+    private List<Coupon> coupons;
 
     public boolean isStatus() {
         return status;
     }
 
-    public Coupon getCoupon() {
-        return coupon;
+    public List<Coupon> getCoupons() {
+        return coupons;
     }
 }

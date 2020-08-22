@@ -111,10 +111,10 @@ public class HomeRepository {
     }
 
     // this method will using to increase the number of times the coupon is copied on SERVER SIDE
-    public void copyCoupon(String lang, int idCoupon, ResponseServer<LiveData<CopyCouponResponse>> responseServer) {
+    public void copyCoupon(String lang, String token, int idCoupon, ResponseServer<LiveData<CopyCouponResponse>> responseServer) {
         MutableLiveData<CopyCouponResponse> couponCopied = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.copyCoupon(lang, idCoupon).enqueue(new Callback<CopyCouponResponse>() {
+        apiService.copyCoupon(lang, token, idCoupon).enqueue(new Callback<CopyCouponResponse>() {
             @Override
             public void onResponse(@NonNull Call<CopyCouponResponse> call, @NonNull Response<CopyCouponResponse> response) {
                 couponCopied.setValue(response.body());
