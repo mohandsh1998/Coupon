@@ -1,9 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ui.contactus.ContactUsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="contactUsViewModel"
+            type="com.mohannad.coupon.view.ui.contactus.ContactUsViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".view.ui.contactus.ContactUsActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:src="@drawable/img_contact_us"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ly_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@{contactUsViewModel.errorEmailVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_email" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray0" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:text="@={contactUsViewModel.email}"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_email_error_activity_contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={contactUsViewModel.errorEmail}"
+                android:textColor="@color/red"
+                android:visibility="@{contactUsViewModel.errorEmailVisibility ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@+id/ly_email"
+                app:layout_constraintTop_toBottomOf="@+id/ly_email" />
+
+            <TextView
+                android:id="@+id/tv_desc_activity_contact_us"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/desc_contact_us"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email_error_activity_contact_us" />
+
+            <LinearLayout
+                android:id="@+id/ly_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@{contactUsViewModel.errorTitleVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_activity_contact_us">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_title_contact_us" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray0" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/title"
+                    android:inputType="text"
+                    android:text="@={contactUsViewModel.title}"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title_error_activity_contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/this_filed_is_empty"
+                android:textColor="@color/red"
+                android:visibility="@{contactUsViewModel.errorTitleVisibility ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@+id/ly_title"
+                app:layout_constraintTop_toBottomOf="@+id/ly_title" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@{contactUsViewModel.errorContentVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:gravity="start"
+                android:hint="@string/title"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:padding="16dp"
+                android:text="@={contactUsViewModel.content}"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/ly_title"
+                app:layout_constraintStart_toStartOf="@+id/ly_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_error_activity_contact_us" />
+
+            <TextView
+                android:id="@+id/tv_subject_error_activity_contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/this_filed_is_empty"
+                android:textColor="@color/red"
+                android:visibility="@{contactUsViewModel.errorContentVisibility?  View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_btn_raduis_22dp"
+                android:onClick="@{(view) -> contactUsViewModel.onClick()}"
+                android:text="@string/send"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/editText"
+                app:layout_constraintStart_toStartOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/tv_subject_error_activity_contact_us" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{safeUnbox(contactUsViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

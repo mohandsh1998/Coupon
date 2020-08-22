@@ -145,4 +145,14 @@ public interface ApiService {
             @Field("new_password") String newPassword,
             @Field("new_password_confirmation") String newPasswordConfirmation
     );
+
+    // contact us
+    @FormUrlEncoded
+    @POST("/api/contactus/create")
+    Call<MessageResponse> contactUs(
+            @Header("lang") String lang,
+            @Field("subject") String subject,
+            @Field("email") String email,
+            @Field("content") String content
+    );
 }
