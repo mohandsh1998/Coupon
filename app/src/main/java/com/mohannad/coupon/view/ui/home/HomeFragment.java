@@ -1,11 +1,13 @@
 package com.mohannad.coupon.view.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.deal.SlideAdsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.deal.DealViewModel;
+import com.mohannad.coupon.view.ui.search.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +114,34 @@ public class HomeFragment extends BaseFragment {
         searchEditText.setTextSize(14);
         searchEditText.setTextColor(Color.BLACK);
         searchEditText.setHintTextColor(mContext.getResources().getColor(R.color.gray0));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                startActivity(new Intent(requireContext(), SearchActivity.class).putExtra("word", query));
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.menu_search) {
+            startActivity(new Intent(requireContext(), SearchActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

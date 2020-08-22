@@ -11,6 +11,7 @@ import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.ProductsResponse;
+import com.mohannad.coupon.data.model.SearchResponse;
 import com.mohannad.coupon.data.model.UsedCouponResponse;
 
 import retrofit2.Call;
@@ -162,5 +163,12 @@ public interface ApiService {
     @GET("/api/used/coupon/")
     Call<UsedCouponResponse> getUsedCoupons(@Header("lang") String lang,
                                             @Header("Authorization") String token);
+
+    // search on coupon by user
+    @GET("/api/search/coupon")
+    Call<SearchResponse> searchCoupon(@Header("lang") String lang,
+                                      @Header("Authorization") String token,
+                                      @Query("search_data") String word,
+                                      @Query("page") int page);
 
 }

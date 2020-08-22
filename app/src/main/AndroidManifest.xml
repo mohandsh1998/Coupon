@@ -12,8 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.video.VideoActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".view.ui.search.SearchActivity"
+            android:label="@string/results"
+            android:parentActivityName=".view.ui.search.SearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.ui.search.SearchActivity" />
+        </activity>
+        <activity
+            android:name=".view.ui.video.VideoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.ui.product.ProductsActivity"
             android:label="@string/products"

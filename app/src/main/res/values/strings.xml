@@ -73,5 +73,6 @@
     <string name="password_not_match">Password don\'t match</string>
     <string name="desc_contact_us">Share your suggestion or complaint to provide you with the best services</string>
     <string name="title">Title</string>
+    <string name="results">Results</string>
 
 </resources>
