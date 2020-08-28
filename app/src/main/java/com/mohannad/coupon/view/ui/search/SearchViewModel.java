@@ -39,7 +39,7 @@ public class SearchViewModel extends BaseViewModel {
     public void searchCoupons(String word, int page) {
         currentPageCoupons = page;
         dataLoading.setValue(true);
-        searchRepository.searchCoupon(getApplication().getString(R.string.lang), sharedPreferences.getAuthToken(), word, page,
+        searchRepository.searchCoupon(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), word, page,
                 new ResponseServer<LiveData<SearchResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<SearchResponse> response) {
@@ -64,7 +64,7 @@ public class SearchViewModel extends BaseViewModel {
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {
         // call addOrRemoveCouponFavorite from repository
-        homeRepository.addOrRemoveCouponFavorite(getApplication().getString(R.string.lang), sharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+        homeRepository.addOrRemoveCouponFavorite(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

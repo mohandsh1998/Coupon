@@ -40,7 +40,7 @@ public class LoginViewModel extends BaseViewModel {
 
     public void login() {
         // request to sign up from repository
-        loginRepository.login(getApplication().getString(R.string.lang), email, password,
+        loginRepository.login(mSharedPreferences.getLanguage(), email, password,
                 "gg", Constants.DEVICE_OS, 1, new ResponseServer<AuthResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, AuthResponse response) {

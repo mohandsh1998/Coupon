@@ -32,7 +32,7 @@ public class ProductsViewModel extends BaseViewModel {
         // show loading for products
         dataLoading.setValue(true);
         // call getAllProductsCategory from repository
-        productRepository.getAllProductsCategory(getApplication().getString(R.string.lang),
+        productRepository.getAllProductsCategory(storageSharedPreferences.getLanguage(),
                 storageSharedPreferences.getAuthToken(), idTitle, idCategory,
                 new ResponseServer<LiveData<ProductsResponse>>() {
                     @Override
@@ -60,7 +60,7 @@ public class ProductsViewModel extends BaseViewModel {
         // show loading for products
         dataLoading.setValue(true);
         // call getAllProductsCompany from repository
-        productRepository.getAllProductsCompany(getApplication().getString(R.string.lang),
+        productRepository.getAllProductsCompany(storageSharedPreferences.getLanguage(),
                 storageSharedPreferences.getAuthToken(), idTitle, idCompany,
                 new ResponseServer<LiveData<ProductsResponse>>() {
                     @Override
@@ -86,7 +86,7 @@ public class ProductsViewModel extends BaseViewModel {
     // this method will call addOrRemoveProductFavorite from repository to add or remove the product to favorite on server
     public void addOrRemoveProductFavorite(int idProduct) {
         // call addOrRemoveProductFavorite from repository
-        productRepository.addOrRemoveProductFavorite(getApplication().getString(R.string.lang), storageSharedPreferences.getAuthToken(), idProduct, new ResponseServer<LiveData<MessageResponse>>() {
+        productRepository.addOrRemoveProductFavorite(storageSharedPreferences.getLanguage(), storageSharedPreferences.getAuthToken(), idProduct, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

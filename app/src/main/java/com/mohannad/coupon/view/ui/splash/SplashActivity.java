@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
@@ -37,7 +38,14 @@ public class SplashActivity extends AppCompatActivity {
 
     private void launchSplashActivity() {
         mStorageSharedPreferences.setFirstTimeLaunch(false);
-        startActivity(new Intent(this, MainActivity.class));
+        // check if user selected country or not
+        if (!TextUtils.isEmpty(mStorageSharedPreferences.getCountryName()) && mStorageSharedPreferences.getCountryID() != -1)
+            // if selected -> open main activity
+            startActivity(new Intent(this, MainActivity.class));
+        else {
+            // if not -> open Language And Country activity to select by user
+            startActivity(new Intent(SplashActivity.this, LanguageAndCountryActivity.class));
+        }
         finish();
     }
 }

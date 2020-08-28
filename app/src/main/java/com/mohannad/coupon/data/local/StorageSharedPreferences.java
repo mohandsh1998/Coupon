@@ -15,6 +15,7 @@ public class StorageSharedPreferences {
     private static String PASSWORD_KEY = "password";
     private static String COUNTRY_NAME_KEY = "country_name";
     private static String COUNTRY_ID_KEY = "country_id";
+    private static String LANG_KEY = "Language";
     private static final boolean LOG_IN_STATE = false;
     private static final String AUTH_TOKEN = null;
     private static final String TOKEN_FCM = null;
@@ -23,6 +24,7 @@ public class StorageSharedPreferences {
     private static final String PASSWORD = null;
     private static final String COUNTRY_NAME = null;
     private static final int COUNTRY_ID = -1;
+    private static String LANG = "en";
     private static final boolean IS_FIRST_TIME_LAUNCH = true;
 
     private Context mContext;
@@ -72,6 +74,13 @@ public class StorageSharedPreferences {
         return getSharedPreferences().getString(EMAIL_KEY, EMAIL);
     }
 
+    public void saveLanguage(String language) {
+        getPreferencesEditor().putString(LANG_KEY, language).commit();
+    }
+
+    public String getLanguage() {
+        return getSharedPreferences().getString(LANG_KEY, LANG);
+    }
 
     public void savePassword(String password) {
         getPreferencesEditor().putString(PASSWORD_KEY, password).commit();

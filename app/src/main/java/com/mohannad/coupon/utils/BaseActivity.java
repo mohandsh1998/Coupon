@@ -3,6 +3,7 @@ package com.mohannad.coupon.utils;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -77,5 +78,13 @@ public class BaseActivity extends AppCompatActivity {
                 //  .placeholder(R.drawable.loading_spinner)
                 .into(imageView);
     }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        super.applyOverrideConfiguration(getBaseContext().getResources().getConfiguration());
+    }
 }

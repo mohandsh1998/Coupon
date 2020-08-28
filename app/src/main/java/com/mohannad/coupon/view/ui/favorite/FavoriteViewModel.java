@@ -39,7 +39,7 @@ public class FavoriteViewModel extends BaseViewModel {
 
     public void getFavorite() {
         dataLoading.setValue(true);
-        favoriteRepository.getFavorites(getApplication().getString(R.string.lang), storageSharedPreferences.getAuthToken(),
+        favoriteRepository.getFavorites(storageSharedPreferences.getLanguage(), storageSharedPreferences.getAuthToken(),
                 new ResponseServer<LiveData<FavoriteResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<FavoriteResponse> response) {

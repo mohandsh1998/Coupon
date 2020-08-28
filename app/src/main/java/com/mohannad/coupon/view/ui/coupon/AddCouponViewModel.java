@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
+import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
@@ -51,11 +52,12 @@ public class AddCouponViewModel extends BaseViewModel {
     MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
     // tag finish loading
     boolean countryFinish = false, categoryFinish = false, companyFinish = false;
-
+    StorageSharedPreferences sharedPreferences;
     public AddCouponViewModel(@NonNull Application application) {
         super(application);
         addCouponRepository = AddCouponRepository.newInstance();
         homeRepository = HomeRepository.newInstance();
+        sharedPreferences = new StorageSharedPreferences(getApplication());
         getCountries();
         getCategories();
     }
@@ -63,7 +65,7 @@ public class AddCouponViewModel extends BaseViewModel {
     // this method will call getCountries from repository to get all countries from server
     public void getCountries() {
         dataLoading.setValue(true);
-        addCouponRepository.getCountries(getApplication().getString(R.string.lang),
+        addCouponRepository.getCountries(sharedPreferences.getLanguage(),
                 new ResponseServer<LiveData<CountryResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<CountryResponse> response) {
@@ -101,7 +103,7 @@ public class AddCouponViewModel extends BaseViewModel {
         // show loading
         dataLoading.setValue(true);
         // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(getApplication().getString(R.string.lang), new ResponseServer<LiveData<CategoriesResponse>>() {
+        homeRepository.getCategoriesTabs(sharedPreferences.getLanguage(), new ResponseServer<LiveData<CategoriesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
                 categoryFinish = true;
@@ -136,7 +138,7 @@ public class AddCouponViewModel extends BaseViewModel {
         // show loading
         dataLoading.setValue(true);
         // call getCompanies from repository
-        homeRepository.getCompanies(getApplication().getString(R.string.lang), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
+        homeRepository.getCompanies(sharedPreferences.getLanguage(), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CompaniesResponse> response) {
                 companyFinish = true;
@@ -182,7 +184,7 @@ public class AddCouponViewModel extends BaseViewModel {
 
     public void suggestionCoupon() {
         // call suggestionCoupon from repository
-        addCouponRepository.suggestionCoupon(getApplication().getString(R.string.lang), email, idCountry,
+        addCouponRepository.suggestionCoupon(sharedPreferences.getLanguage(), email, idCountry,
                 coupon, idCompany, whatsUp, description, new ResponseServer<MessageResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, MessageResponse response) {

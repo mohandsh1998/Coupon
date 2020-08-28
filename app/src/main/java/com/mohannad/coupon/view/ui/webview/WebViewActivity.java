@@ -7,8 +7,9 @@ import android.os.Bundle;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.databinding.ActivityWebViewBinding;
+import com.mohannad.coupon.utils.BaseActivity;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

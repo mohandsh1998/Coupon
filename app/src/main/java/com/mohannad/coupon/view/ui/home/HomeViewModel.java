@@ -58,7 +58,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for tab
         dataLoadingTabs.setValue(true);
         // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(getApplication().getString(R.string.lang), new ResponseServer<LiveData<CategoriesResponse>>() {
+        homeRepository.getCategoriesTabs(mSharedPreferences.getLanguage(), new ResponseServer<LiveData<CategoriesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
                 // hide loading
@@ -89,7 +89,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for companies
         dataLoadingCompanies.setValue(true);
         // call getCompanies from repository
-        homeRepository.getCompanies(getApplication().getString(R.string.lang), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
+        homeRepository.getCompanies(mSharedPreferences.getLanguage(), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CompaniesResponse> response) {
                 // hide loading
@@ -121,7 +121,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
-        homeRepository.getAllCouponsCategory(getApplication().getString(R.string.lang), 1, mSharedPreferences.getAuthToken(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -154,7 +154,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCompany from repository
-        homeRepository.getAllCouponsCompany(getApplication().getString(R.string.lang), 1, mSharedPreferences.getAuthToken(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCompany(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -184,7 +184,7 @@ public class HomeViewModel extends BaseViewModel {
     // this method will call copyCoupon  from repository to increase the number of times the coupon is copied on SERVER
     public void copyCoupon(int idCoupon) {
         // call copyCoupon from repository
-        homeRepository.copyCoupon(getApplication().getString(R.string.lang), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
+        homeRepository.copyCoupon(mSharedPreferences.getLanguage(), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CopyCouponResponse> response) {
             }
@@ -198,7 +198,7 @@ public class HomeViewModel extends BaseViewModel {
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {
         // call addOrRemoveCouponFavorite from repository
-        homeRepository.addOrRemoveCouponFavorite(getApplication().getString(R.string.lang), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+        homeRepository.addOrRemoveCouponFavorite(mSharedPreferences.getLanguage(), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

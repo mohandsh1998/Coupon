@@ -14,8 +14,9 @@ import android.widget.VideoView;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.databinding.ActivityVideoBinding;
+import com.mohannad.coupon.utils.BaseActivity;
 
-public class VideoActivity extends AppCompatActivity {
+public class VideoActivity extends BaseActivity {
     // Tag for the instance state bundle.
     private static final String PLAYBACK_TIME = "play_time";
     // Current playback position (in milliseconds).

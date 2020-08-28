@@ -31,10 +31,11 @@ public class ContactUsViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> errorContentVisibility = new MutableLiveData<>();
 
     private ContactUsRepository contactUsRepository;
-
+    private StorageSharedPreferences sharedPreferences;
     public ContactUsViewModel(@NonNull Application application) {
         super(application);
         contactUsRepository = ContactUsRepository.newInstance();
+        sharedPreferences = new StorageSharedPreferences(getApplication());
     }
 
     public void onClick() {
@@ -46,7 +47,7 @@ public class ContactUsViewModel extends BaseViewModel {
 
     public void contactUs() {
         // request to contactUs from repository
-        contactUsRepository.contactUs(getApplication().getString(R.string.lang), title.getValue(), email.getValue(), content.getValue(), new ResponseServer<MessageResponse>() {
+        contactUsRepository.contactUs(sharedPreferences.getLanguage(), title.getValue(), email.getValue(), content.getValue(), new ResponseServer<MessageResponse>() {
             @Override
             public void onSuccess(boolean status, int code, MessageResponse response) {
                 // hide loading

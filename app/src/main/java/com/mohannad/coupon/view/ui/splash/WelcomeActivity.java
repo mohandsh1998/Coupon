@@ -8,9 +8,10 @@ import android.view.View;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
+import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.view.ui.main.MainActivity;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
     StorageSharedPreferences mStorageSharedPreferences;
 
     @Override
@@ -22,6 +23,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void start(View view) {
         mStorageSharedPreferences.setFirstTimeLaunch(false);
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, LanguageAndCountryActivity.class));
     }
 }

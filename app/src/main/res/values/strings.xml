@@ -74,5 +74,10 @@
     <string name="desc_contact_us">Share your suggestion or complaint to provide you with the best services</string>
     <string name="title">Title</string>
     <string name="results">Results</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="choose_country">Choose Country</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

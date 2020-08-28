@@ -43,5 +43,10 @@ public class CountryResponse {
         public String getFlag() {
             return flag;
         }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 }

@@ -52,7 +52,7 @@ public class ChangePasswordViewModel extends BaseViewModel {
 
     public void changePassword() {
         // request to changePassword from repository
-        changePasswordRepository.changePassword(getApplication().getString(R.string.lang), mSharedPreferences.getAuthToken(), oldPassword.getValue(),
+        changePasswordRepository.changePassword(mSharedPreferences.getLanguage(), mSharedPreferences.getAuthToken(), oldPassword.getValue(),
                 newPassword.getValue(), confirmNewPassword.getValue(), new ResponseServer<MessageResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, MessageResponse response) {
