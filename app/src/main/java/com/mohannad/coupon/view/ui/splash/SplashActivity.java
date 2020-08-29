@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.view.ui.main.MainActivity;
-import com.tapadoo.alerter.Alerter;
 
 public class SplashActivity extends AppCompatActivity {
     StorageSharedPreferences mStorageSharedPreferences;
@@ -22,15 +22,12 @@ public class SplashActivity extends AppCompatActivity {
         // Checking for first time launch
         mStorageSharedPreferences = new StorageSharedPreferences(this);
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
-                    launchSplashActivity();
-                    finish();
-                } else {
-                    startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
-                }
+        handler.postDelayed(() -> {
+            if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
+                launchSplashActivity();
+                finish();
+            } else {
+                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
             }
         }, 2000);
 

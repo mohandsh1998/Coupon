@@ -79,5 +79,14 @@
     <string name="arabic">Arabic</string>
     <string name="choose_country">Choose Country</string>
     <string name="confirm">Confirm</string>
-
+    <string name="language">Language</string>
+    <string name="country">Country</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="we_display_coupons_and_stores_available_for_your_country">We display coupons and stores available for your country</string>
+    <string name="coupon_notification">Coupon Notification</string>
+    <string name="save">Save</string>
+    <string-array name="language">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
 </resources>

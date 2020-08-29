@@ -79,4 +79,14 @@
     <string name="arabic">العربية</string>
     <string name="choose_country">تغير الدولة</string>
     <string name="confirm">تأكيد</string>
+    <string name="language">اللغة</string>
+    <string name="country">الدولة</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="we_display_coupons_and_stores_available_for_your_country">نعرض الكوبونات والمتاجر المتاحة في دولتك</string>
+    <string name="coupon_notification">تنبيهات الكابونات</string>
+    <string name="save">حفظ</string>
+    <string-array name="language">
+        <item>الإنجليزية</item>
+        <item>العربية</item>
+    </string-array>
 </resources>
