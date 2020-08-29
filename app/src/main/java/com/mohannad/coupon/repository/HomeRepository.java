@@ -71,10 +71,10 @@ public class HomeRepository {
     }
 
     // this method will using to get all coupons for category from SERVER SIDE
-    public void getAllCouponsCategory(String lang, int idCountry, String token, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
+    public void getAllCouponsCategory(String lang, int idCountry, String token, String tokenDevice, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
         MutableLiveData<CouponHomeResponse> coupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAllCouponsCategory(lang, idCountry, token, idCategory, page).enqueue(new Callback<CouponHomeResponse>() {
+        apiService.getAllCouponsCategory(lang, idCountry, token, tokenDevice, idCategory, page).enqueue(new Callback<CouponHomeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CouponHomeResponse> call, @NonNull Response<CouponHomeResponse> response) {
                 coupons.setValue(response.body());
@@ -91,10 +91,10 @@ public class HomeRepository {
     }
 
     // this method will using to get all coupons for company from SERVER SIDE
-    public void getAllCouponsCompany(String lang, int idCountry, String token, int idCompany, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
+    public void getAllCouponsCompany(String lang, int idCountry, String token, String tokenDevice, int idCompany, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
         MutableLiveData<CouponHomeResponse> coupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAllCouponsCompany(lang, idCountry, token, idCompany, page).enqueue(new Callback<CouponHomeResponse>() {
+        apiService.getAllCouponsCompany(lang, idCountry, token, tokenDevice, idCompany, page).enqueue(new Callback<CouponHomeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CouponHomeResponse> call, @NonNull Response<CouponHomeResponse> response) {
                 coupons.setValue(response.body());
@@ -131,10 +131,10 @@ public class HomeRepository {
     }
 
     // this method will using to add or remove the coupon to favorite on SERVER SIDE
-    public void addOrRemoveCouponFavorite(String lang, String token, int idCoupon, ResponseServer<LiveData<MessageResponse>> responseServer) {
+    public void addOrRemoveCouponFavorite(String lang, String token, String tokenDevice, int idCoupon, ResponseServer<LiveData<MessageResponse>> responseServer) {
         MutableLiveData<MessageResponse> message = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.addOrRemoveCouponFavorite(lang, token, idCoupon).enqueue(new Callback<MessageResponse>() {
+        apiService.addOrRemoveCouponFavorite(lang, token, tokenDevice, idCoupon).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
                 message.setValue(response.body());

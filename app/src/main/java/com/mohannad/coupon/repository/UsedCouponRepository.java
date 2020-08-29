@@ -26,10 +26,10 @@ public class UsedCouponRepository {
         return usedCouponRepository;
     }
 
-    public void getUsedCoupons(String lang, String token, ResponseServer<LiveData<UsedCouponResponse>> responseServer) {
+    public void getUsedCoupons(String lang, String token, String tokenDevice, ResponseServer<LiveData<UsedCouponResponse>> responseServer) {
         MutableLiveData<UsedCouponResponse> usedCoupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getUsedCoupons(lang, token).enqueue(new Callback<UsedCouponResponse>() {
+        apiService.getUsedCoupons(lang, token, tokenDevice).enqueue(new Callback<UsedCouponResponse>() {
             @Override
             public void onResponse(@NonNull Call<UsedCouponResponse> call, @NonNull Response<UsedCouponResponse> response) {
                 usedCoupons.setValue(response.body());

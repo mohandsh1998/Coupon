@@ -26,10 +26,10 @@ public class FavoriteRepository {
         return favoriteRepository;
     }
 
-    public void getFavorites(String lang, String tokenUser, ResponseServer<LiveData<FavoriteResponse>> responseServer) {
+    public void getFavorites(String lang, String tokenUser, String tokenDevice, ResponseServer<LiveData<FavoriteResponse>> responseServer) {
         MutableLiveData<FavoriteResponse> favoriteData = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getFavorites(lang, tokenUser).enqueue(new Callback<FavoriteResponse>() {
+        apiService.getFavorites(lang, tokenUser, tokenDevice).enqueue(new Callback<FavoriteResponse>() {
             @Override
             public void onResponse(@NonNull Call<FavoriteResponse> call, @NonNull Response<FavoriteResponse> response) {
                 favoriteData.setValue(response.body());

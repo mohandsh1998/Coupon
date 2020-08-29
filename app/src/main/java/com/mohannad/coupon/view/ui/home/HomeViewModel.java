@@ -121,7 +121,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
-        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -154,31 +154,32 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCompany from repository
-        homeRepository.getAllCouponsCompany(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
-                // hide loading
-                dataLoadingCoupons.setValue(false);
-                // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            // after success to get companies will need to edit the value stored in a companies to update UI.
-                            coupons.setValue(response.getValue().getItems().getCoupons());
-                            isLastPage.setValue(page == response.getValue().getItems().getLastPage());
+        homeRepository.getAllCouponsCompany(mSharedPreferences.getLanguage(), 1,
+                mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
+                        // hide loading
+                        dataLoadingCoupons.setValue(false);
+                        // check if status success
+                        if (status) {
+                            if (response != null && response.getValue() != null) {
+                                if (response.getValue().isStatus()) {
+                                    // after success to get companies will need to edit the value stored in a companies to update UI.
+                                    coupons.setValue(response.getValue().getItems().getCoupons());
+                                    isLastPage.setValue(page == response.getValue().getItems().getLastPage());
+                                }
+                            }
                         }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(String message) {
-                // hide loading
-                dataLoadingCoupons.setValue(false);
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        // hide loading
+                        dataLoadingCoupons.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
     }
 
     // this method will call copyCoupon  from repository to increase the number of times the coupon is copied on SERVER
@@ -198,7 +199,8 @@ public class HomeViewModel extends BaseViewModel {
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {
         // call addOrRemoveCouponFavorite from repository
-        homeRepository.addOrRemoveCouponFavorite(mSharedPreferences.getLanguage(), mSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+        homeRepository.addOrRemoveCouponFavorite(mSharedPreferences.getLanguage(),
+                mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

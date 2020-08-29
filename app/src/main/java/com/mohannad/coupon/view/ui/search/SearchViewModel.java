@@ -39,49 +39,51 @@ public class SearchViewModel extends BaseViewModel {
     public void searchCoupons(String word, int page) {
         currentPageCoupons = page;
         dataLoading.setValue(true);
-        searchRepository.searchCoupon(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), word, page,
+        searchRepository.searchCoupon(sharedPreferences.getLanguage(),
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), word, page,
                 new ResponseServer<LiveData<SearchResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<SearchResponse> response) {
-                dataLoading.setValue(false);
-                if (response != null && response.getValue() != null) {
-                    if (response.getValue().isStatus()) {
-                        resultCoupons.setValue(response.getValue().getItems().getCoupons());
-                        isLastPage.setValue(page == response.getValue().getItems().getLastPage());
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<SearchResponse> response) {
+                        dataLoading.setValue(false);
+                        if (response != null && response.getValue() != null) {
+                            if (response.getValue().isStatus()) {
+                                resultCoupons.setValue(response.getValue().getItems().getCoupons());
+                                isLastPage.setValue(page == response.getValue().getItems().getLastPage());
+                            }
+                        }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(String message) {
-                dataLoading.setValue(false);
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        dataLoading.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
     }
 
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {
         // call addOrRemoveCouponFavorite from repository
-        homeRepository.addOrRemoveCouponFavorite(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
-                // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            toastMessageSuccess.setValue(response.getValue().getMessage());
+        homeRepository.addOrRemoveCouponFavorite(sharedPreferences.getLanguage(),
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+                        // check if status success
+                        if (status) {
+                            if (response != null && response.getValue() != null) {
+                                if (response.getValue().isStatus()) {
+                                    toastMessageSuccess.setValue(response.getValue().getMessage());
+                                }
+                            }
                         }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(String message) {
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
     }
 }

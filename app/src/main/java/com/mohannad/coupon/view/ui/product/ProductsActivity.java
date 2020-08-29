@@ -71,9 +71,7 @@ public class ProductsActivity extends BaseActivity {
 
             @Override
             public void addToFavoriteProduct(int position, ProductsResponse.Product product) {
-                if (storageSharedPreferences.getLogInState())
-                    model.addOrRemoveProductFavorite(product.getId());
-                else startActivity(new Intent(ProductsActivity.this, LoginActivity.class));
+                model.addOrRemoveProductFavorite(product.getId());
             }
 
             @Override

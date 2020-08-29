@@ -33,7 +33,7 @@ public class ProductsViewModel extends BaseViewModel {
         dataLoading.setValue(true);
         // call getAllProductsCategory from repository
         productRepository.getAllProductsCategory(storageSharedPreferences.getLanguage(),
-                storageSharedPreferences.getAuthToken(), idTitle, idCategory,
+                storageSharedPreferences.getAuthToken(), storageSharedPreferences.getTokenFCM(), idTitle, idCategory,
                 new ResponseServer<LiveData<ProductsResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<ProductsResponse> response) {
@@ -61,7 +61,7 @@ public class ProductsViewModel extends BaseViewModel {
         dataLoading.setValue(true);
         // call getAllProductsCompany from repository
         productRepository.getAllProductsCompany(storageSharedPreferences.getLanguage(),
-                storageSharedPreferences.getAuthToken(), idTitle, idCompany,
+                storageSharedPreferences.getAuthToken(), storageSharedPreferences.getTokenFCM(), idTitle, idCompany,
                 new ResponseServer<LiveData<ProductsResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<ProductsResponse> response) {
@@ -86,7 +86,8 @@ public class ProductsViewModel extends BaseViewModel {
     // this method will call addOrRemoveProductFavorite from repository to add or remove the product to favorite on server
     public void addOrRemoveProductFavorite(int idProduct) {
         // call addOrRemoveProductFavorite from repository
-        productRepository.addOrRemoveProductFavorite(storageSharedPreferences.getLanguage(), storageSharedPreferences.getAuthToken(), idProduct, new ResponseServer<LiveData<MessageResponse>>() {
+        productRepository.addOrRemoveProductFavorite(storageSharedPreferences.getLanguage(),
+                storageSharedPreferences.getAuthToken(), storageSharedPreferences.getTokenFCM(), idProduct, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

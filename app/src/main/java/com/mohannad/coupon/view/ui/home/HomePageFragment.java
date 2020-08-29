@@ -207,9 +207,7 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void addToFavoriteCoupon(int position, Coupon coupon) {
-                if (storageSharedPreferences.getLogInState())
-                    homeViewModel.addOrRemoveCouponFavorite(coupon.getId());
-                else startActivity(new Intent(mContext, LoginActivity.class));
+                homeViewModel.addOrRemoveCouponFavorite(coupon.getId());
             }
 
         });

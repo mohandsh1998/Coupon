@@ -58,7 +58,8 @@ public interface ApiService {
     @POST("/api/favorite")
     Call<FavoriteResponse> getFavorites(
             @Header("lang") String lang,
-            @Header("Authorization") String token);
+            @Header("Authorization") String token,
+            @Header("device-token") String deviceToken);
 
     /**** HOME PAGE ****/
 
@@ -77,6 +78,7 @@ public interface ApiService {
     Call<CouponHomeResponse> getAllCouponsCategory(@Header("lang") String lang,
                                                    @Header("country-id") int countryId,
                                                    @Header("Authorization") String token,
+                                                   @Header("device-token") String deviceToken,
                                                    @Path("idCategory") int idCategory,
                                                    @Query("page") int page);
 
@@ -85,6 +87,7 @@ public interface ApiService {
     Call<CouponHomeResponse> getAllCouponsCompany(@Header("lang") String lang,
                                                   @Header("country-id") int countryId,
                                                   @Header("Authorization") String token,
+                                                  @Header("device-token") String deviceToken,
                                                   @Path("idCompany") int idCompany,
                                                   @Query("page") int page);
 
@@ -98,12 +101,14 @@ public interface ApiService {
     @POST("/api/favorite/coupon/{idCoupon}")
     Call<MessageResponse> addOrRemoveCouponFavorite(@Header("lang") String lang,
                                                     @Header("Authorization") String token,
+                                                    @Header("device-token") String deviceToken,
                                                     @Path("idCoupon") int idCoupon);
 
     // all products for category
     @GET("/api/products/{idTitle}")
     Call<ProductsResponse> getAllProductsCategory(@Header("lang") String lang,
                                                   @Header("Authorization") String token,
+                                                  @Header("device-token") String deviceToken,
                                                   @Path("idTitle") int idTitle,
                                                   @Query("store_id") int idCategory);
 
@@ -111,6 +116,7 @@ public interface ApiService {
     @GET("/api/products/{idTitle}")
     Call<ProductsResponse> getAllProductsCompany(@Header("lang") String lang,
                                                  @Header("Authorization") String token,
+                                                 @Header("device-token") String deviceToken,
                                                  @Path("idTitle") int idTitle,
                                                  @Query("company_id") int idCompany);
 
@@ -119,6 +125,7 @@ public interface ApiService {
     @POST("/api/favorite/product/{idProduct}")
     Call<MessageResponse> addOrRemoveProductFavorite(@Header("lang") String lang,
                                                      @Header("Authorization") String token,
+                                                     @Header("device-token") String deviceToken,
                                                      @Path("idProduct") int idProduct);
 
     // all countries
@@ -162,12 +169,14 @@ public interface ApiService {
     // used coupons by user
     @GET("/api/used/coupon/")
     Call<UsedCouponResponse> getUsedCoupons(@Header("lang") String lang,
-                                            @Header("Authorization") String token);
+                                            @Header("Authorization") String token,
+                                            @Header("device-token") String deviceToken);
 
     // search on coupon by user
     @GET("/api/search/coupon")
     Call<SearchResponse> searchCoupon(@Header("lang") String lang,
                                       @Header("Authorization") String token,
+                                      @Header("device-token") String deviceToken,
                                       @Query("search_data") String word,
                                       @Query("page") int page);
 

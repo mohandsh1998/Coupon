@@ -36,7 +36,8 @@ public class UsedCouponsViewModel extends BaseViewModel {
     // this method will call getUsedCoupons from repository to get all used coupons by user from server
     private void getUsedCoupons() {
         dataLoading.setValue(true);
-        usedCouponRepository.getUsedCoupons(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), new ResponseServer<LiveData<UsedCouponResponse>>() {
+        usedCouponRepository.getUsedCoupons(sharedPreferences.getLanguage(),
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), new ResponseServer<LiveData<UsedCouponResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<UsedCouponResponse> response) {
                 dataLoading.setValue(false);
@@ -59,7 +60,8 @@ public class UsedCouponsViewModel extends BaseViewModel {
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {
         // call addOrRemoveCouponFavorite from repository
-        homeRepository.addOrRemoveCouponFavorite(sharedPreferences.getLanguage(), sharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
+        homeRepository.addOrRemoveCouponFavorite(sharedPreferences.getLanguage(),
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success

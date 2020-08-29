@@ -69,9 +69,7 @@ public class UsedCouponActivity extends BaseActivity {
 
             @Override
             public void addToFavoriteCoupon(int position, Coupon coupon) {
-                if (storageSharedPreferences.getLogInState())
-                    model.addOrRemoveCouponFavorite(coupon.getId());
-                else startActivity(new Intent(UsedCouponActivity.this, LoginActivity.class));
+                model.addOrRemoveCouponFavorite(coupon.getId());
             }
         });
         binding.rvCoupons.setAdapter(couponsAdapter);

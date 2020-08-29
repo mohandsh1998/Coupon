@@ -81,9 +81,7 @@ public class SearchActivity extends BaseActivity {
 
             @Override
             public void addToFavoriteCoupon(int position, Coupon coupon) {
-                if (storageSharedPreferences.getLogInState())
-                    model.addOrRemoveCouponFavorite(coupon.getId());
-                else startActivity(new Intent(SearchActivity.this, LoginActivity.class));
+                model.addOrRemoveCouponFavorite(coupon.getId());
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
