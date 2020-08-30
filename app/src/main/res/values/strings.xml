@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Capoun</string>
+    <string name="app_name"><![CDATA[COUPONS & TREND]]></string>
     <string name="lang">en</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
