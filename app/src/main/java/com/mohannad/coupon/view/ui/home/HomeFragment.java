@@ -26,6 +26,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
 import com.mohannad.coupon.utils.BaseFragment;
@@ -63,9 +64,11 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        StorageSharedPreferences sharedPreferences = new StorageSharedPreferences(requireContext());
         HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(homeViewModel);
         binding.setLifecycleOwner(this);
+        binding.topText.setText(sharedPreferences.getAdsTitle());
         // start marquee
         binding.topText.setSelected(true);
         // initialization an adapter for categories pages in the home

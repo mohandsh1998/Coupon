@@ -85,6 +85,7 @@
     <string name="we_display_coupons_and_stores_available_for_your_country">We display coupons and stores available for your country</string>
     <string name="coupon_notification">Coupon Notification</string>
     <string name="save">Save</string>
+    <string name="telegram_not_installed">Telegram not Installed</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

@@ -10,18 +10,21 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CountryResponse;
+import com.mohannad.coupon.data.model.SettingResponse;
 import com.mohannad.coupon.repository.AddCouponRepository;
+import com.mohannad.coupon.repository.SettingRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
 
 import java.util.List;
 
 public class SettingViewModel extends BaseViewModel {
-    private AddCouponRepository addCouponRepository;
+    private SettingRepository settingRepository;
     MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
     StorageSharedPreferences sharedPreferences;
+
     public SettingViewModel(@NonNull Application application) {
         super(application);
-        addCouponRepository = AddCouponRepository.newInstance();
+        settingRepository = SettingRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
         getCountries();
     }
@@ -29,7 +32,7 @@ public class SettingViewModel extends BaseViewModel {
     // this method will call getCountries from repository to get all countries from server
     public void getCountries() {
         dataLoading.setValue(true);
-        addCouponRepository.getCountries(sharedPreferences.getLanguage(),
+        settingRepository.getCountries(sharedPreferences.getLanguage(),
                 new ResponseServer<LiveData<CountryResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<CountryResponse> response) {

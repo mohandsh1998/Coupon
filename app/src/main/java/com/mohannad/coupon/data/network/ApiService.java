@@ -12,6 +12,7 @@ import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.ProductsResponse;
 import com.mohannad.coupon.data.model.SearchResponse;
+import com.mohannad.coupon.data.model.SettingResponse;
 import com.mohannad.coupon.data.model.UsedCouponResponse;
 
 import retrofit2.Call;
@@ -131,6 +132,11 @@ public interface ApiService {
     // all countries
     @GET("/api/countries")
     Call<CountryResponse> getCountries(@Header("lang") String lang);
+
+    // setting app
+    @GET("/api/setting")
+    Call<SettingResponse> getSetting(@Header("lang") String lang);
+
 
     // send suggestion coupon
     @FormUrlEncoded

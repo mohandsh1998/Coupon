@@ -4,7 +4,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,7 +20,9 @@ import android.view.ViewGroup;
 
 import com.mohannad.coupon.BuildConfig;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.databinding.FragmentMoreBinding;
+import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordActivity;
 import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
@@ -27,25 +31,14 @@ import com.mohannad.coupon.view.ui.setting.SettingActivity;
 import com.mohannad.coupon.view.ui.splash.SplashActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
 
-public class MoreFragment extends Fragment {
+public class MoreFragment extends BaseFragment {
 
     private MoreViewModel mViewModel;
     private FragmentMoreBinding binding;
+    private StorageSharedPreferences sharedPreferences;
 
     public static MoreFragment newInstance() {
         return new MoreFragment();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
     @Override
@@ -58,6 +51,7 @@ public class MoreFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        sharedPreferences = new StorageSharedPreferences(requireContext());
         mViewModel = new ViewModelProvider(requireActivity()).get(MoreViewModel.class);
         binding.setMoreViewModel(mViewModel);
         binding.setLifecycleOwner(this);
@@ -102,15 +96,15 @@ public class MoreFragment extends Fragment {
     }
 
     private void openInstagram() {
-        Uri uri = Uri.parse("https://www.instagram.com/mohand_shbair");
-        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
-        likeIng.setPackage("com.instagram.android");
-
-        try {
+        final String appPackageName = "com.instagram.android";
+        final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
+        Uri uri = Uri.parse(sharedPreferences.getIntstagram());
+        if (isAppInstalled) {
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+            likeIng.setPackage(appPackageName);
             startActivity(likeIng);
-        } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.instagram.com/mohand_shbair")));
+        } else {
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         }
     }
 
@@ -125,16 +119,48 @@ public class MoreFragment extends Fragment {
     }
 
     private void openSnapChat() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + "mohandsh1998"));
-            intent.setPackage("com.snapchat.android");
+        final String appPackageName = "com.snapchat.android";
+        final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
+        Uri uri = Uri.parse(sharedPreferences.getSnapChat());
+        if (isAppInstalled) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setPackage(appPackageName);
             startActivity(intent);
-        } catch (Exception e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/" + "mohandsh1998")));
+        } else {
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         }
     }
 
     private void openTelegram() {
+        final String appPackageName = "org.telegram.messenger";
+        final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
+        Uri uri = Uri.parse(sharedPreferences.getTelegram());
+        if (isAppInstalled) {
+            Intent myIntent = new Intent(Intent.ACTION_SEND, uri);
+            myIntent.setPackage(appPackageName);
+            requireContext().startActivity(Intent.createChooser(myIntent, "Share with"));
+        } else {
+            showDefaultDialog(binding.lyContainer, getString(R.string.telegram_not_installed));
+        }
+    }
 
+    /**
+     * Indicates whether the specified app ins installed and can used as an intent. This
+     * method checks the package manager for installed packages that can
+     * respond to an intent with the specified app. If no suitable package is
+     * found, this method returns false.
+     *
+     * @param context The application's environment.
+     * @param appName The name of the package you want to check
+     * @return True if app is installed
+     */
+    public static boolean isAppAvailable(Context context, String appName) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            pm.getPackageInfo(appName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 }

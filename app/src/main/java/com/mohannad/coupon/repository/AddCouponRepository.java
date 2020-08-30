@@ -29,26 +29,6 @@ public class AddCouponRepository {
         return addCouponRepository;
     }
 
-    // this method will using to get countries from SERVER SIDE
-    public void getCountries(String lang, ResponseServer<LiveData<CountryResponse>> responseServer) {
-        MutableLiveData<CountryResponse> countries = new MutableLiveData<>();
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getCountries(lang).enqueue(new Callback<CountryResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CountryResponse> call, @NonNull Response<CountryResponse> response) {
-                countries.setValue(response.body());
-                responseServer.onSuccess(response.isSuccessful(), response.code(), countries);
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CountryResponse> call, @NonNull Throwable t) {
-                Log.e(TAG, "Countries onFailure" + call.toString());
-                responseServer.onFailure(t.getMessage());
-                t.printStackTrace();
-            }
-        });
-    }
-
     public void suggestionCoupon(String lang, String email, int countryId,
                                  String couponCode, int companyId, String mobile, String desc,
                                  ResponseServer<MessageResponse> responseServer) {

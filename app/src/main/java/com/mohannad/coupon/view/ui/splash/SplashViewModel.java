@@ -15,28 +15,29 @@ import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
+import com.mohannad.coupon.data.model.SettingResponse;
 import com.mohannad.coupon.repository.AddCouponRepository;
 import com.mohannad.coupon.repository.HomeRepository;
+import com.mohannad.coupon.repository.SettingRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
 import com.mohannad.coupon.utils.Utils;
 
 import java.util.List;
 
 public class SplashViewModel extends BaseViewModel {
-    private AddCouponRepository addCouponRepository;
+    private SettingRepository settingRepository;
     MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
     StorageSharedPreferences sharedPreferences;
     public SplashViewModel(@NonNull Application application) {
         super(application);
-        addCouponRepository = AddCouponRepository.newInstance();
+        settingRepository = SettingRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
-        getCountries();
     }
 
     // this method will call getCountries from repository to get all countries from server
     public void getCountries() {
         dataLoading.setValue(true);
-        addCouponRepository.getCountries(sharedPreferences.getLanguage(),
+        settingRepository.getCountries(sharedPreferences.getLanguage(),
                 new ResponseServer<LiveData<CountryResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<CountryResponse> response) {
@@ -56,4 +57,33 @@ public class SplashViewModel extends BaseViewModel {
                     }
                 });
     }
+    // this method will call getSetting from repository to get setting app from server
+    public void getSetting() {
+        dataLoading.setValue(true);
+        settingRepository.getSetting(sharedPreferences.getLanguage(),
+                new ResponseServer<LiveData<SettingResponse>>() {
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<SettingResponse> response) {
+                        dataLoading.setValue(false);
+                        if (response != null && response.getValue() != null) {
+                            if (response.getValue().isStatus()) {
+                                success.setValue(true);
+                                sharedPreferences.saveIntstagram(response.getValue().getSetting().getInstagram());
+                                sharedPreferences.saveSnapChat(response.getValue().getSetting().getSnapchat());
+                                sharedPreferences.saveTelegram(response.getValue().getSetting().getTelegram());
+                                sharedPreferences.saveAdsTitle(response.getValue().getSetting().getTitleAds());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        success.setValue(false);
+                        dataLoading.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
+    }
+
 }

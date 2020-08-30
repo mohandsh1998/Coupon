@@ -37,7 +37,7 @@ public class LanguageAndCountryActivity extends BaseActivity {
         languageAndCountryBinding.setSplashViewModel(model);
         languageAndCountryBinding.setLifecycleOwner(this);
         StorageSharedPreferences sharedPreferences = new StorageSharedPreferences(this);
-
+        model.getCountries();
 
         // array countries
         ArrayList<CountryResponse.Country> countries = new ArrayList<>();

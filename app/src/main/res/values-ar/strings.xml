@@ -85,6 +85,7 @@
     <string name="we_display_coupons_and_stores_available_for_your_country">نعرض الكوبونات والمتاجر المتاحة في دولتك</string>
     <string name="coupon_notification">تنبيهات الكابونات</string>
     <string name="save">حفظ</string>
+    <string name="telegram_not_installed">تطبيق التلجرام غير مثبت</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

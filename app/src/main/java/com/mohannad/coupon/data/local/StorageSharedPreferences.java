@@ -3,6 +3,8 @@ package com.mohannad.coupon.data.local;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.annotations.SerializedName;
+
 public class StorageSharedPreferences {
 
     private static String MY_DATA_KEY = "MyData";
@@ -15,6 +17,10 @@ public class StorageSharedPreferences {
     private static String PASSWORD_KEY = "password";
     private static String COUNTRY_NAME_KEY = "country_name";
     private static String COUNTRY_ID_KEY = "country_id";
+    private static String INSTAGRAM_KEY = "instagram";
+    private static String TELEGRAM_KEY = "telegram";
+    private static String SNAPCHAT_KEY = "snapchat";
+    private static String TITLE_ADS_KEY = "title_ads";
     private static String LANG_KEY = "Language";
     private static final boolean LOG_IN_STATE = false;
     private static final String AUTH_TOKEN = null;
@@ -23,6 +29,10 @@ public class StorageSharedPreferences {
     private static final String EMAIL = null;
     private static final String PASSWORD = null;
     private static final String COUNTRY_NAME = null;
+    private static String INSTAGRAM = null;
+    private static String TELEGRAM = null;
+    private static String SNAPCHAT = null;
+    private static String TITLE_ADS = null;
     private static final int COUNTRY_ID = -1;
     private static String LANG = "en";
     private static final boolean IS_FIRST_TIME_LAUNCH = true;
@@ -105,6 +115,38 @@ public class StorageSharedPreferences {
     public String getCountryName() {
         return getSharedPreferences().getString(COUNTRY_NAME_KEY, COUNTRY_NAME);
     }
+    public void saveIntstagram(String instagram) {
+        getPreferencesEditor().putString(INSTAGRAM_KEY, instagram).commit();
+    }
+
+    public String getIntstagram() {
+        return getSharedPreferences().getString(INSTAGRAM_KEY, INSTAGRAM);
+    }
+
+    public void saveTelegram(String telegram) {
+        getPreferencesEditor().putString(TELEGRAM_KEY, telegram).commit();
+    }
+
+    public String getTelegram() {
+        return getSharedPreferences().getString(TELEGRAM_KEY, TELEGRAM);
+    }
+
+    public void saveSnapChat(String countryName) {
+        getPreferencesEditor().putString(SNAPCHAT_KEY, countryName).commit();
+    }
+
+    public String getSnapChat() {
+        return getSharedPreferences().getString(SNAPCHAT_KEY, SNAPCHAT);
+    }
+
+    public void saveAdsTitle(String countryName) {
+        getPreferencesEditor().putString(TITLE_ADS_KEY, countryName).commit();
+    }
+
+    public String getAdsTitle() {
+        return getSharedPreferences().getString(TITLE_ADS_KEY, TITLE_ADS);
+    }
+
 
     public void saveCountryID(int countryID) {
         getPreferencesEditor().putInt(COUNTRY_ID_KEY, countryID).commit();
