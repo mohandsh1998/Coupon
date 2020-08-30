@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "748467208156",
+    "firebase_url": "https://coupon-app-f4df0.firebaseio.com",
+    "project_id": "coupon-app-f4df0",
+    "storage_bucket": "coupon-app-f4df0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748467208156:android:8c8301b2bdf019eaa79919",
+        "android_client_info": {
+          "package_name": "com.mohannad.coupon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748467208156-ap13bc8k55he602i62fsjvlhqeb17vka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfIoNE2N1lUMESar1tw3xTCt7nqS5YqY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748467208156-ap13bc8k55he602i62fsjvlhqeb17vka.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "748467208156-uqsi9fdav02fr49819443dllulk7mcbn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "noor.com.caponsApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
