@@ -186,4 +186,10 @@ public interface ApiService {
                                       @Query("search_data") String word,
                                       @Query("page") int page);
 
+
+    // reset password
+    @FormUrlEncoded
+    @POST("/api/reset-password/create")
+    Call<MessageResponse> resetPassword(@Header("lang") String lang,
+                                        @Field("email") String email);
 }

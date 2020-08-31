@@ -10,6 +10,7 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.AuthResponse;
+import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.repository.LoginRepository;
 import com.mohannad.coupon.repository.SignUpRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
@@ -22,6 +23,10 @@ public class LoginViewModel extends BaseViewModel {
     // error messages that will show in login layout
     public MutableLiveData<String> errorEmail = new MutableLiveData<>();
     public MutableLiveData<String> errorPassword = new MutableLiveData<>();
+    public MutableLiveData<Boolean> showErrorEmailResetPassword = new MutableLiveData<>();
+    public MutableLiveData<Boolean> showErrorPassword = new MutableLiveData<>();
+    public MutableLiveData<Boolean> showErrorEmail = new MutableLiveData<>();
+    public MutableLiveData<Boolean> successResetPassword = new MutableLiveData<>();
     private LoginRepository loginRepository;
     private StorageSharedPreferences mSharedPreferences;
 
@@ -37,9 +42,48 @@ public class LoginViewModel extends BaseViewModel {
             login();
         }
     }
+    public void onClickResetPassword() {
+        if (validationResetPassword()) {
+            dataLoading.setValue(true);
+            resetPassword();
+        }
+    }
+
+    private void resetPassword() {
+        // request to resetPassword from repository
+        loginRepository.resetPassword(mSharedPreferences.getLanguage(), email, new ResponseServer<MessageResponse>() {
+                    @Override
+                    public void onSuccess(boolean status, int code, MessageResponse response) {
+                        // hide loading
+                        dataLoading.setValue(false);
+                        // if success when connection
+                        if (status) {
+                            // success to send email reset password
+                            if (response.isStatus()) {
+                                // success to send email reset password
+                               toastMessageSuccess.setValue(response.getMessage());
+                                successResetPassword.setValue(true);
+                            } else {
+                                // failed to send email reset password
+                                successResetPassword.setValue(false);
+                                toastMessageFailed.setValue(response.getMessage());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        // hide loading
+                        dataLoading.setValue(false);
+                        success.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
+    }
 
     public void login() {
-        // request to sign up from repository
+        // request to login from repository
         loginRepository.login(mSharedPreferences.getLanguage(), email, password,
                 "gg", Constants.DEVICE_OS, 1, new ResponseServer<AuthResponse>() {
                     @Override
@@ -50,7 +94,7 @@ public class LoginViewModel extends BaseViewModel {
                         if (status) {
                             // success to login
                             if (response.isStatus()) {
-                                // success to sign up
+                                // success to login
                                 mSharedPreferences.saveLogInSate(true);
                                 mSharedPreferences.saveEmail(response.getUser().getEmail());
                                 mSharedPreferences.saveUserName(response.getUser().getName());
@@ -95,6 +139,22 @@ public class LoginViewModel extends BaseViewModel {
             valid = false;
         } else {
             errorPassword.setValue(null);
+        }
+        return valid;
+    }
+    private boolean validationResetPassword() {
+        boolean valid = true;
+        if (TextUtils.isEmpty(email)) {
+            errorEmail.setValue(getApplication().getString(R.string.this_filed_is_empty));
+            showErrorEmailResetPassword.setValue(true);
+            valid = false;
+        } else if (!Utils.isEmailValid(email)) {
+            errorEmail.setValue(getApplication().getString(R.string.email_invalid));
+            valid = false;
+            showErrorEmailResetPassword.setValue(true);
+        } else {
+            errorEmail.setValue(null);
+            showErrorEmailResetPassword.setValue(false);
         }
         return valid;
     }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.model.AuthResponse;
+import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.network.ApiClient;
 import com.mohannad.coupon.data.network.ApiService;
 
@@ -35,6 +36,23 @@ public class LoginRepository {
             @Override
             public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "Login onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void resetPassword(String lang, String email, ResponseServer<MessageResponse> responseServer) {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.resetPassword(lang, email).enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                responseServer.onSuccess(response.isSuccessful(), response.code(), response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Reset onFailure" + call.toString());
                 responseServer.onFailure(t.getMessage());
                 t.printStackTrace();
             }

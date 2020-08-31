@@ -86,6 +86,10 @@
     <string name="coupon_notification">تنبيهات الكابونات</string>
     <string name="save">حفظ</string>
     <string name="telegram_not_installed">تطبيق التلجرام غير مثبت</string>
+    <string name="gmail_not_installed">تطبيق الجميل غير مثبت</string>
+    <string name="please_enter_your_email_for_a_refund_password">الرجاء إدخال بريدك الإلكتروني لإسترجاع كلمة المرور</string>
+    <string name="the_random_password_has_been_sent_to_your_email_please_check">تم إرسال كلمة المرور العشوائية إلى بريدك الإلكتروني ، يرجى مراجعة البريد الإلكتروني</string>
+    <string name="open_gmail">إفتح البريد الإلكتروني</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
