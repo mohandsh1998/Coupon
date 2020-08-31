@@ -24,5 +24,6 @@ public class WelcomeActivity extends BaseActivity {
     public void start(View view) {
         mStorageSharedPreferences.setFirstTimeLaunch(false);
         startActivity(new Intent(this, LanguageAndCountryActivity.class));
+        finish();
     }
 }

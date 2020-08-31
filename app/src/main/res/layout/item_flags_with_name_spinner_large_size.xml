@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="start"
     android:orientation="horizontal"
     android:paddingTop="2dp"
     android:paddingBottom="2dp">
@@ -12,8 +13,8 @@
         android:id="@+id/img_flag"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_gravity="center"
         android:scaleType="centerCrop"
+        android:layout_gravity="center"
         android:src="@color/red" />
 
     <TextView
@@ -24,6 +25,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
+        android:gravity="start"
         android:textColor="@color/black"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"

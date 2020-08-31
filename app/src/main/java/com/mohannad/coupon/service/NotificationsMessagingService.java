@@ -25,6 +25,7 @@ public class NotificationsMessagingService extends FirebaseMessagingService {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+        StorageSharedPreferences storageSharedPreferences = new StorageSharedPreferences(newBase);
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, storageSharedPreferences.getLanguage()));
     }
 }

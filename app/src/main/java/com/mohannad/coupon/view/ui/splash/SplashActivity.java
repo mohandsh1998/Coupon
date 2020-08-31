@@ -31,7 +31,6 @@ public class SplashActivity extends BaseActivity {
             // Checking for first time launch
             if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
                 launchSplashActivity();
-                finish();
             } else {
                 startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
             }

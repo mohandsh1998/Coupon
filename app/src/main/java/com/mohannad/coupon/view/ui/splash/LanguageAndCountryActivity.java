@@ -76,10 +76,10 @@ public class LanguageAndCountryActivity extends BaseActivity {
 
         languageAndCountryBinding.btnConfirm.setOnClickListener(v -> {
             sharedPreferences.saveLanguage(language);
-            LocaleHelper.setLocale(getApplicationContext(), language);
             sharedPreferences.saveCountryID(idCountry);
             sharedPreferences.saveCountryName(nameCountry);
             startActivity(new Intent(LanguageAndCountryActivity.this, MainActivity.class));
+            finish();
         });
     }
 

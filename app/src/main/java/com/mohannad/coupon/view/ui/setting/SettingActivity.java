@@ -51,6 +51,7 @@ public class SettingActivity extends BaseActivity {
 
             }
         });
+        settingBinding.spinnerLanguage.setSelection((sharedPreferences.getLanguage().equals(LocaleHelper.ENGLISH_LANGUAGE)) ? 0 : 1);
 
         // array countries
         ArrayList<CountryResponse.Country> countries = new ArrayList<>();
@@ -74,7 +75,6 @@ public class SettingActivity extends BaseActivity {
         });
         settingBinding.btnSave.setOnClickListener(v -> {
             sharedPreferences.saveLanguage(language);
-            LocaleHelper.setLocale(getApplicationContext(), language);
             sharedPreferences.saveCountryID(idCountry);
             sharedPreferences.saveCountryName(nameCountry);
             restartApp();

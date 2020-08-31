@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,12 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.data.local.StorageSharedPreferences;
 
 public class BaseActivity extends AppCompatActivity {
-
+    StorageSharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     public void showDefaultDialog(View view, String message) {
@@ -80,7 +83,8 @@ public class BaseActivity extends AppCompatActivity {
     }
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+        sharedPreferences = new StorageSharedPreferences(newBase);
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, sharedPreferences.getLanguage()));
     }
 
     @Override

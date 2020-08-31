@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Locale;
+
 public class StorageSharedPreferences {
 
     private static String MY_DATA_KEY = "MyData";
@@ -34,7 +36,7 @@ public class StorageSharedPreferences {
     private static String SNAPCHAT = null;
     private static String TITLE_ADS = null;
     private static final int COUNTRY_ID = -1;
-    private static String LANG = "en";
+    private static String LANG = Locale.getDefault().getLanguage();
     private static final boolean IS_FIRST_TIME_LAUNCH = true;
 
     private Context mContext;
