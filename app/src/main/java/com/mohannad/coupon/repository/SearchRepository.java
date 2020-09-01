@@ -29,7 +29,26 @@ public class SearchRepository {
     public void searchCoupon(String lang, String token, String tokenDevice, String word, int page, ResponseServer<LiveData<SearchResponse>> responseServer) {
         MutableLiveData<SearchResponse> resultsCoupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.searchCoupon(lang, token, tokenDevice, word, page).enqueue(new Callback<SearchResponse>() {
+        apiService.searchCoupon(lang, token, tokenDevice, 23, word, page).enqueue(new Callback<SearchResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
+                resultsCoupons.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), resultsCoupons);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Search onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void filterCoupon(String lang, String token, String tokenDevice, Integer idStore, Integer idCompany, String filterSpecific, int page, ResponseServer<LiveData<SearchResponse>> responseServer) {
+        MutableLiveData<SearchResponse> resultsCoupons = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.filterCoupons(lang, token, tokenDevice, 23, idStore, idCompany, filterSpecific, page).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
                 resultsCoupons.setValue(response.body());

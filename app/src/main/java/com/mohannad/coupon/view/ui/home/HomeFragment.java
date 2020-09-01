@@ -132,7 +132,7 @@ public class HomeFragment extends BaseFragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                startActivity(new Intent(requireContext(), SearchActivity.class).putExtra("word", query));
+                startActivity(new Intent(requireContext(), SearchActivity.class).putExtra("word", query).putExtra("type", "search"));
                 return false;
             }
 
@@ -188,8 +188,12 @@ public class HomeFragment extends BaseFragment {
             sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
             sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
         });
-        sheetView.btnApply.setOnClickListener(v->{
-
+        sheetView.btnApply.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), SearchActivity.class)
+                    .putExtra("idCategory", idCategoryFilter)
+                    .putExtra("idCompany", idCompanyFilter)
+                    .putExtra("filterSpecific", filterSpecific)
+                    .putExtra("type", "filter"));
         });
         sheetView.rvCompaniesFilter.setAdapter(companiesFilterAdapter);
         // get companies for first category

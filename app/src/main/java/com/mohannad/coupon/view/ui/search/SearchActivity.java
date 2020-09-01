@@ -28,8 +28,15 @@ public class SearchActivity extends BaseActivity {
     private int mCurrentPage = 1;
     private boolean mIsLastPage;
     private boolean mIsLoading;
+    private final int SEARCH = 1;
+    private final int FILTER = 2;
+    // request type to determine the type of request for (search or filter)
+    private int requestType;
     // search word
     private String word;
+    private Integer idCategory;
+    private Integer idCompany;
+    private String filterSpecific;
     private StorageSharedPreferences storageSharedPreferences;
     private SearchViewModel model;
     ArrayList<Coupon> coupons = new ArrayList<>();
@@ -46,9 +53,17 @@ public class SearchActivity extends BaseActivity {
             getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
             getSupportActionBar().setElevation(0);
         }
-        if (getIntent().hasExtra("word")) {
-            // search word will enter by user
-            word = getIntent().getStringExtra("word");
+        if (getIntent().hasExtra("type")) {
+            if (getIntent().getStringExtra("type").equals("search")) {
+                requestType = SEARCH;
+                // search word will enter by user
+                word = getIntent().getStringExtra("word");
+            } else if (getIntent().getStringExtra("type").equals("filter")) {
+                requestType = FILTER;
+                idCategory = getIntent().getIntExtra("idCategory", -1);
+                idCompany = getIntent().getIntExtra("idCompany", -1);
+                filterSpecific = getIntent().getStringExtra("filterSpecific");
+            }
         }
         fetchCoupons();
         storageSharedPreferences = new StorageSharedPreferences(this);
@@ -92,7 +107,7 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void loadMoreItems() {
                 ++mCurrentPage;
-               fetchCoupons();
+                fetchCoupons();
             }
 
             @Override
@@ -127,7 +142,15 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void fetchCoupons() {
-        model.searchCoupons(word, mCurrentPage);
+        switch (requestType) {
+            case SEARCH:
+                model.searchCoupons(word, mCurrentPage);
+                break;
+            case FILTER:
+                model.filterCoupons((idCategory == -1) ? null : idCategory, (idCompany == -1) ? null : idCompany, filterSpecific, mCurrentPage);
+                break;
+        }
+
     }
 
 }

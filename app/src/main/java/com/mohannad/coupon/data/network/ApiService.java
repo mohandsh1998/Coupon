@@ -183,8 +183,20 @@ public interface ApiService {
     Call<SearchResponse> searchCoupon(@Header("lang") String lang,
                                       @Header("Authorization") String token,
                                       @Header("device-token") String deviceToken,
+                                      @Header("country-id") int countryId,
                                       @Query("search_data") String word,
                                       @Query("page") int page);
+
+    // filter coupons by user
+    @GET("/api/filter/coupon")
+    Call<SearchResponse> filterCoupons(@Header("lang") String lang,
+                                       @Header("Authorization") String token,
+                                       @Header("device-token") String deviceToken,
+                                       @Header("country-id") int countryId,
+                                       @Query("store_id") Integer storeId,
+                                       @Query("company_id") Integer companyId,
+                                       @Query("filter_specific") String filterSpecific,
+                                       @Query("page") int page);
 
 
     // reset password
