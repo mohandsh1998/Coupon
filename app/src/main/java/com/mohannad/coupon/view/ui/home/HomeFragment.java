@@ -24,10 +24,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.databinding.FilterBottomSheetDialogBinding;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.deal.SlideAdsAdapter;
@@ -132,6 +135,17 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
+    private void showFilterSheet() {
+        BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme);
+        FilterBottomSheetDialogBinding sheetView = FilterBottomSheetDialogBinding.inflate(LayoutInflater.from(requireContext()));
+        bottomSheet.setContentView(sheetView.getRoot());
+        sheetView.setLifecycleOwner(this);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(((View) sheetView.getRoot().getParent()));
+        behavior.setSkipCollapsed(true);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheet.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -139,8 +153,8 @@ public class HomeFragment extends BaseFragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.menu_search) {
-            startActivity(new Intent(requireContext(), SearchActivity.class));
+        if (id == R.id.menu_filter) {
+            showFilterSheet();
             return true;
         }
 

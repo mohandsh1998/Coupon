@@ -90,6 +90,13 @@
     <string name="please_enter_your_email_for_a_refund_password">Please enter your email for a refund password</string>
     <string name="the_random_password_has_been_sent_to_your_email_please_check">The random password has been sent to your Email please check</string>
     <string name="open_gmail">Open Gmail</string>
+    <string name="clear">Clear</string>
+    <string name="apply">Apply</string>
+    <string name="latest_coupons">Latest Coupons</string>
+    <string name="most_used">Most Used</string>
+    <string name="more">More</string>
+    <string name="company_name">Company name</string>
+    <string name="category">Category</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

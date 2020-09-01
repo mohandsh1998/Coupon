@@ -90,6 +90,13 @@
     <string name="please_enter_your_email_for_a_refund_password">الرجاء إدخال بريدك الإلكتروني لإسترجاع كلمة المرور</string>
     <string name="the_random_password_has_been_sent_to_your_email_please_check">تم إرسال كلمة المرور العشوائية إلى بريدك الإلكتروني ، يرجى مراجعة البريد الإلكتروني</string>
     <string name="open_gmail">إفتح البريد الإلكتروني</string>
+    <string name="clear">تفريغ</string>
+    <string name="apply">تطبيق</string>
+    <string name="latest_coupons">أحدث الكابونات</string>
+    <string name="most_used">الأكثر إستخداما</string>
+    <string name="more">المزيد</string>
+    <string name="company_name">إسم الشركة</string>
+    <string name="category">الفئة</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
