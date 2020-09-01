@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -30,10 +31,13 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.databinding.FilterBottomSheetDialogBinding;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.deal.SlideAdsAdapter;
+import com.mohannad.coupon.view.adapter.home.CategoriesFilterAdapter;
+import com.mohannad.coupon.view.adapter.home.CompaniesFilterAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.deal.DealViewModel;
 import com.mohannad.coupon.view.ui.search.SearchActivity;
@@ -44,7 +48,11 @@ import java.util.List;
 public class HomeFragment extends BaseFragment {
     private Context mContext;
     private FragmentHomeBinding binding;
+    private HomeViewModel homeViewModel;
     ArrayList<CategoriesResponse.Category> categoriesTabs = new ArrayList<>();
+    private int idCategoryFilter = -1;
+    private int idCompanyFilter = -1;
+    private String filterSpecific;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -68,7 +76,7 @@ public class HomeFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         StorageSharedPreferences sharedPreferences = new StorageSharedPreferences(requireContext());
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(homeViewModel);
         binding.setLifecycleOwner(this);
         binding.topText.setText(sharedPreferences.getAdsTitle());
@@ -84,7 +92,7 @@ public class HomeFragment extends BaseFragment {
 
         // display error msg
         homeViewModel.toastMessageFailed.observe(requireActivity(), msg -> {
-            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+            showAlertDialog(binding.lyContainer, msg);
         });
         homeViewModel.categoriesTabs.observe(requireActivity(), homePagesAdapter::addAll);
     }
@@ -100,7 +108,7 @@ public class HomeFragment extends BaseFragment {
         // Hint SearchView
         searchView.setQueryHint(getString(R.string.what_would_you_like_to_find));
         // Background SearchView
-        searchView.setBackground(mContext.getDrawable(R.drawable.shape_gray2_raduis_9dp));
+        searchView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray2_raduis_9dp));
         // close icon in SearchView
         ImageView searchViewCloseIcon = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
         searchViewCloseIcon.setEnabled(false);
@@ -139,10 +147,54 @@ public class HomeFragment extends BaseFragment {
         BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme);
         FilterBottomSheetDialogBinding sheetView = FilterBottomSheetDialogBinding.inflate(LayoutInflater.from(requireContext()));
         bottomSheet.setContentView(sheetView.getRoot());
+        sheetView.setHomeViewModel(homeViewModel);
         sheetView.setLifecycleOwner(this);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(((View) sheetView.getRoot().getParent()));
         behavior.setSkipCollapsed(true);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        ArrayList<CompaniesResponse.Company> companies = new ArrayList<>();
+        CompaniesFilterAdapter companiesFilterAdapter = new CompaniesFilterAdapter(requireContext(), companies, (position, company) -> idCompanyFilter = companies.get(position).getId());
+        CategoriesFilterAdapter categoriesFilterAdapter = new CategoriesFilterAdapter(requireContext(), categoriesTabs, (position, category) -> {
+            // set id category selected
+            idCategoryFilter = category.getId();
+            idCompanyFilter = -1;
+            // clear companies
+            companiesFilterAdapter.clear();
+            companiesFilterAdapter.selected(-1);
+            sheetView.rvCompaniesFilter.removeAllViews();
+            // get companies for selected category
+            homeViewModel.getCompanies(categoriesTabs.get(position).getId());
+        });
+        sheetView.rvCategoryFilter.setAdapter(categoriesFilterAdapter);
+        sheetView.tvLastCoupons.setOnClickListener(v -> {
+            filterSpecific = "latest";
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+        });
+        sheetView.tvMostUsed.setOnClickListener(v -> {
+            filterSpecific = "most_used";
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+        });
+        // clear call item
+        sheetView.btnReset.setOnClickListener(v -> {
+            idCategoryFilter = -1;
+            idCompanyFilter = -1;
+            filterSpecific = null;
+            categoriesFilterAdapter.selected(-1);
+            companiesFilterAdapter.selected(-1);
+            sheetView.rvCategoryFilter.scrollToPosition(0);
+            sheetView.rvCompaniesFilter.scrollToPosition(0);
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+        });
+        sheetView.btnApply.setOnClickListener(v->{
+
+        });
+        sheetView.rvCompaniesFilter.setAdapter(companiesFilterAdapter);
+        // get companies for first category
+        homeViewModel.getCompanies(categoriesTabs.get(0).getId());
+        homeViewModel.companies.observe(requireActivity(), companiesFilterAdapter::addAll);
         bottomSheet.show();
     }
 
@@ -154,7 +206,8 @@ public class HomeFragment extends BaseFragment {
         int id = item.getItemId();
 
         if (id == R.id.menu_filter) {
-            showFilterSheet();
+            if (categoriesTabs.size() != 0)
+                showFilterSheet();
             return true;
         }
 

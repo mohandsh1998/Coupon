@@ -97,6 +97,7 @@
     <string name="more">المزيد</string>
     <string name="company_name">إسم الشركة</string>
     <string name="category">الفئة</string>
+    <string name="reset">تفريغ</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

@@ -97,6 +97,7 @@
     <string name="more">More</string>
     <string name="company_name">Company name</string>
     <string name="category">Category</string>
+    <string name="reset">Reset</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>
