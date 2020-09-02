@@ -22,17 +22,21 @@ public class DealViewModel extends BaseViewModel {
     DealRepository dealRepository;
     MutableLiveData<List<DealResponse.DealItem>> deals = new MutableLiveData<>();
     MutableLiveData<List<DealResponse.DealsAds>> adsDeal = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLastPage = new MutableLiveData<>();
     StorageSharedPreferences sharedPreferences;
+    public int currentPageDeals;
+
     public DealViewModel(@NonNull Application application) {
         super(application);
         dealRepository = DealRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
-        getDeals();
+        getDeals(1);
     }
 
-    private void getDeals() {
+    public void getDeals(int page) {
+        currentPageDeals = page;
         dataLoading.setValue(true);
-        dealRepository.getDeals(sharedPreferences.getLanguage(), 1, 1, new ResponseServer<LiveData<DealResponse>>() {
+        dealRepository.getDeals(sharedPreferences.getLanguage(), 1, page, new ResponseServer<LiveData<DealResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<DealResponse> response) {
                 dataLoading.setValue(false);
@@ -40,6 +44,7 @@ public class DealViewModel extends BaseViewModel {
                     if (response.getValue().isStatus()) {
                         deals.setValue(response.getValue().getDeal().getDealItems());
                         adsDeal.setValue(response.getValue().getDealsAds());
+                        isLastPage.setValue(page == response.getValue().getDeal().getLastPage());
                     }
                 }
             }

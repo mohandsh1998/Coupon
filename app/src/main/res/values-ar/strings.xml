@@ -98,6 +98,7 @@
     <string name="company_name">إسم الشركة</string>
     <string name="category">الفئة</string>
     <string name="reset">تفريغ</string>
+    <string name="show_coupon">أعرض الكابون</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

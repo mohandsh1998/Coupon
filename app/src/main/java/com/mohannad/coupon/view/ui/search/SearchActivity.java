@@ -54,6 +54,7 @@ public class SearchActivity extends BaseActivity {
             getSupportActionBar().setElevation(0);
         }
         if (getIntent().hasExtra("type")) {
+            // check type search or filter
             if (getIntent().getStringExtra("type").equals("search")) {
                 requestType = SEARCH;
                 // search word will enter by user
