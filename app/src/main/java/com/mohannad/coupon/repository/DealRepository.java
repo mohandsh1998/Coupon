@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mohannad.coupon.callback.ResponseServer;
+import com.mohannad.coupon.data.model.DealCouponsResponse;
 import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
+import com.mohannad.coupon.data.model.SearchResponse;
 import com.mohannad.coupon.data.network.ApiClient;
 import com.mohannad.coupon.data.network.ApiService;
 
@@ -26,7 +28,7 @@ public class DealRepository {
         return dealRepository;
     }
 
-    public void getDeals(String lang, int idCountry, int page,ResponseServer<LiveData<DealResponse>> responseServer) {
+    public void getDeals(String lang, int idCountry, int page, ResponseServer<LiveData<DealResponse>> responseServer) {
         MutableLiveData<DealResponse> deals = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getDeals(lang, idCountry, page).enqueue(new Callback<DealResponse>() {
@@ -45,4 +47,22 @@ public class DealRepository {
         });
     }
 
+    public void dealCoupons(String lang, String token, String tokenDevice, int idDeal, ResponseServer<LiveData<DealCouponsResponse>> responseServer) {
+        MutableLiveData<DealCouponsResponse> resultsCoupons = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.dealCoupons(lang, token, tokenDevice, 23, idDeal).enqueue(new Callback<DealCouponsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<DealCouponsResponse> call, @NonNull Response<DealCouponsResponse> response) {
+                resultsCoupons.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), resultsCoupons);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<DealCouponsResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Deal Coupons onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
 }

@@ -52,11 +52,13 @@ public class DealFragment extends BaseFragment {
         DealViewModel dealViewModel = new ViewModelProvider(this).get(DealViewModel.class);
         binding.setDealViewModel(dealViewModel);
         binding.setLifecycleOwner(this);
+        dealViewModel.getDeals(mCurrentPage);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         SlideAdsAdapter slideAdsAdapter = new SlideAdsAdapter(requireActivity(), new ArrayList<>());
         DealAdapter dealAdapter = new DealAdapter(requireContext(), slideAdsAdapter, new ArrayList<>(), new DealAdapter.DealClickListener() {
             @Override
             public void openCoupon(DealResponse.DealItem dealItem) {
+                startActivity(new Intent(requireContext(), DealCouponsActivity.class).putExtra("idDeal", dealItem.getId()));
             }
 
             @Override

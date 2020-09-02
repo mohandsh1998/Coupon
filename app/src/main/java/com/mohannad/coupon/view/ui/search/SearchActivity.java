@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.ui.search;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,7 +51,7 @@ public class SearchActivity extends BaseActivity {
         binding.setLifecycleOwner(this);
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
             getSupportActionBar().setElevation(0);
         }
         if (getIntent().hasExtra("type")) {
