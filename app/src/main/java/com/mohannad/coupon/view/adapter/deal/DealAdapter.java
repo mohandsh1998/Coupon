@@ -89,6 +89,7 @@ public class DealAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             DealResponse.DealItem dealItem = dealItems.get(position);
+            this.itemView.tvDescPercentage.setText(dealItem.getDescPercentage());
             this.itemView.tvPercentageDiscountItemDealRv.setText(dealItem.getPercentage() + " %");
             this.itemView.tvDealDateItemDealRv.setText(dealItem.getContent());
             Glide.with(mContext)

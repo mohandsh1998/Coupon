@@ -1,5 +1,6 @@
 package com.mohannad.coupon.view.ui.deal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.databinding.FragmentSlideAdsBinding;
 import com.mohannad.coupon.utils.BaseFragment;
+import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 public class SlideAdsFragment extends BaseFragment {
     private static final String ARG_IMAGE = "image";
@@ -45,6 +47,9 @@ public class SlideAdsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         FragmentSlideAdsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_slide_ads, container, false);
         loadImage(requireContext(), mImage, binding.imgAds);
+        binding.tvWebsite.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", mLink));
+        });
         return binding.getRoot();
     }
 }

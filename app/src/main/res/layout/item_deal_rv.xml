@@ -41,7 +41,7 @@
                 tools:text="Start In 15May -21May" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tv_desc_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -60,9 +60,9 @@
                 android:textColor="@color/pink"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_desc_percentage"
+                app:layout_constraintStart_toEndOf="@+id/tv_desc_percentage"
+                app:layout_constraintTop_toTopOf="@+id/tv_desc_percentage"
                 tools:text="30%" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:padding="8dp"
                 android:text="@string/show_coupon"
                 android:textColor="@color/orange"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

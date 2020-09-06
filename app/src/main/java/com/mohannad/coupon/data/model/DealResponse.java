@@ -60,6 +60,8 @@ public class DealResponse {
     public static class DealItem {
         @SerializedName("id")
         private int id;
+        @SerializedName("desc_percentage")
+        private String descPercentage;
         @SerializedName("percentage")
         private String percentage;
         @SerializedName("link")
@@ -71,6 +73,10 @@ public class DealResponse {
 
         public int getId() {
             return id;
+        }
+
+        public String getDescPercentage() {
+            return descPercentage;
         }
 
         public String getPercentage() {
