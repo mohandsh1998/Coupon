@@ -208,7 +208,7 @@ public class HomeViewModel extends BaseViewModel {
                     if (response != null && response.getValue() != null) {
                         if (response.getValue().isStatus()) {
                             successAddOrRemoveToFavorite.setValue(true);
-                            toastMessageSuccess.setValue(response.getValue().getMessage());
+//                            toastMessageSuccess.setValue(response.getValue().getMessage());
                         }
                     }
                 }

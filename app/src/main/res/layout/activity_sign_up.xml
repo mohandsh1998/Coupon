@@ -21,10 +21,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="48dp"
             android:layout_marginTop="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/bg_logo"
+            app:layout_constraintBottom_toTopOf="@+id/et_full_name_activity_signup"
+            app:layout_constraintDimensionRatio="w, 4:4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -213,6 +216,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.45" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
