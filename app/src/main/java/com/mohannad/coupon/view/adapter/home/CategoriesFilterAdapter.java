@@ -25,7 +25,7 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
     private int selectedItem;
 
     public CategoriesFilterAdapter(Context context, ArrayList<CategoriesResponse.Category> categories,
-                                  CategoryClickListener categoryClickListener) {
+                                   CategoryClickListener categoryClickListener) {
         this.categories = categories;
         this.mContext = context;
         this.categoryClickListener = categoryClickListener;
@@ -73,11 +73,13 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
         }
 
         void bind(CategoriesResponse.Category category, int position) {
-            // check if position equal selected item -> change border color about selected category
+            // check if position equal selected item -> change border and shadow about selected category
             if (position == selectedItem) {
-                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+                itemView.getRoot().setElevation(24);
             } else {
                 itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+                itemView.getRoot().setElevation(0);
             }
 
             ((TextView) itemView.getRoot()).setText(category.getName());
@@ -87,8 +89,9 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
                 if (selectedItem != getAdapterPosition()) {
                     // change position selectedItem
                     selected(position);
-                    // change border color to selected category
-                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+                    // change border and shadow  to selected category and shadow
+                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+                    itemView.getRoot().setElevation(24);
                     categoryClickListener.onCategorySelected(position, category);
                 }
             });

@@ -73,11 +73,13 @@ public class CompaniesFilterAdapter extends RecyclerView.Adapter<CompaniesFilter
         }
 
         void bind(CompaniesResponse.Company company, int position) {
-            // check if position equal selected item -> change border color about selected company
+            // check if position equal selected item -> change border and shadow about selected company
             if (position == selectedItem) {
-                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+                itemView.getRoot().setElevation(24);
             } else {
                 itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+                itemView.getRoot().setElevation(0);
             }
 
             ((TextView) itemView.getRoot()).setText(company.getName());
@@ -87,8 +89,9 @@ public class CompaniesFilterAdapter extends RecyclerView.Adapter<CompaniesFilter
                 if (selectedItem != getAdapterPosition()) {
                     // change position selectedItem
                     selected(position);
-                    // change border color to selected company
-                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+                    // change border and shadow  to selected company
+                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+                    itemView.getRoot().setElevation(24);
                     companyClickListener.onCompanySelected(position, company);
                 }
             });

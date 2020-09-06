@@ -48,6 +48,9 @@ public class FavoriteViewModel extends BaseViewModel {
                         if (response != null && response.getValue() != null) {
                             if (response.getValue().isStatus()) {
                                 favorites.setValue(response.getValue().getFavorites());
+                                if (response.getValue().getFavorites().size() == 0)
+                                    empty.setValue(true);
+                                else empty.setValue(false);
                             }
                         }
                     }

@@ -168,13 +168,21 @@ public class HomeFragment extends BaseFragment {
         sheetView.rvCategoryFilter.setAdapter(categoriesFilterAdapter);
         sheetView.tvLastCoupons.setOnClickListener(v -> {
             filterSpecific = "latest";
-            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+            // add shadow
+            sheetView.tvLastCoupons.setElevation(24);
             sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+            // remove shadow
+            sheetView.tvMostUsed.setElevation(0);
         });
         sheetView.tvMostUsed.setOnClickListener(v -> {
             filterSpecific = "most_used";
-            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_15dp));
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
+            // add shadow
+            sheetView.tvMostUsed.setElevation(24);
             sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+            // remove shadow
+            sheetView.tvLastCoupons.setElevation(0);
         });
         // clear call item
         sheetView.btnReset.setOnClickListener(v -> {

@@ -116,6 +116,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.itemView.tvProductNameItemProductRv.setText(product.getName());
             // desc
             this.itemView.tvDescItemProductRv.setText(product.getDesc());
+            this.itemView.tvNumReviewsItemProductRv.setText(Integer.toString(product.getNumberReviews()));
+            this.itemView.tvReviewsItemProductRv.setText(Integer.toString(product.getRate()));
+            this.itemView.tvNumOrderItemProductRv.setText(Integer.toString(product.getNumberOrders()));
 
             // check if the product in favorite or not
             if (product.isInFavorite()) {

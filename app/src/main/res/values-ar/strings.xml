@@ -99,6 +99,7 @@
     <string name="category">الفئة</string>
     <string name="reset">تفريغ</string>
     <string name="show_coupon">أعرض الكابون</string>
+    <string name="empty_favorite">Empty Favorite</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
