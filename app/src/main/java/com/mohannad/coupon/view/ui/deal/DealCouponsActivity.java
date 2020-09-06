@@ -14,6 +14,7 @@ import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.databinding.ActivityDealCouponsBinding;
 import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.view.adapter.usedcoupon.UsedCouponsAdapter;
+import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.search.SearchViewModel;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
@@ -54,7 +55,9 @@ public class DealCouponsActivity extends BaseActivity {
 
             @Override
             public void answerQuestion(int position, Coupon coupon, boolean answer) {
-
+                if (!answer) {
+                    startActivity(new Intent(DealCouponsActivity.this, ContactUsActivity.class));
+                }
             }
 
 

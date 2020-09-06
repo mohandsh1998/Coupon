@@ -37,6 +37,7 @@ import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
+import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
@@ -157,7 +158,9 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void answerQuestion(int position, Coupon coupon, boolean answer) {
-
+                if (!answer) {
+                    startActivity(new Intent(requireContext(), ContactUsActivity.class));
+                }
             }
 
             @Override

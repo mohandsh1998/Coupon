@@ -18,6 +18,7 @@ import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.utils.PaginationListener;
 import com.mohannad.coupon.view.adapter.usedcoupon.UsedCouponsAdapter;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
+import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponsViewModel;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
@@ -87,7 +88,9 @@ public class SearchActivity extends BaseActivity {
 
             @Override
             public void answerQuestion(int position, Coupon coupon, boolean answer) {
-
+                if (!answer) {
+                    startActivity(new Intent(SearchActivity.this, ContactUsActivity.class));
+                }
             }
 
 
