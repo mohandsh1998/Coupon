@@ -101,6 +101,9 @@
     <string name="show_coupon">أعرض الكابون</string>
     <string name="empty_favorite">لا يوجد مفضلة</string>
     <string name="website">الموقع</string>
+    <string name="please_agree_to_the">يرجى الموافقة على</string>
+    <string name="terms_and_conditions">الشروط والأحكام</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

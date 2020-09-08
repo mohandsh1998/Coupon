@@ -347,7 +347,40 @@
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/ic_arrow_12dp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ly_privacy_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_gray1_radius_9dp"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_privacy_police" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/privacy_policy"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_arrow_12dp" />
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/ly_logout"
                     android:layout_width="match_parent"

@@ -19,11 +19,10 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="32dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="h, 4:4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -54,8 +53,8 @@
                     android:paddingStart="32dp"
                     android:paddingEnd="32dp"
                     android:text="@string/english"
-                    android:textColor="@color/white"
                     android:textAllCaps="false"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toStartOf="@+id/btn_arabic_lang"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,10 +94,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:background="@drawable/shape_white_with_border_pink_radius_9dp"
                     android:minHeight="40dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     app:layout_constraintEnd_toEndOf="@+id/btn_arabic_lang"
                     app:layout_constraintStart_toStartOf="@+id/btn_english_lang"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -113,6 +112,29 @@
                     app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
                     app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
 
+                <CheckBox
+                    android:id="@+id/cb_terms_and_conditions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/please_agree_to_the"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/spinner_countries"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/terms_and_conditions"
+                    android:textColor="@color/pink"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cb_terms_and_conditions"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cb_terms_and_conditions"
+                    app:layout_constraintTop_toTopOf="@+id/cb_terms_and_conditions" />
+
                 <Button
                     android:id="@+id/btn_confirm"
                     android:layout_width="0dp"
@@ -126,7 +148,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
                     app:layout_constraintStart_toStartOf="@+id/spinner_countries"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+                    app:layout_constraintTop_toBottomOf="@+id/cb_terms_and_conditions" />
 
                 <ProgressBar
                     android:layout_width="wrap_content"

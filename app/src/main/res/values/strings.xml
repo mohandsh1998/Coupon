@@ -101,6 +101,9 @@
     <string name="show_coupon">Show Coupon</string>
     <string name="empty_favorite">Empty Favorite</string>
     <string name="website">Website</string>
+    <string name="please_agree_to_the">Please agree to</string>
+    <string name="terms_and_conditions">terms and conditions</string>
+    <string name="privacy_policy">Privacy policy</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>
