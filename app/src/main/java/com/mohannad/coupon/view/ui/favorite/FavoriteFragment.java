@@ -55,6 +55,7 @@ public class FavoriteFragment extends BaseFragment {
 
                     @Override
                     public void shareCoupon(int position, FavoriteResponse.Favorite favorite) {
+                        shareText("Title : " + favorite.getCompanyName() + "\n Description : " + favorite.getDesc());
 
                     }
 

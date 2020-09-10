@@ -228,6 +228,24 @@
                 app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
                 app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_copy_coupon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_coupon_rv"
+                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv">
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_solid_pink_light_radius_15dp" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <TextView
                 android:id="@+id/tv_coupon_ended_item_favorite_rv"
                 android:layout_width="0dp"
@@ -243,6 +261,34 @@
                 app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
                 app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
                 app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv" />
+
+            <LinearLayout
+                android:id="@+id/ly_thanks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_correct" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/thank_you"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"

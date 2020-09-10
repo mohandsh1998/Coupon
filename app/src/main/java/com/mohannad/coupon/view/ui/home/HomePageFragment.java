@@ -205,7 +205,7 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void shareCoupon(int position, Coupon coupon) {
-
+                shareText("Title : " + coupon.getCompanyName() + "\n Description : " + coupon.getDesc());
             }
 
             @Override

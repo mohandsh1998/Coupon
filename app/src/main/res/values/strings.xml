@@ -104,6 +104,7 @@
     <string name="please_agree_to_the">Please agree to</string>
     <string name="terms_and_conditions">terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
+    <string name="thank_you">Thank you</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

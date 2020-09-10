@@ -1,9 +1,11 @@
 package com.mohannad.coupon.view.ui.coupon;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -114,9 +116,8 @@ public class AddCouponFragment extends BaseFragment {
 
             }
         });
-        mViewModel.toastMessageSuccess.observe(requireActivity(), msg -> {
-            showDefaultDialog(addCouponBinding.lyContainer, msg);
-        });
+        // show alert dialog when send coupon
+        mViewModel.toastMessageSuccess.observe(requireActivity(), this::showDialog);
         mViewModel.toastMessageFailed.observe(requireActivity(), msg -> {
             showAlertDialog(addCouponBinding.lyContainer, msg);
         });

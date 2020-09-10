@@ -26,9 +26,7 @@ public class ContactUsActivity extends BaseActivity {
             getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
             getSupportActionBar().setElevation(0);
         }
-        model.toastMessageSuccess.observe(this, msg -> {
-            showDefaultDialog(binding.lyContainer, msg);
-        });
+        model.toastMessageSuccess.observe(this, this::showDialog);
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(binding.lyContainer, msg);
         });

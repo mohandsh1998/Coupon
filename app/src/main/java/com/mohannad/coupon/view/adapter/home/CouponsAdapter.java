@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.adapter.home;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -267,6 +268,15 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 visibleOrHideQuestionViews(false);
                 visibleOrHideContentCouponViews(true);
             }
+            itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //write your code here to be executed after 1 second
+                    itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
+                }
+            }, 800);
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {

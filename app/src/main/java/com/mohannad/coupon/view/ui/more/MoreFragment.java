@@ -65,7 +65,8 @@ public class MoreFragment extends BaseFragment {
             openTelegram();
         });
         binding.lyShareApp.setOnClickListener(v -> {
-            shareApp();
+            shareText("Hey check out my app \n Google play: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+                    + "\n AppStore : " + "https://app.store");
         });
         binding.lyRegisterNow.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), SignUpActivity.class));
@@ -106,16 +107,6 @@ public class MoreFragment extends BaseFragment {
         } else {
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
         }
-    }
-
-    private void shareApp() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT,
-                "Hey check out my app \n Google play: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
-                        + "\n AppStore : " + "https://app.store");
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
     }
 
     private void openSnapChat() {

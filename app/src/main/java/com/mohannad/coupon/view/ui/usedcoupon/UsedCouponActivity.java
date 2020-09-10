@@ -67,7 +67,7 @@ public class UsedCouponActivity extends BaseActivity {
 
             @Override
             public void shareCoupon(int position, Coupon coupon) {
-
+                shareText("Title : " + coupon.getCompanyName() + "\n Description : " + coupon.getDesc());
             }
 
             @Override
