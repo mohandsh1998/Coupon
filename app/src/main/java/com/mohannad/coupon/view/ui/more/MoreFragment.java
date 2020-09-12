@@ -23,6 +23,7 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.databinding.FragmentMoreBinding;
 import com.mohannad.coupon.utils.BaseFragment;
+import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordActivity;
 import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
@@ -30,6 +31,7 @@ import com.mohannad.coupon.view.ui.help.HelpActivity;
 import com.mohannad.coupon.view.ui.setting.SettingActivity;
 import com.mohannad.coupon.view.ui.splash.SplashActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
+import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 public class MoreFragment extends BaseFragment {
 
@@ -93,7 +95,9 @@ public class MoreFragment extends BaseFragment {
         binding.lyChangePassword.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
         });
-
+        binding.lyPrivacyPolicy.setOnClickListener(v->{
+            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
+        });
     }
 
     private void openInstagram() {

@@ -109,6 +109,7 @@
     <string name="choose_category">Choose Category</string>
     <string name="hide">Hide</string>
     <string name="choose_company">Choose Company</string>
+    <string name="must_agree_on_terms_and_condition">Must agree to the terms and condition</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

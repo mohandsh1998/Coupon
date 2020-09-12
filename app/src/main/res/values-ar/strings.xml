@@ -109,6 +109,7 @@
     <string name="choose_category">إختر الصنف</string>
     <string name="hide">إخفاء</string>
     <string name="choose_company">إختر الشركة</string>
+    <string name="must_agree_on_terms_and_condition">يجب الموافقة على الأحكام والشروط</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
