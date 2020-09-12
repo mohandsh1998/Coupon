@@ -23,14 +23,10 @@ import com.mohannad.coupon.utils.Utils;
 import java.util.List;
 
 public class AddCouponViewModel extends BaseViewModel {
-    SettingRepository settingRepository;
-    AddCouponRepository addCouponRepository;
-    private HomeRepository homeRepository;
-    MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
     // email user
-    public String email;
+    public MutableLiveData<String> email = new MutableLiveData<>();
     // mobile number
-    public String whatsUp;
+    public MutableLiveData<String> whatsUp = new MutableLiveData<>();
     // id country
     public Integer idCountry = null;
     // id category
@@ -38,9 +34,16 @@ public class AddCouponViewModel extends BaseViewModel {
     // id company
     public Integer idCompany = null;
     // description
-    public String description;
+    public MutableLiveData<String> description = new MutableLiveData<>();
     // code coupon
-    public String coupon;
+    public MutableLiveData<String> coupon = new MutableLiveData<>();
+
+    MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
+    // categories that will show in spinner
+    MutableLiveData<List<CategoriesResponse.Category>> categories = new MutableLiveData<>();
+    // companies that will show in spinner
+    MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
+
     // error messages that will show if there problem in coupon data when adding the coupon
     public MutableLiveData<String> errorEmail = new MutableLiveData<>();
     public MutableLiveData<String> errorWhatsUp = new MutableLiveData<>();
@@ -48,13 +51,15 @@ public class AddCouponViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> errorCompany = new MutableLiveData<>();
     public MutableLiveData<Boolean> errorDescription = new MutableLiveData<>();
     public MutableLiveData<Boolean> errorCoupon = new MutableLiveData<>();
-    // categories that will show in spinner
-    MutableLiveData<List<CategoriesResponse.Category>> categories = new MutableLiveData<>();
-    // companies that will show in spinner
-    MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
     // tag finish loading
     boolean countryFinish = false, categoryFinish = false, companyFinish = false;
+
+    private SettingRepository settingRepository;
+    private AddCouponRepository addCouponRepository;
+    private HomeRepository homeRepository;
+
     StorageSharedPreferences sharedPreferences;
+
     public AddCouponViewModel(@NonNull Application application) {
         super(application);
         addCouponRepository = AddCouponRepository.newInstance();
@@ -148,8 +153,6 @@ public class AddCouponViewModel extends BaseViewModel {
                 if (countryFinish && categoryFinish)
                     // hide loading
                     dataLoading.setValue(false);
-                // hide loading
-                dataLoading.setValue(false);
                 // check if status success
                 if (status) {
                     if (response != null && response.getValue() != null) {
@@ -187,8 +190,8 @@ public class AddCouponViewModel extends BaseViewModel {
 
     public void suggestionCoupon() {
         // call suggestionCoupon from repository
-        addCouponRepository.suggestionCoupon(sharedPreferences.getLanguage(), email, idCountry,
-                coupon, idCompany, whatsUp, description, new ResponseServer<MessageResponse>() {
+        addCouponRepository.suggestionCoupon(sharedPreferences.getLanguage(), email.getValue(), idCountry,
+                coupon.getValue(), idCompany, whatsUp.getValue(), description.getValue(), new ResponseServer<MessageResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, MessageResponse response) {
                         // hide loading
@@ -199,6 +202,10 @@ public class AddCouponViewModel extends BaseViewModel {
                                 // success to send coupon
                                 toastMessageSuccess.setValue(response.getMessage());
                                 success.setValue(true);
+                                email.setValue(null);
+                                coupon.setValue(null);
+                                whatsUp.setValue(null);
+                                description.setValue(null);
                             } else {
                                 // failed to send coupon
                                 success.setValue(false);
@@ -221,19 +228,19 @@ public class AddCouponViewModel extends BaseViewModel {
 
     private boolean validation() {
         boolean valid = true;
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email.getValue())) {
             errorEmail.setValue(getApplication().getString(R.string.this_filed_is_empty));
             valid = false;
-        } else if (!Utils.isEmailValid(email)) {
+        } else if (!Utils.isEmailValid(email.getValue())) {
             errorEmail.setValue(getApplication().getString(R.string.email_invalid));
             valid = false;
         } else {
             errorEmail.setValue(null);
         }
-        if (TextUtils.isEmpty(whatsUp)) {
+        if (TextUtils.isEmpty(whatsUp.getValue())) {
             errorWhatsUp.setValue(getApplication().getString(R.string.this_filed_is_empty));
             valid = false;
-        } else if (!Utils.isMobileValid(whatsUp)) {
+        } else if (!Utils.isMobileValid(whatsUp.getValue())) {
             errorWhatsUp.setValue(getApplication().getString(R.string.mobile_invalid));
             valid = false;
         } else {
@@ -251,13 +258,13 @@ public class AddCouponViewModel extends BaseViewModel {
         } else {
             errorCompany.setValue(false);
         }
-        if (TextUtils.isEmpty(description)) {
+        if (TextUtils.isEmpty(description.getValue())) {
             errorDescription.setValue(true);
             valid = false;
         } else {
             errorDescription.setValue(false);
         }
-        if (TextUtils.isEmpty(coupon)) {
+        if (TextUtils.isEmpty(coupon.getValue())) {
             errorCoupon.setValue(true);
             valid = false;
         } else {

@@ -24,10 +24,11 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 public class BaseFragment extends Fragment {
 
     public void loadImage(Context context, String link, ImageView imageView) {
-        Glide.with(context)
-                .load(link)
-                //  .placeholder(R.drawable.loading_spinner)
-                .into(imageView);
+        if (context != null)
+            Glide.with(context)
+                    .load(link)
+                    //  .placeholder(R.drawable.loading_spinner)
+                    .into(imageView);
     }
 
     // alert dialog will show at center of screen

@@ -105,6 +105,10 @@
     <string name="terms_and_conditions">terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="thank_you">Thank you</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="hide">Hide</string>
+    <string name="choose_company">Choose Company</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>
