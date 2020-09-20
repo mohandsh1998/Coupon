@@ -70,6 +70,8 @@ public class DealResponse {
         private String content;
         @SerializedName("image")
         private String image;
+        @SerializedName("has_coupon")
+        private boolean hasCoupon;
 
         public int getId() {
             return id;
@@ -93,6 +95,10 @@ public class DealResponse {
 
         public String getImage() {
             return image;
+        }
+
+        public boolean isHasCoupon() {
+            return hasCoupon;
         }
     }
 

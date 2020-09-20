@@ -2,6 +2,7 @@ package com.mohannad.coupon.view.adapter.deal;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -90,15 +91,26 @@ public class DealAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             DealResponse.DealItem dealItem = dealItems.get(position);
             this.itemView.tvDescPercentage.setText(dealItem.getDescPercentage());
-            this.itemView.tvPercentageDiscountItemDealRv.setText(dealItem.getPercentage() + " %");
             this.itemView.tvDealDateItemDealRv.setText(dealItem.getContent());
             Glide.with(mContext)
                     .load(dealItem.getImage())
                     //  .placeholder(R.drawable.loading_spinner)
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
                     .into(this.itemView.imgDealCompany);
+
+            if (dealItem.isHasCoupon()) {
+                this.itemView.tvShowCouponItemDealRv.setVisibility(View.VISIBLE);
+                this.itemView.tvWebsiteItemDealRv.setVisibility(View.GONE);
+            } else {
+                this.itemView.tvShowCouponItemDealRv.setVisibility(View.GONE);
+                this.itemView.tvWebsiteItemDealRv.setVisibility(View.VISIBLE);
+            }
+
             // open webview
             this.itemView.getRoot().setOnClickListener(v -> {
+                dealClickListener.openDeal(dealItem);
+            });
+            this.itemView.tvWebsiteItemDealRv.setOnClickListener(v -> {
                 dealClickListener.openDeal(dealItem);
             });
             // open coupons for deals
