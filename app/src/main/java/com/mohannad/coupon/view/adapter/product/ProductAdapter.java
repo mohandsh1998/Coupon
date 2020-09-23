@@ -16,10 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.data.model.CouponHomeResponse;
-import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.ProductsResponse;
-import com.mohannad.coupon.databinding.ItemHelpRvBinding;
 import com.mohannad.coupon.databinding.ItemProductRvBinding;
 
 import java.util.ArrayList;
@@ -161,7 +158,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.copy_coupon));
+                this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.code_copied));
                 // change background
                 this.itemView.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

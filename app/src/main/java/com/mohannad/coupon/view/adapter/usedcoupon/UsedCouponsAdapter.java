@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,12 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
-import com.mohannad.coupon.databinding.ItemAdsRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
-import com.mohannad.coupon.databinding.ItemTitleRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
-import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 
 import java.util.List;
 
@@ -34,17 +29,23 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private CouponClickListener couponClickListener;
     private int shopItem;
     private int copyItem;
+    private int thanksAnimItem;
     // tag to start animation when copy coupon only
     private boolean startAnimation = false;
+    private Animation bottomTop;
+    private Animation centerTop;
 
     public UsedCouponsAdapter(Context mContext, List<Coupon> couponList, CouponClickListener couponClickListener) {
         this.mContext = mContext;
         this.couponList = couponList;
         // animation when copy coupon
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
+        bottomTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_70);
+        centerTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_0);
         this.couponClickListener = couponClickListener;
         shopItem = -1;
         copyItem = -1;
+        thanksAnimItem = -1;
     }
 
     public void setShopItem(int position) {
@@ -54,6 +55,11 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void setCopyItem(int position) {
         copyItem = position;
+        notifyDataSetChanged();
+    }
+
+    public void setThanksAnimItem(int position) {
+        thanksAnimItem = position;
         notifyDataSetChanged();
     }
 
@@ -109,15 +115,12 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             Coupon coupon = couponList.get(position);
-            // name company
-            itemCouponRvBinding.tvCompanyNameItemCouponRv.setText(coupon.getCompanyName());
             // description coupon
             itemCouponRvBinding.tvDescItemCouponRv.setText(coupon.getDesc());
             // load img company
             Glide.with(mContext)
                     .load(coupon.getCompanyImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
                     .into(this.itemCouponRvBinding.imgCompanyItemCouponRv);
             // check if allow to display num of used to coupon or not
             if (coupon.isAllowToOfferCountUsed()) {
@@ -171,6 +174,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             itemCouponRvBinding.btnYesItemCouponRv.setOnClickListener(v -> {
                 // hide question views and show coupon content views when the user answer on question
                 setShopItem(-1);
+                setThanksAnimItem(position);
                 couponClickListener.answerQuestion(position, coupon, true);
             });
             // when the user click to answer no on question
@@ -195,7 +199,47 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 //write your code here to be executed after 1 second
                 itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
             }, 800);
+            // check if position == coupon has been answer yes -> will show animation thank u
+            if (thanksAnimItem == position) {
+                // show with animation thanks layout from bottom to top
+                itemCouponRvBinding.lyThanks.startAnimation(bottomTop);
+                itemCouponRvBinding.lyThanks.setVisibility(View.VISIBLE);
+                bottomTop.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
 
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        thanksAnimItem = -1;
+                        // when the first animation end -> start the second animation from center to top to hide thanks layout
+                        itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                // listener when finished the second animation hide the thanks layout
+                centerTop.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
@@ -211,7 +255,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.copy_coupon));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

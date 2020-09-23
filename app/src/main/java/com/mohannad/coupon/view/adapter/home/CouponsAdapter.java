@@ -195,15 +195,12 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             Coupon coupon = couponList.get(position);
-            // name company
-            itemCouponRvBinding.tvCompanyNameItemCouponRv.setText(coupon.getCompanyName());
             // description coupon
             itemCouponRvBinding.tvDescItemCouponRv.setText(coupon.getDesc());
             // load img company
             Glide.with(mContext)
                     .load(coupon.getCompanyImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
                     .into(this.itemCouponRvBinding.imgCompanyItemCouponRv);
             // check if allow to display num of used to coupon or not
             if (coupon.isAllowToOfferCountUsed()) {
@@ -337,7 +334,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.copy_coupon));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray1_radius_9dp));
             }

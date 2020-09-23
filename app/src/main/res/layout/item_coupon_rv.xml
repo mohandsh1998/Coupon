@@ -19,28 +19,14 @@
 
             <ImageView
                 android:id="@+id/img_company_item_coupon_rv"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
                 android:layout_margin="16dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintEnd_toStartOf="@+id/tv_shop_now_item_coupon_rv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_company_name_item_coupon_rv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/img_company_item_coupon_rv"
-                app:layout_constraintEnd_toStartOf="@id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@id/img_company_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@id/img_company_item_coupon_rv"
-                tools:text="Careem" />
 
             <TextView
                 android:id="@+id/tv_shop_now_item_coupon_rv"
@@ -50,6 +36,7 @@
                 android:background="@drawable/shape_orange_raduis_9dp"
                 android:padding="8dp"
                 android:text="@string/shop_now"
+                android:textAllCaps="true"
                 android:textColor="@color/orange"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -135,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/coupons_have_been_used"
+                android:textAllCaps="true"
                 android:textColor="@color/gray3"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_text_last_date_used_item_coupon_rv"
@@ -159,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/last_used"
+                android:textAllCaps="true"
                 android:textColor="@color/gray3"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
@@ -223,7 +212,8 @@
                 android:layout_marginStart="16dp"
                 android:background="@drawable/shape_gray1_radius_9dp"
                 android:gravity="center"
-                android:text="@string/copy_coupon"
+                android:text="@string/code_copied"
+                android:textAllCaps="true"
                 android:textColor="@color/pink"
                 android:textSize="16sp"
                 android:textStyle="bold"

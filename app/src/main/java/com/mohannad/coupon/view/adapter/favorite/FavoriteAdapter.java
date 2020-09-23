@@ -123,8 +123,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             FavoriteResponse.Favorite favorite = favoriteItems.get(position);
-            // company name
-            this.itemView.tvCompanyNameItemCouponRv.setText(favorite.getCompanyName());
             // desc
             this.itemView.tvDescItemCouponRv.setText(favorite.getDesc());
             // check if allow to display count coupon used or not
@@ -153,7 +151,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             Glide.with(mContext)
                     .load(favorite.getCompanyImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
                     .into(this.itemView.imgCompanyItemCouponRv);
 
             // when the user click on shop now
@@ -198,7 +195,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.copy_coupon));
+                this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
                 // change background
                 this.itemView.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }
@@ -277,7 +274,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.copy_coupon));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.code_copied));
                 // change background
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

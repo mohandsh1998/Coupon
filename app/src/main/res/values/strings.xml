@@ -53,7 +53,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="coupons_have_been_used">Coupons Have Been Used</string>
     <string name="last_used">Last Used</string>
-    <string name="copy_coupon">Copy Coupon</string>
+    <string name="code_copied">Code Copied</string>
     <string name="coupon_has_ended">Coupon has ended</string>
     <string name="all">All</string>
     <string name="how_was_your_experience">How Was Your Experience?</string>
