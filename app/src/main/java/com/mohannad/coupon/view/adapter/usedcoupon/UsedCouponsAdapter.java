@@ -13,8 +13,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
@@ -255,7 +253,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

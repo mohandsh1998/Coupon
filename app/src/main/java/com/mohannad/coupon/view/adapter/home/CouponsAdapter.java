@@ -334,7 +334,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray1_radius_9dp));
             }

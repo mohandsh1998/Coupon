@@ -195,7 +195,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.code_copied));
+                this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
                 // change background
                 this.itemView.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }
@@ -274,7 +274,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.code_copied));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

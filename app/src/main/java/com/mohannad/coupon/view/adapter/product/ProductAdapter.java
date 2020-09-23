@@ -158,7 +158,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.code_copied));
+                this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background
                 this.itemView.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
             }

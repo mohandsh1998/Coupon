@@ -174,7 +174,7 @@
                 android:layout_marginStart="16dp"
                 android:background="@drawable/shape_gray1_radius_9dp"
                 android:gravity="center"
-                android:text="@string/code_copied"
+                android:text="@string/get_code"
                 android:textColor="@color/pink"
                 android:textSize="16sp"
                 android:textStyle="bold"

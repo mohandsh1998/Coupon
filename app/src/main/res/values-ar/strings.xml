@@ -53,7 +53,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="coupons_have_been_used">كابونات مستخدمة</string>
     <string name="last_used">أخر إستخدام</string>
-    <string name="code_copied">نسخ الكابون</string>
+    <string name="get_code">نسخ الكابون</string>
     <string name="coupon_has_ended">إنتهت صلاحية هذا الكابون</string>
     <string name="all">الكل</string>
     <string name="how_was_your_experience">كيف كانت تجربتك؟</string>
@@ -110,6 +110,7 @@
     <string name="hide">إخفاء</string>
     <string name="choose_company">إختر الشركة</string>
     <string name="must_agree_on_terms_and_condition">يجب الموافقة على الأحكام والشروط</string>
+    <string name="ad">Ad</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
