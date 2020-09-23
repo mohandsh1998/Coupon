@@ -13,9 +13,9 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ly_container"
         android:layout_margin="16dp"
         app:cardCornerRadius="13dp"
         tools:context=".view.ui.more.MoreFragment">
@@ -260,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_gray1_radius_9dp"
                         android:padding="8dp"
-                        android:src="@drawable/ic_setting" />
+                        android:src="@drawable/ic_settings" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -347,13 +347,14 @@
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/ic_arrow_12dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ly_privacy_policy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -381,6 +382,7 @@
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/ic_arrow_12dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ly_logout"
                     android:layout_width="match_parent"

@@ -274,10 +274,10 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             // if not -> hide question views and show coupon content views
             if (position == shopItem) {
                 visibleOrHideQuestionViews(true);
-                visibleOrHideContentCouponViews(false);
+                visibleOrHideContentCouponViews(false, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferLastUseDate());
             } else {
                 visibleOrHideQuestionViews(false);
-                visibleOrHideContentCouponViews(true);
+                visibleOrHideContentCouponViews(true, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferLastUseDate());
             }
             itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.VISIBLE);
             Handler handler = new Handler();
@@ -344,13 +344,17 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
 
         // show or hide content coupon views
-        private void visibleOrHideContentCouponViews(boolean visible) {
+        private void visibleOrHideContentCouponViews(boolean visible, boolean timesOfUsed, boolean lastUsed) {
             if (visible) {
                 itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                if (timesOfUsed) {
+                    itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                    itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                }
+                if (lastUsed) {
+                    itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                    itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                }
             } else {
                 itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.GONE);
                 itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.GONE);

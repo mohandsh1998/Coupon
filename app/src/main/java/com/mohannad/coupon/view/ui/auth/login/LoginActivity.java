@@ -20,7 +20,10 @@ import com.mohannad.coupon.databinding.ActivityLoginBinding;
 import com.mohannad.coupon.databinding.ForgetPasswordBottomSheetDialogBinding;
 import com.mohannad.coupon.databinding.SuccessForgetPasswordBottomSheetDialogBinding;
 import com.mohannad.coupon.utils.BaseActivity;
+import com.mohannad.coupon.utils.Constants;
+import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
 import com.mohannad.coupon.view.ui.main.MainActivity;
+import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,14 @@ public class LoginActivity extends BaseActivity {
         model = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.setLoginViewModel(model);
         binding.setLifecycleOwner(this);
+        binding.tvSignUp.setOnClickListener(v -> startActivity(new Intent(this, SignUpActivity.class)));
         binding.tvForgetPassword.setOnClickListener(v -> showResetPasswordSheet());
+        binding.imgFacebookLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.SERVER_HOST_URL + "/api/auth/facebook"));
+        });
+        binding.imgGmailLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.SERVER_HOST_URL + "/api/auth/google"));
+        });
         model.success.observe(this, success -> {
             if (success) startActivity(new Intent(this, MainActivity.class));
         });
@@ -62,7 +72,8 @@ public class LoginActivity extends BaseActivity {
             if (success) {
                 bottomSheet.cancel();
                 openGmailSheet();
-            };
+            }
+            ;
         });
     }
 
@@ -75,11 +86,12 @@ public class LoginActivity extends BaseActivity {
         behavior.setSkipCollapsed(true);
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheet.show();
-        sheetView.btnOpenGmail.setOnClickListener(v->{
+        sheetView.btnOpenGmail.setOnClickListener(v -> {
             bottomSheet.cancel();
             openGmail();
         });
     }
+
     private void openGmail() {
         Intent intent = Intent.makeMainSelectorActivity(
                 Intent.ACTION_MAIN,

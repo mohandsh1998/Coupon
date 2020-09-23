@@ -25,6 +25,7 @@ import com.mohannad.coupon.databinding.FragmentMoreBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordActivity;
+import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
 import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.help.HelpActivity;
@@ -71,7 +72,7 @@ public class MoreFragment extends BaseFragment {
                     + "\n AppStore : " + "https://app.store");
         });
         binding.lyRegisterNow.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), SignUpActivity.class));
+            startActivity(new Intent(requireContext(), LoginActivity.class));
         });
         binding.lyLogout.setOnClickListener(v -> {
             mViewModel.mSharedPreferences.logout();

@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.adapter.favorite;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -174,6 +175,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 startAnimation = true;
                 favoriteClickListener.copyCoupon(position, favorite);
             });
+
+            this.itemView.shimmerCopyCoupon.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                //write your code here to be executed after 1 second
+                this.itemView.shimmerCopyCoupon.setVisibility(View.GONE);
+            }, 800);
 
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text

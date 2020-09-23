@@ -32,7 +32,7 @@ public class SignUpActivity extends BaseActivity {
             showAlertDialog(binding.lyContainer, msg);
         });
         binding.tvLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
     }
 }

@@ -36,10 +36,10 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_company_item_coupon_rv"
-                app:layout_constraintEnd_toStartOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/img_company_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/img_company_item_coupon_rv"
+                app:layout_constraintBottom_toBottomOf="@id/img_company_item_coupon_rv"
+                app:layout_constraintEnd_toStartOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/img_company_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/img_company_item_coupon_rv"
                 tools:text="Careem" />
 
             <TextView
@@ -53,21 +53,23 @@
                 android:textColor="@color/orange"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_company_item_coupon_rv"
+                app:layout_constraintBottom_toBottomOf="@id/img_company_item_coupon_rv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_company_item_coupon_rv" />
+                app:layout_constraintTop_toTopOf="@id/img_company_item_coupon_rv" />
 
             <TextView
                 android:id="@+id/tv_desc_item_coupon_rv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="18dp"
                 android:textColor="@color/black0"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toStartOf="@+id/img_company_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/img_company_item_coupon_rv"
+                app:layout_constraintBottom_toTopOf="@id/tv_text_num_times_used_item_coupon_rv"
+                app:layout_constraintEnd_toEndOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toStartOf="@id/img_company_item_coupon_rv"
+                app:layout_constraintTop_toBottomOf="@id/img_company_item_coupon_rv"
                 tools:text="Off All Products Shop Name 17%+ Free Shipping" />
 
             <TextView
@@ -81,9 +83,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toStartOf="@+id/img_company_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/img_company_item_coupon_rv" />
+                app:layout_constraintEnd_toEndOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toStartOf="@id/img_company_item_coupon_rv"
+                app:layout_constraintTop_toBottomOf="@id/img_company_item_coupon_rv" />
 
             <TextView
                 android:id="@+id/tv_tell_us_item_coupon_rv"
@@ -94,19 +96,9 @@
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/tv_experience_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_experience_item_coupon_rv" />
+                app:layout_constraintStart_toStartOf="@id/tv_experience_item_coupon_rv"
+                app:layout_constraintTop_toBottomOf="@id/tv_experience_item_coupon_rv" />
 
-            <TextView
-                android:id="@+id/tv_text_num_times_used_item_coupon_rv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/coupons_have_been_used"
-                android:textColor="@color/gray3"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/tv_desc_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_coupon_rv" />
 
             <Button
                 android:id="@+id/btn_yes_item_coupon_rv"
@@ -119,8 +111,8 @@
                 android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
-                app:layout_constraintStart_toStartOf="@+id/tv_tell_us_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tell_us_item_coupon_rv" />
+                app:layout_constraintStart_toStartOf="@id/tv_tell_us_item_coupon_rv"
+                app:layout_constraintTop_toBottomOf="@id/tv_tell_us_item_coupon_rv" />
 
             <Button
                 android:id="@+id/btn_no_item_coupon_rv"
@@ -134,20 +126,31 @@
                 android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
-                app:layout_constraintStart_toEndOf="@+id/btn_yes_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tell_us_item_coupon_rv" />
+                app:layout_constraintStart_toEndOf="@id/btn_yes_item_coupon_rv"
+                app:layout_constraintTop_toBottomOf="@id/tv_tell_us_item_coupon_rv" />
+
+            <TextView
+                android:id="@+id/tv_text_num_times_used_item_coupon_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/coupons_have_been_used"
+                android:textColor="@color/gray3"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_text_last_date_used_item_coupon_rv"
+                app:layout_constraintStart_toStartOf="@id/tv_desc_item_coupon_rv" />
 
             <TextView
                 android:id="@+id/tv_num_times_used_item_coupon_rv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:textColor="@color/orange"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/tv_text_num_times_used_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_coupon_rv"
+                app:layout_constraintBottom_toBottomOf="@id/tv_text_num_times_used_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/tv_text_num_times_used_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/tv_text_num_times_used_item_coupon_rv"
                 tools:text="200 times" />
 
             <TextView
@@ -159,8 +162,7 @@
                 android:textColor="@color/gray3"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
-                app:layout_constraintStart_toStartOf="@id/tv_desc_item_coupon_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_text_num_times_used_item_coupon_rv" />
+                app:layout_constraintStart_toStartOf="@id/tv_desc_item_coupon_rv" />
 
             <TextView
                 android:id="@+id/tv_last_date_used_item_coupon_rv"
@@ -170,9 +172,9 @@
                 android:textColor="@color/pink"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_text_last_date_used_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/tv_text_last_date_used_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/tv_text_last_date_used_item_coupon_rv"
+                app:layout_constraintBottom_toBottomOf="@id/tv_text_last_date_used_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/tv_text_last_date_used_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/tv_text_last_date_used_item_coupon_rv"
                 tools:text="2 Minutes Ago" />
 
             <ImageView
@@ -185,7 +187,7 @@
                 android:src="@drawable/ic_favorite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
 
             <ImageView
                 android:id="@+id/img_delete_coupon_item_coupon_rv"
@@ -198,19 +200,21 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
 
             <ImageView
                 android:id="@+id/img_share_item_coupon_rv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/shape_gray1_radius_9dp"
                 android:padding="8dp"
                 android:src="@drawable/ic_share"
-                app:layout_constraintBottom_toBottomOf="@+id/img_favorite_coupon_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/barrier2"
-                app:layout_constraintTop_toTopOf="@+id/img_favorite_coupon_item_coupon_rv" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/barrier2"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
 
             <TextView
                 android:id="@+id/tv_copy_coupon_item_coupon_rv"
@@ -223,10 +227,10 @@
                 android:textColor="@color/pink"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv" />
+                app:layout_constraintBottom_toBottomOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintEnd_toEndOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/img_share_item_coupon_rv" />
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_copy_coupon"
@@ -234,10 +238,10 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv">
+                app:layout_constraintBottom_toBottomOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintEnd_toEndOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/img_share_item_coupon_rv">
 
                 <View
                     android:id="@+id/view2"
@@ -257,10 +261,10 @@
                 android:textColor="@color/gray0"
                 android:textSize="16sp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintEnd_toEndOf="@+id/tv_shop_now_item_coupon_rv"
-                app:layout_constraintStart_toEndOf="@+id/img_share_item_coupon_rv"
-                app:layout_constraintTop_toTopOf="@+id/img_share_item_coupon_rv" />
+                app:layout_constraintBottom_toBottomOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintEnd_toEndOf="@id/tv_shop_now_item_coupon_rv"
+                app:layout_constraintStart_toEndOf="@id/img_share_item_coupon_rv"
+                app:layout_constraintTop_toTopOf="@id/img_share_item_coupon_rv" />
 
             <LinearLayout
                 android:id="@+id/ly_thanks"
@@ -302,8 +306,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="end"
-                app:constraint_referenced_ids="img_favorite_coupon_item_coupon_rv,img_delete_coupon_item_coupon_rv"
-                tools:layout_editor_absoluteX="379dp" />
+                app:constraint_referenced_ids="img_favorite_coupon_item_coupon_rv,img_delete_coupon_item_coupon_rv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
