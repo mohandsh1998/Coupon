@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +19,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.data.model.CouponHomeResponse;
 import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
 import com.mohannad.coupon.databinding.ItemAdsRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
@@ -38,6 +36,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private Context mContext;
     private Animation shake;
     private Animation bottomTop;
+    private Animation centerTop;
     private CompaniesAdapter companiesAdapter;
     private List<Coupon> couponList;
     private CouponClickListener couponClickListener;
@@ -54,7 +53,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.companiesAdapter = companiesAdapter;
         // animation when copy coupon
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
-        bottomTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_100);
+        bottomTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_70);
+        centerTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_0);
         this.couponClickListener = couponClickListener;
         shopItem = -1;
         copyItem = -1;
@@ -94,22 +94,18 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE_COMPANIES:
-                return new CompaniesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.companies_layout, parent, false));
-            case VIEW_TYPE_COUPONS:
-                return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_coupon_rv, parent, false));
-            case VIEW_TYPE_ADS:
-                return new AdsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_ads_rv, parent, false));
-            case VIEW_TYPE_TITLE:
-                return new TitleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                        R.layout.item_title_rv, parent, false));
-            default:
-                return null;
-        }
+        if (viewType == VIEW_TYPE_COMPANIES)
+            return new CompaniesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                    R.layout.companies_layout, parent, false));
+        else if (viewType == VIEW_TYPE_COUPONS)
+            return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                    R.layout.item_coupon_rv, parent, false));
+        else if (viewType == VIEW_TYPE_ADS)
+            return new AdsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                    R.layout.item_ads_rv, parent, false));
+        else // viewType = VIEW_TYPE_TITLE
+            return new TitleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                    R.layout.item_title_rv, parent, false));
     }
 
     @Override
@@ -163,12 +159,12 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             if (selectedAll) {
                 // add border on all coupons
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_with_border_pink_radius_9dp));
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_9dp));
                 // add shadow
                 this.companiesLayoutBinding.imgAllCompanies.setElevation(24);
             } else {
                 // remove border
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(mContext.getDrawable(R.drawable.shape_white_radius_9dp));
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
                 // remove shadow
                 this.companiesLayoutBinding.imgAllCompanies.setElevation(0);
             }
@@ -287,6 +283,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             }, 800);
             // check if position == coupon has been answer yes -> will show animation thank u
             if (thanksAnimItem == position) {
+                // show with animation thanks layout from bottom to top
                 itemCouponRvBinding.lyThanks.startAnimation(bottomTop);
                 itemCouponRvBinding.lyThanks.setVisibility(View.VISIBLE);
                 bottomTop.setAnimationListener(new Animation.AnimationListener() {
@@ -298,6 +295,24 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         thanksAnimItem = -1;
+                        // when the first animation end -> start the second animation from center to top to hide thanks layout
+                        itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                // listener when finished the second animation hide the thanks layout
+                centerTop.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
                         itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
                     }
 
