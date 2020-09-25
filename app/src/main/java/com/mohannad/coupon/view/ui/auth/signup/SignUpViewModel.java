@@ -25,6 +25,8 @@ public class SignUpViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> errorFullName = new MutableLiveData<>();
     public MutableLiveData<String> errorEmail = new MutableLiveData<>();
     public MutableLiveData<String> errorPassword = new MutableLiveData<>();
+    public MutableLiveData<Boolean> showErrorEmail = new MutableLiveData<>();
+    public MutableLiveData<Boolean> showErrorPassword = new MutableLiveData<>();
     private SignUpRepository signUpRepository;
     private StorageSharedPreferences mSharedPreferences;
 
@@ -90,18 +92,23 @@ public class SignUpViewModel extends BaseViewModel {
         }
         if (TextUtils.isEmpty(email)) {
             errorEmail.setValue(getApplication().getString(R.string.this_filed_is_empty));
+            showErrorEmail.setValue(true);
             valid = false;
         } else if (!Utils.isEmailValid(email)) {
             errorEmail.setValue(getApplication().getString(R.string.email_invalid));
+            showErrorEmail.setValue(true);
             valid = false;
         } else {
             errorEmail.setValue(null);
+            showErrorEmail.setValue(false);
         }
         if (TextUtils.isEmpty(password)) {
             errorPassword.setValue(getApplication().getString(R.string.this_filed_is_empty));
+            showErrorPassword.setValue(true);
             valid = false;
         } else if (password.length() < 6) {
             errorPassword.setValue(getApplication().getString(R.string.password_must_be_more_than_6));
+            showErrorPassword.setValue(true);
             valid = false;
         } else {
             errorPassword.setValue(null);

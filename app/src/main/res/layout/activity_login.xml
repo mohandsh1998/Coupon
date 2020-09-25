@@ -24,8 +24,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="48dp"
-            android:scaleType="centerCrop"
+            android:layout_margin="64dp"
             android:src="@drawable/img_splash"
             app:layout_constraintBottom_toTopOf="@+id/et_email__activity_login"
             app:layout_constraintEnd_toEndOf="parent"
@@ -144,48 +143,6 @@
             app:layout_constraintEnd_toEndOf="@+id/tv_forget_password"
             app:layout_constraintStart_toStartOf="@+id/et_password__activity_login"
             app:layout_constraintTop_toBottomOf="@+id/tv_forget_password" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/or"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_login"
-            app:layout_constraintStart_toStartOf="@+id/btn_login"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-        <ImageView
-            android:id="@+id/img_facebook_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_facebook"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <ImageView
-            android:id="@+id/img_twitter_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_twitter"
-            app:layout_constraintEnd_toStartOf="@+id/img_facebook_login"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <ImageView
-            android:id="@+id/img_gmail_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_facebook"
-            app:layout_constraintStart_toEndOf="@+id/img_facebook_login"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView5"

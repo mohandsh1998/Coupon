@@ -23,9 +23,8 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="32dp"
+            android:layout_margin="40dp"
             android:layout_marginTop="80dp"
-            android:scaleType="centerCrop"
             android:src="@drawable/img_splash"
             app:layout_constraintBottom_toTopOf="@+id/et_full_name_activity_signup"
             app:layout_constraintDimensionRatio="w, 4:4"
@@ -103,7 +102,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="8dp"
             android:background="@color/red"
-            android:visibility="@{safeUnbox(signUpViewModel.errorEmail != null) ?  View.VISIBLE : View.GONE}"
+            android:visibility="@{safeUnbox(signUpViewModel.showErrorEmail) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/et_email__activity_signup"
             app:layout_constraintEnd_toEndOf="@id/et_email__activity_signup"
             app:layout_constraintStart_toStartOf="@id/et_email__activity_signup" />
@@ -114,7 +113,7 @@
             android:layout_height="wrap_content"
             android:text="@={signUpViewModel.errorEmail}"
             android:textColor="@color/red"
-            android:visibility="@{safeUnbox(signUpViewModel.errorEmail != null) ?  View.VISIBLE : View.GONE}"
+            android:visibility="@{safeUnbox(signUpViewModel.showErrorEmail) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@+id/et_email__activity_signup"
             app:layout_constraintTop_toBottomOf="@+id/et_email__activity_signup" />
 
@@ -145,7 +144,7 @@
             android:layout_height="1dp"
             android:layout_marginBottom="8dp"
             android:background="@color/red"
-            android:visibility="@{safeUnbox(signUpViewModel.errorPassword != null) ?  View.VISIBLE : View.GONE}"
+            android:visibility="@{safeUnbox(signUpViewModel.showErrorPassword) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/et_password__activity_signup"
             app:layout_constraintEnd_toEndOf="@id/et_password__activity_signup"
             app:layout_constraintStart_toStartOf="@id/et_password__activity_signup" />
@@ -156,7 +155,7 @@
             android:layout_height="wrap_content"
             android:text="@={signUpViewModel.errorPassword}"
             android:textColor="@color/red"
-            android:visibility="@{safeUnbox(signUpViewModel.errorPassword != null) ?  View.VISIBLE : View.GONE}"
+            android:visibility="@{safeUnbox(signUpViewModel.showErrorPassword) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@+id/et_password__activity_signup"
             app:layout_constraintTop_toBottomOf="@+id/et_password__activity_signup" />
 
@@ -178,47 +177,6 @@
             app:layout_constraintStart_toStartOf="@+id/et_password__activity_signup"
             app:layout_constraintTop_toBottomOf="@+id/et_password__activity_signup" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/or"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_signup"
-            app:layout_constraintStart_toStartOf="@+id/btn_signup"
-            app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
-
-        <ImageView
-            android:id="@+id/img_facebook_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_facebook"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <ImageView
-            android:id="@+id/img_twitter_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_twitter"
-            app:layout_constraintEnd_toStartOf="@+id/img_facebook_login"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <ImageView
-            android:id="@+id/img_gmail_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_facebook"
-            app:layout_constraintStart_toEndOf="@+id/img_facebook_login"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView5"

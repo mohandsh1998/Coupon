@@ -40,12 +40,6 @@ public class LoginActivity extends BaseActivity {
         binding.setLifecycleOwner(this);
         binding.tvSignUp.setOnClickListener(v -> startActivity(new Intent(this, SignUpActivity.class)));
         binding.tvForgetPassword.setOnClickListener(v -> showResetPasswordSheet());
-        binding.imgFacebookLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.SERVER_HOST_URL + "/api/auth/facebook"));
-        });
-        binding.imgGmailLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.SERVER_HOST_URL + "/api/auth/google"));
-        });
         model.success.observe(this, success -> {
             if (success) startActivity(new Intent(this, MainActivity.class));
         });

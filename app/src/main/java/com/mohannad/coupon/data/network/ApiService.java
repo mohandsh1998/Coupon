@@ -27,7 +27,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @FormUrlEncoded
-    @POST("/api/register")
+    @POST("/api/register1")
     Call<AuthResponse> registerUser(
             @Header("lang") String lang,
             @Field("name") String name,
