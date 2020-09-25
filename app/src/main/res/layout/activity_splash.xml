@@ -7,16 +7,33 @@
         android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/ic_bg_splash"
         tools:context=".view.ui.splash.SplashActivity">
 
         <ImageView
+            android:id="@+id/img_splash"
             android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:src="@drawable/bg_logo"
+            app:layout_constraintBottom_toTopOf="@+id/imageView12"
+            app:layout_constraintDimensionRatio="h, 4:4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView12"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_splash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/img_splash" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

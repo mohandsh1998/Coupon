@@ -16,151 +16,167 @@
         android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/ic_bg_splash"
         tools:context=".view.ui.splash.LanguageAndCountryActivity">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/choose_language"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/choose_language"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_english_lang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@color/white"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/english"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_arabic_lang"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-                <Button
-                    android:id="@+id/btn_english_lang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/shape_solid_pink_radius_9dp"
-                    android:paddingStart="32dp"
-                    android:paddingEnd="32dp"
-                    android:text="@string/english"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_arabic_lang"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            <View
+                android:id="@+id/bottom_line_en"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/tv_english_lang"
+                app:layout_constraintStart_toStartOf="@+id/tv_english_lang"
+                app:layout_constraintTop_toBottomOf="@id/tv_english_lang" />
 
-                <Button
-                    android:id="@+id/btn_arabic_lang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/shape_white_with_border_pink_radius_9dp"
-                    android:paddingStart="32dp"
-                    android:paddingEnd="32dp"
-                    android:text="@string/arabic"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/btn_english_lang"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            <TextView
+                android:id="@+id/tv_arabic_lang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@color/white"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/arabic"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_english_lang"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:text="@string/choose_country"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_english_lang" />
+            <View
+                android:id="@+id/bottom_line_ar"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/tv_arabic_lang"
+                app:layout_constraintStart_toStartOf="@+id/tv_arabic_lang"
+                app:layout_constraintTop_toBottomOf="@id/tv_arabic_lang" />
 
-                <Spinner
-                    android:id="@+id/spinner_countries"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/shape_white_with_border_pink_radius_9dp"
-                    android:minHeight="40dp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="@+id/btn_arabic_lang"
-                    app:layout_constraintStart_toStartOf="@+id/btn_english_lang"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_bottom_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner_countries"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-                    app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
+            <Spinner
+                android:id="@+id/spinner_countries"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="48dp"
+                android:background="@color/white"
+                android:elevation="5dp"
+                android:minHeight="40dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_english_lang" />
 
-                <CheckBox
-                    android:id="@+id/cb_terms_and_conditions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/please_agree_to_the"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@+id/spinner_countries"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:elevation="5dp"
+                android:src="@drawable/ic_bottom_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_countries"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
+                app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
 
-                <TextView
-                    android:id="@+id/tv_terms_and_condition"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:text="@string/terms_and_conditions"
-                    android:textColor="@color/pink"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/cb_terms_and_conditions"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cb_terms_and_conditions"
-                    app:layout_constraintTop_toTopOf="@+id/cb_terms_and_conditions" />
+            <CheckBox
+                android:id="@+id/cb_terms_and_conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/please_agree_to_the"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/spinner_countries"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
 
-                <Button
-                    android:id="@+id/btn_confirm"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/shape_btn_raduis_22dp"
-                    android:text="@string/confirm"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-                    app:layout_constraintStart_toStartOf="@+id/spinner_countries"
-                    app:layout_constraintTop_toBottomOf="@+id/cb_terms_and_conditions" />
+            <TextView
+                android:id="@+id/tv_terms_and_condition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/terms_and_conditions"
+                android:textColor="@color/pink"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cb_terms_and_conditions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cb_terms_and_conditions"
+                app:layout_constraintTop_toTopOf="@+id/cb_terms_and_conditions" />
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{safeUnbox(splashViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:background="@drawable/shape_gradient_pink"
+                android:text="@string/apply"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
+                app:layout_constraintStart_toStartOf="@+id/spinner_countries"
+                app:layout_constraintTop_toBottomOf="@+id/cb_terms_and_conditions" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:visibility="@{safeUnbox(splashViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

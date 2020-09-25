@@ -38,7 +38,7 @@ public class ProductsResponse {
         @SerializedName("store_id")
         private int storeId;
         @SerializedName("rate")
-        private int rate;
+        private float rate;
         @SerializedName("number_reviews")
         private int numberReviews;
         @SerializedName("number_orders")
@@ -120,7 +120,7 @@ public class ProductsResponse {
             this.storeId = storeId;
         }
 
-        public int getRate() {
+        public float getRate() {
             return rate;
         }
 

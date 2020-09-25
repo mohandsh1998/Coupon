@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
@@ -44,7 +45,7 @@ public class LanguageAndCountryActivity extends BaseActivity {
         // check if device language arabic select arabic button default
         if (sharedPreferences.getLanguage().equals(LocaleHelper.ARABIC_LANGUAGE)) {
             language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.btnArabicLang, languageAndCountryBinding.btnEnglishLang);
+            changeBackgroundButton(languageAndCountryBinding.bottomLineAr, languageAndCountryBinding.bottomLineEn);
         }
         model.getCountries();
 
@@ -72,14 +73,14 @@ public class LanguageAndCountryActivity extends BaseActivity {
             }
         });
 
-        languageAndCountryBinding.btnArabicLang.setOnClickListener(v -> {
+        languageAndCountryBinding.tvArabicLang.setOnClickListener(v -> {
             language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.btnArabicLang, languageAndCountryBinding.btnEnglishLang);
+            changeBackgroundButton(languageAndCountryBinding.bottomLineAr, languageAndCountryBinding.bottomLineEn);
         });
 
-        languageAndCountryBinding.btnEnglishLang.setOnClickListener(v -> {
+        languageAndCountryBinding.tvEnglishLang.setOnClickListener(v -> {
             language = LocaleHelper.ENGLISH_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.btnEnglishLang, languageAndCountryBinding.btnArabicLang);
+            changeBackgroundButton(languageAndCountryBinding.bottomLineEn, languageAndCountryBinding.bottomLineAr);
         });
 
         languageAndCountryBinding.btnConfirm.setOnClickListener(v -> {
@@ -89,17 +90,16 @@ public class LanguageAndCountryActivity extends BaseActivity {
                 sharedPreferences.saveCountryName(nameCountry);
                 startActivity(new Intent(LanguageAndCountryActivity.this, MainActivity.class));
                 finish();
-            } else showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
+            } else
+                showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
         });
         languageAndCountryBinding.tvTermsAndCondition.setOnClickListener(v -> {
             startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
         });
     }
 
-    private void changeBackgroundButton(Button buttonSelected, Button buttonUnSelected) {
-        buttonSelected.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_solid_pink_radius_9dp));
-        buttonSelected.setTextColor(getResources().getColor(R.color.white));
-        buttonUnSelected.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_white_with_border_pink_radius_9dp));
-        buttonUnSelected.setTextColor(getResources().getColor(R.color.black));
+    private void changeBackgroundButton(View viewSelected, View viewUnSelected) {
+        viewSelected.setVisibility(View.VISIBLE);
+        viewUnSelected.setVisibility(View.GONE);
     }
 }

@@ -91,13 +91,13 @@ public class ProductsViewModel extends BaseViewModel {
             @Override
             public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
                 // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            toastMessageSuccess.setValue(response.getValue().getMessage());
-                        }
-                    }
-                }
+//                if (status) {
+//                    if (response != null && response.getValue() != null) {
+//                        if (response.getValue().isStatus()) {
+//                            toastMessageSuccess.setValue(response.getValue().getMessage());
+//                        }
+//                    }
+//                }
             }
 
             @Override

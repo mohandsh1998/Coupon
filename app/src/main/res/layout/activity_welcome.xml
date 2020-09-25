@@ -34,23 +34,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
+        android:id="@+id/imageView9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:src="@drawable/img_welcome"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/tv_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
+        android:onClick="start"
         android:text="@string/start"
         android:textColor="@color/pink"
         android:textSize="18sp"
-        android:onClick="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

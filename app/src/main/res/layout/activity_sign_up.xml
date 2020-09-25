@@ -39,21 +39,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@{safeUnbox(signUpViewModel.errorFullName) ?  @color/red : @color/gray0}"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="16dp"
             android:hint="@string/full_name"
             android:inputType="textPersonName"
-            android:theme="@style/EditTextTheme"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="@={signUpViewModel.fullName}"
             android:textColor="@color/black"
             android:textColorHint="@color/gray0"
             android:textSize="16sp"
+            android:theme="@style/EditTextTheme"
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red"
+            android:visibility="@{safeUnbox(signUpViewModel.errorFullName) ?  View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_full_name_activity_signup"
+            app:layout_constraintEnd_toEndOf="@+id/et_full_name_activity_signup"
+            app:layout_constraintStart_toStartOf="@+id/et_full_name_activity_signup" />
 
 
         <TextView
@@ -73,7 +82,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@{safeUnbox(signUpViewModel.errorEmail != null) ?  @color/red : @color/pink}"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="16dp"
             android:hint="@string/email"
@@ -84,10 +92,21 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray0"
             android:textSize="16sp"
+            android:theme="@style/EditTextTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_full_name_error" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red"
+            android:visibility="@{safeUnbox(signUpViewModel.errorEmail != null) ?  View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_email__activity_signup"
+            app:layout_constraintEnd_toEndOf="@id/et_email__activity_signup"
+            app:layout_constraintStart_toStartOf="@id/et_email__activity_signup" />
 
         <TextView
             android:id="@+id/tv_email_error"
@@ -100,13 +119,12 @@
             app:layout_constraintTop_toBottomOf="@+id/et_email__activity_signup" />
 
         <EditText
-            android:id="@+id/et_password__activity_login"
+            android:id="@+id/et_password__activity_signup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@{safeUnbox(signUpViewModel.errorPassword != null) ?  @color/red : @color/pink}"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:hint="@string/password"
@@ -117,9 +135,20 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray0"
             android:textSize="16sp"
+            android:theme="@style/EditTextTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email_error" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red"
+            android:visibility="@{safeUnbox(signUpViewModel.errorPassword != null) ?  View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_password__activity_signup"
+            app:layout_constraintEnd_toEndOf="@id/et_password__activity_signup"
+            app:layout_constraintStart_toStartOf="@id/et_password__activity_signup" />
 
         <TextView
             android:id="@+id/tv_password_error"
@@ -128,8 +157,8 @@
             android:text="@={signUpViewModel.errorPassword}"
             android:textColor="@color/red"
             android:visibility="@{safeUnbox(signUpViewModel.errorPassword != null) ?  View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="@+id/et_password__activity_login"
-            app:layout_constraintTop_toBottomOf="@+id/et_password__activity_login" />
+            app:layout_constraintStart_toStartOf="@+id/et_password__activity_signup"
+            app:layout_constraintTop_toBottomOf="@+id/et_password__activity_signup" />
 
 
         <Button
@@ -145,9 +174,9 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="@+id/et_password__activity_login"
-            app:layout_constraintStart_toStartOf="@+id/et_password__activity_login"
-            app:layout_constraintTop_toBottomOf="@+id/et_password__activity_login" />
+            app:layout_constraintEnd_toEndOf="@+id/et_password__activity_signup"
+            app:layout_constraintStart_toStartOf="@+id/et_password__activity_signup"
+            app:layout_constraintTop_toBottomOf="@+id/et_password__activity_signup" />
 
         <TextView
             android:id="@+id/textView4"

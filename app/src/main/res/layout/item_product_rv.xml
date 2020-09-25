@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/tv_product_name_item_product_rv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
@@ -38,6 +38,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tv_reviews_item_product_rv"
                 app:layout_constraintStart_toEndOf="@+id/img_company_item_product_rv"
                 app:layout_constraintTop_toTopOf="@+id/img_company_item_product_rv"
                 tools:text="Careem" />
@@ -62,9 +63,10 @@
                 android:drawablePadding="4dp"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_product_name_item_product_rv"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_product_name_item_product_rv"
                 app:layout_constraintTop_toTopOf="@+id/tv_product_name_item_product_rv"
-                android:text="15" />
+                tools:text="15" />
 
             <TextView
                 android:id="@+id/tv_desc_item_product_rv"
@@ -103,7 +105,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_desc_item_product_rv"
                 app:layout_constraintTop_toBottomOf="@+id/tv_desc_item_product_rv"
-                android:text="200" />
+                tools:text="200" />
 
             <TextView
                 android:id="@+id/tv_orders_item_product_rv"
@@ -128,7 +130,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_review_item_product_rv"
                 app:layout_constraintStart_toEndOf="@+id/tv_review_item_product_rv"
                 app:layout_constraintTop_toTopOf="@+id/tv_review_item_product_rv"
-                android:text="1520" />
+                tools:text="1520" />
 
             <ImageView
                 android:id="@+id/img_favorite_product_item_product_rv"
