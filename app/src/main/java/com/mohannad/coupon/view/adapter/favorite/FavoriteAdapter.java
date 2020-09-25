@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -185,8 +186,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             if (position == copyItem) {
                 // change text to code coupon
                 this.itemView.tvCopyCouponItemCouponRv.setText(favorite.getCouponCode());
+                this.itemView.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
-                this.itemView.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_stroke_pink_raduis_9dp));
+                this.itemView.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemView.tvCopyCouponItemCouponRv.startAnimation(shake);
@@ -196,8 +198,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             } else {
                 // change code coupon to text copy coupon
                 this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
+                this.itemView.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.white));
                 // change background
-                this.itemView.tvCopyCouponItemCouponRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
+                this.itemView.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gradient_pink_9dp));
             }
         }
     }

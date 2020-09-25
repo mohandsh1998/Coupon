@@ -33,11 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/shape_orange_raduis_9dp"
+                android:background="@drawable/shape_gradient_pink_9dp"
                 android:padding="8dp"
                 android:text="@string/shop_now"
                 android:textAllCaps="true"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/img_company_item_coupon_rv"
@@ -210,11 +210,11 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
-                android:background="@drawable/shape_gray1_radius_9dp"
+                android:background="@drawable/shape_gradient_pink_9dp"
                 android:gravity="center"
                 android:text="@string/get_code"
                 android:textAllCaps="true"
-                android:textColor="@color/pink"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/img_share_item_coupon_rv"
@@ -237,7 +237,7 @@
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_solid_pink_light_radius_15dp" />
+                    android:background="@drawable/shape_gray1_radius_9dp" />
             </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
