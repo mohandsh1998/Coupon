@@ -17,6 +17,7 @@ public class HelpActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.help);
         ActivityHelpBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_help);
         HelpViewModel model = new ViewModelProvider(this).get(HelpViewModel.class);
         binding.setHelpViewModel(model);

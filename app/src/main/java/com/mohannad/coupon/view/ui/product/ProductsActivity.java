@@ -32,6 +32,7 @@ public class ProductsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.products);
         ActivityProductsBinding productsBinding = DataBindingUtil.setContentView(this, R.layout.activity_products);
         StorageSharedPreferences storageSharedPreferences = new StorageSharedPreferences(this);
         ProductsViewModel model = new ViewModelProvider(this).get(ProductsViewModel.class);

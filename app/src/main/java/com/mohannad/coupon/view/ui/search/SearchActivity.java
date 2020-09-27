@@ -46,6 +46,7 @@ public class SearchActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.results);
         ActivitySearchBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
         model = new ViewModelProvider(this).get(SearchViewModel.class);
         binding.setSearchViewModel(model);

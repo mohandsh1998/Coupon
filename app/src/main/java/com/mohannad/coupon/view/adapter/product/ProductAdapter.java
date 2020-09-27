@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -142,14 +144,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 productClickListener.shareProduct(position, product);
             });
             itemView.getRoot().setOnClickListener(v -> productClickListener.onClickProductItem(product));
-
+            // check if product coupon code empty hide "copy code" else Show "copy code"
+            if (TextUtils.isEmpty(product.getCouponCode())) {
+                this.itemView.tvCopyCouponItemProductRv.setVisibility(View.GONE);
+            } else {
+                this.itemView.tvCopyCouponItemProductRv.setVisibility(View.VISIBLE);
+            }
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
                 // change text to code coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(product.getCouponCode());
                 // change background
-                this.itemView.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_stroke_pink_raduis_9dp));
+                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemView.tvCopyCouponItemProductRv.startAnimation(shake);
@@ -160,7 +167,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 // change code coupon to text copy coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background
-                this.itemView.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
+                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray1_radius_9dp));
             }
 
         }

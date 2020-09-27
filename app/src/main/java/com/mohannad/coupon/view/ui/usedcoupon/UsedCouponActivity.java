@@ -3,6 +3,7 @@ package com.mohannad.coupon.view.ui.usedcoupon;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,13 +31,14 @@ public class UsedCouponActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.used_coupons);
         ActivityUsedCouponBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_used_coupon);
         UsedCouponsViewModel model = new ViewModelProvider(this).get(UsedCouponsViewModel.class);
         binding.setUsedCouponViewModel(model);
         binding.setLifecycleOwner(this);
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
             getSupportActionBar().setElevation(0);
         }
 

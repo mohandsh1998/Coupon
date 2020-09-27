@@ -17,6 +17,7 @@ public class ContactUsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.contact_us);
         ActivityContactUsBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_contact_us);
         ContactUsViewModel model = new ViewModelProvider(this).get(ContactUsViewModel.class);
         binding.setContactUsViewModel(model);

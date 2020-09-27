@@ -31,6 +31,7 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.setting_app);
         ActivitySettingBinding settingBinding = DataBindingUtil.setContentView(this, R.layout.activity_setting);
         SettingViewModel model = new ViewModelProvider(this).get(SettingViewModel.class);
         settingBinding.setSettingViewModel(model);
