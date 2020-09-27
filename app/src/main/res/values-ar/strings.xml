@@ -111,6 +111,7 @@
     <string name="choose_company">إختر الشركة</string>
     <string name="must_agree_on_terms_and_condition">يجب الموافقة على الأحكام والشروط</string>
     <string name="ad">Ad</string>
+    <string name="orders">الطلبات</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
