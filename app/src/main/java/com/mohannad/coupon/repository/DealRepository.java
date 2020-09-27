@@ -47,10 +47,10 @@ public class DealRepository {
         });
     }
 
-    public void dealCoupons(String lang, String token, String tokenDevice, int idDeal, ResponseServer<LiveData<DealCouponsResponse>> responseServer) {
+    public void dealCoupons(String lang, String token, String tokenDevice, int countryId, int idDeal, ResponseServer<LiveData<DealCouponsResponse>> responseServer) {
         MutableLiveData<DealCouponsResponse> resultsCoupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.dealCoupons(lang, token, tokenDevice, 23, idDeal).enqueue(new Callback<DealCouponsResponse>() {
+        apiService.dealCoupons(lang, token, tokenDevice, countryId, idDeal).enqueue(new Callback<DealCouponsResponse>() {
             @Override
             public void onResponse(@NonNull Call<DealCouponsResponse> call, @NonNull Response<DealCouponsResponse> response) {
                 resultsCoupons.setValue(response.body());

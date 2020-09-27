@@ -43,7 +43,7 @@ public class DealViewModel extends BaseViewModel {
     public void getDeals(int page) {
         currentPageDeals = page;
         dataLoading.setValue(true);
-        dealRepository.getDeals(sharedPreferences.getLanguage(), 1, page, new ResponseServer<LiveData<DealResponse>>() {
+        dealRepository.getDeals(sharedPreferences.getLanguage(), sharedPreferences.getCountryID(), page, new ResponseServer<LiveData<DealResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<DealResponse> response) {
                 dataLoading.setValue(false);
@@ -69,7 +69,7 @@ public class DealViewModel extends BaseViewModel {
     public void getDealCoupons(int idDeal) {
         dataLoading.setValue(true);
         dealRepository.dealCoupons(sharedPreferences.getLanguage(),
-                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), idDeal, new ResponseServer<LiveData<DealCouponsResponse>>() {
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), sharedPreferences.getCountryID(), idDeal, new ResponseServer<LiveData<DealCouponsResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<DealCouponsResponse> response) {
                         dataLoading.setValue(false);

@@ -146,7 +146,7 @@ public class AddCouponViewModel extends BaseViewModel {
         // show loading
         dataLoading.setValue(true);
         // call getCompanies from repository
-        homeRepository.getCompanies(sharedPreferences.getLanguage(), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
+        homeRepository.getCompanies(sharedPreferences.getLanguage(), sharedPreferences.getCountryID(), idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CompaniesResponse> response) {
                 companyFinish = true;

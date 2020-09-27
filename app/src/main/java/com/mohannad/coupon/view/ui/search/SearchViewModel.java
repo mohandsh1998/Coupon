@@ -40,7 +40,7 @@ public class SearchViewModel extends BaseViewModel {
         currentPageCoupons = page;
         dataLoading.setValue(true);
         searchRepository.searchCoupon(sharedPreferences.getLanguage(),
-                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), word, page,
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), sharedPreferences.getCountryID(), word, page,
                 new ResponseServer<LiveData<SearchResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<SearchResponse> response) {
@@ -68,7 +68,7 @@ public class SearchViewModel extends BaseViewModel {
         currentPageCoupons = page;
         dataLoading.setValue(true);
         searchRepository.filterCoupon(sharedPreferences.getLanguage(),
-                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), idStore, idCompany, filterSpecific, page,
+                sharedPreferences.getAuthToken(), sharedPreferences.getTokenFCM(), sharedPreferences.getCountryID(), idStore, idCompany, filterSpecific, page,
                 new ResponseServer<LiveData<SearchResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<SearchResponse> response) {

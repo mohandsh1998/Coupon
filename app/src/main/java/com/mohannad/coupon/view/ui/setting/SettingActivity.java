@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.ui.setting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -59,7 +60,14 @@ public class SettingActivity extends BaseActivity {
         // init countries adapter
         SpinnerImageWithTextAdapter adapterCountries = new SpinnerImageWithTextAdapter(this, countries);
         settingBinding.spinnerCountries.setAdapter(adapterCountries);
-        model.countries.observe(this, adapterCountries::addAll);
+        model.countries.observe(this, countryList -> {
+            adapterCountries.addAll(countryList);
+            for (int i = 0; i < countryList.size(); ++i) {
+                if (sharedPreferences.getCountryID() == countryList.get(i).getId()) {
+                    settingBinding.spinnerCountries.setSelection(i);
+                }
+            }
+        });
         settingBinding.spinnerCountries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -82,7 +90,7 @@ public class SettingActivity extends BaseActivity {
         });
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
             getSupportActionBar().setElevation(0);
         }
     }

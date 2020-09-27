@@ -89,7 +89,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for companies
         dataLoadingCompanies.setValue(true);
         // call getCompanies from repository
-        homeRepository.getCompanies(mSharedPreferences.getLanguage(), 1, idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
+        homeRepository.getCompanies(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CompaniesResponse> response) {
                 // hide loading
@@ -121,7 +121,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
-        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), 1, mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading
@@ -154,7 +154,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCompany from repository
-        homeRepository.getAllCouponsCompany(mSharedPreferences.getLanguage(), 1,
+        homeRepository.getAllCouponsCompany(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(),
                 mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCompany, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
