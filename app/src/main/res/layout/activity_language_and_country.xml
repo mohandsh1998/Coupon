@@ -34,31 +34,47 @@
                 android:layout_margin="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/choose_language"
+                android:text="اختار اللغة"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_select_lang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Select Language"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
                 android:id="@+id/tv_english_lang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/white"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="@string/english"
+                android:text="ENG"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tv_arabic_lang"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_select_lang" />
 
             <View
                 android:id="@+id/bottom_line_en"
@@ -74,19 +90,19 @@
                 android:id="@+id/tv_arabic_lang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/white"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="@string/arabic"
+                android:text="العربية"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tv_english_lang"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_select_lang" />
 
             <View
                 android:id="@+id/bottom_line_ar"
@@ -104,9 +120,9 @@
                 android:id="@+id/spinner_countries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="48dp"
-                android:layout_marginEnd="48dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/white"
                 android:elevation="5dp"
                 android:minHeight="40dp"
@@ -155,17 +171,20 @@
 
             <Button
                 android:id="@+id/btn_confirm"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"
                 android:background="@drawable/shape_gradient_pink"
+                android:elevation="10dp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
                 android:text="@string/apply"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-                app:layout_constraintStart_toStartOf="@+id/spinner_countries"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cb_terms_and_conditions" />
 
             <ProgressBar
