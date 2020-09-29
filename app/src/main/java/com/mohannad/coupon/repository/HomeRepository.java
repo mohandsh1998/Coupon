@@ -129,6 +129,25 @@ public class HomeRepository {
             }
         });
     }
+    // this method will used to review coupon on SERVER SIDE
+    public void reviewCoupon(String lang, String token, int idCoupon, int isGood, ResponseServer<LiveData<MessageResponse>> responseServer) {
+        MutableLiveData<MessageResponse> reviewCoupon = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.reviewCoupon(lang, token, idCoupon, isGood).enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                reviewCoupon.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), reviewCoupon);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Home onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
 
     // this method will using to add or remove the coupon to favorite on SERVER SIDE
     public void addOrRemoveCouponFavorite(String lang, String token, String tokenDevice, int idCoupon, ResponseServer<LiveData<MessageResponse>> responseServer) {

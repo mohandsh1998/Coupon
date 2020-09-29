@@ -99,6 +99,14 @@ public interface ApiService {
                                         @Header("Authorization") String token,
                                         @Path("idCoupon") int idCoupon);
 
+    // review coupon by user
+    @FormUrlEncoded
+    @POST("/api/coupon/{idCoupon}/review")
+    Call<MessageResponse> reviewCoupon(@Header("lang") String lang,
+                                          @Header("Authorization") String token,
+                                          @Path("idCoupon") int idCoupon,
+                                          @Field("is_good") int isGood);
+
     // add or remove coupon to favorite
     @POST("/api/favorite/coupon/{idCoupon}")
     Call<MessageResponse> addOrRemoveCouponFavorite(@Header("lang") String lang,

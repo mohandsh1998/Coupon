@@ -195,6 +195,8 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             Coupon coupon = couponList.get(position);
+            // company name
+            itemCouponRvBinding.tvCompanyNameItemCouponRv.setText(coupon.getCompanyName());
             // description coupon
             itemCouponRvBinding.tvDescItemCouponRv.setText(coupon.getDesc());
             // load img company

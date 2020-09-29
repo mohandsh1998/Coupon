@@ -79,7 +79,7 @@ public class SearchActivity extends BaseActivity {
                 copyText(coupon.getCouponCode());
                 // show dialog
                 showDefaultDialog(binding.lyContainer, getString(R.string.coupon_was_copied));
-//                homeViewModel.copyCoupon(coupon.getId());
+                model.copyCoupon(coupon.getId());
             }
 
             @Override
@@ -89,6 +89,12 @@ public class SearchActivity extends BaseActivity {
 
             @Override
             public void answerQuestion(int position, Coupon coupon, boolean answer) {
+                  /*
+                  answer
+                  1- yes
+                  0- no
+                  */
+                model.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
                     startActivity(new Intent(SearchActivity.this, ContactUsActivity.class));
                 }

@@ -124,6 +124,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
             FavoriteResponse.Favorite favorite = favoriteItems.get(position);
+            // company name
+            this.itemView.tvCompanyNameItemCouponRv.setText(favorite.getCompanyName());
             // desc
             this.itemView.tvDescItemCouponRv.setText(favorite.getDesc());
             // check if allow to display count coupon used or not

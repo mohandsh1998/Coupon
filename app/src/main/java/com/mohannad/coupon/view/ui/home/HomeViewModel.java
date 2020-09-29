@@ -195,6 +195,19 @@ public class HomeViewModel extends BaseViewModel {
             }
         });
     }
+    // this method will call reviewCoupon  from repository to review coupon on SERVER
+    public void reviewCoupon(int idCoupon, int isGood) {
+        // call reviewCoupon from repository
+        homeRepository.reviewCoupon(mSharedPreferences.getLanguage(), mSharedPreferences.getAuthToken(), idCoupon, isGood, new ResponseServer<LiveData<MessageResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+            }
+
+            @Override
+            public void onFailure(String message) {
+            }
+        });
+    }
 
     // this method will call addOrRemoveCouponFavorite from repository to add or remove the coupon to favorite on server
     public void addOrRemoveCouponFavorite(int idCoupon) {

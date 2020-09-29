@@ -158,6 +158,12 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void answerQuestion(int position, Coupon coupon, boolean answer) {
+                /*
+                  answer
+                  1- yes
+                  0- no
+                  */
+                homeViewModel.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
                     startActivity(new Intent(requireContext(), ContactUsActivity.class));
                 }
