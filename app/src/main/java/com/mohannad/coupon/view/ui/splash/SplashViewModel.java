@@ -20,14 +20,17 @@ import com.mohannad.coupon.repository.AddCouponRepository;
 import com.mohannad.coupon.repository.HomeRepository;
 import com.mohannad.coupon.repository.SettingRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
+import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.utils.Utils;
 
 import java.util.List;
 
 public class SplashViewModel extends BaseViewModel {
     private SettingRepository settingRepository;
+    public MutableLiveData<Boolean> successTokenDevice = new MutableLiveData<>();
     MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
     StorageSharedPreferences sharedPreferences;
+
     public SplashViewModel(@NonNull Application application) {
         super(application);
         settingRepository = SettingRepository.newInstance();
@@ -57,6 +60,7 @@ public class SplashViewModel extends BaseViewModel {
                     }
                 });
     }
+
     // this method will call getSetting from repository to get setting app from server
     public void getSetting() {
         dataLoading.setValue(true);
@@ -86,4 +90,28 @@ public class SplashViewModel extends BaseViewModel {
                 });
     }
 
+    // this method will call addTokenDevice from repository to add token device on server
+    public void addTokenDevice() {
+        dataLoading.setValue(true);
+        settingRepository.addTokenDevice(sharedPreferences.getLanguage(), sharedPreferences.getTokenFCM(), Constants.DEVICE_OS, sharedPreferences.getStatusNotification(),
+                new ResponseServer<LiveData<MessageResponse>>() {
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+                        dataLoading.setValue(false);
+                        if (response != null && response.getValue() != null) {
+                            if (response.getValue().isStatus()) {
+                                successTokenDevice.setValue(true);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        successTokenDevice.setValue(false);
+                        dataLoading.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
+    }
 }

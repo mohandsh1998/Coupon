@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.mohannad.coupon.R;
@@ -19,6 +20,8 @@ import com.mohannad.coupon.databinding.ActivitySettingBinding;
 import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.utils.LocaleHelper;
 import com.mohannad.coupon.view.adapter.spinner.SpinnerImageWithTextAdapter;
+import com.mohannad.coupon.view.ui.main.MainActivity;
+import com.mohannad.coupon.view.ui.splash.LanguageAndCountryActivity;
 import com.mohannad.coupon.view.ui.splash.SplashActivity;
 import com.mohannad.coupon.view.ui.splash.SplashViewModel;
 
@@ -38,6 +41,7 @@ public class SettingActivity extends BaseActivity {
         settingBinding.setSettingViewModel(model);
         settingBinding.setLifecycleOwner(this);
         StorageSharedPreferences sharedPreferences = new StorageSharedPreferences(this);
+        settingBinding.switchNotification.setChecked(sharedPreferences.getStatusNotification() == 1);
         settingBinding.spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -86,8 +90,16 @@ public class SettingActivity extends BaseActivity {
             sharedPreferences.saveLanguage(language);
             sharedPreferences.saveCountryID(idCountry);
             sharedPreferences.saveCountryName(nameCountry);
-            restartApp();
+            sharedPreferences.saveStatusNotification(settingBinding.switchNotification.isChecked() ? 1 : 0);
+            model.addTokenDevice();
         });
+
+        model.successTokenDevice.observe(this, success -> {
+            if (success) {
+                restartApp();
+            }
+        });
+
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));

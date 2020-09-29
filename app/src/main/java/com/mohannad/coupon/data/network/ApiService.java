@@ -214,4 +214,13 @@ public interface ApiService {
     @POST("/api/reset-password/create")
     Call<MessageResponse> resetPassword(@Header("lang") String lang,
                                         @Field("email") String email);
+
+    // add fcm token
+    @FormUrlEncoded
+    @POST("/api/add_fcm_token")
+    Call<MessageResponse> addFcmToken(@Header("lang") String lang,
+                                      @Field("fcm_token") String fcmToken,
+                                      @Field("device_type") String deviceType,
+                                      @Field("allow_notification") int allowNotification);
+
 }

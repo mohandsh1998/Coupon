@@ -46,7 +46,7 @@ public class SignUpViewModel extends BaseViewModel {
     public void signUp() {
         // request to sign up from repository
         signUpRepository.signUp(mSharedPreferences.getLanguage(), fullName, email, password,
-                "gg", Constants.DEVICE_OS, 1, new ResponseServer<AuthResponse>() {
+                mSharedPreferences.getTokenFCM(), Constants.DEVICE_OS, mSharedPreferences.getStatusNotification(), new ResponseServer<AuthResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, AuthResponse response) {
                         // hide loading

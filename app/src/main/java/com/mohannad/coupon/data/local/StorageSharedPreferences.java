@@ -24,6 +24,7 @@ public class StorageSharedPreferences {
     private static String SNAPCHAT_KEY = "snapchat";
     private static String TITLE_ADS_KEY = "title_ads";
     private static String LANG_KEY = "Language";
+    private static String NOTIFICATION_KEY = "NOTIFICATION";
     private static final boolean LOG_IN_STATE = false;
     private static final String AUTH_TOKEN = null;
     private static final String TOKEN_FCM = null;
@@ -37,6 +38,7 @@ public class StorageSharedPreferences {
     private static String TITLE_ADS = null;
     private static final int COUNTRY_ID = -1;
     private static String LANG = Locale.getDefault().getLanguage();
+    private static int NOTIFICATION = 1; // 1-allow / 0-not allow
     private static final boolean IS_FIRST_TIME_LAUNCH = true;
 
     private Context mContext;
@@ -117,6 +119,7 @@ public class StorageSharedPreferences {
     public String getCountryName() {
         return getSharedPreferences().getString(COUNTRY_NAME_KEY, COUNTRY_NAME);
     }
+
     public void saveIntstagram(String instagram) {
         getPreferencesEditor().putString(INSTAGRAM_KEY, instagram).commit();
     }
@@ -149,6 +152,13 @@ public class StorageSharedPreferences {
         return getSharedPreferences().getString(TITLE_ADS_KEY, TITLE_ADS);
     }
 
+    public void saveStatusNotification(int notification) {
+        getPreferencesEditor().putInt(NOTIFICATION_KEY, notification).commit();
+    }
+
+    public int getStatusNotification() {
+        return getSharedPreferences().getInt(NOTIFICATION_KEY, NOTIFICATION);
+    }
 
     public void saveCountryID(int countryID) {
         getPreferencesEditor().putInt(COUNTRY_ID_KEY, countryID).commit();

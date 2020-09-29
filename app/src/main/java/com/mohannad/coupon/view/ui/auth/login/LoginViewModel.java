@@ -87,7 +87,7 @@ public class LoginViewModel extends BaseViewModel {
     public void login() {
         // request to login from repository
         loginRepository.login(mSharedPreferences.getLanguage(), email, password,
-                "gg", Constants.DEVICE_OS, 1, new ResponseServer<AuthResponse>() {
+                mSharedPreferences.getTokenFCM(), Constants.DEVICE_OS, mSharedPreferences.getStatusNotification(), new ResponseServer<AuthResponse>() {
                     @Override
                     public void onSuccess(boolean status, int code, AuthResponse response) {
                         // hide loading
