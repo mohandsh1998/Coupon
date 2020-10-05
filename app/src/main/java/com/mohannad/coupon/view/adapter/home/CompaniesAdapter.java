@@ -85,7 +85,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                 itemView.imgCompanyItemCompanyRv.setElevation(24);
             } else {
                 itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
-                itemView.imgCompanyItemCompanyRv.setElevation(0);
+                itemView.imgCompanyItemCompanyRv.setElevation(10);
             }
 
             this.itemView.tvCompanyName.setText(company.getName());
@@ -93,7 +93,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
             Glide.with(mContext)
                     .load(company.getImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
+                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(25)))
                     .into(this.itemView.imgCompanyItemCompanyRv);
 
             // click listener when select company
@@ -102,7 +102,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                     // change position selectedItem
                     selectedItem = getAdapterPosition();
                     // add border on selected company
-                    itemView.imgCompanyItemCompanyRv.setBackground(mContext.getDrawable(R.drawable.shape_white_with_border_pink_radius_9dp));
+                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_9dp));
                     itemView.imgCompanyItemCompanyRv.setElevation(24);
                     companyClickListener.onCompanySelected(position, company);
                 }

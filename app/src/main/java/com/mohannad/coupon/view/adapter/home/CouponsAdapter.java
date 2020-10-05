@@ -166,7 +166,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 // remove border
                 this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
                 // remove shadow
-                this.companiesLayoutBinding.imgAllCompanies.setElevation(0);
+                this.companiesLayoutBinding.imgAllCompanies.setElevation(10);
             }
             this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {
                 selectedAll = true;
