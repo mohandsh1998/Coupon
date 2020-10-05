@@ -20,10 +20,7 @@
             app:layout_constraintBottom_toTopOf="@+id/imageView12"
             app:layout_constraintDimensionRatio="h, 4:4"
             app:layout_constraintEnd_toEndOf="@+id/imageView12"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageView12"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintStart_toStartOf="@+id/imageView12" />
 
         <ImageView
             android:id="@+id/imageView12"
@@ -32,8 +29,7 @@
             android:src="@drawable/img_splash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_splash" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

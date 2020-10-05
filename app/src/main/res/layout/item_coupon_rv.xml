@@ -169,7 +169,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/last_used"
                 android:textAllCaps="true"
-                android:textColor="@color/gray3"
+                android:textColor="@color/black0"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/barrier"
                 app:layout_constraintStart_toStartOf="@id/tv_desc_item_coupon_rv" />

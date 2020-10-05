@@ -54,7 +54,7 @@ public class LanguageAndCountryActivity extends BaseActivity {
         // check if device language arabic select arabic button default
         if (sharedPreferences.getLanguage().equals(LocaleHelper.ARABIC_LANGUAGE)) {
             language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.bottomLineAr, languageAndCountryBinding.bottomLineEn);
+            changeBackgroundButton(languageAndCountryBinding.tvArabicLang, languageAndCountryBinding.tvEnglishLang);
         }
         model.getCountries();
 
@@ -92,12 +92,12 @@ public class LanguageAndCountryActivity extends BaseActivity {
 
         languageAndCountryBinding.tvArabicLang.setOnClickListener(v -> {
             language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.bottomLineAr, languageAndCountryBinding.bottomLineEn);
+            changeBackgroundButton(languageAndCountryBinding.tvArabicLang, languageAndCountryBinding.tvEnglishLang);
         });
 
         languageAndCountryBinding.tvEnglishLang.setOnClickListener(v -> {
             language = LocaleHelper.ENGLISH_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.bottomLineEn, languageAndCountryBinding.bottomLineAr);
+            changeBackgroundButton(languageAndCountryBinding.tvEnglishLang, languageAndCountryBinding.tvArabicLang);
         });
 
         languageAndCountryBinding.btnConfirm.setOnClickListener(v -> {
@@ -136,8 +136,12 @@ public class LanguageAndCountryActivity extends BaseActivity {
                 });
     }
 
-    private void changeBackgroundButton(View viewSelected, View viewUnSelected) {
-        viewSelected.setVisibility(View.VISIBLE);
-        viewUnSelected.setVisibility(View.GONE);
+    private void changeBackgroundButton(TextView viewSelected, TextView viewUnSelected) {
+        viewSelected.setBackgroundResource(R.drawable.shape_white_radius_9dp);
+        viewSelected.setElevation(5);
+        viewSelected.setTextColor(ContextCompat.getColor(this, R.color.pink));
+        viewUnSelected.setBackground(null);
+        viewUnSelected.setElevation(0);
+        viewUnSelected.setTextColor(ContextCompat.getColor(this, R.color.black));
     }
 }

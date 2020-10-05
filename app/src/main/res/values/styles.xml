@@ -8,7 +8,7 @@
         <item name="titleTextColor">@color/black</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="fontFamily">@font/lobster_open_san_regular</item>
+        <item name="fontFamily">@font/lobster_en</item>
     </style>
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>

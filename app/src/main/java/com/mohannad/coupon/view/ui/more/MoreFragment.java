@@ -64,6 +64,9 @@ public class MoreFragment extends BaseFragment {
         binding.lyOpenSnapchat.setOnClickListener(v -> {
             openSnapChat();
         });
+        binding.lyOpenWhatsUp.setOnClickListener(v -> {
+           // open what's up app
+        });
         binding.lyOpenTelegram.setOnClickListener(v -> {
             openTelegram();
         });
