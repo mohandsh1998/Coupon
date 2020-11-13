@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/white</color>
-    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorPrimary">@color/gray7</color>
+    <color name="colorPrimaryDark">@color/gray7</color>
     <color name="colorAccent">@color/pink</color>
     <color name="white">#FFFFFF</color>
     <color name="white_light">#92ffffff</color>
-    <color name="pink">#FF2677</color>
-    <color name="pink_light">#33FF2677</color>
+    <color name="pink">#FF3067</color>
+    <color name="pink_light">#FFE9EE</color>
     <color name="pink1">#FF4E5E</color>
+    <color name="pink2">#F9E9EF</color>
     <color name="orange">#FC4C50</color>
     <color name="gray">#B7B7B7</color>
     <color name="gray0">#D9D5D5</color>
@@ -15,9 +16,17 @@
     <color name="gray2">#FCFCFC</color>
     <color name="gray3">#818181</color>
     <color name="gray4">#C3C3C3</color>
+    <color name="gray5">#A5A5A5</color>
+    <color name="gray6">#E5E5E5</color>
+    <color name="gray7">#F9F9F7</color>
+    <color name="green_light">#E4F3E5</color>
     <color name="black">#242424</color>
     <color name="black0">#3B3B3B</color>
     <color name="red">#FF0000</color>
     <color name="green">#78EA00</color>
     <color name="yellow">#FDD835</color>
+    <color name="yellow1">#FF9900</color>
+    <color name="blue_light">#EBF7FD</color>
+    <color name="yellow_light">#FEF7D9</color>
+    <color name="blue">#41B4E6</color>
 </resources>

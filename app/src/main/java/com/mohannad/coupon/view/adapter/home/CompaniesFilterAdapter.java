@@ -73,13 +73,13 @@ public class CompaniesFilterAdapter extends RecyclerView.Adapter<CompaniesFilter
         }
 
         void bind(CompaniesResponse.Company company, int position) {
-            // check if position equal selected item -> change border and shadow about selected company
+            // check if position equal selected item -> change bg about selected company
             if (position == selectedItem) {
-                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
-                itemView.getRoot().setElevation(24);
+                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_black_10dp));
+                ((TextView) itemView.getRoot()).setTextColor(ContextCompat.getColor(mContext, R.color.white));
             } else {
-                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
-                itemView.getRoot().setElevation(0);
+                itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_gray_10dp));
+                ((TextView) itemView.getRoot()).setTextColor(ContextCompat.getColor(mContext, R.color.black));
             }
 
             ((TextView) itemView.getRoot()).setText(company.getName());
@@ -89,9 +89,9 @@ public class CompaniesFilterAdapter extends RecyclerView.Adapter<CompaniesFilter
                 if (selectedItem != getAdapterPosition()) {
                     // change position selectedItem
                     selected(position);
-                    // change border and shadow  to selected company
-                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
-                    itemView.getRoot().setElevation(24);
+                    // change bg  to selected company
+                    itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_black_10dp));
+                    ((TextView) itemView.getRoot()).setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     companyClickListener.onCompanySelected(position, company);
                 }
             });

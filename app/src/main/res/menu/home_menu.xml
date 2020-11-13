@@ -4,12 +4,7 @@
     <item
         android:id="@+id/menu_search"
         android:title="@string/title_filter"
-        android:icon="@drawable/ic_search_pink"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="collapseActionView|always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-    <item
-        android:id="@+id/menu_filter"
-        android:icon="@drawable/ic_filter_menu"
-        android:title="@string/title_filter"
-        app:showAsAction="always" />
   </menu>

@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.adapter.product;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             super(itemView.getRoot());
             this.itemView = itemView;
             this.itemView.imgFavoriteProductItemProductRv.setVisibility(View.VISIBLE);
-            this.itemView.imgDeleteProductItemProductRv.setVisibility(View.GONE);
+            this.itemView.tvNumReviewsItemProductRv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            this.itemView.tvNumOrderItemProductRv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         }
 
         void bind(int position) {
@@ -115,9 +117,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.itemView.tvProductNameItemProductRv.setText(product.getName());
             // desc
             this.itemView.tvDescItemProductRv.setText(product.getDesc());
-            this.itemView.tvNumReviewsItemProductRv.setText(Integer.toString(product.getNumberReviews()));
+            this.itemView.appCompatRatingBar.setRating(product.getRate());
+            this.itemView.tvNumReviewsItemProductRv.setText(product.getNumberReviews() + " " + mContext.getString(R.string.reviews));
             this.itemView.tvReviewsItemProductRv.setText(Float.toString(product.getRate()));
-            this.itemView.tvNumOrderItemProductRv.setText(Integer.toString(product.getNumberOrders()));
+            this.itemView.tvNumOrderItemProductRv.setText(product.getNumberOrders() + " " + mContext.getString(R.string.orders));
 
             // check if the product in favorite or not
             if (product.isInFavorite()) {
@@ -153,6 +156,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
+                this.itemView.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
                 // change text to code coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(product.getCouponCode());
                 // change background
@@ -164,10 +168,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     startAnimation = false;
                 }
             } else {
+                this.itemView.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                 // change code coupon to text copy coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background
-                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray1_radius_9dp));
+                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_radius_9dp));
             }
 
         }

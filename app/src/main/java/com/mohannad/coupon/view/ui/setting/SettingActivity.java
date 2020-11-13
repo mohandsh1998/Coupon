@@ -99,12 +99,6 @@ public class SettingActivity extends BaseActivity {
                 restartApp();
             }
         });
-
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
-        }
     }
 
     private void restartApp() {

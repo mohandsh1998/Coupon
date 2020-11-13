@@ -23,28 +23,9 @@ public class ApiClient {
 
     public static Retrofit getClient() {
         if (retrofit == null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
-                    .connectTimeout(1, TimeUnit.MINUTES)
-                    .writeTimeout(3, TimeUnit.MINUTES)
-                    .readTimeout(1, TimeUnit.MINUTES)
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            Request newRequest = chain.request().newBuilder()
-                                    .addHeader("Accept", "application/json")
-                                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                                    .addHeader("X-Requested-With", "XMLHttpRequest")
-                                    //.addHeader("Authorization", "Bearer " + )
-                                    .build();
-                            return chain.proceed(newRequest);
-                        }
-                    }).build();
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.SERVER_HOST_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
                     .build();
         }
         return retrofit;

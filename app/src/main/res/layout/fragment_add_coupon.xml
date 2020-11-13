@@ -43,6 +43,7 @@
                 android:background="@{addCouponViewModel.errorEmail != null ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc_add_capoun"
                 app:layout_constraintStart_toStartOf="@+id/tv_desc_add_capoun"
                 app:layout_constraintTop_toBottomOf="@id/tv_desc_add_capoun">
@@ -51,17 +52,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_email" />
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
+                    android:src="@drawable/ic_email_black" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@null"
@@ -89,29 +84,24 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorWhatsUp != null) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/ly_email"
                 app:layout_constraintStart_toStartOf="@+id/ly_email"
                 app:layout_constraintTop_toBottomOf="@+id/tv_email_error_fragment_add_coupon">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_countries"
-                    android:layout_width="32dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:scaleType="centerCrop"/>
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_bottom_arrow" />
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
 
                 <EditText
                     android:layout_width="0dp"
@@ -144,6 +134,7 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorCategory) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/ly_mobile"
                 app:layout_constraintStart_toStartOf="@+id/ly_mobile"
                 app:layout_constraintTop_toBottomOf="@id/tv_mobile_error_fragment_add_coupon">
@@ -154,17 +145,11 @@
                     android:layout_margin="16dp"
                     android:src="@drawable/ic_store" />
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
-
                 <EditText
                     android:id="@+id/et_categories"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:background="@null"
                     android:drawableEnd="@drawable/ic_bottom_arrow"
@@ -192,6 +177,7 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorCompany) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/ly_category"
                 app:layout_constraintStart_toStartOf="@+id/ly_category"
                 app:layout_constraintTop_toBottomOf="@id/tv_category_error_fragment_add_coupon">
@@ -202,16 +188,10 @@
                     android:layout_margin="16dp"
                     android:src="@drawable/ic_brand" />
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
-
                 <EditText
                     android:id="@+id/et_companies"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@null"
@@ -240,6 +220,7 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorDescription) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/ly_company"
                 app:layout_constraintStart_toStartOf="@+id/ly_company"
                 app:layout_constraintTop_toBottomOf="@id/tv_company_error_fragment_add_coupon">
@@ -250,15 +231,9 @@
                     android:layout_margin="16dp"
                     android:src="@drawable/ic_description" />
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
-
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@null"
@@ -286,6 +261,7 @@
                 android:background="@{safeUnbox(addCouponViewModel.errorCoupon) ? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@+id/ly_description"
                 app:layout_constraintStart_toStartOf="@+id/ly_description"
                 app:layout_constraintTop_toBottomOf="@id/tv_description_error_fragment_add_coupon">
@@ -294,17 +270,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_coupon_17dp" />
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray0" />
+                    android:src="@drawable/ic_coupon_22dp" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@null"
@@ -328,8 +298,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/shape_btn_raduis_22dp"
+                android:background="@drawable/shape_btn_raduis_15dp"
                 android:onClick="@{(view) -> addCouponViewModel.onClick()}"
+                android:padding="16dp"
                 android:text="@string/send"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -344,6 +315,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="@{safeUnbox(addCouponViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

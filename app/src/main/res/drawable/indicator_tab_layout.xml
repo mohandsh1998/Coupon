@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape android:shape="rectangle"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="20dp"/>
-    <gradient
-        android:angle="0"
-        android:endColor="@color/pink"
-        android:centerColor="@color/pink"
-        android:startColor="@color/orange" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/tab_background_selected" android:state_selected="true" />
+    <item android:drawable="@drawable/tab_background_unselected" />
+</selector>

@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/please_agree_to_the"
+            android:text="@string/i_agree_to_the"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/spinner_countries"
             app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />

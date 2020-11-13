@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
+import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
@@ -112,5 +113,34 @@ public class FavoriteViewModel extends BaseViewModel {
                         toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
                     }
                 });
+    }
+
+
+    // this method will call copyCoupon  from repository to increase the number of times the coupon is copied on SERVER
+    public void copyCoupon(int idCoupon) {
+        // call copyCoupon from repository
+        homeRepository.copyCoupon(storageSharedPreferences.getLanguage(), storageSharedPreferences.getAuthToken(), idCoupon, new ResponseServer<LiveData<CopyCouponResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<CopyCouponResponse> response) {
+            }
+
+            @Override
+            public void onFailure(String message) {
+            }
+        });
+    }
+
+    // this method will call reviewCoupon  from repository to review coupon on SERVER
+    public void reviewCoupon(int idCoupon, int isGood) {
+        // call reviewCoupon from repository
+        homeRepository.reviewCoupon(storageSharedPreferences.getLanguage(), storageSharedPreferences.getAuthToken(), idCoupon, isGood, new ResponseServer<LiveData<MessageResponse>>() {
+            @Override
+            public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+            }
+
+            @Override
+            public void onFailure(String message) {
+            }
+        });
     }
 }

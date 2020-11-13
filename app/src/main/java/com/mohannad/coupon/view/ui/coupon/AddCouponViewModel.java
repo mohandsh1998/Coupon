@@ -111,7 +111,7 @@ public class AddCouponViewModel extends BaseViewModel {
         // show loading
         dataLoading.setValue(true);
         // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(sharedPreferences.getLanguage(), new ResponseServer<LiveData<CategoriesResponse>>() {
+        homeRepository.getCategoriesTabs(sharedPreferences.getLanguage(), sharedPreferences.getCountryID(), new ResponseServer<LiveData<CategoriesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
                 categoryFinish = true;

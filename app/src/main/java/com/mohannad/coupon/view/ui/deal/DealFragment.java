@@ -1,5 +1,6 @@
 package com.mohannad.coupon.view.ui.deal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.databinding.FragmentDealBinding;
 import com.mohannad.coupon.utils.BaseFragment;
@@ -30,6 +32,8 @@ import com.mohannad.coupon.view.adapter.help.HelpAdapter;
 import com.mohannad.coupon.view.ui.help.HelpViewModel;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class DealFragment extends BaseFragment {
@@ -39,6 +43,24 @@ public class DealFragment extends BaseFragment {
     private int mCurrentPage = 1;
     private boolean mIsLastPage;
     private boolean mIsLoading;
+    private ICommunicateMainActivity mListener;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ICommunicateMainActivity) {
+            mListener = (ICommunicateMainActivity) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ICommunicateHomeActivity");
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mListener.onInteractionDealFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

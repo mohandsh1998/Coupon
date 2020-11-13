@@ -1,5 +1,6 @@
 package com.mohannad.coupon.view.ui.favorite;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,10 +18,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.databinding.FragmentFavoriteBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.favorite.FavoriteAdapter;
+import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.deal.DealViewModel;
 import com.mohannad.coupon.view.ui.home.HomeViewModel;
 import com.mohannad.coupon.view.ui.image.ImageActivity;
@@ -28,11 +31,31 @@ import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.video.VideoActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class FavoriteFragment extends BaseFragment {
 
-    FragmentFavoriteBinding fragmentFavoriteBinding;
+    private FragmentFavoriteBinding fragmentFavoriteBinding;
+    private ICommunicateMainActivity mListener;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ICommunicateMainActivity) {
+            mListener = (ICommunicateMainActivity) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ICommunicateHomeActivity");
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mListener.onInteractionFavoriteFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +73,7 @@ public class FavoriteFragment extends BaseFragment {
                 new FavoriteAdapter.FavoriteClickListener() {
                     @Override
                     public void shareProduct(int position, FavoriteResponse.Favorite favorite) {
-
+                        shareText("Title : " + favorite.getNameProduct() + "\n Description : " + favorite.getDesc());
                     }
 
                     @Override
@@ -75,6 +98,7 @@ public class FavoriteFragment extends BaseFragment {
                         copyText(favorite.getCouponCode());
                         // show dialog
                         showDefaultDialog(fragmentFavoriteBinding.lyContainer, getString(R.string.coupon_was_copied));
+                        favoriteViewModel.copyCoupon(favorite.getId());
                     }
 
                     @Override
@@ -90,6 +114,19 @@ public class FavoriteFragment extends BaseFragment {
                     @Override
                     public void onClickItem(FavoriteResponse.Favorite favorite) {
                         startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", favorite.getLink()));
+                    }
+
+                    @Override
+                    public void answerQuestion(int position, FavoriteResponse.Favorite favorite, boolean answer) {
+                        /*
+                           answer
+                             1- yes
+                             0- no
+                        */
+                        favoriteViewModel.reviewCoupon(favorite.getId(), answer ? 1 : 0);
+                        if (!answer) {
+                            startActivity(new Intent(requireContext(), ContactUsActivity.class));
+                        }
                     }
                 });
 

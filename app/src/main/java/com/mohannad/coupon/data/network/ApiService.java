@@ -67,7 +67,8 @@ public interface ApiService {
 
     // categories tabs that will show in home page
     @GET("/api/stores")
-    Call<CategoriesResponse> getCategories(@Header("lang") String lang);
+    Call<CategoriesResponse> getCategories(@Header("lang") String lang,
+                                           @Header("country-id") int countryId);
 
     // companies that will show inside each category in home page
     @GET("/api/all_companies/{idCategory}")

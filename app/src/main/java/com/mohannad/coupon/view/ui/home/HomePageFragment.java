@@ -175,6 +175,7 @@ public class HomePageFragment extends BaseFragment {
                 Intent intent = new Intent(mContext, ProductsActivity.class);
                 // id title in items
                 intent.putExtra("idTitle", coupon.getId());
+                intent.putExtra("title", coupon.getTitle());
                 // check when click on item title to get products for category or company
                 switch (requestType) {
                     // category products

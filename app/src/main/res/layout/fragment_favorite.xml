@@ -16,6 +16,7 @@
         android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray7"
         tools:context=".view.ui.favorite.FavoriteFragment">
 
         <com.facebook.shimmer.ShimmerFrameLayout

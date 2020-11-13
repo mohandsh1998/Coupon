@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
+import com.mohannad.coupon.databinding.ItemCouponsRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CouponViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_coupon_rv, parent, false));
+                R.layout.item_coupons_rv, parent, false));
     }
 
     @Override
@@ -101,9 +102,9 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     // view holder for coupons
     class CouponViewHolder extends BaseViewHolder {
-        private ItemCouponRvBinding itemCouponRvBinding;
+        private ItemCouponsRvBinding itemCouponRvBinding;
 
-        public CouponViewHolder(@NonNull ItemCouponRvBinding itemCouponRvBinding) {
+        public CouponViewHolder(@NonNull ItemCouponsRvBinding itemCouponRvBinding) {
             super(itemCouponRvBinding);
             this.itemCouponRvBinding = itemCouponRvBinding;
             this.itemCouponRvBinding.imgFavoriteCouponItemCouponRv.setVisibility(View.VISIBLE);
@@ -124,6 +125,11 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     //  .placeholder(R.drawable.loading_spinner)
                     .into(this.itemCouponRvBinding.imgCompanyItemCouponRv);
             // check if allow to display num of used to coupon or not
+            if (coupon.isAllowToOfferCountUsed() || coupon.isAllowToOfferLastUseDate()) {
+                itemCouponRvBinding.lyData.setVisibility(View.VISIBLE);
+            } else {
+                itemCouponRvBinding.lyData.setVisibility(View.GONE);
+            }
             if (coupon.isAllowToOfferCountUsed()) {
                 itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
                 itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
@@ -188,12 +194,11 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             // if not -> hide question views and show coupon content views
             if (position == shopItem) {
                 visibleOrHideQuestionViews(true);
-                visibleOrHideContentCouponViews(false, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferCountUsed());
+                visibleOrHideContentCouponViews(false, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferLastUseDate());
             } else {
                 visibleOrHideQuestionViews(false);
-                visibleOrHideContentCouponViews(true, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferCountUsed());
+                visibleOrHideContentCouponViews(true, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferLastUseDate());
             }
-
             itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.VISIBLE);
             Handler handler = new Handler();
             handler.postDelayed(() -> {
@@ -258,24 +263,18 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             } else {
                 // change code coupon to text copy coupon
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.white));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gradient_pink_9dp));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
             }
         }
 
         // show or hide question views
         private void visibleOrHideQuestionViews(boolean visible) {
             if (visible) {
-                itemCouponRvBinding.tvExperienceItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.tvTellUsItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.btnYesItemCouponRv.setVisibility(View.VISIBLE);
-                itemCouponRvBinding.btnNoItemCouponRv.setVisibility(View.VISIBLE);
+                itemCouponRvBinding.lyQuestion.setVisibility(View.VISIBLE);
             } else {
-                itemCouponRvBinding.tvExperienceItemCouponRv.setVisibility(View.GONE);
-                itemCouponRvBinding.tvTellUsItemCouponRv.setVisibility(View.GONE);
-                itemCouponRvBinding.btnYesItemCouponRv.setVisibility(View.GONE);
-                itemCouponRvBinding.btnNoItemCouponRv.setVisibility(View.GONE);
+                itemCouponRvBinding.lyQuestion.setVisibility(View.GONE);
             }
         }
 
@@ -283,6 +282,9 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         private void visibleOrHideContentCouponViews(boolean visible, boolean timesOfUsed, boolean lastUsed) {
             if (visible) {
                 itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.VISIBLE);
+                if (timesOfUsed || lastUsed) {
+                    itemCouponRvBinding.lyData.setVisibility(View.VISIBLE);
+                }
                 if (timesOfUsed) {
                     itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
                     itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
@@ -292,6 +294,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
                 }
             } else {
+                itemCouponRvBinding.lyData.setVisibility(View.GONE);
                 itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.GONE);
                 itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.GONE);
                 itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.GONE);
@@ -305,7 +308,6 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             return super.getCurrentPosition();
         }
     }
-
 
     public interface CouponClickListener {
         void shareCoupon(int position, Coupon coupon);

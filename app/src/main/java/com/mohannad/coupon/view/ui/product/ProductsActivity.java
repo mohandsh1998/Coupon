@@ -40,8 +40,7 @@ public class ProductsActivity extends BaseActivity {
         productsBinding.setLifecycleOwner(this);
         // remove shadow in actionbar and change arrow color
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
+            getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
         }
         // get type -> category or company
         if (getIntent().hasExtra("type"))
@@ -67,7 +66,7 @@ public class ProductsActivity extends BaseActivity {
         ProductAdapter productAdapter = new ProductAdapter(this, products, new ProductAdapter.ProductClickListener() {
             @Override
             public void shareProduct(int position, ProductsResponse.Product product) {
-
+                shareText("Title : " + product.getName()+ "\n Description : " + product.getDesc());
             }
 
             @Override

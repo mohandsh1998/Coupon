@@ -8,6 +8,7 @@
         <item name="titleTextColor">@color/black</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_24</item>
         <item name="fontFamily">@font/lobster_en</item>
     </style>
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

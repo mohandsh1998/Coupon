@@ -31,10 +31,10 @@ public class HomeRepository {
     }
 
     // this method will using to get categories tabs from SERVER SIDE
-    public void getCategoriesTabs(String lang, ResponseServer<LiveData<CategoriesResponse>> responseServer) {
+    public void getCategoriesTabs(String lang, int idCountry, ResponseServer<LiveData<CategoriesResponse>> responseServer) {
         MutableLiveData<CategoriesResponse> tabsCategories = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getCategories(lang).enqueue(new Callback<CategoriesResponse>() {
+        apiService.getCategories(lang, idCountry).enqueue(new Callback<CategoriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CategoriesResponse> call, @NonNull Response<CategoriesResponse> response) {
                 tabsCategories.setValue(response.body());
@@ -129,6 +129,7 @@ public class HomeRepository {
             }
         });
     }
+
     // this method will used to review coupon on SERVER SIDE
     public void reviewCoupon(String lang, String token, int idCoupon, int isGood, ResponseServer<LiveData<MessageResponse>> responseServer) {
         MutableLiveData<MessageResponse> reviewCoupon = new MutableLiveData<>();

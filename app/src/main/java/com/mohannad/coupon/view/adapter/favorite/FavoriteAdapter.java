@@ -1,6 +1,7 @@
 package com.mohannad.coupon.view.adapter.favorite;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.databinding.ItemCouponRvBinding;
+import com.mohannad.coupon.databinding.ItemCouponsRvBinding;
 import com.mohannad.coupon.databinding.ItemProductRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
 
@@ -32,7 +34,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     Context mContext;
     private List<FavoriteResponse.Favorite> favoriteItems;
     private Animation shake;
+    private Animation bottomTop;
+    private Animation centerTop;
+    private int shopItem;
     private int copyItem = -1;
+    private int thanksAnimItem;
     // tag to start animation when copy coupon only
     private boolean startAnimation = false;
 
@@ -44,7 +50,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.favoriteClickListener = favoriteClickListener;
         // animation when copy coupon
         shake = AnimationUtils.loadAnimation(mContext, R.anim.shake);
+        bottomTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_70);
+        centerTop = AnimationUtils.loadAnimation(mContext, R.anim.from_bottom_0);
+        shopItem = -1;
         copyItem = -1;
+        thanksAnimItem = -1;
+    }
+
+    public void setShopItem(int position) {
+        shopItem = position;
+        notifyDataSetChanged();
+    }
+
+    public void setThanksAnimItem(int position) {
+        thanksAnimItem = position;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -63,7 +83,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_COUPONS:
-                ItemCouponRvBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_coupon_rv, parent, false);
+                ItemCouponsRvBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_coupons_rv, parent, false);
                 return new CouponFavoriteViewHolder(binding);
             case VIEW_TYPE_PRODUCTS:
                 ItemProductRvBinding productRvBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_product_rv, parent, false);
@@ -112,99 +132,207 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     class CouponFavoriteViewHolder extends BaseViewHolder {
-        private ItemCouponRvBinding itemView;
+        private ItemCouponsRvBinding itemCouponRvBinding;
 
-        public CouponFavoriteViewHolder(ItemCouponRvBinding itemView) {
+        public CouponFavoriteViewHolder(ItemCouponsRvBinding itemView) {
             super(itemView);
-            this.itemView = itemView;
-            this.itemView.imgFavoriteCouponItemCouponRv.setVisibility(View.GONE);
-            this.itemView.imgDeleteCouponItemCouponRv.setVisibility(View.VISIBLE);
+            this.itemCouponRvBinding = itemView;
+            this.itemCouponRvBinding.imgFavoriteCouponItemCouponRv.setVisibility(View.INVISIBLE);
+            this.itemCouponRvBinding.imgDeleteCouponItemCouponRv.setVisibility(View.VISIBLE);
         }
 
         public void onBind(int position) {
             super.onBind(position);
             FavoriteResponse.Favorite favorite = favoriteItems.get(position);
             // company name
-            this.itemView.tvCompanyNameItemCouponRv.setText(favorite.getCompanyName());
+            this.itemCouponRvBinding.tvCompanyNameItemCouponRv.setText(favorite.getCompanyName());
             // desc
-            this.itemView.tvDescItemCouponRv.setText(favorite.getDesc());
-            // check if allow to display count coupon used or not
-            if (favorite.isAllowToOfferCountUsed()) {
-                // display count coupon used
-                this.itemView.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
-                this.itemView.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
-                this.itemView.tvNumTimesUsedItemCouponRv.setText(favorite.getCountUsed() + " " + mContext.getString(R.string.times));
-            } else {
-                // hide count coupon used
-                this.itemView.tvTextNumTimesUsedItemCouponRv.setVisibility(View.GONE);
-                this.itemView.tvNumTimesUsedItemCouponRv.setVisibility(View.GONE);
-            }
-            // check if allow to display last used or not
-            if (favorite.isAllowToOfferLastUseDate()) {
-                // display last used
-                this.itemView.tvTextLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
-                this.itemView.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
-                this.itemView.tvLastDateUsedItemCouponRv.setText(favorite.getLastUseDate());
-            } else {
-                // hide last used
-                this.itemView.tvTextLastDateUsedItemCouponRv.setVisibility(View.GONE);
-                this.itemView.tvLastDateUsedItemCouponRv.setVisibility(View.GONE);
-            }
+            this.itemCouponRvBinding.tvDescItemCouponRv.setText(favorite.getDesc());
             // load image company
             Glide.with(mContext)
                     .load(favorite.getCompanyImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .into(this.itemView.imgCompanyItemCouponRv);
+                    .into(this.itemCouponRvBinding.imgCompanyItemCouponRv);
 
-            // when the user click on shop now
-            this.itemView.tvShopNowItemCouponRv.setOnClickListener(v -> {
-                favoriteClickListener.onClickItem(favorite);
-            });
-            // when the user click to share coupon
-            this.itemView.imgShareItemCouponRv.setOnClickListener(v -> {
-                favoriteClickListener.shareCoupon(position, favorite);
-            });
-            // when the user click to delete coupon
-            this.itemView.imgDeleteCouponItemCouponRv.setOnClickListener(v -> {
-                removeAt(position);
-                favoriteClickListener.deleteCouponFromFavorite(position, favorite);
-            });
+            // check if allow to display num of used to coupon or not
+            if (favorite.isAllowToOfferCountUsed() || favorite.isAllowToOfferLastUseDate()) {
+                itemCouponRvBinding.lyData.setVisibility(View.VISIBLE);
+            } else {
+                itemCouponRvBinding.lyData.setVisibility(View.GONE);
+            }
+            // check if allow to display count coupon used or not
+            if (favorite.isAllowToOfferCountUsed()) {
+                // display count coupon used
+                this.itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                this.itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                this.itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setText(favorite.getCountUsed() + " " + mContext.getString(R.string.times));
+            } else {
+                // hide count coupon used
+                this.itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.GONE);
+                this.itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.GONE);
+            }
+            // check if allow to display last used or not
+            if (favorite.isAllowToOfferLastUseDate()) {
+                // display last used
+                this.itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                this.itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                this.itemCouponRvBinding.tvLastDateUsedItemCouponRv.setText(favorite.getLastUseDate());
+            } else {
+                // hide last used
+                this.itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.GONE);
+                this.itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.GONE);
+            }
+
             // when the user click to copy coupon
-            this.itemView.tvCopyCouponItemCouponRv.setOnClickListener(v -> {
+            this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setOnClickListener(v -> {
                 setCopyItem(position);
                 startAnimation = true;
                 favoriteClickListener.copyCoupon(position, favorite);
             });
 
-            this.itemView.shimmerCopyCoupon.setVisibility(View.VISIBLE);
+            // when the user click to share coupon
+            this.itemCouponRvBinding.imgShareItemCouponRv.setOnClickListener(v -> {
+                favoriteClickListener.shareCoupon(position, favorite);
+            });
+
+            // when the user click on shop now
+            this.itemCouponRvBinding.tvShopNowItemCouponRv.setOnClickListener(v -> {
+                // show question views and hide coupon content views when the user click on shop now
+                setShopItem(position);
+                favoriteClickListener.onClickItem(favorite);
+            });
+            // when the user click to answer yes on question
+            itemCouponRvBinding.btnYesItemCouponRv.setOnClickListener(v -> {
+                // hide question views and show coupon content views when the user answer on question
+                setShopItem(-1);
+                setThanksAnimItem(position);
+                favoriteClickListener.answerQuestion(position, favorite, true);
+            });
+            // when the user click to answer no on question
+            itemCouponRvBinding.btnNoItemCouponRv.setOnClickListener(v -> {
+                // hide question views and show coupon content views when the user answer on question
+                setShopItem(-1);
+                favoriteClickListener.answerQuestion(position, favorite, false);
+            });
+            // check if position == coupon has been shopped -> will show question views and hide coupon content views
+            // if not -> hide question views and show coupon content views
+            if (position == shopItem) {
+                visibleOrHideQuestionViews(true);
+                visibleOrHideContentCouponViews(false, favorite.isAllowToOfferCountUsed(), favorite.isAllowToOfferLastUseDate());
+            } else {
+                visibleOrHideQuestionViews(false);
+                visibleOrHideContentCouponViews(true, favorite.isAllowToOfferCountUsed(), favorite.isAllowToOfferLastUseDate());
+            }
+            // when the user click to delete coupon
+            this.itemCouponRvBinding.imgDeleteCouponItemCouponRv.setOnClickListener(v -> {
+                removeAt(position);
+                favoriteClickListener.deleteCouponFromFavorite(position, favorite);
+            });
+
+            this.itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.VISIBLE);
             Handler handler = new Handler();
             handler.postDelayed(() -> {
                 //write your code here to be executed after 1 second
-                this.itemView.shimmerCopyCoupon.setVisibility(View.GONE);
+                this.itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
             }, 800);
+            // check if position == coupon has been answer yes -> will show animation thank u
+            if (thanksAnimItem == position) {
+                // show with animation thanks layout from bottom to top
+                itemCouponRvBinding.lyThanks.startAnimation(bottomTop);
+                itemCouponRvBinding.lyThanks.setVisibility(View.VISIBLE);
+                bottomTop.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
 
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        thanksAnimItem = -1;
+                        // when the first animation end -> start the second animation from center to top to hide thanks layout
+                        itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                // listener when finished the second animation hide the thanks layout
+                centerTop.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
                 // change text to code coupon
-                this.itemView.tvCopyCouponItemCouponRv.setText(favorite.getCouponCode());
-                this.itemView.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(favorite.getCouponCode());
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
-                this.itemView.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
-                    this.itemView.tvCopyCouponItemCouponRv.startAnimation(shake);
-                    this.itemView.getRoot().startAnimation(shake);
+                    itemCouponRvBinding.tvCopyCouponItemCouponRv.startAnimation(shake);
+                    itemCouponRvBinding.getRoot().startAnimation(shake);
                     startAnimation = false;
                 }
             } else {
                 // change code coupon to text copy coupon
-                this.itemView.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
-                this.itemView.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.white));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
-                this.itemView.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gradient_pink_9dp));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
             }
         }
+
+        // show or hide question views
+        private void visibleOrHideQuestionViews(boolean visible) {
+            if (visible) {
+                itemCouponRvBinding.lyQuestion.setVisibility(View.VISIBLE);
+            } else {
+                itemCouponRvBinding.lyQuestion.setVisibility(View.GONE);
+            }
+        }
+
+        // show or hide content coupon views
+        private void visibleOrHideContentCouponViews(boolean visible, boolean timesOfUsed, boolean lastUsed) {
+            if (visible) {
+                itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.VISIBLE);
+                if (timesOfUsed || lastUsed) {
+                    itemCouponRvBinding.lyData.setVisibility(View.VISIBLE);
+                }
+                if (timesOfUsed) {
+                    itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                    itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.VISIBLE);
+                }
+                if (lastUsed) {
+                    itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                    itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.VISIBLE);
+                }
+            } else {
+                itemCouponRvBinding.lyData.setVisibility(View.GONE);
+                itemCouponRvBinding.tvDescItemCouponRv.setVisibility(View.GONE);
+                itemCouponRvBinding.tvTextNumTimesUsedItemCouponRv.setVisibility(View.GONE);
+                itemCouponRvBinding.tvTextLastDateUsedItemCouponRv.setVisibility(View.GONE);
+                itemCouponRvBinding.tvNumTimesUsedItemCouponRv.setVisibility(View.GONE);
+                itemCouponRvBinding.tvLastDateUsedItemCouponRv.setVisibility(View.GONE);
+            }
+        }
+
     }
 
     class ProductFavoriteViewHolder extends BaseViewHolder {
@@ -215,13 +343,24 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             this.itemProductRvBinding = itemProductRvBinding;
             this.itemProductRvBinding.imgFavoriteProductItemProductRv.setVisibility(View.GONE);
             this.itemProductRvBinding.imgDeleteProductItemProductRv.setVisibility(View.VISIBLE);
+            this.itemProductRvBinding.tvNumReviewsItemProductRv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            this.itemProductRvBinding.tvNumOrderItemProductRv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         }
 
         public void onBind(int position) {
             super.onBind(position);
             FavoriteResponse.Favorite favorite = favoriteItems.get(position);
+
+            // name product
             this.itemProductRvBinding.tvProductNameItemProductRv.setText(favorite.getNameProduct());
+            // desc
             this.itemProductRvBinding.tvDescItemProductRv.setText(favorite.getDesc());
+            this.itemProductRvBinding.appCompatRatingBar.setRating(favorite.getRate());
+            this.itemProductRvBinding.tvNumReviewsItemProductRv.setText(favorite.getNumberReviews() + " " + mContext.getString(R.string.reviews));
+            this.itemProductRvBinding.tvReviewsItemProductRv.setText(Float.toString(favorite.getRate()));
+            this.itemProductRvBinding.tvNumOrderItemProductRv.setText(favorite.getNumberOrders() + " " + mContext.getString(R.string.orders));
+
+
             // check if file path "" then this product not have video
             if (TextUtils.isEmpty(favorite.getFilePath())) {
                 // hide icon video
@@ -263,14 +402,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 favoriteClickListener.shareProduct(position, favorite);
             });
 
+            // check if product coupon code empty hide "copy code" else Show "copy code"
+            if (TextUtils.isEmpty(favorite.getCouponCode())) {
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setVisibility(View.GONE);
+            } else {
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setVisibility(View.VISIBLE);
+            }
 
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
                 // change text to code coupon
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(favorite.getCouponCode());
                 // change background
-                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_stroke_pink_raduis_9dp));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemProductRvBinding.tvCopyCouponItemProductRv.startAnimation(shake);
@@ -278,10 +424,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     startAnimation = false;
                 }
             } else {
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                 // change code coupon to text copy coupon
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background
-                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(mContext.getDrawable(R.drawable.shape_gray1_radius_9dp));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_radius_9dp));
             }
         }
     }
@@ -302,5 +449,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void openVideo(FavoriteResponse.Favorite favorite);
 
         void onClickItem(FavoriteResponse.Favorite favorite);
+
+        void answerQuestion(int position, FavoriteResponse.Favorite favorite, boolean b);
     }
 }

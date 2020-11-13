@@ -101,9 +101,11 @@ public class DealAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             if (dealItem.isHasCoupon()) {
                 this.itemView.tvShowCouponItemDealRv.setVisibility(View.VISIBLE);
                 this.itemView.tvWebsiteItemDealRv.setVisibility(View.GONE);
+                this.itemView.view.setVisibility(View.GONE);
             } else {
                 this.itemView.tvShowCouponItemDealRv.setVisibility(View.GONE);
                 this.itemView.tvWebsiteItemDealRv.setVisibility(View.VISIBLE);
+                this.itemView.view.setVisibility(View.VISIBLE);
             }
 
             // open webview

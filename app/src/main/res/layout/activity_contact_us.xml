@@ -27,7 +27,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="32dp"
                 android:src="@drawable/img_contact_us"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@{contactUsViewModel.errorEmailVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:elevation="2dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,11 +50,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_email_black" />
 
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/gray0" />
 
                 <EditText
@@ -79,29 +82,18 @@
                 app:layout_constraintStart_toStartOf="@+id/ly_email"
                 app:layout_constraintTop_toBottomOf="@+id/ly_email" />
 
-            <TextView
-                android:id="@+id/tv_desc_activity_contact_us"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/desc_contact_us"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_email_error_activity_contact_us" />
-
             <LinearLayout
                 android:id="@+id/ly_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@{contactUsViewModel.errorTitleVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:elevation="2dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_desc_activity_contact_us">
+                app:layout_constraintTop_toBottomOf="@+id/ly_email">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -112,6 +104,8 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/gray0" />
 
                 <EditText
@@ -144,6 +138,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:background="@{contactUsViewModel.errorContentVisibility? @drawable/shape_white_radius_with_border_red_6dp: @drawable/shape_white_radius_6dp}"
+                android:elevation="2dp"
                 android:gravity="start"
                 android:hint="@string/title"
                 android:inputType="textMultiLine"
@@ -169,8 +164,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/shape_btn_raduis_22dp"
+                android:background="@drawable/shape_btn_raduis_15dp"
                 android:onClick="@{(view) -> contactUsViewModel.onClick()}"
+                android:padding="16dp"
                 android:text="@string/send"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

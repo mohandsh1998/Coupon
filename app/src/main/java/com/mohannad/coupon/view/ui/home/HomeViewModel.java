@@ -58,7 +58,7 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for tab
         dataLoadingTabs.setValue(true);
         // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(mSharedPreferences.getLanguage(), new ResponseServer<LiveData<CategoriesResponse>>() {
+        homeRepository.getCategoriesTabs(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), new ResponseServer<LiveData<CategoriesResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
                 // hide loading
@@ -195,6 +195,7 @@ public class HomeViewModel extends BaseViewModel {
             }
         });
     }
+
     // this method will call reviewCoupon  from repository to review coupon on SERVER
     public void reviewCoupon(int idCoupon, int isGood) {
         // call reviewCoupon from repository
@@ -214,26 +215,26 @@ public class HomeViewModel extends BaseViewModel {
         // call addOrRemoveCouponFavorite from repository
         homeRepository.addOrRemoveCouponFavorite(mSharedPreferences.getLanguage(),
                 mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCoupon, new ResponseServer<LiveData<MessageResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
-                // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            successAddOrRemoveToFavorite.setValue(true);
+                    @Override
+                    public void onSuccess(boolean status, int code, LiveData<MessageResponse> response) {
+                        // check if status success
+                        if (status) {
+                            if (response != null && response.getValue() != null) {
+                                if (response.getValue().isStatus()) {
+                                    successAddOrRemoveToFavorite.setValue(true);
 //                            toastMessageSuccess.setValue(response.getValue().getMessage());
+                                }
+                            }
                         }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(String message) {
-                successAddOrRemoveToFavorite.setValue(false);
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        successAddOrRemoveToFavorite.setValue(false);
+                        // show error msg
+                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                    }
+                });
     }
 
 }

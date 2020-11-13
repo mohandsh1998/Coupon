@@ -7,43 +7,37 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.databinding.FilterBottomSheetDialogBinding;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
 import com.mohannad.coupon.utils.BaseFragment;
-import com.mohannad.coupon.view.adapter.deal.SlideAdsAdapter;
 import com.mohannad.coupon.view.adapter.home.CategoriesFilterAdapter;
 import com.mohannad.coupon.view.adapter.home.CompaniesFilterAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
-import com.mohannad.coupon.view.ui.deal.DealViewModel;
 import com.mohannad.coupon.view.ui.search.SearchActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends BaseFragment {
     private Context mContext;
@@ -53,16 +47,24 @@ public class HomeFragment extends BaseFragment {
     private int idCategoryFilter = -1;
     private int idCompanyFilter = -1;
     private String filterSpecific;
+    private ICommunicateMainActivity mListener;
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         mContext = context;
+        if (context instanceof ICommunicateMainActivity) {
+            mListener = (ICommunicateMainActivity) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ICommunicateHomeActivity");
+        }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mListener.onInteractionHomeFragment();
         setHasOptionsMenu(true);
     }
 
@@ -105,30 +107,6 @@ public class HomeFragment extends BaseFragment {
         // SearchView
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        // Hint SearchView
-        searchView.setQueryHint(getString(R.string.what_would_you_like_to_find));
-        // Background SearchView
-        searchView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray2_raduis_9dp));
-        // close icon in SearchView
-        ImageView searchViewCloseIcon = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        searchViewCloseIcon.setEnabled(false);
-        // hide back arrow
-        searchView.setIconifiedByDefault(true);
-        // disable focusable
-        searchView.setFocusable(false);
-        // hide search icon in search view
-        searchView.setIconified(false);
-        searchView.clearFocus();
-        searchView.requestFocusFromTouch();
-
-        // EditText for SearchView
-        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_pink, 0, 0, 0);
-        searchEditText.setCompoundDrawablePadding(16);
-        searchEditText.setTextSize(14);
-        searchEditText.setTextColor(Color.BLACK);
-        searchEditText.setHintTextColor(mContext.getResources().getColor(R.color.gray0));
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -141,9 +119,34 @@ public class HomeFragment extends BaseFragment {
                 return false;
             }
         });
+
+//        // Hint SearchView
+//        searchView.setQueryHint(getString(R.string.what_would_you_like_to_find));
+//        // Background SearchView
+//        searchView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_gray2_raduis_9dp));
+//        // close icon in SearchView
+//        ImageView searchViewCloseIcon = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
+//        searchViewCloseIcon.setEnabled(false);
+//        // hide back arrow
+//        searchView.setIconifiedByDefault(true);
+//        // disable focusable
+//        searchView.setFocusable(false);
+//        // hide search icon in search view
+//        searchView.setIconified(false);
+//        searchView.clearFocus();
+//        searchView.requestFocusFromTouch();
+//
+//        // EditText for SearchView
+//        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+//        searchEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search, 0, 0, 0);
+//        searchEditText.setCompoundDrawablePadding(16);
+//        searchEditText.setTextSize(14);
+//        searchEditText.setTextColor(Color.BLACK);
+//        searchEditText.setHintTextColor(mContext.getResources().getColor(R.color.gray0));
+//
     }
 
-    private void showFilterSheet() {
+    public void showFilterSheet() {
         BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme);
         FilterBottomSheetDialogBinding sheetView = FilterBottomSheetDialogBinding.inflate(LayoutInflater.from(requireContext()));
         bottomSheet.setContentView(sheetView.getRoot());
@@ -168,21 +171,21 @@ public class HomeFragment extends BaseFragment {
         sheetView.rvCategoryFilter.setAdapter(categoriesFilterAdapter);
         sheetView.tvLastCoupons.setOnClickListener(v -> {
             filterSpecific = "latest";
-            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
-            // add shadow
-            sheetView.tvLastCoupons.setElevation(24);
-            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
-            // remove shadow
-            sheetView.tvMostUsed.setElevation(0);
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_black_10dp));
+            sheetView.tvLastCoupons.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_gray_10dp));
+            sheetView.tvMostUsed.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+
         });
         sheetView.tvMostUsed.setOnClickListener(v -> {
             filterSpecific = "most_used";
-            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_15dp));
-            // add shadow
-            sheetView.tvMostUsed.setElevation(24);
-            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
-            // remove shadow
-            sheetView.tvLastCoupons.setElevation(0);
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_black_10dp));
+            sheetView.tvMostUsed.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_gray_10dp));
+            sheetView.tvLastCoupons.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+
         });
         // clear call item
         sheetView.btnReset.setOnClickListener(v -> {
@@ -193,8 +196,10 @@ public class HomeFragment extends BaseFragment {
             companiesFilterAdapter.selected(-1);
             sheetView.rvCategoryFilter.scrollToPosition(0);
             sheetView.rvCompaniesFilter.scrollToPosition(0);
-            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
-            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_black_15dp));
+            sheetView.tvMostUsed.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_gray_10dp));
+            sheetView.tvMostUsed.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            sheetView.tvLastCoupons.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_gray_10dp));
+            sheetView.tvLastCoupons.setTextColor(ContextCompat.getColor(mContext, R.color.black));
         });
         sheetView.btnApply.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), SearchActivity.class)
@@ -207,24 +212,19 @@ public class HomeFragment extends BaseFragment {
         // get companies for first category
         homeViewModel.getCompanies(categoriesTabs.get(0).getId());
         homeViewModel.companies.observe(requireActivity(), companiesFilterAdapter::addAll);
-        bottomSheet.show();
+        if (categoriesTabs.size() != 0)
+            bottomSheet.show();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.menu_filter) {
-            if (categoriesTabs.size() != 0)
-                showFilterSheet();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onDetach() {

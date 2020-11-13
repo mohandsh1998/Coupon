@@ -101,10 +101,10 @@
     <string name="show_coupon">Show Coupon</string>
     <string name="empty_favorite">Empty Favorite</string>
     <string name="website">Website</string>
-    <string name="please_agree_to_the">Please agree to</string>
+    <string name="i_agree_to_the">I agree to</string>
     <string name="terms_and_conditions">terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="thank_you">Thank you</string>
+    <string name="thank_you">Thank you !</string>
     <string name="cancel">Cancel</string>
     <string name="choose_category">Choose Category</string>
     <string name="hide">Hide</string>
@@ -113,6 +113,7 @@
     <string name="ad">Ad</string>
     <string name="orders">Orders</string>
     <string name="contact_us_on_what_s_up">Contact us on What\'s Up</string>
+    <string name="thank_you_for_choosing_us">Thank you For choosing us</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

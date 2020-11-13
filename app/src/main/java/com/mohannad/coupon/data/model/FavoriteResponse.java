@@ -45,6 +45,12 @@ public class FavoriteResponse {
         private String image;
         @SerializedName("file_path")
         private String filePath;
+        @SerializedName("rate")
+        private float rate;
+        @SerializedName("number_reviews")
+        private int numberReviews;
+        @SerializedName("number_orders")
+        private int numberOrders;
         @SerializedName("type")
         private String type; // coupon or product
 
@@ -98,6 +104,18 @@ public class FavoriteResponse {
 
         public String getFilePath() {
             return filePath;
+        }
+
+        public float getRate() {
+            return rate;
+        }
+
+        public int getNumberReviews() {
+            return numberReviews;
+        }
+
+        public int getNumberOrders() {
+            return numberOrders;
         }
 
         public String getType() {

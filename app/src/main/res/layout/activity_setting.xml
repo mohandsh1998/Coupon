@@ -25,6 +25,7 @@
             android:text="@string/language"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +41,7 @@
             android:minHeight="48dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            app:elevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -63,6 +65,7 @@
             android:text="@string/country"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_language" />
 
@@ -72,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/we_display_coupons_and_stores_available_for_your_country"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/spinner_language"
             app:layout_constraintStart_toStartOf="@+id/textView11"
@@ -88,10 +92,11 @@
             android:minHeight="48dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            tools:listitem="@layout/item_flags_with_name_spinner_large_size"
+            app:elevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:listitem="@layout/item_flags_with_name_spinner_large_size" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -119,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            app:colorControlActivated="@color/pink"
             app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
             app:layout_constraintTop_toTopOf="@+id/textView13" />
@@ -127,12 +133,13 @@
             android:id="@+id/btn_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:background="@drawable/shape_btn_raduis_22dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/shape_btn_raduis_15dp"
+            android:padding="16dp"
             android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
             app:layout_constraintStart_toStartOf="@+id/spinner_countries" />

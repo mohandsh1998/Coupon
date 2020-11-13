@@ -22,11 +22,6 @@ public class ContactUsActivity extends BaseActivity {
         ContactUsViewModel model = new ViewModelProvider(this).get(ContactUsViewModel.class);
         binding.setContactUsViewModel(model);
         binding.setLifecycleOwner(this);
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(getDrawable(R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
-        }
         model.toastMessageSuccess.observe(this, this::showDialog);
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(binding.lyContainer, msg);

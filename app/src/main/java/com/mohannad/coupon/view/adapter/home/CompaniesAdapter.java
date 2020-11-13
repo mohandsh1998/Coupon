@@ -81,11 +81,11 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         void bind(CompaniesResponse.Company company, int position) {
             // check if position equal selected item -> add border about selected company
             if (position == selectedItem) {
-                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_9dp));
-                itemView.imgCompanyItemCompanyRv.setElevation(24);
+                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
+                itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
             } else {
                 itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
-                itemView.imgCompanyItemCompanyRv.setElevation(10);
+                itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.black));
             }
 
             this.itemView.tvCompanyName.setText(company.getName());
@@ -102,7 +102,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                     // change position selectedItem
                     selectedItem = getAdapterPosition();
                     // add border on selected company
-                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_with_border_pink_radius_9dp));
+                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
                     itemView.imgCompanyItemCompanyRv.setElevation(24);
                     companyClickListener.onCompanySelected(position, company);
                 }

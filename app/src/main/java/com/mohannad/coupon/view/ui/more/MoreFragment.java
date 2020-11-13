@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import com.mohannad.coupon.BuildConfig;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.databinding.FragmentMoreBinding;
 import com.mohannad.coupon.utils.BaseFragment;
@@ -34,14 +35,31 @@ import com.mohannad.coupon.view.ui.splash.SplashActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
 import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MoreFragment extends BaseFragment {
 
     private MoreViewModel mViewModel;
     private FragmentMoreBinding binding;
     private StorageSharedPreferences sharedPreferences;
 
-    public static MoreFragment newInstance() {
-        return new MoreFragment();
+    private ICommunicateMainActivity mListener;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ICommunicateMainActivity) {
+            mListener = (ICommunicateMainActivity) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ICommunicateHomeActivity");
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mListener.onInteractionMoreFragment();
     }
 
     @Override
@@ -65,7 +83,7 @@ public class MoreFragment extends BaseFragment {
             openSnapChat();
         });
         binding.lyOpenWhatsUp.setOnClickListener(v -> {
-           // open what's up app
+            // open what's up app
         });
         binding.lyOpenTelegram.setOnClickListener(v -> {
             openTelegram();
@@ -99,7 +117,7 @@ public class MoreFragment extends BaseFragment {
         binding.lyChangePassword.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
         });
-        binding.lyPrivacyPolicy.setOnClickListener(v->{
+        binding.lyPrivacyPolicy.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
         });
     }

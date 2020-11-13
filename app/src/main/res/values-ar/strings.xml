@@ -101,10 +101,10 @@
     <string name="show_coupon">أعرض الكابون</string>
     <string name="empty_favorite">لا يوجد مفضلة</string>
     <string name="website">الموقع</string>
-    <string name="please_agree_to_the">يرجى الموافقة على</string>
+    <string name="i_agree_to_the">أنا موافق على </string>
     <string name="terms_and_conditions">الشروط والأحكام</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
-    <string name="thank_you">شكرا لك</string>
+    <string name="thank_you">شكرا لك !</string>
     <string name="cancel">إلغاء</string>
     <string name="choose_category">إختر الصنف</string>
     <string name="hide">إخفاء</string>
@@ -113,6 +113,7 @@
     <string name="ad">Ad</string>
     <string name="orders">الطلبات</string>
     <string name="contact_us_on_what_s_up">تواصل معنا عبر الواتساب</string>
+    <string name="thank_you_for_choosing_us">شكرا لإختيارنا</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
