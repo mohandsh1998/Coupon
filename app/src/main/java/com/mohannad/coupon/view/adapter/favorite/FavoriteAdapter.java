@@ -351,16 +351,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             FavoriteResponse.Favorite favorite = favoriteItems.get(position);
 
-            // name product
-            this.itemProductRvBinding.tvProductNameItemProductRv.setText(favorite.getNameProduct());
-            // desc
-            this.itemProductRvBinding.tvDescItemProductRv.setText(favorite.getDesc());
-            this.itemProductRvBinding.appCompatRatingBar.setRating(favorite.getRate());
-            this.itemProductRvBinding.tvNumReviewsItemProductRv.setText(favorite.getNumberReviews() + " " + mContext.getString(R.string.reviews));
-            this.itemProductRvBinding.tvReviewsItemProductRv.setText(Float.toString(favorite.getRate()));
-            this.itemProductRvBinding.tvNumOrderItemProductRv.setText(favorite.getNumberOrders() + " " + mContext.getString(R.string.orders));
-
-
             // check if file path "" then this product not have video
             if (TextUtils.isEmpty(favorite.getFilePath())) {
                 // hide icon video
@@ -381,6 +371,33 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     //  .placeholder(R.drawable.loading_spinner)
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(40)))
                     .into(this.itemProductRvBinding.imgCompanyItemProductRv);
+            // name product
+            this.itemProductRvBinding.tvProductNameItemProductRv.setText(favorite.getNameProduct());
+            // desc
+            this.itemProductRvBinding.tvDescItemProductRv.setText(favorite.getDesc());
+            if (favorite.getRate() != 0) {
+                this.itemProductRvBinding.appCompatRatingBar.setVisibility(View.VISIBLE);
+                this.itemProductRvBinding.tvReviewsItemProductRv.setVisibility(View.VISIBLE);
+                this.itemProductRvBinding.appCompatRatingBar.setRating(favorite.getRate());
+                this.itemProductRvBinding.tvReviewsItemProductRv.setText(Float.toString(favorite.getRate()));
+            } else {
+                this.itemProductRvBinding.appCompatRatingBar.setVisibility(View.GONE);
+                this.itemProductRvBinding.tvReviewsItemProductRv.setVisibility(View.GONE);
+            }
+            if (favorite.getNumberReviews() != 0) {
+                this.itemProductRvBinding.tvNumReviewsItemProductRv.setVisibility(View.VISIBLE);
+                this.itemProductRvBinding.tvNumReviewsItemProductRv.setText(favorite.getNumberReviews() + " " + mContext.getString(R.string.reviews));
+            } else {
+                this.itemProductRvBinding.tvNumReviewsItemProductRv.setVisibility(View.GONE);
+            }
+
+            if (favorite.getNumberOrders() != 0) {
+                this.itemProductRvBinding.tvNumOrderItemProductRv.setVisibility(View.VISIBLE);
+                this.itemProductRvBinding.tvNumOrderItemProductRv.setText(favorite.getNumberOrders() + " " + mContext.getString(R.string.orders));
+            } else {
+                this.itemProductRvBinding.tvNumOrderItemProductRv.setVisibility(View.GONE);
+            }
+
             // when the user click on item
             this.itemView.getRootView().setOnClickListener(v -> {
                 favoriteClickListener.onClickItem(favorite);

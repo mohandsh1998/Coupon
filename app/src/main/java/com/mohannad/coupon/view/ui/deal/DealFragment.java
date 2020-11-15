@@ -85,7 +85,8 @@ public class DealFragment extends BaseFragment {
 
             @Override
             public void openDeal(DealResponse.DealItem dealItem) {
-                startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", dealItem.getLink()));
+//                startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", dealItem.getLink()));
+                openBrowser(dealItem.getLink());
             }
         });
         binding.dealsRv.setHasFixedSize(true);

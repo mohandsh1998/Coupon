@@ -24,6 +24,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivitySplashBinding settingBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+        changeToolbarAndStatusBar(R.color.gray7, null);
         mStorageSharedPreferences = new StorageSharedPreferences(this);
         SplashViewModel model = new ViewModelProvider(this).get(SplashViewModel.class);
         model.getSetting();

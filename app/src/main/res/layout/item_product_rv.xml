@@ -135,7 +135,7 @@
                 android:src="@drawable/ic_favorite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/img_company_item_product_rv"
-                app:layout_constraintTop_toBottomOf="@+id/tv_num_reviews_item_product_rv" />
+                app:layout_constraintTop_toBottomOf="@+id/barrier5" />
 
             <ImageView
                 android:id="@+id/img_delete_product_item_product_rv"
@@ -163,7 +163,7 @@
                 android:src="@drawable/ic_share_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/barrier4"
-                app:layout_constraintTop_toBottomOf="@+id/tv_num_reviews_item_product_rv" />
+                app:layout_constraintTop_toBottomOf="@+id/barrier5" />
 
             <TextView
                 android:id="@+id/tv_copy_coupon_item_product_rv"
@@ -189,6 +189,14 @@
                 app:barrierDirection="end"
                 app:constraint_referenced_ids="img_favorite_product_item_product_rv,img_delete_product_item_product_rv"
                 tools:layout_editor_absoluteX="379dp" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="tv_num_reviews_item_product_rv,tv_num_order_item_product_rv"
+                tools:layout_editor_absoluteY="261dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

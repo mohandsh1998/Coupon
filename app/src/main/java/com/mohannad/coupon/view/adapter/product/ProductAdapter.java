@@ -117,10 +117,30 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.itemView.tvProductNameItemProductRv.setText(product.getName());
             // desc
             this.itemView.tvDescItemProductRv.setText(product.getDesc());
-            this.itemView.appCompatRatingBar.setRating(product.getRate());
-            this.itemView.tvNumReviewsItemProductRv.setText(product.getNumberReviews() + " " + mContext.getString(R.string.reviews));
-            this.itemView.tvReviewsItemProductRv.setText(Float.toString(product.getRate()));
-            this.itemView.tvNumOrderItemProductRv.setText(product.getNumberOrders() + " " + mContext.getString(R.string.orders));
+
+            if (product.getRate() != 0) {
+                this.itemView.appCompatRatingBar.setVisibility(View.VISIBLE);
+                this.itemView.tvReviewsItemProductRv.setVisibility(View.VISIBLE);
+                this.itemView.appCompatRatingBar.setRating(product.getRate());
+                this.itemView.tvReviewsItemProductRv.setText(Float.toString(product.getRate()));
+            } else {
+                this.itemView.appCompatRatingBar.setVisibility(View.GONE);
+                this.itemView.tvReviewsItemProductRv.setVisibility(View.GONE);
+            }
+
+            if (product.getNumberReviews() != 0) {
+                this.itemView.tvNumReviewsItemProductRv.setVisibility(View.VISIBLE);
+                this.itemView.tvNumReviewsItemProductRv.setText(product.getNumberReviews() + " " + mContext.getString(R.string.reviews));
+            } else {
+                this.itemView.tvNumReviewsItemProductRv.setVisibility(View.GONE);
+            }
+
+            if (product.getNumberOrders() != 0) {
+                this.itemView.tvNumOrderItemProductRv.setVisibility(View.VISIBLE);
+                this.itemView.tvNumOrderItemProductRv.setText(product.getNumberOrders() + " " + mContext.getString(R.string.orders));
+            } else {
+                this.itemView.tvNumOrderItemProductRv.setVisibility(View.GONE);
+            }
 
             // check if the product in favorite or not
             if (product.isInFavorite()) {

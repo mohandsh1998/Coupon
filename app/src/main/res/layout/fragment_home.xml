@@ -50,13 +50,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.tabs.TabLayout
+            <com.mohannad.coupon.utils.CustomTabLayout
                 android:id="@+id/tabsCategories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:tabBackground="@drawable/indicator_tab_layout"
+                app:tabGravity="fill"
                 app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabTextAppearance="@style/tab_text"
                 app:tabTextColor="@color/black" />
         </FrameLayout>

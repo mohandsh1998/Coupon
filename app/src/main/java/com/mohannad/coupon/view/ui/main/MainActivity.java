@@ -1,7 +1,11 @@
 package com.mohannad.coupon.view.ui.main;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mohannad.coupon.R;
@@ -10,6 +14,8 @@ import com.mohannad.coupon.databinding.ActivityMainBinding;
 import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.view.ui.home.HomeFragment;
 
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -53,6 +59,7 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
 
     @Override
     public void onInteractionHomeFragment() {
+        changeToolbarAndStatusBar(R.color.gray7, binding.toolbar);
         binding.imgFilter.setVisibility(View.VISIBLE);
         binding.tvTitleToolbar.setVisibility(View.GONE);
         binding.tvTitleToolbar.setText(getString(R.string.title_home));
@@ -60,6 +67,7 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
 
     @Override
     public void onInteractionFavoriteFragment() {
+        changeToolbarAndStatusBar(R.color.pink, binding.toolbar);
         binding.imgFilter.setVisibility(View.GONE);
         binding.tvTitleToolbar.setVisibility(View.VISIBLE);
         binding.tvTitleToolbar.setText(getString(R.string.title_favorite));
@@ -67,6 +75,7 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
 
     @Override
     public void onInteractionDealFragment() {
+        changeToolbarAndStatusBar(R.color.pink, binding.toolbar);
         binding.imgFilter.setVisibility(View.GONE);
         binding.tvTitleToolbar.setVisibility(View.VISIBLE);
         binding.tvTitleToolbar.setText(getString(R.string.title_deal));
@@ -74,8 +83,17 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
 
     @Override
     public void onInteractionMoreFragment() {
+        changeToolbarAndStatusBar(R.color.pink, binding.toolbar);
         binding.imgFilter.setVisibility(View.GONE);
         binding.tvTitleToolbar.setVisibility(View.VISIBLE);
         binding.tvTitleToolbar.setText(getString(R.string.title_more));
+    }
+
+    @Override
+    public void onInteractionAddCouponFragment() {
+        changeToolbarAndStatusBar(R.color.pink, binding.toolbar);
+        binding.imgFilter.setVisibility(View.GONE);
+        binding.tvTitleToolbar.setVisibility(View.VISIBLE);
+        binding.tvTitleToolbar.setText(getString(R.string.title_add_coupon));
     }
 }

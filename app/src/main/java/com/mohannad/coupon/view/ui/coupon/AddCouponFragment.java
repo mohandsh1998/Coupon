@@ -3,6 +3,7 @@ package com.mohannad.coupon.view.ui.coupon;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mohannad.coupon.R;
+import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
@@ -23,11 +25,27 @@ import com.mohannad.coupon.databinding.SpinnerBottomSheetDialogBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.spinner.SpinnerBottomSheetAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class AddCouponFragment extends BaseFragment {
+    private Context mContext;
     private FragmentAddCouponBinding addCouponBinding;
     private AddCouponViewModel mViewModel;
+    private ICommunicateMainActivity mListener;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+        if (context instanceof ICommunicateMainActivity) {
+            mListener = (ICommunicateMainActivity) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ICommunicateHomeActivity");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -39,6 +57,7 @@ public class AddCouponFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mListener.onInteractionAddCouponFragment();
         mViewModel = new ViewModelProvider(this).get(AddCouponViewModel.class);
         addCouponBinding.setAddCouponViewModel(mViewModel);
         addCouponBinding.setLifecycleOwner(this);

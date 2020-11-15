@@ -94,7 +94,8 @@ public class ProductsActivity extends BaseActivity {
 
             @Override
             public void onClickProductItem(ProductsResponse.Product product) {
-                startActivity(new Intent(ProductsActivity.this, WebViewActivity.class).putExtra("url", product.getLink()));
+//                startActivity(new Intent(ProductsActivity.this, WebViewActivity.class).putExtra("url", product.getLink()));
+                openBrowser(product.getLink());
             }
 
         });

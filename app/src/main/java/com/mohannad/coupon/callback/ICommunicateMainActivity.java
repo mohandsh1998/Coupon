@@ -8,4 +8,6 @@ public interface ICommunicateMainActivity {
     void onInteractionDealFragment();
 
     void onInteractionMoreFragment();
+
+    void onInteractionAddCouponFragment();
 }

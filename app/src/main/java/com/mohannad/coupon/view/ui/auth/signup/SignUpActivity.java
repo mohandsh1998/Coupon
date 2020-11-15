@@ -19,6 +19,7 @@ public class SignUpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivitySignUpBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up);
+        changeToolbarAndStatusBar(R.color.gray7, null);
         SignUpViewModel model = new ViewModelProvider(this).get(SignUpViewModel.class);
         binding.setSignUpViewModel(model);
         binding.setLifecycleOwner(this);

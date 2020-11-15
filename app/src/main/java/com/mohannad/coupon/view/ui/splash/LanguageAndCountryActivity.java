@@ -47,6 +47,7 @@ public class LanguageAndCountryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityLanguageAndCountryBinding languageAndCountryBinding = DataBindingUtil.setContentView(this, R.layout.activity_language_and_country);
+        changeToolbarAndStatusBar(R.color.gray7, null);
         model = new ViewModelProvider(this).get(SplashViewModel.class);
         languageAndCountryBinding.setSplashViewModel(model);
         languageAndCountryBinding.setLifecycleOwner(this);
@@ -117,7 +118,8 @@ public class LanguageAndCountryActivity extends BaseActivity {
                 showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
         });
         languageAndCountryBinding.tvTermsAndCondition.setOnClickListener(v -> {
-            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
+//            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
+            openBrowser(Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage());
         });
     }
 

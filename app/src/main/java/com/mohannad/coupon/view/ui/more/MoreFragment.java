@@ -103,7 +103,8 @@ public class MoreFragment extends BaseFragment {
             requireActivity().finish();
         });
         binding.lyHelp.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), HelpActivity.class));
+//            startActivity(new Intent(requireContext(), HelpActivity.class));
+            startActivity(new Intent(requireContext(), ContactUsActivity.class));
         });
         binding.lyContactUs.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), ContactUsActivity.class));
@@ -118,7 +119,8 @@ public class MoreFragment extends BaseFragment {
             startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
         });
         binding.lyPrivacyPolicy.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
+//            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
+            openBrowser(Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage());
         });
     }
 

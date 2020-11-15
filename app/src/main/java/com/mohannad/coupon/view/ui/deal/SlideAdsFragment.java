@@ -48,7 +48,8 @@ public class SlideAdsFragment extends BaseFragment {
         FragmentSlideAdsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_slide_ads, container, false);
         loadImage(getContext(), mImage, binding.imgAds);
         binding.tvWebsite.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", mLink));
+//            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", mLink));
+            openBrowser(mLink);
         });
         return binding.getRoot();
     }

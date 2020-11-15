@@ -113,7 +113,8 @@ public class FavoriteFragment extends BaseFragment {
 
                     @Override
                     public void onClickItem(FavoriteResponse.Favorite favorite) {
-                        startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", favorite.getLink()));
+//                        startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", favorite.getLink()));
+                        openBrowser(favorite.getLink());
                     }
 
                     @Override

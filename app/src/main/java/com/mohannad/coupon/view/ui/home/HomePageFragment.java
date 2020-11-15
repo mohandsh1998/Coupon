@@ -147,12 +147,14 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void shopNowCoupon(int position, Coupon coupon) {
-                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+//                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+                openBrowser(coupon.getLink());
             }
 
             @Override
             public void shopNowAds(int position, Coupon coupon) {
-                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+//                startActivity(new Intent(mContext, WebViewActivity.class).putExtra("url", coupon.getLink()));
+                openBrowser(coupon.getLink());
             }
 
 

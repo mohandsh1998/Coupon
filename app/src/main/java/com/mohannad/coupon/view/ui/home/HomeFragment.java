@@ -64,7 +64,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mListener.onInteractionHomeFragment();
         setHasOptionsMenu(true);
     }
 
@@ -77,6 +76,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mListener.onInteractionHomeFragment();
         StorageSharedPreferences sharedPreferences = new StorageSharedPreferences(requireContext());
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding.setHomeViewModel(homeViewModel);

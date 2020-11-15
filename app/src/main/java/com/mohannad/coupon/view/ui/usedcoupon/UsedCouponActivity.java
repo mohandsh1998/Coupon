@@ -56,7 +56,8 @@ public class UsedCouponActivity extends BaseActivity {
 
             @Override
             public void shopNowCoupon(int position, Coupon coupon) {
-                startActivity(new Intent(UsedCouponActivity.this, WebViewActivity.class).putExtra("url", coupon.getLink()));
+//                startActivity(new Intent(UsedCouponActivity.this, WebViewActivity.class).putExtra("url", coupon.getLink()));
+                openBrowser(coupon.getLink());
             }
 
             @Override

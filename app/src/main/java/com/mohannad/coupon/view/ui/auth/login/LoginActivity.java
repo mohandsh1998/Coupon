@@ -35,6 +35,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        changeToolbarAndStatusBar(R.color.gray7, null);
         model = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.setLoginViewModel(model);
         binding.setLifecycleOwner(this);
