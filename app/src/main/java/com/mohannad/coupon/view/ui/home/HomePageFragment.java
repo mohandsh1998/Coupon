@@ -129,7 +129,7 @@ public class HomePageFragment extends BaseFragment {
             couponsAdapter.selectAllView(false);
             // clear array
             couponsAdapter.clear();
-            binding.rvCoupons.removeAllViews();
+//            binding.rvCoupons.removeAllViews();
             // get all coupons to company
             fetchCouponsCompany();
         });
@@ -207,7 +207,7 @@ public class HomePageFragment extends BaseFragment {
                 companiesAdapter.selected(-1);
                 // clear array
                 couponsAdapter.clear();
-                binding.rvCoupons.removeAllViews();
+//                binding.rvCoupons.removeAllViews();
                 // get all coupons to category
                 fetchAllCouponsCategory();
             }

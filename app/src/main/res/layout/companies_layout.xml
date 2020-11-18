@@ -12,9 +12,9 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fillViewport="true"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layoutDirection="ltr"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -51,11 +51,13 @@
                     android:id="@+id/rv_companies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/img_all_companies"
                     android:visibility="visible"
-                    tools:itemCount="1"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    tools:itemCount="5"
                     tools:listitem="@layout/item_company_rv" />
             </RelativeLayout>
         </HorizontalScrollView>

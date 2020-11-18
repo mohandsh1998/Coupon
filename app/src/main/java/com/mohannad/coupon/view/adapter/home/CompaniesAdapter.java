@@ -101,9 +101,9 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                 if (selectedItem != getAdapterPosition()) {
                     // change position selectedItem
                     selectedItem = getAdapterPosition();
+                    notifyDataSetChanged();
                     // add border on selected company
                     itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
-                    itemView.imgCompanyItemCompanyRv.setElevation(24);
                     companyClickListener.onCompanySelected(position, company);
                 }
             });

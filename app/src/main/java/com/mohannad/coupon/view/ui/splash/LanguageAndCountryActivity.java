@@ -140,7 +140,7 @@ public class LanguageAndCountryActivity extends BaseActivity {
 
     private void changeBackgroundButton(TextView viewSelected, TextView viewUnSelected) {
         viewSelected.setBackgroundResource(R.drawable.shape_white_radius_9dp);
-        viewSelected.setElevation(5);
+        viewSelected.setElevation(2);
         viewSelected.setTextColor(ContextCompat.getColor(this, R.color.pink));
         viewUnSelected.setBackground(null);
         viewUnSelected.setElevation(0);

@@ -170,6 +170,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             }
             this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {
                 selectedAll = true;
+                notifyDataSetChanged();
                 couponClickListener.onClickAllCoupons();
             });
         }
