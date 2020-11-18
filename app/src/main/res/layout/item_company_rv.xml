@@ -16,7 +16,7 @@
             android:layout_marginEnd="8dp"
             android:padding="16dp"
             android:scaleType="fitXY"
-            android:background="@drawable/shape_white_radius_9dp"
+            android:background="@drawable/shape_white_radius_15dp"
             android:src="@drawable/ic_all_company"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -22,7 +22,6 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.databinding.CompaniesLayoutBinding;
 import com.mohannad.coupon.databinding.ItemAdsRvBinding;
-import com.mohannad.coupon.databinding.ItemCouponRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponsRvBinding;
 import com.mohannad.coupon.databinding.ItemTitleRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
@@ -161,11 +160,11 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             if (selectedAll) {
                 // add border on all coupons
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
                 this.companiesLayoutBinding.tvAllCompany.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
             } else {
                 // remove border
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
+                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_15dp));
                 this.companiesLayoutBinding.tvAllCompany.setTextColor(ContextCompat.getColor(mContext, R.color.black));
             }
             this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {

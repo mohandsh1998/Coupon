@@ -1,10 +1,7 @@
 package com.mohannad.coupon.view.adapter.home;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -17,9 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.CompaniesResponse;
-import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.databinding.ItemCompanyRvBinding;
-import com.mohannad.coupon.databinding.ItemDealRvBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,10 +76,10 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         void bind(CompaniesResponse.Company company, int position) {
             // check if position equal selected item -> add border about selected company
             if (position == selectedItem) {
-                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
+                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
                 itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
             } else {
-                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_9dp));
+                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_15dp));
                 itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.black));
             }
 
@@ -93,7 +88,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
             Glide.with(mContext)
                     .load(company.getImage())
                     //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(25)))
+                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(15)))
                     .into(this.itemView.imgCompanyItemCompanyRv);
 
             // click listener when select company
@@ -103,7 +98,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                     selectedItem = getAdapterPosition();
                     notifyDataSetChanged();
                     // add border on selected company
-                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_9dp));
+                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
                     companyClickListener.onCompanySelected(position, company);
                 }
             });
