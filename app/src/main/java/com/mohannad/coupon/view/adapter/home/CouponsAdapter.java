@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -33,7 +34,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private final int VIEW_TYPE_COUPONS = 1;
     private final int VIEW_TYPE_ADS = 2;
     private final int VIEW_TYPE_TITLE = 3;
-    private boolean selectedAll = true;
     private Context mContext;
     private Animation shake;
     private Animation bottomTop;
@@ -119,11 +119,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return couponList == null ? 0 : couponList.size() + 1;
     }
 
-    public void selectAllView(boolean selected) {
-        selectedAll = selected;
-        notifyDataSetChanged();
-    }
-
     public void addAll(List<Coupon> coupons) {
         this.couponList.addAll(coupons);
         notifyDataSetChanged();
@@ -153,24 +148,25 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             this.companiesLayoutBinding.rvCompanies.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
             this.companiesLayoutBinding.rvCompanies.setHasFixedSize(true);
             this.companiesLayoutBinding.rvCompanies.setAdapter(companiesAdapter);
-        }
+            this.companiesLayoutBinding.rvCompanies.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+                @Override
+                public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                    int action = e.getAction();
+                    if (action == MotionEvent.ACTION_DOWN) {
+                        rv.getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                    return false;
+                }
 
-        @Override
-        public void onBind(int position) {
-            super.onBind(position);
-            if (selectedAll) {
-                // add border on all coupons
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
-                this.companiesLayoutBinding.tvAllCompany.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
-            } else {
-                // remove border
-                this.companiesLayoutBinding.imgAllCompanies.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_15dp));
-                this.companiesLayoutBinding.tvAllCompany.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-            }
-            this.companiesLayoutBinding.imgAllCompanies.setOnClickListener(v -> {
-                selectedAll = true;
-                notifyDataSetChanged();
-                couponClickListener.onClickAllCoupons();
+                @Override
+                public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+                }
+
+                @Override
+                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                }
             });
         }
 
@@ -469,8 +465,6 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void answerQuestion(int position, Coupon coupon, boolean answer);
 
         void openProductActivity(int position, Coupon coupon);
-
-        void onClickAllCoupons();
     }
 
 }

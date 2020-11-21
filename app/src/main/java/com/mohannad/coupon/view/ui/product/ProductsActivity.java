@@ -38,9 +38,9 @@ public class ProductsActivity extends BaseActivity {
         ProductsViewModel model = new ViewModelProvider(this).get(ProductsViewModel.class);
         productsBinding.setProductViewModel(model);
         productsBinding.setLifecycleOwner(this);
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+
+        if (getIntent() != null && getIntent().hasExtra("title")) {
+            setTitle(getIntent().getStringExtra("title"));
         }
         // get type -> category or company
         if (getIntent().hasExtra("type"))
@@ -66,7 +66,7 @@ public class ProductsActivity extends BaseActivity {
         ProductAdapter productAdapter = new ProductAdapter(this, products, new ProductAdapter.ProductClickListener() {
             @Override
             public void shareProduct(int position, ProductsResponse.Product product) {
-                shareText("Title : " + product.getName()+ "\n Description : " + product.getDesc());
+                shareText("Title : " + product.getName() + "\n Description : " + product.getDesc());
             }
 
             @Override

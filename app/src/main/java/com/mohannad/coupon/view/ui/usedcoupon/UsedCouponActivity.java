@@ -36,11 +36,6 @@ public class UsedCouponActivity extends BaseActivity {
         UsedCouponsViewModel model = new ViewModelProvider(this).get(UsedCouponsViewModel.class);
         binding.setUsedCouponViewModel(model);
         binding.setLifecycleOwner(this);
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
-        }
 
         storageSharedPreferences = new StorageSharedPreferences(this);
         // initialization an adapter for coupons

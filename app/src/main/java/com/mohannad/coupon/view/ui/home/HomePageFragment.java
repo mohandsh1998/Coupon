@@ -117,21 +117,36 @@ public class HomePageFragment extends BaseFragment {
         // get companies for category
         homeViewModel.getCompanies(idCategory);
         // initialization an adapter for companies
-        companiesAdapter = new CompaniesAdapter(requireActivity(), companies, (position, company) -> {
-            // when click to select company by user
-            // set request type to coupons company
-            requestType = COUPONS_COMPANY;
-            // init current page
-            mCurrentPage = 1;
-            // set id company
-            idCompany = company.getId();
-            // when select company remove border and shadow on "All" View
-            couponsAdapter.selectAllView(false);
-            // clear array
-            couponsAdapter.clear();
-//            binding.rvCoupons.removeAllViews();
-            // get all coupons to company
-            fetchCouponsCompany();
+        companiesAdapter = new CompaniesAdapter(requireActivity(), companies, new CompaniesAdapter.CompanyClickListener() {
+            @Override
+            public void onCompanySelected(int position, CompaniesResponse.Company company) {
+                // when click to select company by user
+                // set request type to coupons company
+                requestType = COUPONS_COMPANY;
+                // init current page
+                mCurrentPage = 1;
+                // set id company
+                idCompany = company.getId();
+                // clear array
+                couponsAdapter.clear();
+                // binding.rvCoupons.removeAllViews();
+                // get all coupons to company
+                fetchCouponsCompany();
+            }
+
+            @Override
+            public void onClickAllCoupons() {
+                // when click to select "All" view by user
+                // set request type to all coupons
+                requestType = ALL_COUPONS_CATEGORY;
+                // init current page
+                mCurrentPage = 1;
+                // clear array
+                couponsAdapter.clear();
+                // binding.rvCoupons.removeAllViews();
+                // get all coupons to category
+                fetchAllCouponsCategory();
+            }
         });
 
         // initialization an adapter for coupons
@@ -194,22 +209,6 @@ public class HomePageFragment extends BaseFragment {
                         break;
                 }
                 startActivity(intent);
-            }
-
-            @Override
-            public void onClickAllCoupons() {
-                // when click to select "All" view by user
-                // set request type to all coupons
-                requestType = ALL_COUPONS_CATEGORY;
-                // init current page
-                mCurrentPage = 1;
-                // remove border on selected company
-                companiesAdapter.selected(-1);
-                // clear array
-                couponsAdapter.clear();
-//                binding.rvCoupons.removeAllViews();
-                // get all coupons to category
-                fetchAllCouponsCategory();
             }
 
             @Override

@@ -51,11 +51,7 @@ public class SearchActivity extends BaseActivity {
         model = new ViewModelProvider(this).get(SearchViewModel.class);
         binding.setSearchViewModel(model);
         binding.setLifecycleOwner(this);
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
-        }
+
         if (getIntent().hasExtra("type")) {
             // check type search or filter
             if (getIntent().getStringExtra("type").equals("search")) {

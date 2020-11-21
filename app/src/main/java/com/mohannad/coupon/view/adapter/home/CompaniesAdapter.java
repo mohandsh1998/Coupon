@@ -30,7 +30,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         this.companies = companies;
         this.mContext = context;
         this.companyClickListener = companyClickListener;
-        selectedItem = -1;
+        selectedItem = 0;
     }
 
     @NonNull
@@ -47,12 +47,8 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
     }
 
     public void addAll(List<CompaniesResponse.Company> companies) {
+        this.companies.add(new CompaniesResponse.Company());
         this.companies.addAll(companies);
-        notifyDataSetChanged();
-    }
-
-    public void selected(int position) {
-        selectedItem = position;
         notifyDataSetChanged();
     }
 
@@ -82,14 +78,25 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                 itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_15dp));
                 itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.black));
             }
-
-            this.itemView.tvCompanyName.setText(company.getName());
-            // loading image company
-            Glide.with(mContext)
-                    .load(company.getImage())
-                    //  .placeholder(R.drawable.loading_spinner)
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(15)))
-                    .into(this.itemView.imgCompanyItemCompanyRv);
+            // companies from api
+            if (position != 0) {
+                this.itemView.tvCompanyName.setText(company.getName());
+                // loading image company
+                Glide.with(mContext)
+                        .load(company.getImage())
+                        //  .placeholder(R.drawable.loading_spinner)
+                        .apply(RequestOptions.bitmapTransform(new RoundedCorners(15)))
+                        .into(this.itemView.imgCompanyItemCompanyRv);
+            } else {
+                // ALL companies
+                this.itemView.tvCompanyName.setText(mContext.getString(R.string.all));
+                // loading image company
+                Glide.with(mContext)
+                        .load(ContextCompat.getDrawable(mContext, R.drawable.ic_all_company))
+                        //  .placeholder(R.drawable.loading_spinner)
+                        .apply(RequestOptions.bitmapTransform(new RoundedCorners(15)))
+                        .into(this.itemView.imgCompanyItemCompanyRv);
+            }
 
             // click listener when select company
             itemView.getRoot().setOnClickListener(v -> {
@@ -99,7 +106,9 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                     notifyDataSetChanged();
                     // add border on selected company
                     itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
-                    companyClickListener.onCompanySelected(position, company);
+                    if (position != 0)
+                        companyClickListener.onCompanySelected(position, company);
+                    else companyClickListener.onClickAllCoupons();
                 }
             });
         }
@@ -107,5 +116,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
 
     public interface CompanyClickListener {
         void onCompanySelected(int position, CompaniesResponse.Company company);
+
+        void onClickAllCoupons();
     }
 }

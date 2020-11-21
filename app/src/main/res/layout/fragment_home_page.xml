@@ -34,7 +34,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layoutDirection="ltr"
                     android:orientation="horizontal">
 
                     <include layout="@layout/shimmer_place_holder_company_layout" />
