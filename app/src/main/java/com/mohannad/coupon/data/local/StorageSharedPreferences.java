@@ -21,6 +21,7 @@ public class StorageSharedPreferences {
     private static String COUNTRY_ID_KEY = "country_id";
     private static String INSTAGRAM_KEY = "instagram";
     private static String TELEGRAM_KEY = "telegram";
+    private static String WHATS_UP_KEY = "whats_up";
     private static String SNAPCHAT_KEY = "snapchat";
     private static String TITLE_ADS_KEY = "title_ads";
     private static String LANG_KEY = "Language";
@@ -34,6 +35,7 @@ public class StorageSharedPreferences {
     private static final String COUNTRY_NAME = null;
     private static String INSTAGRAM = null;
     private static String TELEGRAM = null;
+    private static String WHATS_UP = null;
     private static String SNAPCHAT = null;
     private static String TITLE_ADS = null;
     private static final int COUNTRY_ID = -1;
@@ -126,6 +128,14 @@ public class StorageSharedPreferences {
 
     public String getIntstagram() {
         return getSharedPreferences().getString(INSTAGRAM_KEY, INSTAGRAM);
+    }
+
+    public void saveWhatsUp(String whatsUp) {
+        getPreferencesEditor().putString(WHATS_UP_KEY, whatsUp).commit();
+    }
+
+    public String getWhatsUp() {
+        return getSharedPreferences().getString(WHATS_UP_KEY, WHATS_UP);
     }
 
     public void saveTelegram(String telegram) {

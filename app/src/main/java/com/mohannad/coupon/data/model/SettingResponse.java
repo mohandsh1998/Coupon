@@ -23,6 +23,8 @@ public class SettingResponse {
         private String instagram;
         @SerializedName("telegram")
         private String telegram;
+        @SerializedName("whatsapp")
+        private String whatsapp;
         @SerializedName("snapchat")
         private String snapchat;
         @SerializedName("title_ads")
@@ -34,6 +36,10 @@ public class SettingResponse {
 
         public String getTelegram() {
             return telegram;
+        }
+
+        public String getWhatsapp() {
+            return whatsapp;
         }
 
         public String getSnapchat() {

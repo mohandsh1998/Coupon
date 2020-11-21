@@ -75,6 +75,7 @@ public class SplashViewModel extends BaseViewModel {
                                 sharedPreferences.saveIntstagram(response.getValue().getSetting().getInstagram());
                                 sharedPreferences.saveSnapChat(response.getValue().getSetting().getSnapchat());
                                 sharedPreferences.saveTelegram(response.getValue().getSetting().getTelegram());
+                                sharedPreferences.saveWhatsUp(response.getValue().getSetting().getWhatsapp());
                                 sharedPreferences.saveAdsTitle(response.getValue().getSetting().getTitleAds());
                             }
                         }

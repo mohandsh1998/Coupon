@@ -76,25 +76,13 @@ public class MoreFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(requireActivity()).get(MoreViewModel.class);
         binding.setMoreViewModel(mViewModel);
         binding.setLifecycleOwner(this);
-        binding.lyOpenInstagram.setOnClickListener(v -> {
-            openInstagram();
-        });
-        binding.lyOpenSnapchat.setOnClickListener(v -> {
-            openSnapChat();
-        });
-        binding.lyOpenWhatsUp.setOnClickListener(v -> {
-            // open what's up app
-        });
-        binding.lyOpenTelegram.setOnClickListener(v -> {
-            openTelegram();
-        });
-        binding.lyShareApp.setOnClickListener(v -> {
-            shareText("Hey check out my app \n Google play: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
-                    + "\n AppStore : " + "https://app.store");
-        });
-        binding.lyRegisterNow.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), LoginActivity.class));
-        });
+        binding.lyOpenInstagram.setOnClickListener(v -> openInstagram());
+        binding.lyOpenSnapchat.setOnClickListener(v -> openSnapChat());
+        binding.lyOpenWhatsUp.setOnClickListener(v -> openWhatsUp());
+        binding.lyOpenTelegram.setOnClickListener(v -> openTelegram());
+        binding.lyShareApp.setOnClickListener(v -> shareText("Hey check out my app \n Google play: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+                + "\n AppStore : " + "https://app.store"));
+        binding.lyRegisterNow.setOnClickListener(v -> startActivity(new Intent(requireContext(), LoginActivity.class)));
         binding.lyLogout.setOnClickListener(v -> {
             mViewModel.mSharedPreferences.logout();
             Intent intent = new Intent(requireContext(), SplashActivity.class);
@@ -106,18 +94,10 @@ public class MoreFragment extends BaseFragment {
 //            startActivity(new Intent(requireContext(), HelpActivity.class));
             startActivity(new Intent(requireContext(), ContactUsActivity.class));
         });
-        binding.lyContactUs.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), ContactUsActivity.class));
-        });
-        binding.lySettingApp.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), SettingActivity.class));
-        });
-        binding.lyUsedCoupon.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), UsedCouponActivity.class));
-        });
-        binding.lyChangePassword.setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
-        });
+        binding.lyContactUs.setOnClickListener(v -> startActivity(new Intent(requireContext(), ContactUsActivity.class)));
+        binding.lySettingApp.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingActivity.class)));
+        binding.lyUsedCoupon.setOnClickListener(v -> startActivity(new Intent(requireContext(), UsedCouponActivity.class)));
+        binding.lyChangePassword.setOnClickListener(v -> startActivity(new Intent(requireContext(), ChangePasswordActivity.class)));
         binding.lyPrivacyPolicy.setOnClickListener(v -> {
 //            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
             openBrowser(Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage());
@@ -162,7 +142,18 @@ public class MoreFragment extends BaseFragment {
             showDefaultDialog(binding.lyContainer, getString(R.string.telegram_not_installed));
         }
     }
-
+    private void openWhatsUp() {
+        final String appPackageName = "com.whatsapp";
+        final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
+        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=0597330079");
+        if (isAppInstalled) {
+            Intent myIntent = new Intent(Intent.ACTION_VIEW, uri);
+            myIntent.setPackage(appPackageName);
+            requireContext().startActivity(Intent.createChooser(myIntent, "Share with"));
+        } else {
+            showDefaultDialog(binding.lyContainer, getString(R.string.telegram_not_installed));
+        }
+    }
     /**
      * Indicates whether the specified app ins installed and can used as an intent. This
      * method checks the package manager for installed packages that can
