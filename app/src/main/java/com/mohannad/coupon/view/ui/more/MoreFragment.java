@@ -94,9 +94,15 @@ public class MoreFragment extends BaseFragment {
 //            startActivity(new Intent(requireContext(), HelpActivity.class));
             startActivity(new Intent(requireContext(), ContactUsActivity.class));
         });
-        binding.lyContactUs.setOnClickListener(v -> startActivity(new Intent(requireContext(), ContactUsActivity.class)));
-        binding.lySettingApp.setOnClickListener(v -> startActivity(new Intent(requireContext(), SettingActivity.class)));
-        binding.lyUsedCoupon.setOnClickListener(v -> startActivity(new Intent(requireContext(), UsedCouponActivity.class)));
+        binding.lyContactUs.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), ContactUsActivity.class));
+        });
+        binding.lySettingApp.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), SettingActivity.class));
+        });
+        binding.lyUsedCoupon.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), UsedCouponActivity.class));
+        });
         binding.lyChangePassword.setOnClickListener(v -> startActivity(new Intent(requireContext(), ChangePasswordActivity.class)));
         binding.lyPrivacyPolicy.setOnClickListener(v -> {
 //            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
@@ -145,7 +151,7 @@ public class MoreFragment extends BaseFragment {
     private void openWhatsUp() {
         final String appPackageName = "com.whatsapp";
         final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
-        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=0597330079");
+        Uri uri = Uri.parse(sharedPreferences.getWhatsUp());
         if (isAppInstalled) {
             Intent myIntent = new Intent(Intent.ACTION_VIEW, uri);
             myIntent.setPackage(appPackageName);
