@@ -179,8 +179,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 this.itemView.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
                 // change text to code coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(product.getCouponCode());
+                this.itemView.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
+                this.itemView.tvCopyCouponItemProductRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
                 // change background
-                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
+                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemView.tvCopyCouponItemProductRv.startAnimation(shake);
@@ -188,6 +190,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     startAnimation = false;
                 }
             } else {
+                this.itemView.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
                 this.itemView.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                 // change code coupon to text copy coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));

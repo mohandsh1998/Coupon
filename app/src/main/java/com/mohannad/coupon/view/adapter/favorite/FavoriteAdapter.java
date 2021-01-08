@@ -281,9 +281,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             if (position == copyItem) {
                 // change text to code coupon
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(favorite.getCouponCode());
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
                 // change background
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     itemCouponRvBinding.tvCopyCouponItemCouponRv.startAnimation(shake);
@@ -293,6 +294,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             } else {
                 // change code coupon to text copy coupon
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
@@ -432,8 +434,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
                 // change text to code coupon
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(favorite.getCouponCode());
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
                 // change background
-                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_pink_raduis_9dp));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemProductRvBinding.tvCopyCouponItemProductRv.startAnimation(shake);
@@ -442,6 +446,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             } else {
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                this.itemProductRvBinding.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
                 // change code coupon to text copy coupon
                 this.itemProductRvBinding.tvCopyCouponItemProductRv.setText(mContext.getString(R.string.get_code));
                 // change background

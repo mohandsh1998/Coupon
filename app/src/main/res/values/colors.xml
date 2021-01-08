@@ -19,11 +19,12 @@
     <color name="gray5">#A5A5A5</color>
     <color name="gray6">#E5E5E5</color>
     <color name="gray7">#F9F9F7</color>
+    <color name="gray8">#979797</color>
     <color name="green_light">#E4F3E5</color>
     <color name="black">#242424</color>
     <color name="black0">#3B3B3B</color>
     <color name="red">#FF0000</color>
-    <color name="green">#78EA00</color>
+    <color name="green">#00B850</color>
     <color name="yellow">#FDD835</color>
     <color name="yellow1">#FF9900</color>
     <color name="blue_light">#F0F3FC</color>
