@@ -6,58 +6,32 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
-import com.mohannad.coupon.databinding.FragmentAddCouponBinding;
+import com.mohannad.coupon.databinding.ActivityAddCouponBinding;
 import com.mohannad.coupon.databinding.SpinnerBottomSheetDialogBinding;
-import com.mohannad.coupon.utils.BaseFragment;
+import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.view.adapter.spinner.SpinnerBottomSheetAdapter;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class AddCouponFragment extends BaseFragment {
+public class AddCouponActivity extends BaseActivity {
     private Context mContext;
-    private FragmentAddCouponBinding addCouponBinding;
+    private ActivityAddCouponBinding addCouponBinding;
     private AddCouponViewModel mViewModel;
-    private ICommunicateMainActivity mListener;
 
     @Override
-    public void onAttach(@NotNull Context context) {
-        super.onAttach(context);
-        mContext = context;
-        if (context instanceof ICommunicateMainActivity) {
-            mListener = (ICommunicateMainActivity) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement ICommunicateHomeActivity");
-        }
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        addCouponBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_coupon, container, false);
-        return addCouponBinding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mListener.onInteractionAddCouponFragment();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle(R.string.title_add_coupon);
+        addCouponBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_coupon);
         mViewModel = new ViewModelProvider(this).get(AddCouponViewModel.class);
         addCouponBinding.setAddCouponViewModel(mViewModel);
         addCouponBinding.setLifecycleOwner(this);
@@ -65,16 +39,16 @@ public class AddCouponFragment extends BaseFragment {
         SpinnerBottomSheetAdapter<CountryResponse.Country> adapterCountries = new SpinnerBottomSheetAdapter<>(new ArrayList<>(), (SpinnerBottomSheetAdapter.ItemClickListener<CountryResponse.Country>) (position, item) -> {
             // action listener when change item in dropdown
             // load img flag
-            loadImage(getContext(), item.getFlag(), addCouponBinding.imgCountries);
+            loadImage(this, item.getFlag(), addCouponBinding.imgCountries);
             // item selected by user from dropdown
             mViewModel.country(item.getId());
         });
 
-        mViewModel.countries.observe(requireActivity(), countries -> {
+        mViewModel.countries.observe(this, countries -> {
             adapterCountries.addAll(countries);
             if (countries.size() > 0) {
                 // load the first img flag when get from server
-                loadImage(getContext(), countries.get(0).getFlag(), addCouponBinding.imgCountries);
+                loadImage(this, countries.get(0).getFlag(), addCouponBinding.imgCountries);
                 mViewModel.country(countries.get(0).getId());
             }
         });
@@ -102,7 +76,7 @@ public class AddCouponFragment extends BaseFragment {
             showFilterSheet(adapterCategories, getString(R.string.choose_category));
         });
 
-        mViewModel.categories.observe(requireActivity(), categoriesList -> {
+        mViewModel.categories.observe(this, categoriesList -> {
             adapterCategories.addAll(categoriesList);
             if (categoriesList.size() > 0) {
                 // display the first category name in editText when get from server
@@ -130,7 +104,7 @@ public class AddCouponFragment extends BaseFragment {
             showFilterSheet(adapterCompanies, getString(R.string.choose_company));
         });
 
-        mViewModel.companies.observe(requireActivity(), companyList -> {
+        mViewModel.companies.observe(this, companyList -> {
             adapterCompanies.addAll(companyList);
             if (companyList.size() > 0) {
                 // display the first company name in editText when get from server
@@ -140,15 +114,16 @@ public class AddCouponFragment extends BaseFragment {
         });
 
         // show alert dialog when send coupon
-        mViewModel.toastMessageSuccess.observe(requireActivity(), this::showDialog);
-        mViewModel.toastMessageFailed.observe(requireActivity(), msg -> {
+        mViewModel.toastMessageSuccess.observe(this, this::showDialog);
+        mViewModel.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(addCouponBinding.lyContainer, msg);
         });
     }
 
+
     private <T> void showFilterSheet(SpinnerBottomSheetAdapter<T> adapterItems, String title) {
-        BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme);
-        SpinnerBottomSheetDialogBinding sheetView = SpinnerBottomSheetDialogBinding.inflate(LayoutInflater.from(requireContext()));
+        BottomSheetDialog bottomSheet = new BottomSheetDialog(this, R.style.AppBottomSheetDialogTheme);
+        SpinnerBottomSheetDialogBinding sheetView = SpinnerBottomSheetDialogBinding.inflate(LayoutInflater.from(this));
         bottomSheet.setContentView(sheetView.getRoot());
         sheetView.setLifecycleOwner(this);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(((View) sheetView.getRoot().getParent()));

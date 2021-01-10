@@ -23,11 +23,6 @@
         android:label="@string/title_deal"
         tools:layout="@layout/fragment_deal" />
 
-    <fragment
-        android:id="@+id/navigation_add_coupon"
-        android:name="com.mohannad.coupon.view.ui.coupon.AddCouponFragment"
-        android:label="@string/title_add_coupon"
-        tools:layout="@layout/fragment_add_coupon" />
 
     <fragment
         android:id="@+id/navigation_more"

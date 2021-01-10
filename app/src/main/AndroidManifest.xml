@@ -140,6 +140,15 @@
         <meta-data
             android:name="android.app.searchable"
             android:resource="@xml/searchable" />
+
+        <activity
+            android:name=".view.ui.coupon.AddCouponActivity"
+            android:label="@string/title_add_coupon"
+            android:parentActivityName=".view.ui.coupon.AddCouponActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.ui.coupon.AddCouponActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -3,7 +3,6 @@ package com.mohannad.coupon.view.ui.more;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +11,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,13 +25,11 @@ import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordActivity;
 import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
-import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
-import com.mohannad.coupon.view.ui.help.HelpActivity;
+import com.mohannad.coupon.view.ui.coupon.AddCouponActivity;
 import com.mohannad.coupon.view.ui.setting.SettingActivity;
 import com.mohannad.coupon.view.ui.splash.SplashActivity;
 import com.mohannad.coupon.view.ui.usedcoupon.UsedCouponActivity;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -76,7 +72,6 @@ public class MoreFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(requireActivity()).get(MoreViewModel.class);
         binding.setMoreViewModel(mViewModel);
         binding.setLifecycleOwner(this);
-        binding.lyOpenInstagram.setOnClickListener(v -> openInstagram());
         binding.lyOpenSnapchat.setOnClickListener(v -> openSnapChat());
         binding.lyOpenWhatsUp.setOnClickListener(v -> openWhatsUp());
         binding.lyOpenTelegram.setOnClickListener(v -> openTelegram());
@@ -89,6 +84,9 @@ public class MoreFragment extends BaseFragment {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             requireActivity().finish();
+        });
+        binding.lyAddCoupon.setOnClickListener(v -> {
+            startActivity(new Intent(requireContext(), AddCouponActivity.class));
         });
         binding.lyHelp.setOnClickListener(v -> {
 //            startActivity(new Intent(requireContext(), HelpActivity.class));

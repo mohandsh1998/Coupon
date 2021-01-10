@@ -14,10 +14,7 @@
         android:id="@+id/navigation_deal"
         android:icon="@drawable/ic_deal"
         android:title="@string/title_deal" />
-    <item
-        android:id="@+id/navigation_add_coupon"
-        android:icon="@drawable/ic_add_coupon"
-        android:title="@string/title_add_coupon" />
+
     <item
         android:id="@+id/navigation_more"
         android:icon="@drawable/ic_more"

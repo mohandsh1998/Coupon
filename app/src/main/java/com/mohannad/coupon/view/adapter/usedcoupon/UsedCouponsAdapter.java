@@ -205,6 +205,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 //write your code here to be executed after 1 second
                 itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
             }, 800);
+            itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
             // check if position == coupon has been answer yes -> will show animation thank u
             if (thanksAnimItem == position) {
                 // show with animation thanks layout from bottom to top
@@ -219,8 +220,12 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         thanksAnimItem = -1;
-                        // when the first animation end -> start the second animation from center to top to hide thanks layout
-                        itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                        // timer 1 sec for anim
+                        Handler handler = new Handler();
+                        handler.postDelayed(() -> {
+                            // when the first animation end -> start the second animation from center to top to hide thanks layout
+                            itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                        }, 1000);
                     }
 
                     @Override

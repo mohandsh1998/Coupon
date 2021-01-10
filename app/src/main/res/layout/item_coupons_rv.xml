@@ -15,7 +15,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/img_share_item_coupon_rv"
@@ -315,7 +316,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
                 android:background="@drawable/shape_solid_pink_radius_9dp"
                 android:gravity="center"
                 android:paddingTop="8dp"
@@ -344,27 +344,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_correct" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/thank_you"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="27sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/thank_you_for_choosing_us"
-                    android:textColor="@color/gray5"
-                    android:textSize="15sp" />
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/thanks_you" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.Barrier

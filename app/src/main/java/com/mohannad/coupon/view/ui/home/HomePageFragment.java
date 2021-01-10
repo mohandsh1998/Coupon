@@ -212,6 +212,11 @@ public class HomePageFragment extends BaseFragment {
             }
 
             @Override
+            public void bestSelling(int position, Coupon coupon) {
+                openBrowser(coupon.getBestSelling());
+            }
+
+            @Override
             public void shareCoupon(int position, Coupon coupon) {
                 shareText("Title : " + coupon.getCompanyName() + "\n Description : " + coupon.getDesc());
             }

@@ -281,6 +281,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 //write your code here to be executed after 1 second
                 itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
             }, 800);
+            itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
             // check if position == coupon has been answer yes -> will show animation thank u
             if (thanksAnimItem == position) {
                 // show with animation thanks layout from bottom to top
@@ -295,8 +296,12 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         thanksAnimItem = -1;
-                        // when the first animation end -> start the second animation from center to top to hide thanks layout
-                        itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                        // timer 1 sec for anim
+                        Handler handler = new Handler();
+                        handler.postDelayed(() -> {
+                            // when the first animation end -> start the second animation from center to top to hide thanks layout
+                            itemCouponRvBinding.lyThanks.startAnimation(centerTop);
+                        }, 1000);
                     }
 
                     @Override
@@ -344,6 +349,16 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
+            }
+
+            if (!TextUtils.isEmpty(coupon.getBestSellingTitle())) {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.VISIBLE);
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setText(coupon.getBestSellingTitle());
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setOnClickListener(v -> {
+                    couponClickListener.bestSelling(position, coupon);
+                });
+            } else {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.GONE);
             }
         }
 
@@ -467,6 +482,9 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void answerQuestion(int position, Coupon coupon, boolean answer);
 
         void openProductActivity(int position, Coupon coupon);
+
+        void bestSelling(int position, Coupon coupon);
+
     }
 
 }

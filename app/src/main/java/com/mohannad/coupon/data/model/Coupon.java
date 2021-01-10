@@ -34,6 +34,11 @@ public class Coupon {
     private String adsType;
     @SerializedName("in_favorite")
     private boolean inFavorite;
+    @SerializedName("best_selling")
+    private String bestSelling;
+    @SerializedName("best_selling_title")
+    private String bestSellingTitle;
+
 
     public int getId() {
         return id;
@@ -93,6 +98,14 @@ public class Coupon {
 
     public boolean isInFavorite() {
         return inFavorite;
+    }
+
+    public String getBestSelling() {
+        return bestSelling;
+    }
+
+    public String getBestSellingTitle() {
+        return bestSellingTitle;
     }
 
     public void setInFavorite(boolean inFavorite) {

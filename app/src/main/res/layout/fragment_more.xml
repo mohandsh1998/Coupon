@@ -75,41 +75,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ly_open_instagram"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_pink_light_radius_9dp"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_instagram" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:text="@string/follow_us_on_instagram"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/ic_arrow_12dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
                         android:id="@+id/ly_open_snapchat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -328,6 +293,42 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:text="@string/setting_app"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_arrow_12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ly_add_coupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_pink_light_radius_9dp"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_add_coupon"
+                            app:tint="@color/pink" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/title_add_coupon"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
