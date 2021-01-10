@@ -18,6 +18,11 @@
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
+        android:id="@+id/navigation_trend"
+        android:name="com.mohannad.coupon.view.ui.trend.TrendFragment"
+        android:label="TrendFragment" />
+
+    <fragment
         android:id="@+id/navigation_deal"
         android:name="com.mohannad.coupon.view.ui.deal.DealFragment"
         android:label="@string/title_deal"
@@ -29,4 +34,5 @@
         android:name="com.mohannad.coupon.view.ui.more.MoreFragment"
         android:label="@string/title_more"
         tools:layout="@layout/fragment_more" />
+
 </navigation>

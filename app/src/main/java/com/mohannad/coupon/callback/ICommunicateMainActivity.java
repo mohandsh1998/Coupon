@@ -5,6 +5,8 @@ public interface ICommunicateMainActivity {
 
     void onInteractionFavoriteFragment();
 
+    void onInteractionTrendFragment();
+
     void onInteractionDealFragment();
 
     void onInteractionMoreFragment();

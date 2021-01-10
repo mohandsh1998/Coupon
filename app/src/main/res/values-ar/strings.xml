@@ -115,6 +115,7 @@
     <string name="contact_us_on_what_s_up">تواصل معنا عبر الواتساب</string>
     <string name="thank_you_for_choosing_us">شكرا لإختيارنا</string>
     <string name="best_selling">أفضل مبيعات</string>
+    <string name="title_trend">ترند</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

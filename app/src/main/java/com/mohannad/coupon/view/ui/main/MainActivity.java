@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_deal
+                R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_trend, R.id.navigation_deal
                 , R.id.navigation_more)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -71,6 +71,14 @@ public class MainActivity extends BaseActivity implements ICommunicateMainActivi
         binding.imgFilter.setVisibility(View.GONE);
         binding.tvTitleToolbar.setVisibility(View.VISIBLE);
         binding.tvTitleToolbar.setText(getString(R.string.title_favorite));
+    }
+
+    @Override
+    public void onInteractionTrendFragment() {
+        changeToolbarAndStatusBar(R.color.pink, binding.toolbar);
+        binding.imgFilter.setVisibility(View.GONE);
+        binding.tvTitleToolbar.setVisibility(View.VISIBLE);
+        binding.tvTitleToolbar.setText(getString(R.string.title_trend));
     }
 
     @Override

@@ -10,6 +10,12 @@
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_star"
         android:title="@string/title_favorite" />
+
+    <item
+        android:id="@+id/navigation_trend"
+        android:icon="@drawable/ic_trend"
+        android:title="@string/title_trend" />
+
     <item
         android:id="@+id/navigation_deal"
         android:icon="@drawable/ic_deal"
