@@ -31,7 +31,8 @@ public class HomeRepository {
     }
 
     // this method will using to get categories tabs from SERVER SIDE
-    public void getCategoriesTabs(String lang, int idCountry, ResponseServer<LiveData<CategoriesResponse>> responseServer) {
+    public void getCategoriesTabs(String lang, int idCountry,
+                                  ResponseServer<LiveData<CategoriesResponse>> responseServer) {
         MutableLiveData<CategoriesResponse> tabsCategories = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getCategories(lang, idCountry).enqueue(new Callback<CategoriesResponse>() {

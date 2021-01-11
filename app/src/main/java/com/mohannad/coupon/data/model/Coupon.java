@@ -38,7 +38,11 @@ public class Coupon {
     private String bestSelling;
     @SerializedName("best_selling_title")
     private String bestSellingTitle;
-
+    // trend
+    @SerializedName("store_id")
+    private int categoryId;
+    @SerializedName("company_id")
+    private int companyId;
 
     public int getId() {
         return id;
@@ -106,6 +110,14 @@ public class Coupon {
 
     public String getBestSellingTitle() {
         return bestSellingTitle;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public int getCompanyId() {
+        return companyId;
     }
 
     public void setInFavorite(boolean inFavorite) {

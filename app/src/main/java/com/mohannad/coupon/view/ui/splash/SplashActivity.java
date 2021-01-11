@@ -5,10 +5,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
@@ -23,11 +25,13 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         ActivitySplashBinding settingBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         changeToolbarAndStatusBar(R.color.gray7, null);
         mStorageSharedPreferences = new StorageSharedPreferences(this);
         SplashViewModel model = new ViewModelProvider(this).get(SplashViewModel.class);
-        model.getSetting();
         model.success.observe(this, success -> {
             // Checking for first time launch
             if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
@@ -37,16 +41,8 @@ public class SplashActivity extends BaseActivity {
             }
         });
 
-//        final Handler handler = new Handler();
-//        handler.postDelayed(() -> {
-//            // Checking for first time launch
-//            if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
-//                launchSplashActivity();
-//                finish();
-//            } else {
-//                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
-//            }
-//        }, 2000);
+        final Handler handler = new Handler();
+        handler.postDelayed(model::getSetting, 2500);
 
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(settingBinding.lyContainer, msg);

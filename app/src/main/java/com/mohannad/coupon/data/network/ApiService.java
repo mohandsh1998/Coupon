@@ -14,6 +14,7 @@ import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.ProductsResponse;
 import com.mohannad.coupon.data.model.SearchResponse;
 import com.mohannad.coupon.data.model.SettingResponse;
+import com.mohannad.coupon.data.model.TrendResponse;
 import com.mohannad.coupon.data.model.UsedCouponResponse;
 
 import retrofit2.Call;
@@ -85,6 +86,11 @@ public interface ApiService {
                                                    @Path("idCategory") int idCategory,
                                                    @Query("page") int page);
 
+    // all coupons for category in home page
+    @GET("/api/getTrends")
+    Call<TrendResponse> getTrends(@Header("lang") String lang,
+                                  @Header("device-token") String deviceToken);
+
     // all coupons for company in home page
     @GET("/api/company/{idCompany}/coupon/")
     Call<CouponHomeResponse> getAllCouponsCompany(@Header("lang") String lang,
@@ -104,9 +110,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/api/coupon/{idCoupon}/review")
     Call<MessageResponse> reviewCoupon(@Header("lang") String lang,
-                                          @Header("Authorization") String token,
-                                          @Path("idCoupon") int idCoupon,
-                                          @Field("is_good") int isGood);
+                                       @Header("Authorization") String token,
+                                       @Path("idCoupon") int idCoupon,
+                                       @Field("is_good") int isGood);
 
     // add or remove coupon to favorite
     @POST("/api/favorite/coupon/{idCoupon}")
