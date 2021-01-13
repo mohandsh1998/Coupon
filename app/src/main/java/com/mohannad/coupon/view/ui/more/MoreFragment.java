@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 
 import com.mohannad.coupon.BuildConfig;
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.databinding.FragmentMoreBinding;
 import com.mohannad.coupon.utils.BaseFragment;
@@ -39,29 +38,11 @@ public class MoreFragment extends BaseFragment {
     private FragmentMoreBinding binding;
     private StorageSharedPreferences sharedPreferences;
 
-    private ICommunicateMainActivity mListener;
-
-    @Override
-    public void onAttach(@NotNull Context context) {
-        super.onAttach(context);
-        if (context instanceof ICommunicateMainActivity) {
-            mListener = (ICommunicateMainActivity) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement ICommunicateHomeActivity");
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mListener.onInteractionMoreFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_more, container, false);
+        changeStatusBar(R.color.pink);
         return binding.getRoot();
     }
 

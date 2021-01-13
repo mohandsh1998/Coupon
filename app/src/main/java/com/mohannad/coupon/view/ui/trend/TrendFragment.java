@@ -9,21 +9,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.databinding.FragmentFavoriteBinding;
 import com.mohannad.coupon.databinding.TrendFragmentBinding;
 import com.mohannad.coupon.utils.BaseFragment;
-import com.mohannad.coupon.view.adapter.help.HelpAdapter;
 import com.mohannad.coupon.view.adapter.home.TrendAdapter;
-import com.mohannad.coupon.view.ui.favorite.FavoriteViewModel;
 import com.mohannad.coupon.view.ui.product.ProductsActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,29 +29,13 @@ public class TrendFragment extends BaseFragment {
 
     private TrendViewModel mViewModel;
     private TrendFragmentBinding trendFragmentBinding;
-    private ICommunicateMainActivity mListener;
 
-    @Override
-    public void onAttach(@NotNull Context context) {
-        super.onAttach(context);
-        if (context instanceof ICommunicateMainActivity) {
-            mListener = (ICommunicateMainActivity) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement ICommunicateHomeActivity");
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mListener.onInteractionTrendFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         trendFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.trend_fragment, container, false);
+        changeStatusBar(R.color.pink);
         return trendFragmentBinding.getRoot();
     }
 

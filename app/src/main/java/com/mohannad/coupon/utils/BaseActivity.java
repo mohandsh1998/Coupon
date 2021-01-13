@@ -118,9 +118,11 @@ public class BaseActivity extends AppCompatActivity {
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {
         super.applyOverrideConfiguration(getBaseContext().getResources().getConfiguration());
     }
-    public void openBrowser(String url){
+
+    public void openBrowser(String url) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
+
     public void changeToolbarAndStatusBar(@ColorRes int color, Toolbar toolbar) {
         if (toolbar != null)
             toolbar.setBackgroundColor(getResources().getColor(color));

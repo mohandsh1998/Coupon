@@ -6,30 +6,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.callback.ICommunicateMainActivity;
 import com.mohannad.coupon.data.model.FavoriteResponse;
 import com.mohannad.coupon.databinding.FragmentFavoriteBinding;
 import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.view.adapter.favorite.FavoriteAdapter;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
-import com.mohannad.coupon.view.ui.deal.DealViewModel;
-import com.mohannad.coupon.view.ui.home.HomeViewModel;
 import com.mohannad.coupon.view.ui.image.ImageActivity;
-import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.video.VideoActivity;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,28 +29,12 @@ import java.util.ArrayList;
 public class FavoriteFragment extends BaseFragment {
 
     private FragmentFavoriteBinding fragmentFavoriteBinding;
-    private ICommunicateMainActivity mListener;
 
-    @Override
-    public void onAttach(@NotNull Context context) {
-        super.onAttach(context);
-        if (context instanceof ICommunicateMainActivity) {
-            mListener = (ICommunicateMainActivity) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement ICommunicateHomeActivity");
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mListener.onInteractionFavoriteFragment();
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         fragmentFavoriteBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false);
+        changeStatusBar(R.color.pink);
         return fragmentFavoriteBinding.getRoot();
     }
 

@@ -18,7 +18,26 @@
         android:layout_height="match_parent"
         android:background="@color/gray7"
         tools:context=".view.ui.home.HomeFragment">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:collapseIcon="@drawable/ic_back_arrow"
+            android:background="@color/gray7"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+            <ImageView
+                android:id="@+id/img_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:src="@drawable/ic_filter" />
+
+        </androidx.appcompat.widget.Toolbar>
         <TextView
             android:id="@+id/top_text"
             android:layout_width="wrap_content"
@@ -42,13 +61,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="2dp"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/shape_light_blue_15dp"
             android:visibility="@{homeViewModel.dataLoadingTabs? View.GONE:View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <com.mohannad.coupon.utils.CustomTabLayout
                 android:id="@+id/tabsCategories"
@@ -68,7 +88,7 @@
             android:visibility="@{homeViewModel.dataLoadingTabs? View.VISIBLE:View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <LinearLayout
                 android:layout_width="match_parent"
