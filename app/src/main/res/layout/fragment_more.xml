@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray7"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -42,11 +43,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/title_more"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </androidx.appcompat.widget.Toolbar>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -277,6 +280,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/more_setting"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

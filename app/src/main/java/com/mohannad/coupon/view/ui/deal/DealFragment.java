@@ -33,10 +33,14 @@ public class DealFragment extends BaseFragment {
     private boolean mIsLastPage;
     private boolean mIsLoading;
 
+    public static DealFragment newInstance() {
+        DealFragment fragment = new DealFragment();
+        return fragment;
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_deal, container, false);
-        changeStatusBar(R.color.pink);
         return binding.getRoot();
     }
 

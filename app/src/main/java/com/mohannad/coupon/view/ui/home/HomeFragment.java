@@ -46,11 +46,14 @@ public class HomeFragment extends BaseFragment {
     private int idCompanyFilter = -1;
     private String filterSpecific;
 
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        changeStatusBar(R.color.gray7);
         return binding.getRoot();
     }
 

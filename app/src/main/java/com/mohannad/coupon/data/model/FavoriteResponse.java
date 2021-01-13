@@ -53,6 +53,10 @@ public class FavoriteResponse {
         private int numberOrders;
         @SerializedName("type")
         private String type; // coupon or product
+        @SerializedName("best_selling")
+        private String bestSelling;
+        @SerializedName("best_selling_title")
+        private String bestSellingTitle;
 
         public int getId() {
             return id;
@@ -120,6 +124,14 @@ public class FavoriteResponse {
 
         public String getType() {
             return type;
+        }
+
+        public String getBestSellingTitle() {
+            return bestSellingTitle;
+        }
+
+        public String getBestSelling() {
+            return bestSelling;
         }
     }
 }

@@ -304,6 +304,15 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
             }
+            if (!TextUtils.isEmpty(favorite.getBestSellingTitle())) {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.VISIBLE);
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setText(favorite.getBestSellingTitle());
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setOnClickListener(v -> {
+                    favoriteClickListener.bestSelling(position, favorite);
+                });
+            } else {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.GONE);
+            }
         }
 
         // show or hide question views
@@ -478,5 +487,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void onClickItem(FavoriteResponse.Favorite favorite);
 
         void answerQuestion(int position, FavoriteResponse.Favorite favorite, boolean b);
+
+        void bestSelling(int position, FavoriteResponse.Favorite favorite);
     }
 }

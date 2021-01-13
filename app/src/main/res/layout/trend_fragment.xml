@@ -33,6 +33,7 @@
                 android:id="@+id/tv_title_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAllCaps="true"
                 android:layout_gravity="center"
                 android:text="@string/title_trend"
                 android:textColor="@color/white"

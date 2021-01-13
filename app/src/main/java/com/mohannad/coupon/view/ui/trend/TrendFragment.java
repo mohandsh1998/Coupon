@@ -30,12 +30,15 @@ public class TrendFragment extends BaseFragment {
     private TrendViewModel mViewModel;
     private TrendFragmentBinding trendFragmentBinding;
 
+    public static TrendFragment newInstance() {
+        TrendFragment fragment = new TrendFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         trendFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.trend_fragment, container, false);
-        changeStatusBar(R.color.pink);
         return trendFragmentBinding.getRoot();
     }
 
@@ -59,7 +62,7 @@ public class TrendFragment extends BaseFragment {
                     // this will send type and id category to products activity and get the products for category
                     intent.putExtra("type", "category");
                     intent.putExtra("idCategory", trend.getCategoryId());
-                }else {
+                } else {
                     // this will send type and id company to products activity and get the products for company
                     intent.putExtra("type", "company");
                     intent.putExtra("idCompany", trend.getCompanyId());

@@ -30,11 +30,14 @@ public class FavoriteFragment extends BaseFragment {
 
     private FragmentFavoriteBinding fragmentFavoriteBinding;
 
+    public static FavoriteFragment newInstance() {
+        FavoriteFragment fragment = new FavoriteFragment();
+        return fragment;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         fragmentFavoriteBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false);
-        changeStatusBar(R.color.pink);
         return fragmentFavoriteBinding.getRoot();
     }
 
@@ -103,6 +106,11 @@ public class FavoriteFragment extends BaseFragment {
                         if (!answer) {
                             startActivity(new Intent(requireContext(), ContactUsActivity.class));
                         }
+                    }
+
+                    @Override
+                    public void bestSelling(int position, FavoriteResponse.Favorite favorite) {
+                        openBrowser(favorite.getBestSelling());
                     }
                 });
 

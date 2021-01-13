@@ -38,11 +38,15 @@ public class MoreFragment extends BaseFragment {
     private FragmentMoreBinding binding;
     private StorageSharedPreferences sharedPreferences;
 
+    public static MoreFragment newInstance() {
+        MoreFragment fragment = new MoreFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_more, container, false);
-        changeStatusBar(R.color.pink);
         return binding.getRoot();
     }
 
@@ -127,6 +131,7 @@ public class MoreFragment extends BaseFragment {
             showDefaultDialog(binding.lyContainer, getString(R.string.telegram_not_installed));
         }
     }
+
     private void openWhatsUp() {
         final String appPackageName = "com.whatsapp";
         final boolean isAppInstalled = isAppAvailable(requireActivity().getApplicationContext(), appPackageName);
@@ -139,6 +144,7 @@ public class MoreFragment extends BaseFragment {
             showDefaultDialog(binding.lyContainer, getString(R.string.telegram_not_installed));
         }
     }
+
     /**
      * Indicates whether the specified app ins installed and can used as an intent. This
      * method checks the package manager for installed packages that can

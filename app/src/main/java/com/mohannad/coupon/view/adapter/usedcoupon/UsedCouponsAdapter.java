@@ -2,6 +2,7 @@ package com.mohannad.coupon.view.adapter.usedcoupon;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -275,6 +276,16 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
             }
+
+            if (!TextUtils.isEmpty(coupon.getBestSellingTitle())) {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.VISIBLE);
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setText(coupon.getBestSellingTitle());
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setOnClickListener(v -> {
+                    couponClickListener.bestSelling(position, coupon);
+                });
+            } else {
+                itemCouponRvBinding.tvBestSellingItemCouponRv.setVisibility(View.GONE);
+            }
         }
 
         // show or hide question views
@@ -327,6 +338,8 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void shopNowCoupon(int position, Coupon coupon);
 
         void answerQuestion(int position, Coupon coupon, boolean answer);
+
+        void bestSelling(int position, Coupon coupon);
     }
 
 }

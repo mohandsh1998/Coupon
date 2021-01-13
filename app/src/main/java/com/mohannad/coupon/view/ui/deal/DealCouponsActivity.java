@@ -67,6 +67,11 @@ public class DealCouponsActivity extends BaseActivity {
                 }
             }
 
+            @Override
+            public void bestSelling(int position, Coupon coupon) {
+                openBrowser(coupon.getBestSellingTitle());
+            }
+
 
             @Override
             public void shareCoupon(int position, Coupon coupon) {

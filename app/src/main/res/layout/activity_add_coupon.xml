@@ -291,7 +291,7 @@
                 android:onClick="@{(view) -> addCouponViewModel.onClick()}"
                 android:padding="16dp"
                 android:text="@string/send"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"

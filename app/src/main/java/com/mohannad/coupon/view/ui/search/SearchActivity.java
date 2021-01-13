@@ -97,6 +97,11 @@ public class SearchActivity extends BaseActivity {
                 }
             }
 
+            @Override
+            public void bestSelling(int position, Coupon coupon) {
+                openBrowser(coupon.getBestSelling());
+            }
+
 
             @Override
             public void shareCoupon(int position, Coupon coupon) {
