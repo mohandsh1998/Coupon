@@ -38,30 +38,16 @@ public class DealAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.dealClickListener = dealClickListener;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return VIEW_TYPE_ADS;
-        } else {
-            return VIEW_TYPE_DEAL;
-        }
-    }
-
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_ADS) {
-            return new AdsDealViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                    R.layout.item_ads_deal_rv, parent, false));
-        } else {
-            return new DealViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                    R.layout.item_deal_rv, parent, false));
-        }
+        return new DealViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_deal_rv, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        holder.onBind(position - 1);
+        holder.onBind(position);
     }
 
     public void addAll(List<DealResponse.DealItem> dealItems) {
@@ -75,7 +61,7 @@ public class DealAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        return dealItems == null ? 0 : dealItems.size() + 1;
+        return dealItems == null ? 0 : dealItems.size();
     }
 
     class DealViewHolder extends BaseViewHolder {
