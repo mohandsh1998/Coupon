@@ -259,7 +259,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {

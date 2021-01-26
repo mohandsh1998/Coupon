@@ -333,7 +333,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 // change text to code coupon
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
                 itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {

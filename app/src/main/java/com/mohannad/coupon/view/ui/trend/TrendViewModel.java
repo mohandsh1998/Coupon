@@ -23,6 +23,7 @@ public class TrendViewModel extends BaseViewModel {
     TrendRepository trendRepository;
     MutableLiveData<List<Coupon>> trendsLiveData = new MutableLiveData<>();
     StorageSharedPreferences sharedPreferences;
+
     public TrendViewModel(@NonNull Application application) {
         super(application);
         trendRepository = TrendRepository.newInstance();
@@ -32,7 +33,7 @@ public class TrendViewModel extends BaseViewModel {
 
     private void getTrends() {
         dataLoading.setValue(true);
-        trendRepository.getTrends(sharedPreferences.getLanguage(), sharedPreferences.getTokenFCM(), new ResponseServer<LiveData<TrendResponse>>() {
+        trendRepository.getTrends(sharedPreferences.getLanguage(), sharedPreferences.getTokenFCM(), sharedPreferences.getCountryID(), new ResponseServer<LiveData<TrendResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<TrendResponse> response) {
                 dataLoading.setValue(false);

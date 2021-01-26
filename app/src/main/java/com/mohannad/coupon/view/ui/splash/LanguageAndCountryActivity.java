@@ -102,21 +102,33 @@ public class LanguageAndCountryActivity extends BaseActivity {
         });
 
         languageAndCountryBinding.btnConfirm.setOnClickListener(v -> {
-            if (languageAndCountryBinding.cbTermsAndConditions.isChecked()) {
-                sharedPreferences.saveLanguage(language);
-                sharedPreferences.saveCountryID(idCountry);
-                sharedPreferences.saveCountryName(nameCountry);
-                sharedPreferences.saveStatusNotification(1);
-                // check if device token empty -> get device token then add token on server
-                // if exist add device token on server
-                if (TextUtils.isEmpty(sharedPreferences.getTokenFCM())) {
-                    getToken();
-                } else {
-                    model.addTokenDevice();
+                    sharedPreferences.saveLanguage(language);
+                    sharedPreferences.saveCountryID(idCountry);
+                    sharedPreferences.saveCountryName(nameCountry);
+                    sharedPreferences.saveStatusNotification(1);
+                    // check if device token empty -> get device token then add token on server
+                    // if exist add device token on server
+                    if (TextUtils.isEmpty(sharedPreferences.getTokenFCM())) {
+                        getToken();
+                    } else {
+                        model.addTokenDevice();
+                    }
+//            if (languageAndCountryBinding.cbTermsAndConditions.isChecked()) {
+//                sharedPreferences.saveLanguage(language);
+//                sharedPreferences.saveCountryID(idCountry);
+//                sharedPreferences.saveCountryName(nameCountry);
+//                sharedPreferences.saveStatusNotification(1);
+//                // check if device token empty -> get device token then add token on server
+//                // if exist add device token on server
+//                if (TextUtils.isEmpty(sharedPreferences.getTokenFCM())) {
+//                    getToken();
+//                } else {
+//                    model.addTokenDevice();
+//                }
+//            } else
+//                showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
                 }
-            } else
-                showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
-        });
+        );
         languageAndCountryBinding.tvTermsAndCondition.setOnClickListener(v -> {
 //            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
             openBrowser(Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage());

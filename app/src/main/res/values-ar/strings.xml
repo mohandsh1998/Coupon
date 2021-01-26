@@ -116,6 +116,7 @@
     <string name="thank_you_for_choosing_us">شكرا لإختيارنا</string>
     <string name="best_selling">أفضل مبيعات</string>
     <string name="title_trend">ترند</string>
+    <string name="was_your_experience_good">هل كانت تجربتك جيدة</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

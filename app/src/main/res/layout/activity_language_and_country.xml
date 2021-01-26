@@ -149,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/i_agree_to_the"
+            android:visibility="gone"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/spinner_countries"
             app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
@@ -160,6 +161,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:ellipsize="end"
+            android:visibility="gone"
             android:maxLines="1"
             android:text="@string/terms_and_conditions"
             android:textColor="@color/pink"
@@ -174,7 +176,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/shape_gradient_pink_9dp"
             android:elevation="10dp"
@@ -187,7 +188,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cb_terms_and_conditions" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
 
         <ProgressBar
             android:id="@+id/progressBar3"

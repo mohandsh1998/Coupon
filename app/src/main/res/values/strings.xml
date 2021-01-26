@@ -116,6 +116,7 @@
     <string name="thank_you_for_choosing_us">Thank you For choosing us</string>
     <string name="best_selling">Best selling</string>
     <string name="title_trend">Trend</string>
+    <string name="was_your_experience_good">Was your experience good?</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

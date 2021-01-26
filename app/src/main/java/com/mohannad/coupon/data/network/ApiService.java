@@ -89,6 +89,7 @@ public interface ApiService {
     // all coupons for category in home page
     @GET("/api/getTrends")
     Call<TrendResponse> getTrends(@Header("lang") String lang,
+                                  @Header("country-id") int countryId,
                                   @Header("device-token") String deviceToken);
 
     // all coupons for company in home page

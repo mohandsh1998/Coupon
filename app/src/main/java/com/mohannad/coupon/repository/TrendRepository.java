@@ -27,11 +27,11 @@ public class TrendRepository {
         return trendRepository;
     }
 
-    public void getTrends(String lang, String deviceToken,
+    public void getTrends(String lang, String deviceToken, int countryID,
                           ResponseServer<LiveData<TrendResponse>> responseServer) {
         MutableLiveData<TrendResponse> trendResponseMutableLiveData = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getTrends(lang, deviceToken).enqueue(new Callback<TrendResponse>() {
+        apiService.getTrends(lang, countryID, deviceToken).enqueue(new Callback<TrendResponse>() {
             @Override
             public void onResponse(@NonNull Call<TrendResponse> call, @NonNull Response<TrendResponse> response) {
                 trendResponseMutableLiveData.setValue(response.body());

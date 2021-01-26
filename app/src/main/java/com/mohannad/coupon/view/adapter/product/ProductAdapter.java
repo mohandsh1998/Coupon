@@ -180,7 +180,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 // change text to code coupon
                 this.itemView.tvCopyCouponItemProductRv.setText(product.getCouponCode());
                 this.itemView.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
-                this.itemView.tvCopyCouponItemProductRv.setTextColor(mContext.getResources().getColor(R.color.gray8));
+                this.itemView.tvCopyCouponItemProductRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
                 this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
                 if (startAnimation) {

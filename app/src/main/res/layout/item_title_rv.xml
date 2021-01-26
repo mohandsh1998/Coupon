@@ -21,10 +21,9 @@
                 android:id="@+id/img_title"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:background="@drawable/shape_circle_pink_light"
-                android:padding="8dp" />
+                android:layout_margin="8dp"/>
 
             <TextView
                 android:id="@+id/tv_title_top_product"
