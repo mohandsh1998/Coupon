@@ -6,6 +6,7 @@ import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
+import com.mohannad.coupon.data.model.CouponsTrendResponse;
 import com.mohannad.coupon.data.model.DealCouponsResponse;
 import com.mohannad.coupon.data.model.DealResponse;
 import com.mohannad.coupon.data.model.FavoriteResponse;
@@ -203,6 +204,14 @@ public interface ApiService {
                                       @Header("country-id") int countryId,
                                       @Query("search_data") String word,
                                       @Query("page") int page);
+
+    // getCoupons for trend
+    @GET("/api/title/{idTrend}/coupon")
+    Call<CouponsTrendResponse> trendCoupon(@Header("lang") String lang,
+                                           @Header("Authorization") String token,
+                                           @Header("device-token") String deviceToken,
+                                           @Header("country-id") int countryId,
+                                           @Path("idTrend") int idTrend);
 
     // search on coupon by user
     @GET("/api/deals/{idDeal}")

@@ -21,11 +21,10 @@
 
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/img_logo"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/logo_app"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="@+id/tv_select_lang"
             app:layout_constraintStart_toStartOf="@+id/tv_select_lang" />
@@ -182,7 +181,7 @@
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:text="@string/apply"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

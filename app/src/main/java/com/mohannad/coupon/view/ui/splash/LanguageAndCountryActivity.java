@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -133,6 +134,10 @@ public class LanguageAndCountryActivity extends BaseActivity {
 //            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
             openBrowser(Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage());
         });
+
+        Glide.with(this)
+                .load(R.drawable.logo)
+                .into(languageAndCountryBinding.imgLogo);
     }
 
     public void getToken() {

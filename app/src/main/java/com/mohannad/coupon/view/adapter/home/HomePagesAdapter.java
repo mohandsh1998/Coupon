@@ -3,6 +3,8 @@ package com.mohannad.coupon.view.adapter.home;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.mohannad.coupon.data.model.CategoriesResponse;
@@ -16,8 +18,8 @@ public class HomePagesAdapter extends FragmentStateAdapter {
 
     List<CategoriesResponse.Category> categoriesTabs;
 
-    public HomePagesAdapter(FragmentActivity fa, List<CategoriesResponse.Category> categories) {
-        super(fa);
+    public HomePagesAdapter(FragmentManager fa, @NonNull Lifecycle lifecycle, List<CategoriesResponse.Category> categories) {
+        super(fa,lifecycle);
         this.categoriesTabs = categories;
     }
 

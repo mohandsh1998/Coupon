@@ -31,11 +31,7 @@ public class DealCouponsActivity extends BaseActivity {
         DealViewModel model = new ViewModelProvider(this).get(DealViewModel.class);
         binding.setDealViewModel(model);
         binding.setLifecycleOwner(this);
-        // remove shadow in actionbar and change arrow color
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow));
-            getSupportActionBar().setElevation(0);
-        }
+
         model.getDealCoupons(getIntent().getIntExtra("idDeal", -1));
         // initialization an adapter for coupons
         UsedCouponsAdapter couponsAdapter = new UsedCouponsAdapter(this, coupons, new UsedCouponsAdapter.CouponClickListener() {

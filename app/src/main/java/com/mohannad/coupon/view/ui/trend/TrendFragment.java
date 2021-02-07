@@ -10,9 +10,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
@@ -46,28 +48,35 @@ public class TrendFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(TrendViewModel.class);
+        mViewModel.getTrends();
         trendFragmentBinding.setTrendViewModel(mViewModel);
         trendFragmentBinding.setLifecycleOwner(this);
 
         TrendAdapter trendAdapter = new TrendAdapter(getContext(), new ArrayList<>(), new TrendAdapter.TrendClickListener() {
             @Override
             public void openProductActivity(int position, Coupon trend) {
-                // open products activity
-                Intent intent = new Intent(getContext(), ProductsActivity.class);
-                // id title in items
-                intent.putExtra("idTitle", trend.getId());
-                intent.putExtra("title", trend.getTitle());
-                // check when click on item title to get products for category or company
-                if (trend.getCategoryId() != 0) {
-                    // this will send type and id category to products activity and get the products for category
-                    intent.putExtra("type", "category");
-                    intent.putExtra("idCategory", trend.getCategoryId());
+                if (!TextUtils.isEmpty(trend.getBestSelling())) {
+                    openBrowser(trend.getBestSelling());
+                } else if (trend.getCouponsCount() != 0) {
+                  startActivity(new Intent(getContext(), TrendCouponsActivity.class).putExtra("idTrend", trend.getId()));
                 } else {
-                    // this will send type and id company to products activity and get the products for company
-                    intent.putExtra("type", "company");
-                    intent.putExtra("idCompany", trend.getCompanyId());
+                    // open products activity
+                    Intent intent = new Intent(getContext(), ProductsActivity.class);
+                    // id title in items
+                    intent.putExtra("idTitle", trend.getId());
+                    intent.putExtra("title", trend.getTitle());
+                    // check when click on item title to get products for category or company
+                    if (trend.getCategoryId() != 0) {
+                        // this will send type and id category to products activity and get the products for category
+                        intent.putExtra("type", "category");
+                        intent.putExtra("idCategory", trend.getCategoryId());
+                    } else {
+                        // this will send type and id company to products activity and get the products for company
+                        intent.putExtra("type", "company");
+                        intent.putExtra("idCompany", trend.getCompanyId());
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
         trendFragmentBinding.rvCouponsFragmentTrend.setAdapter(trendAdapter);

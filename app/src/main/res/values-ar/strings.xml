@@ -5,7 +5,7 @@
     <string name="title_dashboard">لوحة التحكم</string>
     <string name="title_notifications">الإشعارات</string>
     <string name="title_favorite">المفضلة</string>
-    <string name="title_deal">صفقة</string>
+    <string name="title_deal">الصفقات</string>
     <string name="title_add_coupon">إضافة كابون</string>
     <string name="title_more">المزيد</string>
     <string name="title_filter">فلتر</string>
@@ -61,7 +61,7 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="times">عدد مرات</string>
-    <string name="coupon_was_copied">تم نسخ الكابون</string>
+    <string name="coupon_was_copied">تم نسخ الكود</string>
     <string name="back_to_app">الرجوع لتطبيق</string>
     <string name="reviews">تقييمات</string>
     <string name="products">المنتجات</string>
@@ -99,7 +99,7 @@
     <string name="category">الفئة</string>
     <string name="reset">تفريغ</string>
     <string name="show_coupon">أعرض الكابون</string>
-    <string name="empty_favorite">لا يوجد مفضلة</string>
+    <string name="empty_favorite">لا يوجد</string>
     <string name="website">الموقع</string>
     <string name="i_agree_to_the">أنا موافق على </string>
     <string name="terms_and_conditions">الشروط والأحكام</string>
@@ -116,7 +116,7 @@
     <string name="thank_you_for_choosing_us">شكرا لإختيارنا</string>
     <string name="best_selling">أفضل مبيعات</string>
     <string name="title_trend">ترند</string>
-    <string name="was_your_experience_good">هل كانت تجربتك جيدة</string>
+    <string name="was_your_experience_good">هل كانت تجربتك جيده</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

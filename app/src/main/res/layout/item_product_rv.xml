@@ -23,7 +23,6 @@
                 android:layout_height="94dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintDimensionRatio="h, 4:4"
                 app:layout_constraintEnd_toStartOf="@id/tv_product_name_item_product_rv"

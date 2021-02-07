@@ -11,6 +11,8 @@ public class Coupon {
     private String lastUseDate;
     @SerializedName("count_used")
     private int countUsed;
+    @SerializedName("coupons_count")
+    private int couponsCount;
     @SerializedName("coupon_code")
     private String couponCode;
     @SerializedName("link")
@@ -62,6 +64,10 @@ public class Coupon {
 
     public String getCouponCode() {
         return couponCode;
+    }
+
+    public int getCouponsCount() {
+        return couponsCount;
     }
 
     public String getLink() {

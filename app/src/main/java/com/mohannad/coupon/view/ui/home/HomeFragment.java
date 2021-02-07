@@ -68,7 +68,7 @@ public class HomeFragment extends BaseFragment {
         // start marquee
         binding.topText.setSelected(true);
         // initialization an adapter for categories pages in the home
-        HomePagesAdapter homePagesAdapter = new HomePagesAdapter(requireActivity(), categoriesTabs);
+        HomePagesAdapter homePagesAdapter = new HomePagesAdapter(getChildFragmentManager(), getLifecycle(), categoriesTabs);
         binding.vpCouponsPages.setAdapter(homePagesAdapter);
         // A mediator to link a TabLayout with a ViewPager2
         new TabLayoutMediator(binding.tabsCategories, binding.vpCouponsPages,

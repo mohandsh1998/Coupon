@@ -10,7 +10,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -24,6 +27,7 @@ import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -56,16 +60,32 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void showDefaultDialog(View view, String message) {
-        showSnackbar(view, message, R.drawable.shape_snake_bar_pink).show();
+        showToast(view, message, R.drawable.shape_solid_pink_radius_9dp).show();
     }
 
     public void showSuccessDialog(View view, String message) {
-        showSnackbar(view, message, R.drawable.shape_snake_bar_green).show();
+        showToast(view, message, R.drawable.shape_solid_green_radius_9dp).show();
     }
 
 
     public void showAlertDialog(View view, String message) {
-        showSnackbar(view, message, R.drawable.shape_snake_bar_red).show();
+        showToast(view, message, R.drawable.shape_solid_red_radius_9dp).show();
+    }
+
+    public Toast showToast(View view, String msg, @DrawableRes int background) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+        layout.setBackground(ContextCompat.getDrawable(this, background));
+        TextView text = (TextView) layout.findViewById(R.id.tv_msg);
+        text.setText(msg);
+        if (background == R.drawable.shape_solid_red_radius_9dp)
+            text.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0, 80);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        return toast;
     }
 
     // show snackbar dialog

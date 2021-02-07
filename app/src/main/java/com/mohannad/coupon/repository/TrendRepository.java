@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.CouponsTrendResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.TrendResponse;
 import com.mohannad.coupon.data.network.ApiClient;
@@ -41,6 +42,25 @@ public class TrendRepository {
             @Override
             public void onFailure(@NonNull Call<TrendResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "getTrends onFailure" + call.toString());
+                responseServer.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void trendCoupon(String lang, String token, String tokenDevice, int countryId, int trendID, ResponseServer<LiveData<CouponsTrendResponse>> responseServer) {
+        MutableLiveData<CouponsTrendResponse> resultsCoupons = new MutableLiveData<>();
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.trendCoupon(lang, token, tokenDevice, countryId, trendID).enqueue(new Callback<CouponsTrendResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CouponsTrendResponse> call, @NonNull Response<CouponsTrendResponse> response) {
+                resultsCoupons.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), resultsCoupons);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CouponsTrendResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "Trend Coupon onFailure" + call.toString());
                 responseServer.onFailure(t.getMessage());
                 t.printStackTrace();
             }

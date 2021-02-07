@@ -61,7 +61,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="times">Times</string>
-    <string name="coupon_was_copied">COUPON HAS BEEN COPED</string>
+    <string name="coupon_was_copied">CODE HAS BEEN COPIED</string>
     <string name="back_to_app">Back To App</string>
     <string name="reviews">Reviews</string>
     <string name="products">Products</string>
@@ -116,7 +116,7 @@
     <string name="thank_you_for_choosing_us">Thank you For choosing us</string>
     <string name="best_selling">Best selling</string>
     <string name="title_trend">Trend</string>
-    <string name="was_your_experience_good">Was your experience good?</string>
+    <string name="was_your_experience_good">How Was Your Experience?</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>
