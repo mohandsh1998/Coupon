@@ -91,6 +91,9 @@ public class MoreFragment extends BaseFragment {
 //            startActivity(new Intent(requireContext(), WebViewActivity.class).putExtra("url", Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage()));
             openBrowser(Constants.PRIVACY_POLICIES_URL + sharedPreferences.getLanguage());
         });
+        binding.lyReviewApp.setOnClickListener(v -> {
+            openBrowser("https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
+        });
     }
 
     private void openInstagram() {

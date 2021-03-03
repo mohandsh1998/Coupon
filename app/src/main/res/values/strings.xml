@@ -117,6 +117,7 @@
     <string name="best_selling">Best selling</string>
     <string name="title_trend">Trend</string>
     <string name="was_your_experience_good">How Was Your Experience?</string>
+    <string name="review_app">Review Appliaction</string>
     <string-array name="language">
         <item>English</item>
         <item>Arabic</item>

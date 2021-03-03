@@ -117,6 +117,7 @@
     <string name="best_selling">أفضل مبيعات</string>
     <string name="title_trend">ترند</string>
     <string name="was_your_experience_good">هل كانت تجربتك جيده</string>
+    <string name="review_app">تقييم التطبيق</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
