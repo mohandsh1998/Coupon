@@ -15,6 +15,7 @@ import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.databinding.ItemTitleRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
+import com.mohannad.coupon.utils.Constants;
 
 import java.util.List;
 
@@ -22,10 +23,12 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.TitleViewHol
     private Context mContext;
     private List<Coupon> trendList;
     private TrendClickListener trendClickListener;
+    private int theme;
 
-    public TrendAdapter(Context mContext, List<Coupon> trendList, TrendClickListener trendClickListener) {
+    public TrendAdapter(Context mContext, List<Coupon> trendList, int theme, TrendClickListener trendClickListener) {
         this.mContext = mContext;
         this.trendList = trendList;
+        this.theme = theme;
         this.trendClickListener = trendClickListener;
     }
 
@@ -60,6 +63,17 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.TitleViewHol
         public TitleViewHolder(ItemTitleRvBinding itemTitleRvBinding) {
             super(itemTitleRvBinding);
             this.itemTitleRvBinding = itemTitleRvBinding;
+            switch (theme) {
+                case Constants.MODERN_THEME:
+                    this.itemTitleRvBinding.lyTrend.setBackgroundResource(R.color.gray1);
+                    break;
+                case Constants.LIGHT_THEME:
+                    this.itemTitleRvBinding.lyTrend.setBackgroundResource(R.color.white);
+                    break;
+                case Constants.DARK_THEME:
+                    this.itemTitleRvBinding.lyTrend.setBackgroundResource(R.color.black2);
+                    break;
+            }
         }
 
         @Override
@@ -83,6 +97,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.TitleViewHol
             return super.getCurrentPosition();
         }
     }
+
     public interface TrendClickListener {
         void openProductActivity(int position, Coupon trend);
     }

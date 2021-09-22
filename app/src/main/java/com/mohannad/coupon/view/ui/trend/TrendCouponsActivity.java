@@ -33,7 +33,7 @@ public class TrendCouponsActivity extends BaseActivity {
         setTitle(getString(R.string.title_trend));
         model.getCouponTrends(getIntent().getIntExtra("idTrend", -1));
         // initialization an adapter for coupons
-        UsedCouponsAdapter couponsAdapter = new UsedCouponsAdapter(this, coupons, new UsedCouponsAdapter.CouponClickListener() {
+        UsedCouponsAdapter couponsAdapter = new UsedCouponsAdapter(this, coupons, sharedPreferences.getThemeMode(), new UsedCouponsAdapter.CouponClickListener() {
             @Override
             public void copyCoupon(int position, Coupon coupon) {
                 // copy code coupon
@@ -64,7 +64,7 @@ public class TrendCouponsActivity extends BaseActivity {
 
             @Override
             public void bestSelling(int position, Coupon coupon) {
-                openBrowser(coupon.getBestSellingTitle());
+                openBrowser(coupon.getBestSelling());
             }
 
 
@@ -88,6 +88,10 @@ public class TrendCouponsActivity extends BaseActivity {
         // display error msg
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(binding.lyContainer, msg);
+        });
+
+        binding.imgBackArrow.setOnClickListener(v -> {
+            onBackPressed();
         });
     }
 }

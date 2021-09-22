@@ -1,24 +1,20 @@
 package com.mohannad.coupon.view.ui.home;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.Coupon;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
-import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
-import com.mohannad.coupon.repository.HelpRepository;
 import com.mohannad.coupon.repository.HomeRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
 
@@ -35,7 +31,7 @@ public class HomeViewModel extends BaseViewModel {
     // add to favorite
     public MutableLiveData<Boolean> successAddOrRemoveToFavorite = new MutableLiveData<>();
     // categories that will show in tabs
-    MutableLiveData<List<CategoriesResponse.Category>> categoriesTabs = new MutableLiveData<>();
+    MutableLiveData<List<StoreResponse.Store>> categoriesTabs = new MutableLiveData<>();
     // Companies that will show in category
     MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
     // coupons that will show in category
@@ -58,9 +54,9 @@ public class HomeViewModel extends BaseViewModel {
         // show loading for tab
         dataLoadingTabs.setValue(true);
         // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), new ResponseServer<LiveData<CategoriesResponse>>() {
+        homeRepository.getStores(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), new ResponseServer<LiveData<StoreResponse>>() {
             @Override
-            public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
+            public void onSuccess(boolean status, int code, LiveData<StoreResponse> response) {
                 // hide loading
                 dataLoadingTabs.setValue(false);
                 // check if status success
@@ -68,7 +64,7 @@ public class HomeViewModel extends BaseViewModel {
                     if (response != null && response.getValue() != null) {
                         if (response.getValue().isStatus()) {
                             // after success to get categories will need to edit the value stored in a categoriesTabs to update tabs(UI).
-                            categoriesTabs.setValue(response.getValue().getCategories());
+                            categoriesTabs.setValue(response.getValue().getStores());
                         }
                     }
                 }
@@ -115,13 +111,13 @@ public class HomeViewModel extends BaseViewModel {
         });
     }
 
-    // this method will call getAllCouponsCategory from repository to get all coupons to category from server
-    public void getAllCouponsCategory(int idCategory, int page) {
+    // this method will call getAllCouponsStore from repository to get all coupons to store from server
+    public void getAllCouponsStore(int idCategory, int page) {
         currentPageCoupons = page;
         // show loading for coupons
         dataLoadingCoupons.setValue(true);
         // call getAllCouponsCategory from repository
-        homeRepository.getAllCouponsCategory(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
+        homeRepository.getAllCouponsStore(mSharedPreferences.getLanguage(), mSharedPreferences.getCountryID(), mSharedPreferences.getAuthToken(), mSharedPreferences.getTokenFCM(), idCategory, page, new ResponseServer<LiveData<CouponHomeResponse>>() {
             @Override
             public void onSuccess(boolean status, int code, LiveData<CouponHomeResponse> response) {
                 // hide loading

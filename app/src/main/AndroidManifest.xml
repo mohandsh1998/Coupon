@@ -11,7 +11,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:name=".utils.CouponApplication"
+        android:theme="@style/BaseTheme">
+
 
         <activity
             android:name=".view.ui.trend.TrendCouponsActivity"
@@ -56,11 +58,9 @@
                 android:value=".view.ui.deal.DealCouponsActivity" />
         </activity>
         <activity
-            android:name=".view.ui.splash.LanguageAndCountryActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.splash.LanguageAndCountryActivity" />
         <activity
-            android:name=".view.ui.image.ImageActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.image.ImageActivity" />
         <activity
             android:name=".view.ui.search.SearchActivity"
             android:label="@string/results"
@@ -70,8 +70,7 @@
                 android:value=".view.ui.search.SearchActivity" />
         </activity>
         <activity
-            android:name=".view.ui.video.VideoActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.video.VideoActivity" />
         <activity
             android:name=".view.ui.product.ProductsActivity"
             android:label="@string/products"
@@ -81,8 +80,7 @@
                 android:value=".view.ui.product.ProductsActivity" />
         </activity>
         <activity
-            android:name=".view.ui.webview.WebViewActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.webview.WebViewActivity" />
         <activity
             android:name=".view.ui.usedcoupon.UsedCouponActivity"
             android:label="@string/used_coupons"
@@ -124,27 +122,29 @@
                 android:value=".view.ui.help.HelpActivity" />
         </activity>
         <activity
-            android:name=".view.ui.auth.signup.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.auth.signup.SignUpActivity" />
         <activity
-            android:name=".view.ui.auth.login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.auth.login.LoginActivity" />
         <activity
-            android:name=".view.ui.splash.WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.splash.WelcomeActivity" />
+
         <activity
-            android:name=".view.ui.splash.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".view.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".view.ui.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.ui.main.view.MainActivity"
+            android:label="@string/app_name">
+
+        </activity>
+
+        <activity
+            android:name=".view.ui.store.view.StoresActivity" />
 
         <meta-data
             android:name="android.app.searchable"
@@ -158,6 +158,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ui.coupon.AddCouponActivity" />
         </activity>
+
+        <activity android:name=".view.ui.more.MoreActivity" />
+        <activity android:name=".view.ui.trend.TrendActivity" />
+        <activity android:name=".view.ui.favorite.FavoriteActivity" />
     </application>
 
 </manifest>

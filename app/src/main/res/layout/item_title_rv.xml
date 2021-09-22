@@ -13,11 +13,12 @@
         app:cardCornerRadius="8dp">
 
         <LinearLayout
+            android:id="@+id/ly_trend"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_title"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -27,12 +28,11 @@
             <TextView
                 android:id="@+id/tv_title_top_product"
                 android:layout_width="0dp"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:drawableEnd="@drawable/ic_arrow"
                 android:padding="8dp"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 tools:text="Top product" />
         </LinearLayout>

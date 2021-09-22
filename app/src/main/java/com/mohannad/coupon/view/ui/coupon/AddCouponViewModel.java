@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
@@ -23,40 +23,35 @@ import com.mohannad.coupon.utils.Utils;
 import java.util.List;
 
 public class AddCouponViewModel extends BaseViewModel {
+    // Store name
+    public MutableLiveData<String> storeName = new MutableLiveData<>();
+    // Offer
+    public MutableLiveData<String> offer = new MutableLiveData<>();
+    // code coupon
+    public MutableLiveData<String> couponCode = new MutableLiveData<>();
+    // description
+    public MutableLiveData<String> description = new MutableLiveData<>();
+    // store link
+    public MutableLiveData<String> storeLink = new MutableLiveData<>();
     // email user
     public MutableLiveData<String> email = new MutableLiveData<>();
     // mobile number
     public MutableLiveData<String> whatsUp = new MutableLiveData<>();
     // id country
     public Integer idCountry = null;
-    // id category
-    public Integer idCategory = null;
-    // id company
-    public Integer idCompany = null;
-    // description
-    public MutableLiveData<String> description = new MutableLiveData<>();
-    // code coupon
-    public MutableLiveData<String> coupon = new MutableLiveData<>();
+
 
     MutableLiveData<List<CountryResponse.Country>> countries = new MutableLiveData<>();
-    // categories that will show in spinner
-    MutableLiveData<List<CategoriesResponse.Category>> categories = new MutableLiveData<>();
-    // companies that will show in spinner
-    MutableLiveData<List<CompaniesResponse.Company>> companies = new MutableLiveData<>();
 
     // error messages that will show if there problem in coupon data when adding the coupon
-    public MutableLiveData<String> errorEmail = new MutableLiveData<>();
-    public MutableLiveData<String> errorWhatsUp = new MutableLiveData<>();
-    public MutableLiveData<Boolean> errorCategory = new MutableLiveData<>();
-    public MutableLiveData<Boolean> errorCompany = new MutableLiveData<>();
-    public MutableLiveData<Boolean> errorDescription = new MutableLiveData<>();
+    public MutableLiveData<Boolean> errorStore = new MutableLiveData<>();
+    public MutableLiveData<Boolean> errorOffer = new MutableLiveData<>();
     public MutableLiveData<Boolean> errorCoupon = new MutableLiveData<>();
-    // tag finish loading
-    boolean countryFinish = false, categoryFinish = false, companyFinish = false;
+    public MutableLiveData<String> errorWhatsUp = new MutableLiveData<>();
+    public MutableLiveData<String> errorEmail = new MutableLiveData<>();
 
     private SettingRepository settingRepository;
     private AddCouponRepository addCouponRepository;
-    private HomeRepository homeRepository;
 
     StorageSharedPreferences sharedPreferences;
 
@@ -64,10 +59,8 @@ public class AddCouponViewModel extends BaseViewModel {
         super(application);
         addCouponRepository = AddCouponRepository.newInstance();
         settingRepository = SettingRepository.newInstance();
-        homeRepository = HomeRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
         getCountries();
-        getCategories();
     }
 
     // this method will call getCountries from repository to get all countries from server
@@ -77,9 +70,7 @@ public class AddCouponViewModel extends BaseViewModel {
                 new ResponseServer<LiveData<CountryResponse>>() {
                     @Override
                     public void onSuccess(boolean status, int code, LiveData<CountryResponse> response) {
-                        countryFinish = true;
-                        if (categoryFinish && companyFinish)
-                            dataLoading.setValue(false);
+                        dataLoading.setValue(false);
                         if (response != null && response.getValue() != null) {
                             if (response.getValue().isStatus()) {
                                 countries.setValue(response.getValue().getCountries());
@@ -89,9 +80,7 @@ public class AddCouponViewModel extends BaseViewModel {
 
                     @Override
                     public void onFailure(String message) {
-                        countryFinish = true;
-                        if (categoryFinish && companyFinish)
-                            dataLoading.setValue(false);
+                        dataLoading.setValue(false);
                         // show error msg
                         toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
                     }
@@ -105,84 +94,6 @@ public class AddCouponViewModel extends BaseViewModel {
         }
     }
 
-    // Categories
-    // this method will call getCategoriesTabs from repository to get categories from server
-    private void getCategories() {
-        // show loading
-        dataLoading.setValue(true);
-        // call getCategoriesTabs from repository
-        homeRepository.getCategoriesTabs(sharedPreferences.getLanguage(), sharedPreferences.getCountryID(), new ResponseServer<LiveData<CategoriesResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<CategoriesResponse> response) {
-                categoryFinish = true;
-                if (countryFinish && companyFinish)
-                    // hide loading
-                    dataLoading.setValue(false);
-                // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            // after success to get categories will need to edit the value stored in a categories to update spinner(UI).
-                            categories.setValue(response.getValue().getCategories());
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(String message) {
-                categoryFinish = true;
-                if (countryFinish && companyFinish)
-                    // hide loading
-                    dataLoading.setValue(false);
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
-    }
-
-    // this method will call getCompanies from repository to get companies to category from server
-    public void getCompanies(int idCategory) {
-        // show loading
-        dataLoading.setValue(true);
-        // call getCompanies from repository
-        homeRepository.getCompanies(sharedPreferences.getLanguage(), sharedPreferences.getCountryID(), idCategory, new ResponseServer<LiveData<CompaniesResponse>>() {
-            @Override
-            public void onSuccess(boolean status, int code, LiveData<CompaniesResponse> response) {
-                companyFinish = true;
-                if (countryFinish && categoryFinish)
-                    // hide loading
-                    dataLoading.setValue(false);
-                // check if status success
-                if (status) {
-                    if (response != null && response.getValue() != null) {
-                        if (response.getValue().isStatus()) {
-                            // after success to get companies will need to edit the value stored in a companies to update UI.
-                            companies.setValue(response.getValue().getCompanies());
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(String message) {
-                companyFinish = true;
-                if (countryFinish && categoryFinish)
-                    // hide loading
-                    dataLoading.setValue(false);
-                // show error msg
-                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
-            }
-        });
-    }
-
-    public void category(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public void company(int idCompany) {
-        this.idCompany = idCompany;
-    }
 
     public void country(int idCountry) {
         this.idCountry = idCountry;
@@ -190,53 +101,75 @@ public class AddCouponViewModel extends BaseViewModel {
 
     public void suggestionCoupon() {
         // call suggestionCoupon from repository
-        addCouponRepository.suggestionCoupon(sharedPreferences.getLanguage(), email.getValue(), idCountry,
-                coupon.getValue(), idCompany, whatsUp.getValue(), description.getValue(), new ResponseServer<MessageResponse>() {
-                    @Override
-                    public void onSuccess(boolean status, int code, MessageResponse response) {
-                        // hide loading
-                        dataLoading.setValue(false);
-                        // if success when connection
-                        if (status) {
-                            if (response.isStatus()) {
-                                // success to send coupon
-                                toastMessageSuccess.setValue(response.getMessage());
-                                success.setValue(true);
-                                email.setValue(null);
-                                coupon.setValue(null);
-                                whatsUp.setValue(null);
-                                description.setValue(null);
-                            } else {
-                                // failed to send coupon
-                                success.setValue(false);
-                                toastMessageFailed.setValue(response.getMessage());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(String message) {
-                        // hide loading
-                        dataLoading.setValue(false);
+        addCouponRepository.suggestionCoupon(sharedPreferences.getLanguage(), storeName.getValue(), offer.getValue(), couponCode.getValue(), description.getValue(), storeLink.getValue(), email.getValue(), idCountry, whatsUp.getValue(), new ResponseServer<MessageResponse>() {
+            @Override
+            public void onSuccess(boolean status, int code, MessageResponse response) {
+                // hide loading
+                dataLoading.setValue(false);
+                // if success when connection
+                if (status) {
+                    if (response.isStatus()) {
+                        // success to send coupon
+                        toastMessageSuccess.setValue(response.getMessage());
+                        success.setValue(true);
+                        storeName.setValue(null);
+                        storeLink.setValue(null);
+                        offer.setValue(null);
+                        email.setValue(null);
+                        couponCode.setValue(null);
+                        whatsUp.setValue(null);
+                        description.setValue(null);
+                    } else {
+                        // failed to send coupon
                         success.setValue(false);
-                        // show error msg
-                        toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+                        toastMessageFailed.setValue(response.getMessage());
                     }
-                });
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+                // hide loading
+                dataLoading.setValue(false);
+                success.setValue(false);
+                // show error msg
+                toastMessageFailed.setValue(getApplication().getString(R.string.problem_when_try_to_connect));
+            }
+        });
 
     }
 
     private boolean validation() {
         boolean valid = true;
-        if (TextUtils.isEmpty(email.getValue())) {
-            errorEmail.setValue(getApplication().getString(R.string.this_filed_is_empty));
+
+        if (TextUtils.isEmpty(storeName.getValue())) {
+            errorStore.setValue(true);
             valid = false;
-        } else if (!Utils.isEmailValid(email.getValue())) {
+        } else {
+            errorStore.setValue(false);
+        }
+
+        if (TextUtils.isEmpty(offer.getValue())) {
+            errorOffer.setValue(true);
+            valid = false;
+        } else {
+            errorOffer.setValue(false);
+        }
+
+        if (TextUtils.isEmpty(couponCode.getValue())) {
+            errorCoupon.setValue(true);
+            valid = false;
+        } else {
+            errorCoupon.setValue(false);
+        }
+
+        if (!TextUtils.isEmpty(email.getValue()) && !Utils.isEmailValid(email.getValue())) {
             errorEmail.setValue(getApplication().getString(R.string.email_invalid));
             valid = false;
         } else {
             errorEmail.setValue(null);
         }
+
         if (TextUtils.isEmpty(whatsUp.getValue())) {
             errorWhatsUp.setValue(getApplication().getString(R.string.this_filed_is_empty));
             valid = false;
@@ -246,30 +179,7 @@ public class AddCouponViewModel extends BaseViewModel {
         } else {
             errorWhatsUp.setValue(null);
         }
-        if (idCategory == null) {
-            errorCategory.setValue(true);
-            valid = false;
-        } else {
-            errorCategory.setValue(false);
-        }
-        if (idCompany == null) {
-            errorCompany.setValue(true);
-            valid = false;
-        } else {
-            errorCompany.setValue(false);
-        }
-        if (TextUtils.isEmpty(description.getValue())) {
-            errorDescription.setValue(true);
-            valid = false;
-        } else {
-            errorDescription.setValue(false);
-        }
-        if (TextUtils.isEmpty(coupon.getValue())) {
-            errorCoupon.setValue(true);
-            valid = false;
-        } else {
-            errorCoupon.setValue(false);
-        }
+
         return valid;
     }
 }

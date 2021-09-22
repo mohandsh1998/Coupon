@@ -29,7 +29,6 @@ public class SettingViewModel extends BaseViewModel {
         super(application);
         settingRepository = SettingRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
-        getCountries();
     }
 
     // this method will call getCountries from repository to get all countries from server

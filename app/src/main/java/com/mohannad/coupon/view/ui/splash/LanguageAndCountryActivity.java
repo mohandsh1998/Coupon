@@ -1,7 +1,6 @@
 package com.mohannad.coupon.view.ui.splash;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,53 +11,64 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.databinding.ActivityLanguageAndCountryBinding;
 import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.utils.LocaleHelper;
-import com.mohannad.coupon.view.adapter.spinner.SpinnerAdapter;
+import com.mohannad.coupon.utils.ThemeManager;
 import com.mohannad.coupon.view.adapter.spinner.SpinnerImageWithTextAdapter;
-import com.mohannad.coupon.view.ui.main.MainActivity;
-import com.mohannad.coupon.view.ui.search.SearchViewModel;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
+import com.mohannad.coupon.view.ui.main.view.MainActivity;
+import com.mohannad.coupon.view.ui.store.view.StoresActivity;
 
 import java.util.ArrayList;
 
 public class LanguageAndCountryActivity extends BaseActivity {
+    private final String LANGUAGE_KEY = "Language";
+    private final String THEME_KEY = "Theme";
+    private final String COUNTRY_ID_KEY = "country_id";
+    private final String COUNTRY_NAME_KEY = "country_name";
+    private final String FIRST_TIME_KEY = "first_time";
     private String language = LocaleHelper.ENGLISH_LANGUAGE;
+    private int theme = Constants.LIGHT_THEME;
     private int idCountry = -1;
     private String nameCountry;
-    private StorageSharedPreferences sharedPreferences;
+    private boolean firstTime = true;
     private SplashViewModel model;
+    private ActivityLanguageAndCountryBinding languageAndCountryBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityLanguageAndCountryBinding languageAndCountryBinding = DataBindingUtil.setContentView(this, R.layout.activity_language_and_country);
-        changeToolbarAndStatusBar(R.color.gray7, null);
+        // will used when update theme
+        if (savedInstanceState != null) {
+            language = savedInstanceState.getString(LANGUAGE_KEY);
+            idCountry = savedInstanceState.getInt(COUNTRY_ID_KEY);
+            nameCountry = savedInstanceState.getString(COUNTRY_NAME_KEY);
+            theme = savedInstanceState.getInt(THEME_KEY);
+            firstTime = savedInstanceState.getBoolean(FIRST_TIME_KEY);
+            ThemeManager.setCustomizedThemes(this, theme);
+        }
+
+        languageAndCountryBinding = DataBindingUtil.setContentView(this, R.layout.activity_language_and_country);
         model = new ViewModelProvider(this).get(SplashViewModel.class);
         languageAndCountryBinding.setSplashViewModel(model);
         languageAndCountryBinding.setLifecycleOwner(this);
-        sharedPreferences = new StorageSharedPreferences(this);
-        // check if device language arabic select arabic button default
-        if (sharedPreferences.getLanguage().equals(LocaleHelper.ARABIC_LANGUAGE)) {
-            language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.tvArabicLang, languageAndCountryBinding.tvEnglishLang);
-        }
-        model.getCountries();
+        if (firstTime)
+            // check if device language arabic select arabic button default
+            if (sharedPreferences.getLanguage().equals(LocaleHelper.ARABIC_LANGUAGE)) {
+                language = LocaleHelper.ARABIC_LANGUAGE;
+            }
+        // update layout to select language
+        updateLanguage();
+        // update layout to select theme
+        updateTheme();
+        // call countries when open activity
+        if (firstTime) model.getCountries();
 
         // array countries
         ArrayList<CountryResponse.Country> countries = new ArrayList<>();
@@ -72,7 +82,8 @@ public class LanguageAndCountryActivity extends BaseActivity {
 
         model.successTokenDevice.observe(this, success -> {
             if (success) {
-                startActivity(new Intent(LanguageAndCountryActivity.this, MainActivity.class));
+                sharedPreferences.setFirstTimeLaunch(false);
+                startActivity(new Intent(LanguageAndCountryActivity.this, StoresActivity.class));
                 finish();
             }
         });
@@ -94,19 +105,38 @@ public class LanguageAndCountryActivity extends BaseActivity {
 
         languageAndCountryBinding.tvArabicLang.setOnClickListener(v -> {
             language = LocaleHelper.ARABIC_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.tvArabicLang, languageAndCountryBinding.tvEnglishLang);
+            updateLanguage();
         });
 
         languageAndCountryBinding.tvEnglishLang.setOnClickListener(v -> {
             language = LocaleHelper.ENGLISH_LANGUAGE;
-            changeBackgroundButton(languageAndCountryBinding.tvEnglishLang, languageAndCountryBinding.tvArabicLang);
+            updateLanguage();
         });
 
+        languageAndCountryBinding.tvThemeModern.setOnClickListener(v -> {
+            theme = Constants.MODERN_THEME;
+            updateTheme();
+            recreate();
+        });
+
+        languageAndCountryBinding.tvThemeLight.setOnClickListener(v -> {
+            theme = Constants.LIGHT_THEME;
+            updateTheme();
+            recreate();
+        });
+
+        languageAndCountryBinding.tvThemeDark.setOnClickListener(v -> {
+            theme = Constants.DARK_THEME;
+            updateTheme();
+            recreate();
+        });
+        languageAndCountryBinding.btnConfirm.setBackgroundResource(theme == Constants.MODERN_THEME ? R.drawable.shape_blue_15dp : R.drawable.shape_gradient_blue_15dp);
         languageAndCountryBinding.btnConfirm.setOnClickListener(v -> {
                     sharedPreferences.saveLanguage(language);
                     sharedPreferences.saveCountryID(idCountry);
                     sharedPreferences.saveCountryName(nameCountry);
                     sharedPreferences.saveStatusNotification(1);
+                    sharedPreferences.saveThemeMode(theme);
                     // check if device token empty -> get device token then add token on server
                     // if exist add device token on server
                     if (TextUtils.isEmpty(sharedPreferences.getTokenFCM())) {
@@ -114,30 +144,19 @@ public class LanguageAndCountryActivity extends BaseActivity {
                     } else {
                         model.addTokenDevice();
                     }
-//            if (languageAndCountryBinding.cbTermsAndConditions.isChecked()) {
-//                sharedPreferences.saveLanguage(language);
-//                sharedPreferences.saveCountryID(idCountry);
-//                sharedPreferences.saveCountryName(nameCountry);
-//                sharedPreferences.saveStatusNotification(1);
-//                // check if device token empty -> get device token then add token on server
-//                // if exist add device token on server
-//                if (TextUtils.isEmpty(sharedPreferences.getTokenFCM())) {
-//                    getToken();
-//                } else {
-//                    model.addTokenDevice();
-//                }
-//            } else
-//                showAlertDialog(languageAndCountryBinding.lyContainer, getString(R.string.must_agree_on_terms_and_condition));
                 }
         );
-        languageAndCountryBinding.tvTermsAndCondition.setOnClickListener(v -> {
-//            startActivity(new Intent(this, WebViewActivity.class).putExtra("url", Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage()));
-            openBrowser(Constants.TERMS_AND_CONDITIONS_URL + sharedPreferences.getLanguage());
-        });
 
-        Glide.with(this)
-                .load(R.drawable.logo)
-                .into(languageAndCountryBinding.imgLogo);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(LANGUAGE_KEY, language);
+        savedInstanceState.putInt(COUNTRY_ID_KEY, idCountry);
+        savedInstanceState.putString(COUNTRY_NAME_KEY, nameCountry);
+        savedInstanceState.putInt(THEME_KEY, theme);
+        savedInstanceState.putBoolean(FIRST_TIME_KEY, false);
     }
 
     public void getToken() {
@@ -155,12 +174,54 @@ public class LanguageAndCountryActivity extends BaseActivity {
                 });
     }
 
-    private void changeBackgroundButton(TextView viewSelected, TextView viewUnSelected) {
-        viewSelected.setBackgroundResource(R.drawable.shape_white_radius_9dp);
-        viewSelected.setElevation(2);
-        viewSelected.setTextColor(ContextCompat.getColor(this, R.color.pink));
+    private void changeBackgroundButtonLanguage(TextView viewSelected, TextView viewUnSelected) {
+        viewSelected.setBackgroundResource(theme == Constants.MODERN_THEME ? R.drawable.shape_blue_light_radius_15dp : R.drawable.shape_gradient_green);
+        viewSelected.setTextColor(ContextCompat.getColor(this, theme == Constants.MODERN_THEME ? R.color.black : R.color.white));
         viewUnSelected.setBackground(null);
-        viewUnSelected.setElevation(0);
-        viewUnSelected.setTextColor(ContextCompat.getColor(this, R.color.black));
+        viewUnSelected.setTextColor(ContextCompat.getColor(this, R.color.gray4));
+    }
+
+    private void updateLanguage() {
+        switch (language) {
+            case LocaleHelper.ARABIC_LANGUAGE:
+                changeBackgroundButtonLanguage(languageAndCountryBinding.tvArabicLang, languageAndCountryBinding.tvEnglishLang);
+                break;
+
+            case LocaleHelper.ENGLISH_LANGUAGE:
+                changeBackgroundButtonLanguage(languageAndCountryBinding.tvEnglishLang, languageAndCountryBinding.tvArabicLang);
+                break;
+        }
+    }
+
+    private void updateTheme() {
+        switch (theme) {
+            case Constants.MODERN_THEME:
+                languageAndCountryBinding.viewLanguage.setBackgroundResource(R.drawable.shape_stroke_gray_15dp);
+                languageAndCountryBinding.spinnerCountries.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                languageAndCountryBinding.viewTheme.setBackgroundResource(R.drawable.shape_stroke_gray_15dp);
+                changeBackgroundButtonTheme(languageAndCountryBinding.tvThemeModern, languageAndCountryBinding.tvThemeLight, languageAndCountryBinding.tvThemeDark);
+                break;
+            case Constants.LIGHT_THEME:
+                languageAndCountryBinding.viewLanguage.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                languageAndCountryBinding.spinnerCountries.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                languageAndCountryBinding.viewTheme.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                changeBackgroundButtonTheme(languageAndCountryBinding.tvThemeLight, languageAndCountryBinding.tvThemeModern, languageAndCountryBinding.tvThemeDark);
+                break;
+            case Constants.DARK_THEME:
+                languageAndCountryBinding.viewLanguage.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                languageAndCountryBinding.spinnerCountries.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                languageAndCountryBinding.viewTheme.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                changeBackgroundButtonTheme(languageAndCountryBinding.tvThemeDark, languageAndCountryBinding.tvThemeModern, languageAndCountryBinding.tvThemeLight);
+                break;
+        }
+    }
+
+    private void changeBackgroundButtonTheme(TextView viewSelected, TextView viewUnSelected1, TextView viewUnSelected2) {
+        viewSelected.setBackgroundResource(theme == Constants.MODERN_THEME ? R.drawable.shape_blue_light_radius_15dp : R.drawable.shape_gradient_green);
+        viewSelected.setTextColor(ContextCompat.getColor(this, theme == Constants.MODERN_THEME ? R.color.black : R.color.white));
+        viewUnSelected1.setBackground(null);
+        viewUnSelected1.setTextColor(ContextCompat.getColor(this, R.color.gray4));
+        viewUnSelected2.setBackground(null);
+        viewUnSelected2.setTextColor(ContextCompat.getColor(this, R.color.gray4));
     }
 }

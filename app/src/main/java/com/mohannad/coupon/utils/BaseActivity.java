@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,12 +36,12 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 
 public class BaseActivity extends AppCompatActivity {
-    StorageSharedPreferences sharedPreferences;
+    public StorageSharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ThemeManager.setCustomizedThemes(this, sharedPreferences.getThemeMode());
     }
 
     public void shareText(String text) {
@@ -54,13 +55,13 @@ public class BaseActivity extends AppCompatActivity {
     public void showDialog(String msg) {
         new AlertDialog.Builder(this)
                 .setMessage(msg)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                .setPositiveButton(Html.fromHtml("<font color='#000000'>" + getString(R.string.yes) + "</font>"), (dialog, which) -> {
                     dialog.cancel();
                 }).show();
     }
 
     public void showDefaultDialog(View view, String message) {
-        showToast(view, message, R.drawable.shape_solid_pink_radius_9dp).show();
+        showToast(view, message, R.drawable.shape_solid_green2_radius_9dp).show();
     }
 
     public void showSuccessDialog(View view, String message) {
@@ -82,7 +83,7 @@ public class BaseActivity extends AppCompatActivity {
         if (background == R.drawable.shape_solid_red_radius_9dp)
             text.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0, 80);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 80);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         return toast;

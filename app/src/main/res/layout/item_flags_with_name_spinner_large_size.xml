@@ -28,7 +28,6 @@
         android:gravity="start"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
-        android:textColor="@color/black"
         android:textSize="14sp"
         tools:text="Palestine" />
 </LinearLayout>

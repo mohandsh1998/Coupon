@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.databinding.ItemCompanyRvBinding;
+import com.mohannad.coupon.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,14 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
     Context mContext;
     private CompanyClickListener companyClickListener;
     private int selectedItem;
+    private int theme;
 
-    public CompaniesAdapter(Context context, ArrayList<CompaniesResponse.Company> companies,
+    public CompaniesAdapter(Context context, ArrayList<CompaniesResponse.Company> companies, int theme,
                             CompanyClickListener companyClickListener) {
         this.companies = companies;
         this.mContext = context;
         this.companyClickListener = companyClickListener;
+        this.theme = theme;
         selectedItem = 0;
     }
 
@@ -53,7 +56,9 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
     }
 
     public void clear() {
+        selectedItem = 0;
         this.companies.clear();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -72,11 +77,14 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         void bind(CompaniesResponse.Company company, int position) {
             // check if position equal selected item -> add border about selected company
             if (position == selectedItem) {
-                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
-                itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.pink));
+                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_solid_white_and_stroke_blue));
+                if (theme == Constants.DARK_THEME)
+                    itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                else
+                    itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.black));
             } else {
-                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_white_radius_15dp));
-                itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_circle_solid_white_and_stroke_gray));
+                itemView.tvCompanyName.setTextColor(ContextCompat.getColor(mContext, R.color.gray));
             }
             // companies from api
             if (position != 0) {
@@ -104,8 +112,6 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
                     // change position selectedItem
                     selectedItem = getAdapterPosition();
                     notifyDataSetChanged();
-                    // add border on selected company
-                    itemView.imgCompanyItemCompanyRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_pink_light_radius_15dp));
                     if (position != 0)
                         companyClickListener.onCompanySelected(position, company);
                     else companyClickListener.onClickAllCoupons();

@@ -1,7 +1,7 @@
 package com.mohannad.coupon.data.network;
 
 import com.mohannad.coupon.data.model.AuthResponse;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
@@ -69,8 +69,8 @@ public interface ApiService {
 
     // categories tabs that will show in home page
     @GET("/api/stores")
-    Call<CategoriesResponse> getCategories(@Header("lang") String lang,
-                                           @Header("country-id") int countryId);
+    Call<StoreResponse> getStores(@Header("lang") String lang,
+                                  @Header("country-id") int countryId);
 
     // companies that will show inside each category in home page
     @GET("/api/all_companies/{idCategory}")
@@ -158,15 +158,17 @@ public interface ApiService {
 
     // send suggestion coupon
     @FormUrlEncoded
-    @POST("/api/suggestion-coupon/create")
+    @POST("/api/v2/suggestion-coupon/create")
     Call<MessageResponse> suggestionCoupon(
             @Header("lang") String lang,
+            @Field("store_name") String storeName,
+            @Field("offer") String offer,
+            @Field("coupon_code") String couponCode,
+            @Field("desc") String desc,
+            @Field("url") String url,
             @Field("email") String email,
             @Field("country_id") int countryId,
-            @Field("coupon_code") String couponCode,
-            @Field("company_id") int companyId,
-            @Field("mobile") String mobile,
-            @Field("desc") String desc
+            @Field("mobile") String mobile
     );
 
     // change password

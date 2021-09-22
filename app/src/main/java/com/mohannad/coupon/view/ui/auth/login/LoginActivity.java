@@ -3,15 +3,10 @@ package com.mohannad.coupon.view.ui.auth.login;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -22,10 +17,7 @@ import com.mohannad.coupon.databinding.SuccessForgetPasswordBottomSheetDialogBin
 import com.mohannad.coupon.utils.BaseActivity;
 import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.view.ui.auth.signup.SignUpActivity;
-import com.mohannad.coupon.view.ui.main.MainActivity;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
-
-import java.util.ArrayList;
+import com.mohannad.coupon.view.ui.main.view.MainActivity;
 
 public class LoginActivity extends BaseActivity {
     private ActivityLoginBinding binding;
@@ -50,7 +42,7 @@ public class LoginActivity extends BaseActivity {
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(binding.lyContainer, msg);
         });
-
+        updateTheme();
     }
 
     private void showResetPasswordSheet() {
@@ -85,6 +77,32 @@ public class LoginActivity extends BaseActivity {
             bottomSheet.cancel();
             openGmail();
         });
+    }
+
+    private void updateTheme() {
+        switch (sharedPreferences.getThemeMode()) {
+            case Constants.MODERN_THEME:
+                binding.btnLogin.setBackgroundResource(R.drawable.shape_blue_15dp);
+                binding.etEmailActivityLogin.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                binding.etEmailActivityLogin.setTextColor(getResources().getColor(R.color.black));
+                binding.etPasswordActivityLogin.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                binding.etPasswordActivityLogin.setTextColor(getResources().getColor(R.color.black));
+                break;
+            case Constants.LIGHT_THEME:
+                binding.btnLogin.setBackgroundResource(R.drawable.shape_gradient_blue_15dp);
+                binding.etEmailActivityLogin.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                binding.etEmailActivityLogin.setTextColor(getResources().getColor(R.color.black));
+                binding.etPasswordActivityLogin.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                binding.etPasswordActivityLogin.setTextColor(getResources().getColor(R.color.black));
+                break;
+            case Constants.DARK_THEME:
+                binding.btnLogin.setBackgroundResource(R.drawable.shape_gradient_blue_15dp);
+                binding.etEmailActivityLogin.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                binding.etEmailActivityLogin.setTextColor(getResources().getColor(R.color.white));
+                binding.etPasswordActivityLogin.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                binding.etPasswordActivityLogin.setTextColor(getResources().getColor(R.color.white));
+                break;
+        }
     }
 
     private void openGmail() {

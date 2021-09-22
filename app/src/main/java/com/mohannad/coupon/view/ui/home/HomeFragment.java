@@ -4,16 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,7 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.databinding.FilterBottomSheetDialogBinding;
 import com.mohannad.coupon.databinding.FragmentHomeBinding;
@@ -33,15 +29,13 @@ import com.mohannad.coupon.view.adapter.home.CompaniesFilterAdapter;
 import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
 import com.mohannad.coupon.view.ui.search.SearchActivity;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class HomeFragment extends BaseFragment {
     private Context mContext;
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
-    ArrayList<CategoriesResponse.Category> categoriesTabs = new ArrayList<>();
+    ArrayList<StoreResponse.Store> categoriesTabs = new ArrayList<>();
     private int idCategoryFilter = -1;
     private int idCompanyFilter = -1;
     private String filterSpecific;

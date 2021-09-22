@@ -17,51 +17,36 @@
         android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:context=".view.ui.auth.login.LoginActivity">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="64dp"
-            android:src="@drawable/img_splash"
-            app:layout_constraintBottom_toTopOf="@+id/et_email__activity_login"
-            app:layout_constraintEnd_toEndOf="parent"
+        <TextView
+            android:id="@+id/tv_hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="@string/hello"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_email_activity_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_email__activity_login"
+            android:id="@+id/et_email_activity_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="24dp"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="16dp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
+            android:padding="16dp"
             android:text="@={loginViewModel.email}"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray0"
             android:textSize="16sp"
-            android:theme="@style/EditTextTheme"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/red"
-            android:visibility="@{safeUnbox(loginViewModel.showErrorEmail) ?  View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@id/et_email__activity_login"
-            app:layout_constraintEnd_toEndOf="@+id/et_email__activity_login"
-            app:layout_constraintStart_toStartOf="@+id/et_email__activity_login" />
 
         <TextView
             android:id="@+id/tv_email_error"
@@ -70,40 +55,26 @@
             android:text="@={loginViewModel.errorEmail}"
             android:textColor="@color/red"
             android:visibility="@{loginViewModel.showErrorEmail? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="@+id/et_email__activity_login"
-            app:layout_constraintTop_toBottomOf="@+id/et_email__activity_login" />
+            app:layout_constraintStart_toStartOf="@+id/et_email_activity_login"
+            app:layout_constraintTop_toBottomOf="@+id/et_email_activity_login" />
 
         <EditText
             android:id="@+id/et_password__activity_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="24dp"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
+            android:padding="16dp"
             android:text="@={loginViewModel.password}"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray0"
             android:textSize="16sp"
-            android:theme="@style/EditTextTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email_error" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/red"
-            android:visibility="@{safeUnbox(loginViewModel.showErrorPassword) ?  View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@id/et_password__activity_login"
-            app:layout_constraintEnd_toEndOf="@+id/et_password__activity_login"
-            app:layout_constraintStart_toStartOf="@+id/et_password__activity_login" />
 
         <TextView
             android:id="@+id/tv_password_error"
@@ -119,11 +90,11 @@
             android:id="@+id/tv_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/forget_password"
-            android:textColor="@color/orange"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/et_password__activity_login"
+            app:layout_constraintStart_toStartOf="@+id/et_password__activity_login"
             app:layout_constraintTop_toBottomOf="@+id/et_password__activity_login" />
 
 
@@ -131,17 +102,14 @@
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/shape_btn_raduis_22dp"
+            android:layout_margin="24dp"
             android:onClick="@{(view) -> loginViewModel.onClick()}"
             android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_forget_password"
-            app:layout_constraintStart_toStartOf="@+id/et_password__activity_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_forget_password" />
 
         <TextView
@@ -152,7 +120,7 @@
             android:text="@string/don_t_have_an_account"
             android:textColor="@color/gray0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -163,11 +131,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
-            android:textColor="@color/pink"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -177,13 +146,16 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.45" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/loading_dots"
             android:visibility="@{safeUnbox(loginViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

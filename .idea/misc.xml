@@ -1,5 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_back_arrow.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_email.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_menu_24.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_point.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_search_24.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_settings.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_snapchat.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_telegram.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/ic_user.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/img_contact_us.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/img_forget_password.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_black1_radius_15dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_black_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_black_radius_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_blue_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_blue_light_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_blue_ligt_radius_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_blue_radius_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_circle_pink_light.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_circle_solid_white_and_stroke_gray.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_circle_solid_white_and_stroke_pink.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_circle_storke_white.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_circle_white.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gradient_blue_10dp.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gradient_blue_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gradient_brown_10dp.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gradient_green.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gradient_green_10dp.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gray1_radius_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gray2_raduis_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_gray_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_green_light_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_green_light_radius_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_lilac_10dp.xml" value="0.14290540540540542" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_pink_light_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_solid_black_10dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_solid_green1_radius_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_solid_green2_radius_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_solid_green_radius_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_black_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_dash_pink_raduis_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_gray_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_gray_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_gray_raduis_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_green_raduis_9dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_pink_raduis_9dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_turquoise_raduis_15dp.xml" value="0.1125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_stroke_white_raduis_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_white_radius_15dp.xml" value="0.1414715719063545" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/drawable/shape_white_radius_with_border_red_6dp.xml" value="0.2203125" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_add_coupon.xml" value="0.33" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_contact_us.xml" value="0.25" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_deal_coupons.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_favorite.xml" value="0.12" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_language_and_country.xml" value="0.17" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_login.xml" value="0.14" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_more.xml" value="0.18" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_setting.xml" value="0.12" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_stores.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_trend_coupons.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_used_coupon.xml" value="0.12" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/addcoupon.xml" value="0.22" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/companies_layout.xml" value="0.16530797101449277" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_stores.xml" value="0.10758196721311475" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_company_rv.xml" value="0.5" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_coupon_rv.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_coupons_rv.xml" value="0.22" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_flags_spinner.xml" value="0.11987704918032786" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_flags_with_name_spinner.xml" value="0.11987704918032786" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_flags_with_name_spinner_large_size.xml" value="0.11987704918032786" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_spinner_bottom_sheet_rv.xml" value="0.11987704918032786" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_store_horizantal_rv.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_store_horizontal_rv.xml" value="0.18" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_store_rv.xml" value="0.1" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_title_rv.xml" value="0.16" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/language_dropdown.xml" value="0.1381340579710145" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/loading_layout.xml" value="0.10314207650273224" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/toast_layout.xml" value="0.1381340579710145" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/trend_activity.xml" value="0.16530797101449277" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/trend_fragment.xml" value="0.16" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
@@ -26,7 +120,7 @@
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="14">
+        <list size="15">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
@@ -41,6 +135,7 @@
           <item index="11" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
           <item index="12" class="java.lang.String" itemvalue="io.reactivex.annotations.NonNull" />
           <item index="13" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.NonNull" />
+          <item index="14" class="java.lang.String" itemvalue="lombok.NonNull" />
         </list>
       </value>
     </option>

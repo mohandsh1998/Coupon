@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.databinding.ItemCouponRvBinding;
 import com.mohannad.coupon.databinding.ItemCouponsRvBinding;
 import com.mohannad.coupon.utils.BaseViewHolder;
+import com.mohannad.coupon.utils.Constants;
 
 import java.util.List;
 
@@ -35,8 +35,9 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private boolean startAnimation = false;
     private Animation bottomTop;
     private Animation centerTop;
+    private int theme;
 
-    public UsedCouponsAdapter(Context mContext, List<Coupon> couponList, CouponClickListener couponClickListener) {
+    public UsedCouponsAdapter(Context mContext, List<Coupon> couponList, int theme, CouponClickListener couponClickListener) {
         this.mContext = mContext;
         this.couponList = couponList;
         // animation when copy coupon
@@ -47,6 +48,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         shopItem = -1;
         copyItem = -1;
         thanksAnimItem = -1;
+        this.theme = theme;
     }
 
     public void setShopItem(int position) {
@@ -110,6 +112,35 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             this.itemCouponRvBinding = itemCouponRvBinding;
             this.itemCouponRvBinding.imgFavoriteCouponItemCouponRv.setVisibility(View.VISIBLE);
             this.itemCouponRvBinding.imgDeleteCouponItemCouponRv.setVisibility(View.GONE);
+            switch (theme) {
+                case Constants.MODERN_THEME:
+                    itemCouponRvBinding.lyThanks.setBackgroundResource(R.color.white);
+                    this.itemCouponRvBinding.lyCoupon.setBackgroundResource(R.color.blue_light1);
+                    this.itemCouponRvBinding.tvShopNowItemCouponRv.setBackgroundResource(R.drawable.shape_solid_green1_radius_9dp);
+                    this.itemCouponRvBinding.tvBestSellingItemCouponRv.setBackgroundResource(R.drawable.shape_blue_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCode.setBackgroundResource(R.drawable.shape_solid_pink_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackgroundResource(R.drawable.shape_stroke_pink_raduis_9dp);
+                    this.itemCouponRvBinding.gifThankYou.setImageResource(R.drawable.thanks_you_white);
+                    break;
+                case Constants.LIGHT_THEME:
+                    itemCouponRvBinding.lyThanks.setBackgroundResource(R.color.white);
+                    this.itemCouponRvBinding.lyCoupon.setBackgroundResource(R.color.white);
+                    this.itemCouponRvBinding.tvShopNowItemCouponRv.setBackgroundResource(R.drawable.shape_blue_radius_9dp);
+                    this.itemCouponRvBinding.tvBestSellingItemCouponRv.setBackgroundResource(R.drawable.shape_solid_green1_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCode.setBackgroundResource(R.drawable.shape_solid_green_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackgroundResource(R.drawable.shape_stroke_green_raduis_9dp);
+                    this.itemCouponRvBinding.gifThankYou.setImageResource(R.drawable.thanks_you_white);
+                    break;
+                case Constants.DARK_THEME:
+                    itemCouponRvBinding.lyThanks.setBackgroundResource(R.color.black3);
+                    this.itemCouponRvBinding.lyCoupon.setBackgroundResource(R.color.black2);
+                    this.itemCouponRvBinding.tvShopNowItemCouponRv.setBackgroundResource(R.drawable.shape_blue_radius_9dp);
+                    this.itemCouponRvBinding.tvBestSellingItemCouponRv.setBackgroundResource(R.drawable.shape_solid_green1_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCode.setBackgroundResource(R.drawable.shape_solid_green_radius_9dp);
+                    this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackgroundResource(R.drawable.shape_stroke_green_raduis_9dp);
+                    this.itemCouponRvBinding.gifThankYou.setImageResource(R.drawable.thanks_you_dark);
+                    break;
+            }
         }
 
         @Override
@@ -200,12 +231,7 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 visibleOrHideQuestionViews(false);
                 visibleOrHideContentCouponViews(true, coupon.isAllowToOfferCountUsed(), coupon.isAllowToOfferLastUseDate());
             }
-            itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.VISIBLE);
-            Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                //write your code here to be executed after 1 second
-                itemCouponRvBinding.shimmerCopyCoupon.setVisibility(View.GONE);
-            }, 800);
+
             itemCouponRvBinding.lyThanks.setVisibility(View.GONE);
             // check if position == coupon has been answer yes -> will show animation thank u
             if (thanksAnimItem == position) {
@@ -252,16 +278,15 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     }
                 });
             }
+
+            // change text to code coupon
+            itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
             // check if position == coupon has been copied -> will show code coupon
             // if not -> hide code coupon and show copy coupon text
             if (position == copyItem) {
-                // change text to code coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(coupon.getCouponCode());
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
+                itemCouponRvBinding.tvCopyCode.setVisibility(View.GONE);
                 // change background
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
+                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_dash_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     itemCouponRvBinding.tvCopyCouponItemCouponRv.startAnimation(shake);
@@ -269,12 +294,15 @@ public class UsedCouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     startAnimation = false;
                 }
             } else {
-                // change code coupon to text copy coupon
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setText(mContext.getString(R.string.get_code));
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setTextColor(mContext.getResources().getColor(R.color.pink));
+                itemCouponRvBinding.tvCopyCode.setVisibility(View.VISIBLE);
+                itemCouponRvBinding.tvCopyCode.startAnimation(shake);
+
                 // change background
-                itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_pink_light_raduis_9dp));
+                if (theme == Constants.MODERN_THEME) {
+                    this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackgroundResource(R.drawable.shape_stroke_pink_raduis_9dp);
+                } else {
+                    this.itemCouponRvBinding.tvCopyCouponItemCouponRv.setBackgroundResource(R.drawable.shape_stroke_green_raduis_9dp);
+                }
             }
 
             if (!TextUtils.isEmpty(coupon.getBestSellingTitle())) {

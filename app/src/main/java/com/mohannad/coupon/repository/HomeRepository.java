@@ -7,11 +7,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mohannad.coupon.callback.ResponseServer;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CopyCouponResponse;
 import com.mohannad.coupon.data.model.CouponHomeResponse;
-import com.mohannad.coupon.data.model.HelpResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.network.ApiClient;
 import com.mohannad.coupon.data.network.ApiService;
@@ -30,20 +29,20 @@ public class HomeRepository {
         return homeRepository;
     }
 
-    // this method will using to get categories tabs from SERVER SIDE
-    public void getCategoriesTabs(String lang, int idCountry,
-                                  ResponseServer<LiveData<CategoriesResponse>> responseServer) {
-        MutableLiveData<CategoriesResponse> tabsCategories = new MutableLiveData<>();
+    // this method will using to get stores from SERVER SIDE
+    public void getStores(String lang, int idCountry,
+                          ResponseServer<LiveData<StoreResponse>> responseServer) {
+        MutableLiveData<StoreResponse> stores = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getCategories(lang, idCountry).enqueue(new Callback<CategoriesResponse>() {
+        apiService.getStores(lang, idCountry).enqueue(new Callback<StoreResponse>() {
             @Override
-            public void onResponse(@NonNull Call<CategoriesResponse> call, @NonNull Response<CategoriesResponse> response) {
-                tabsCategories.setValue(response.body());
-                responseServer.onSuccess(response.isSuccessful(), response.code(), tabsCategories);
+            public void onResponse(@NonNull Call<StoreResponse> call, @NonNull Response<StoreResponse> response) {
+                stores.setValue(response.body());
+                responseServer.onSuccess(response.isSuccessful(), response.code(), stores);
             }
 
             @Override
-            public void onFailure(@NonNull Call<CategoriesResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<StoreResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "Home onFailure" + call.toString());
                 responseServer.onFailure(t.getMessage());
                 t.printStackTrace();
@@ -51,7 +50,7 @@ public class HomeRepository {
         });
     }
 
-    // this method will using to get companies for category from SERVER SIDE
+    // this method will using to get companies for store from SERVER SIDE
     public void getCompanies(String lang, int idCountry, int idCategory, ResponseServer<LiveData<CompaniesResponse>> responseServer) {
         MutableLiveData<CompaniesResponse> companies = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
@@ -72,7 +71,7 @@ public class HomeRepository {
     }
 
     // this method will using to get all coupons for category from SERVER SIDE
-    public void getAllCouponsCategory(String lang, int idCountry, String token, String tokenDevice, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
+    public void getAllCouponsStore(String lang, int idCountry, String token, String tokenDevice, int idCategory, int page, ResponseServer<LiveData<CouponHomeResponse>> responseServer) {
         MutableLiveData<CouponHomeResponse> coupons = new MutableLiveData<>();
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getAllCouponsCategory(lang, idCountry, token, tokenDevice, idCategory, page).enqueue(new Callback<CouponHomeResponse>() {

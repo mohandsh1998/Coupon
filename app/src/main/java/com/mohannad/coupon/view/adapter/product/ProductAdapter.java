@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -182,7 +181,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 this.itemView.tvCopyCouponItemProductRv.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_copy, 0, 0, 0);
                 this.itemView.tvCopyCouponItemProductRv.setTextColor(mContext.getResources().getColor(R.color.pink));
                 // change background
-                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_gray_raduis_9dp));
+                this.itemView.tvCopyCouponItemProductRv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_stroke_dash_pink_raduis_9dp));
                 if (startAnimation) {
                     // start animation
                     this.itemView.tvCopyCouponItemProductRv.startAnimation(shake);

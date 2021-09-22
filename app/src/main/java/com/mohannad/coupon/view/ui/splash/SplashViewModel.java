@@ -1,8 +1,6 @@
 package com.mohannad.coupon.view.ui.splash;
 
 import android.app.Application;
-import android.text.TextUtils;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -11,17 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.callback.ResponseServer;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.data.model.CategoriesResponse;
-import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.SettingResponse;
-import com.mohannad.coupon.repository.AddCouponRepository;
-import com.mohannad.coupon.repository.HomeRepository;
 import com.mohannad.coupon.repository.SettingRepository;
 import com.mohannad.coupon.utils.BaseViewModel;
 import com.mohannad.coupon.utils.Constants;
-import com.mohannad.coupon.utils.Utils;
 
 import java.util.List;
 

@@ -68,7 +68,7 @@ public class SearchActivity extends BaseActivity {
         fetchCoupons();
         storageSharedPreferences = new StorageSharedPreferences(this);
         // initialization an adapter for coupons
-        UsedCouponsAdapter couponsAdapter = new UsedCouponsAdapter(this, coupons, new UsedCouponsAdapter.CouponClickListener() {
+        UsedCouponsAdapter couponsAdapter = new UsedCouponsAdapter(this, coupons, sharedPreferences.getThemeMode(), new UsedCouponsAdapter.CouponClickListener() {
             @Override
             public void copyCoupon(int position, Coupon coupon) {
                 // copy code coupon
@@ -152,6 +152,10 @@ public class SearchActivity extends BaseActivity {
         // display error msg
         model.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(binding.lyContainer, msg);
+        });
+
+        binding.imgBackArrow.setOnClickListener(v -> {
+            onBackPressed();
         });
     }
 

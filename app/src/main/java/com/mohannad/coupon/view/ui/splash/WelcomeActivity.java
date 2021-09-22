@@ -1,6 +1,5 @@
 package com.mohannad.coupon.view.ui.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
@@ -12,7 +11,6 @@ import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.databinding.ActivityWelcomeBinding;
 import com.mohannad.coupon.utils.BaseActivity;
-import com.mohannad.coupon.view.ui.main.MainActivity;
 
 public class WelcomeActivity extends BaseActivity {
     StorageSharedPreferences mStorageSharedPreferences;

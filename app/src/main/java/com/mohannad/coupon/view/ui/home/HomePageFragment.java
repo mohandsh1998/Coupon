@@ -119,7 +119,7 @@ public class HomePageFragment extends BaseFragment {
         // get companies for category
         homeViewModel.getCompanies(idCategory);
         // initialization an adapter for companies
-        companiesAdapter = new CompaniesAdapter(requireActivity(), companies, new CompaniesAdapter.CompanyClickListener() {
+        companiesAdapter = new CompaniesAdapter(requireActivity(), companies, storageSharedPreferences.getThemeMode(), new CompaniesAdapter.CompanyClickListener() {
             @Override
             public void onCompanySelected(int position, CompaniesResponse.Company company) {
                 // when click to select company by user
@@ -152,7 +152,7 @@ public class HomePageFragment extends BaseFragment {
         });
 
         // initialization an adapter for coupons
-        couponsAdapter = new CouponsAdapter(requireActivity(), coupons, companiesAdapter, new CouponsAdapter.CouponClickListener() {
+        couponsAdapter = new CouponsAdapter(requireActivity(), coupons, storageSharedPreferences.getThemeMode(), companiesAdapter, new CouponsAdapter.CouponClickListener() {
             @Override
             public void copyCoupon(int position, Coupon coupon) {
                 // copy code coupon
@@ -288,7 +288,7 @@ public class HomePageFragment extends BaseFragment {
 
     private void fetchAllCouponsCategory() {
         // get all coupons for category
-        homeViewModel.getAllCouponsCategory(idCategory, mCurrentPage);
+        homeViewModel.getAllCouponsStore(idCategory, mCurrentPage);
     }
 
     private void fetchCouponsCompany() {

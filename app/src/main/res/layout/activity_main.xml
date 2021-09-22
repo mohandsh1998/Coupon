@@ -3,267 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="com.mohannad.coupon.view.ui.main.viewmodel.MainViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
+        android:id="@+id/ly_container"
         android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
         android:layout_height="match_parent"
-        android:background="@color/gray2">
+        tools:context=".view.ui.store.view.StoresActivity">
 
-        <RelativeLayout
-            android:id="@+id/llViewBottomTabs"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-            <LinearLayout
-                android:id="@+id/llTabView"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivHome"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_home"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/txtHome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="2dp"
-                        android:alpha="0.4"
-                        android:text="@string/title_home"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivFavorite"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_heart"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/txtFavorite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="2dp"
-                        android:alpha="0.4"
-                        android:text="@string/title_favorite"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivTrending"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_trend"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/txtTrending"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="2dp"
-                        android:alpha="0.4"
-                        android:text="@string/title_trend"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivDeal"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_deal"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/txtDeal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="2dp"
-                        android:alpha="0.4"
-                        android:text="@string/title_deal"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivMore"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_more"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/txtMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="2dp"
-                        android:alpha="0.4"
-                        android:text="@string/title_more"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="10sp" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab"
-                style="@style/MyTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_alignParentBottom="true"
-                app:tabIndicatorColor="@null"
-                app:tabMode="fixed"
-                app:tabRippleColor="@null"
-                app:tabSelectedTextColor="@null" />
-
-
-            <ImageView
-                android:id="@+id/indicator"
-                android:layout_width="0dp"
-                android:layout_height="26dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/icon_tab_selected_bg" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
-            android:elevation="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivSelectedHome"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/hometab"
-                    android:visibility="invisible" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivSelectFavirote"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/hearttab"
-                    android:visibility="invisible" />
-
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivSelectFire"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/firetab"
-                    android:visibility="invisible" />
-
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivSelectDeal"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/meattab"
-                    android:visibility="invisible" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivSelectMore"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/moretab"
-                    android:visibility="invisible" />
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/llViewBottomTabs"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/img_back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:src="@drawable/ic_back_arrow" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="24dp"/>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_stores"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintDimensionRatio="h,14:4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_coupons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_stores" />
+
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/loading_dots"
+            android:visibility="@{mainViewModel.dataLoadingCoupons? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

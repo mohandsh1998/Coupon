@@ -7,9 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.mohannad.coupon.callback.ResponseServer;
-import com.mohannad.coupon.data.model.CategoriesResponse;
 import com.mohannad.coupon.data.model.CouponsTrendResponse;
-import com.mohannad.coupon.data.model.MessageResponse;
 import com.mohannad.coupon.data.model.TrendResponse;
 import com.mohannad.coupon.data.network.ApiClient;
 import com.mohannad.coupon.data.network.ApiService;

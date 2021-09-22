@@ -16,18 +16,8 @@
         android:id="@+id/ly_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_lang_and_country"
         tools:context=".view.ui.splash.LanguageAndCountryActivity">
 
-
-        <ImageView
-            android:id="@+id/img_logo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView7"
-            app:layout_constraintEnd_toEndOf="@+id/tv_select_lang"
-            app:layout_constraintStart_toStartOf="@+id/tv_select_lang" />
 
         <TextView
             android:id="@+id/textView7"
@@ -37,7 +27,6 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="اختار اللغة"
-            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tv_select_lang"
@@ -54,34 +43,32 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Select Language"
-            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintBottom_toTopOf="@+id/view_language"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view_language"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/shape_gray1_radius_9dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_white_radius_9dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_countries"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_english_lang"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="4dp"
-            android:background="@drawable/shape_white_radius_9dp"
-            android:elevation="2dp"
+            android:background="@drawable/shape_gradient_green"
             android:gravity="center"
             android:paddingStart="32dp"
             android:paddingTop="4dp"
@@ -89,13 +76,13 @@
             android:paddingBottom="4dp"
             android:text="ENG"
             android:textAllCaps="false"
-            android:textColor="@color/pink"
+            android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintBottom_toBottomOf="@+id/view_language"
             app:layout_constraintEnd_toStartOf="@+id/tv_arabic_lang"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/view"
-            app:layout_constraintTop_toTopOf="@id/view" />
+            app:layout_constraintStart_toStartOf="@id/view_language"
+            app:layout_constraintTop_toTopOf="@id/view_language" />
 
         <TextView
             android:id="@+id/tv_arabic_lang"
@@ -109,28 +96,28 @@
             android:paddingBottom="4dp"
             android:text="العربية"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/gray4"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintBottom_toBottomOf="@+id/view_language"
+            app:layout_constraintEnd_toEndOf="@id/view_language"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tv_english_lang"
-            app:layout_constraintTop_toTopOf="@+id/view" />
+            app:layout_constraintTop_toTopOf="@+id/view_language" />
 
         <Spinner
             android:id="@+id/spinner_countries"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="369dp"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/shape_gray1_radius_9dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/shape_white_radius_9dp"
             android:minHeight="56dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_mode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_english_lang" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -142,33 +129,96 @@
             app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
             app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
 
-        <CheckBox
-            android:id="@+id/cb_terms_and_conditions"
+        <TextView
+            android:id="@+id/tv_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/select_mode"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_theme"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/i_agree_to_the"
-            android:visibility="gone"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/spinner_countries"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_white_radius_9dp"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mode" />
 
         <TextView
-            android:id="@+id/tv_terms_and_condition"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:ellipsize="end"
-            android:visibility="gone"
-            android:maxLines="1"
-            android:text="@string/terms_and_conditions"
-            android:textColor="@color/pink"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/cb_terms_and_conditions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cb_terms_and_conditions"
-            app:layout_constraintTop_toTopOf="@+id/cb_terms_and_conditions" />
+            android:id="@+id/tv_theme_modern"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/modern"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toStartOf="@+id/tv_theme_light"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/view_theme"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_theme_light"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/shape_gradient_green"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/light"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toStartOf="@+id/tv_theme_dark"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_theme_modern"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_theme_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/dark"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toEndOf="@id/view_theme"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_theme_light"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btn_confirm"
@@ -176,23 +226,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/shape_gradient_pink_9dp"
             android:elevation="10dp"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
             android:text="@string/apply"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+            app:layout_constraintTop_toBottomOf="@+id/view_theme" />
 
-        <ProgressBar
-            android:id="@+id/progressBar3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/loading_dots"
+            android:elevation="2dp"
             android:visibility="@{safeUnbox(splashViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

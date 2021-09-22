@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="4dp"
-    tools:context=".view.ui.main.MainActivity">
+    tools:context=".view.ui.main.view.MainActivity">
     <TextView
         android:padding="4dp"
         android:layout_width="match_parent"

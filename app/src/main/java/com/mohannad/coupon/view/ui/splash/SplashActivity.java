@@ -1,6 +1,5 @@
 package com.mohannad.coupon.view.ui.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -9,15 +8,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.WindowManager;
 
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
-import com.mohannad.coupon.databinding.ActivitySettingBinding;
 import com.mohannad.coupon.databinding.ActivitySplashBinding;
 import com.mohannad.coupon.utils.BaseActivity;
-import com.mohannad.coupon.view.ui.main.MainActivity;
+import com.mohannad.coupon.view.ui.main.view.MainActivity;
+import com.mohannad.coupon.view.ui.store.view.StoresActivity;
 
 public class SplashActivity extends BaseActivity {
     StorageSharedPreferences mStorageSharedPreferences;
@@ -37,7 +35,8 @@ public class SplashActivity extends BaseActivity {
             if (!mStorageSharedPreferences.isFirstTimeLaunch()) {
                 launchSplashActivity();
             } else {
-                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+                startActivity(new Intent(this, LanguageAndCountryActivity.class));
+                finish();
             }
         });
 
@@ -54,7 +53,7 @@ public class SplashActivity extends BaseActivity {
         // check if user selected country or not
         if (!TextUtils.isEmpty(mStorageSharedPreferences.getCountryName()) && mStorageSharedPreferences.getCountryID() != -1)
             // if selected -> open main activity
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, StoresActivity.class));
         else {
             // if not -> open Language And Country activity to select by user
             startActivity(new Intent(SplashActivity.this, LanguageAndCountryActivity.class));

@@ -47,6 +47,7 @@ public class SpinnerImageWithTextAdapter extends ArrayAdapter<CountryResponse.Co
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flags_with_name_spinner_large_size, parent, false);
         TextView nameCountry = view.findViewById(R.id.name_country);
+        nameCountry.setTextColor(mContext.getResources().getColor(R.color.black1));
         ImageView imgFlag = view.findViewById(R.id.img_flag);
         nameCountry.setText(items.get(position).getName());
         // loading image flag

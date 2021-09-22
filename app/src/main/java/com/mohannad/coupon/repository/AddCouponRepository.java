@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Field;
+import retrofit2.http.Header;
 
 public class AddCouponRepository {
     private final String TAG = getClass().getSimpleName();
@@ -29,11 +30,11 @@ public class AddCouponRepository {
         return addCouponRepository;
     }
 
-    public void suggestionCoupon(String lang, String email, int countryId,
-                                 String couponCode, int companyId, String mobile, String desc,
-                                 ResponseServer<MessageResponse> responseServer) {
+    public void suggestionCoupon(String lang, String storeName, String offer,
+                                 String couponCode, String desc, String url, String email,
+                                 int countryId, String mobile, ResponseServer<MessageResponse> responseServer) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.suggestionCoupon(lang, email, countryId, couponCode, companyId, mobile, desc).enqueue(new Callback<MessageResponse>() {
+        apiService.suggestionCoupon(lang, storeName, offer, couponCode, desc, url, email, countryId, mobile).enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
                 responseServer.onSuccess(response.isSuccessful(), response.code(), response.body());

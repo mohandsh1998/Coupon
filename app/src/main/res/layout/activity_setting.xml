@@ -15,119 +15,251 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
         tools:context=".view.ui.setting.SettingActivity">
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:src="@drawable/ic_back_arrow" />
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/setting_app"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_language"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/language"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner_language"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/shape_white_radius_9dp"
-            android:entries="@array/language"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:elevation="5dp"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_bottom_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_language"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_language"
-            app:layout_constraintTop_toTopOf="@+id/spinner_language" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <Spinner
+                android:id="@+id/spinner_language"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_white_radius_9dp"
+                android:entries="@array/language"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_bottom_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_language"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_language"
+                app:layout_constraintTop_toTopOf="@+id/spinner_language" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_theme"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/country"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_language" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/we_display_coupons_and_stores_available_for_your_country"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_language"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <Spinner
-            android:id="@+id/spinner_countries"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/shape_white_radius_9dp"
             android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:elevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            tools:listitem="@layout/item_flags_with_name_spinner_large_size" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_bottom_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_countries"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-            app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
+            app:layout_constraintTop_toBottomOf="@+id/ly_language" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/tv_theme_modern"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/coupon_notification"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/modern"
+            android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_countries" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toStartOf="@+id/tv_theme_light"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/view_theme"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="1.0" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_notification"
+        <TextView
+            android:id="@+id/tv_theme_light"
             android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/shape_gradient_green"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/light"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toStartOf="@+id/tv_theme_dark"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_theme_modern"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_theme_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="4dp"
+            android:text="@string/dark"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_theme"
+            app:layout_constraintEnd_toEndOf="@id/view_theme"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_theme_light"
+            app:layout_constraintTop_toTopOf="@+id/view_theme"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_country"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checked="true"
-            app:colorControlActivated="@color/pink"
-            app:layout_constraintBottom_toBottomOf="@+id/textView13"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-            app:layout_constraintTop_toTopOf="@+id/textView13" />
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_theme">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/country"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/we_display_coupons_and_stores_available_for_your_country"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <Spinner
+                android:id="@+id/spinner_countries"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_white_radius_9dp"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                tools:listitem="@layout/item_flags_with_name_spinner_large_size" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_bottom_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_countries"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
+                app:layout_constraintTop_toTopOf="@+id/spinner_countries" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ly_notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_country">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coupon_notification"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:colorControlActivated="@color/pink"
+                app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btn_save"
@@ -141,12 +273,15 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/spinner_countries"
-            app:layout_constraintStart_toStartOf="@+id/spinner_countries" />
+            app:layout_constraintEnd_toEndOf="@+id/ly_country"
+            app:layout_constraintStart_toStartOf="@+id/ly_country" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/loading_dots"
+            android:elevation="2dp"
             android:visibility="@{safeUnbox(settingViewModel.dataLoading) ?  View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

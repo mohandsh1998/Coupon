@@ -118,6 +118,25 @@
     <string name="title_trend">ترند</string>
     <string name="was_your_experience_good">هل كانت تجربتك جيده</string>
     <string name="review_app">تقييم التطبيق</string>
+    <string name="select_mode">إختر الثيم</string>
+    <string name="modern">عصري</string>
+    <string name="light">تلقائي</string>
+    <string name="dark">الأسود</string>
+    <string name="telegram">تلجرام</string>
+    <string name="snapchat">سناب شات</string>
+    <string name="offer">عرض</string>
+    <string name="details">التفاصيل</string>
+    <string name="details_option">التفاصيل (إختياري)</string>
+    <string name="store_link_optional">رابط المتجر (إختياري)</string>
+    <string name="contact_email_option">الإيميل (إختياري)</string>
+    <string name="promo_code">الرمز الترويجي</string>
+    <string name="hello">مرحبا !</string>
+    <string name="coupons_used">الكابونات المستخدمة</string>
+    <string name="conditions">الشروط</string>
+    <string name="adding_coupons_for_online_stores_affiliate_program_not_included">إضافة كوبونات للمتاجر عبر الإنترنت ، التابعة
+البرنامج غير مدرج</string>
+    <string name="the_coupon_should_be_valid">يجب أن يكون الكابون صالح للإستخدام</string>
+    <string name="one_coupon_could_be_add_per_store">يمكن إضافة كابون واحدة لكل متجر</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>

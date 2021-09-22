@@ -12,12 +12,13 @@ import android.view.View;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.data.model.CategoriesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.data.model.CompaniesResponse;
 import com.mohannad.coupon.data.model.CountryResponse;
 import com.mohannad.coupon.databinding.ActivityAddCouponBinding;
 import com.mohannad.coupon.databinding.SpinnerBottomSheetDialogBinding;
 import com.mohannad.coupon.utils.BaseActivity;
+import com.mohannad.coupon.utils.Constants;
 import com.mohannad.coupon.view.adapter.spinner.SpinnerBottomSheetAdapter;
 
 import java.util.ArrayList;
@@ -58,59 +59,8 @@ public class AddCouponActivity extends BaseActivity {
             showFilterSheet(adapterCountries, getString(R.string.choose_country));
         });
 
-        // array categories
-        ArrayList<CategoriesResponse.Category> categories = new ArrayList<>();
-        // init categories adapter
-        SpinnerBottomSheetAdapter<CategoriesResponse.Category> adapterCategories =
-                new SpinnerBottomSheetAdapter<>(categories, (SpinnerBottomSheetAdapter.ItemClickListener<CategoriesResponse.Category>) (position, item) -> {
-                    // action listener when change item in dropdown
-                    // display category name in edit text
-                    addCouponBinding.etCategories.setText(item.getName());
-                    // item selected by user from dropdown
-                    mViewModel.category(item.getId());
-                    // get companies for the category selected by the user in the dropdown
-                    mViewModel.getCompanies(item.getId());
-                });
-        // when click on editText categories show BottomSheet dialog that will show categories
-        addCouponBinding.etCategories.setOnClickListener(v -> {
-            showFilterSheet(adapterCategories, getString(R.string.choose_category));
-        });
-
-        mViewModel.categories.observe(this, categoriesList -> {
-            adapterCategories.addAll(categoriesList);
-            if (categoriesList.size() > 0) {
-                // display the first category name in editText when get from server
-                addCouponBinding.etCategories.setText(categoriesList.get(0).getName());
-                mViewModel.category(categoriesList.get(0).getId());
-                // get companies for the first category
-                mViewModel.getCompanies(categoriesList.get(0).getId());
-            }
-        });
-
-        // array companies for specific category
-        ArrayList<CompaniesResponse.Company> companies = new ArrayList<>();
-        // init companies adapter
-        SpinnerBottomSheetAdapter<CompaniesResponse.Company> adapterCompanies =
-                new SpinnerBottomSheetAdapter<>(companies, (SpinnerBottomSheetAdapter.ItemClickListener<CompaniesResponse.Company>) (position, item) -> {
-                    // action listener when change item in dropdown
-                    // display company name in edit text
-                    addCouponBinding.etCompanies.setText(item.getName());
-                    // item selected by user from dropdown
-                    mViewModel.company(item.getId());
-                });
-
-        // when click on editText companies show BottomSheet dialog that will show companies for specific category
-        addCouponBinding.etCompanies.setOnClickListener(v -> {
-            showFilterSheet(adapterCompanies, getString(R.string.choose_company));
-        });
-
-        mViewModel.companies.observe(this, companyList -> {
-            adapterCompanies.addAll(companyList);
-            if (companyList.size() > 0) {
-                // display the first company name in editText when get from server
-                addCouponBinding.etCompanies.setText(companyList.get(0).getName());
-                mViewModel.company(companyList.get(0).getId());
-            }
+        addCouponBinding.imgBackArrow.setOnClickListener(v -> {
+            onBackPressed();
         });
 
         // show alert dialog when send coupon
@@ -118,8 +68,64 @@ public class AddCouponActivity extends BaseActivity {
         mViewModel.toastMessageFailed.observe(this, msg -> {
             showAlertDialog(addCouponBinding.lyContainer, msg);
         });
+        updateTheme();
     }
 
+    private void updateTheme() {
+        switch (sharedPreferences.getThemeMode()) {
+            case Constants.MODERN_THEME:
+                addCouponBinding.btnSend.setBackgroundResource(R.drawable.shape_blue_15dp);
+                addCouponBinding.etStoreName.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etStoreName.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etOffer.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etOffer.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etCoupon.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etCoupon.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etDescription.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etDescription.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etStoreLink.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etStoreLink.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etEmail.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etEmail.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.lyMobile.setBackgroundResource(R.drawable.shape_gray_radius_15dp);
+                addCouponBinding.etMobile.setTextColor(getResources().getColor(R.color.black));
+                break;
+            case Constants.LIGHT_THEME:
+                addCouponBinding.btnSend.setBackgroundResource(R.drawable.shape_gradient_blue_15dp);
+                addCouponBinding.etStoreName.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etStoreName.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etOffer.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etOffer.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etCoupon.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etCoupon.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etDescription.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etDescription.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etStoreLink.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etStoreLink.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.etEmail.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etEmail.setTextColor(getResources().getColor(R.color.black));
+                addCouponBinding.lyMobile.setBackgroundResource(R.drawable.shape_white_radius_15dp);
+                addCouponBinding.etMobile.setTextColor(getResources().getColor(R.color.black));
+                break;
+            case Constants.DARK_THEME:
+                addCouponBinding.btnSend.setBackgroundResource(R.drawable.shape_gradient_blue_15dp);
+                addCouponBinding.etStoreName.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etStoreName.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.etOffer.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etOffer.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.etCoupon.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etCoupon.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.etDescription.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etDescription.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.etStoreLink.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etStoreLink.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.etEmail.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etEmail.setTextColor(getResources().getColor(R.color.white));
+                addCouponBinding.lyMobile.setBackgroundResource(R.drawable.shape_black_radius_15dp);
+                addCouponBinding.etMobile.setTextColor(getResources().getColor(R.color.white));
+                break;
+        }
+    }
 
     private <T> void showFilterSheet(SpinnerBottomSheetAdapter<T> adapterItems, String title) {
         BottomSheetDialog bottomSheet = new BottomSheetDialog(this, R.style.AppBottomSheetDialogTheme);

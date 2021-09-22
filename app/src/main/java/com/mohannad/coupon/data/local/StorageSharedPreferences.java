@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.annotations.SerializedName;
+import com.mohannad.coupon.utils.Constants;
 
 import java.util.Locale;
 
@@ -26,6 +27,7 @@ public class StorageSharedPreferences {
     private static String TITLE_ADS_KEY = "title_ads";
     private static String LANG_KEY = "Language";
     private static String NOTIFICATION_KEY = "NOTIFICATION";
+    private static String THEME_KEY = "Theme";
     private static final boolean LOG_IN_STATE = false;
     private static final String AUTH_TOKEN = null;
     private static final String TOKEN_FCM = null;
@@ -42,6 +44,7 @@ public class StorageSharedPreferences {
     private static String LANG = Locale.getDefault().getLanguage();
     private static int NOTIFICATION = 1; // 1-allow / 0-not allow
     private static final boolean IS_FIRST_TIME_LAUNCH = true;
+    private static int THEME = Constants.LIGHT_THEME;
 
     private Context mContext;
 
@@ -185,6 +188,15 @@ public class StorageSharedPreferences {
     public boolean isFirstTimeLaunch() {
         return getSharedPreferences().getBoolean(IS_FIRST_TIME_LAUNCH_KEY, IS_FIRST_TIME_LAUNCH);
     }
+
+    public void saveThemeMode(int theme) {
+        getPreferencesEditor().putInt(THEME_KEY, theme).commit();
+    }
+
+    public int getThemeMode() {
+        return getSharedPreferences().getInt(THEME_KEY, THEME);
+    }
+
 
     public void logout() {
         saveLogInSate(false);

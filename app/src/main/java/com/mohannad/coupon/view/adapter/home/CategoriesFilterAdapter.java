@@ -11,20 +11,19 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mohannad.coupon.R;
-import com.mohannad.coupon.data.model.CategoriesResponse;
-import com.mohannad.coupon.data.model.CompaniesResponse;
+import com.mohannad.coupon.data.model.StoreResponse;
 import com.mohannad.coupon.databinding.ItemFilterRvBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilterAdapter.CategoryViewHolder> {
-    private List<CategoriesResponse.Category> categories;
+    private List<StoreResponse.Store> categories;
     Context mContext;
     private CategoryClickListener categoryClickListener;
     private int selectedItem;
 
-    public CategoriesFilterAdapter(Context context, ArrayList<CategoriesResponse.Category> categories,
+    public CategoriesFilterAdapter(Context context, ArrayList<StoreResponse.Store> categories,
                                    CategoryClickListener categoryClickListener) {
         this.categories = categories;
         this.mContext = context;
@@ -45,7 +44,7 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
         holder.bind(categories.get(position), position);
     }
 
-    public void addAll(List<CategoriesResponse.Category> categories) {
+    public void addAll(List<StoreResponse.Store> categories) {
         this.categories.addAll(categories);
         notifyDataSetChanged();
     }
@@ -72,7 +71,7 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
             this.itemView = itemView;
         }
 
-        void bind(CategoriesResponse.Category category, int position) {
+        void bind(StoreResponse.Store category, int position) {
             // check if position equal selected item -> change bg about selected category
             if (position == selectedItem) {
                 itemView.getRoot().setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_solid_black_10dp));
@@ -99,6 +98,6 @@ public class CategoriesFilterAdapter extends RecyclerView.Adapter<CategoriesFilt
     }
 
     public interface CategoryClickListener {
-        void onCategorySelected(int position, CategoriesResponse.Category category);
+        void onCategorySelected(int position, StoreResponse.Store category);
     }
 }

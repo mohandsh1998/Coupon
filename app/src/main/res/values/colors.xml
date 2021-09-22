@@ -5,7 +5,7 @@
     <color name="colorAccent">@color/pink</color>
     <color name="white">#FFFFFF</color>
     <color name="white_light">#92ffffff</color>
-    <color name="pink">#FF3067</color>
+    <color name="pink">#F376A0</color>
     <color name="pink_light">#FFE9EE</color>
     <color name="pink1">#FF4E5E</color>
     <color name="pink2">#F9E9EF</color>
@@ -20,14 +20,23 @@
     <color name="gray6">#E5E5E5</color>
     <color name="gray7">#F9F9F7</color>
     <color name="gray8">#979797</color>
-    <color name="green_light">#E4F3E5</color>
     <color name="black">#242424</color>
     <color name="black0">#3B3B3B</color>
+    <color name="black1">#0F2733</color>
+    <color name="black2">#273D48</color>
+    <color name="black3">#0E2532</color>
     <color name="red">#FF0000</color>
     <color name="green">#00B850</color>
+    <color name="green1">#7FC548</color>
+    <color name="green2">#E612C392</color>
+    <color name="green_light">#E4F3E5</color>
     <color name="yellow">#FDD835</color>
     <color name="yellow1">#FF9900</color>
     <color name="blue_light">#F0F3FC</color>
+    <color name="blue_light1">#99E6F5FF</color>
     <color name="yellow_light">#FEF7D9</color>
-    <color name="blue">#41B4E6</color>
+    <color name="blue">#2FDBE9</color>
+    <color name="blue1">#03A3FB</color>
+    <color name="blue2">#639DE7</color>
+    <color name="turquoise">#10C4B9</color>
 </resources>
