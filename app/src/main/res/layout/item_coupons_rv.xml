@@ -225,6 +225,7 @@
 
             <TextView
                 android:id="@+id/tv_copy_coupon_item_coupon_rv"
+                style="@style/paddingText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -232,7 +233,8 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shape_stroke_pink_light_raduis_9dp"
                 android:gravity="center"
-                android:padding="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -245,6 +247,7 @@
 
             <TextView
                 android:id="@+id/tv_copy_code"
+                style="@style/paddingText"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="24dp"
@@ -263,6 +266,7 @@
 
             <TextView
                 android:id="@+id/tv_shop_now_item_coupon_rv"
+                style="@style/paddingText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -270,8 +274,6 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shape_solid_green_radius_9dp"
                 android:gravity="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:text="@string/shop_now"
                 android:textAllCaps="true"
                 android:textColor="@color/white"

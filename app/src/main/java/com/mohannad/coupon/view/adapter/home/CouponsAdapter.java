@@ -132,6 +132,7 @@ public class CouponsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         shopItem = -1;
         copyItem = -1;
         this.couponList.clear();
+        notifyDataSetChanged();
     }
 
     public void changeStatusFavoriteCoupon(Coupon coupon) {
