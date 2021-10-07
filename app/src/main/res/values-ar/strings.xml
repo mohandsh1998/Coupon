@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">كابونات و ترند</string>
+    <string name="app_name">كوبونات و ترند</string>
     <string name="lang">ar</string>
     <string name="title_home">الرئيسية</string>
     <string name="title_dashboard">لوحة التحكم</string>
     <string name="title_notifications">الإشعارات</string>
     <string name="title_favorite">المفضلة</string>
     <string name="title_deal">الصفقات</string>
-    <string name="title_add_coupon">إضافة كابون</string>
+    <string name="title_add_coupon">إضافة كوبون</string>
     <string name="title_more">المزيد</string>
     <string name="title_filter">فلتر</string>
     <string name="search_hint">ماذا تريد أن تبحث ؟</string>
@@ -17,9 +17,9 @@
     <string name="store">المتجر</string>
     <string name="brand">الشركة</string>
     <string name="description">الوصف</string>
-    <string name="coupon">الكابون</string>
+    <string name="coupon">الكوبون</string>
     <string name="send">إرسال</string>
-    <string name="used_coupons">الكابونات المستخدمة</string>
+    <string name="used_coupons">الكوبونات المستخدمة</string>
     <string name="follow_us_on_instagram">تابعنا على الإنستجرام</string>
     <string name="follow_us_on_snapchat">تابعنا على السناب شات</string>
     <string name="join_us_on_telegram">إنضم إلينا على التلجرام</string>
@@ -51,10 +51,10 @@
     <string name="shop_now">تسوق الأن</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="coupons_have_been_used">كابونات مستخدمة</string>
+    <string name="coupons_have_been_used">كوبونات مستخدمة</string>
     <string name="last_used">أخر إستخدام</string>
     <string name="get_code">نسخ الكود</string>
-    <string name="coupon_has_ended">إنتهت صلاحية هذا الكابون</string>
+    <string name="coupon_has_ended">إنتهت صلاحية هذا الكوبون</string>
     <string name="all">الكل</string>
     <string name="how_was_your_experience">كيف كانت تجربتك؟</string>
     <string name="tell_us_if_it_works_well">أخبرنا إذا كان يعمل بشكل جيد</string>
@@ -83,7 +83,7 @@
     <string name="country">الدولة</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="we_display_coupons_and_stores_available_for_your_country">نعرض الكوبونات والمتاجر المتاحة في دولتك</string>
-    <string name="coupon_notification">تنبيهات الكابونات</string>
+    <string name="coupon_notification">تنبيهات الكوبونات</string>
     <string name="save">حفظ</string>
     <string name="telegram_not_installed">تطبيق التلجرام غير مثبت</string>
     <string name="gmail_not_installed">تطبيق الجميل غير مثبت</string>
@@ -92,13 +92,13 @@
     <string name="open_gmail">إفتح البريد الإلكتروني</string>
     <string name="clear">تفريغ</string>
     <string name="apply">تطبيق</string>
-    <string name="latest_coupons">أحدث الكابونات</string>
+    <string name="latest_coupons">أحدث الكوبونات</string>
     <string name="most_used">الأكثر إستخداما</string>
     <string name="more">المزيد</string>
     <string name="company_name">إسم الشركة</string>
     <string name="category">الفئة</string>
     <string name="reset">تفريغ</string>
-    <string name="show_coupon">أعرض الكابون</string>
+    <string name="show_coupon">أعرض الكوبون</string>
     <string name="empty_favorite">لا يوجد</string>
     <string name="website">الموقع</string>
     <string name="i_agree_to_the">أنا موافق على </string>
@@ -131,12 +131,12 @@
     <string name="contact_email_option">الإيميل (إختياري)</string>
     <string name="promo_code">الرمز الترويجي</string>
     <string name="hello">مرحبا !</string>
-    <string name="coupons_used">الكابونات المستخدمة</string>
+    <string name="coupons_used">الكوبونات المستخدمة</string>
     <string name="conditions">الشروط</string>
     <string name="adding_coupons_for_online_stores_affiliate_program_not_included">إضافة كوبونات للمتاجر عبر الإنترنت ، التابعة
 البرنامج غير مدرج</string>
-    <string name="the_coupon_should_be_valid">يجب أن يكون الكابون صالح للإستخدام</string>
-    <string name="one_coupon_could_be_add_per_store">يمكن إضافة كابون واحدة لكل متجر</string>
+    <string name="the_coupon_should_be_valid">يجب أن يكون الكوبون صالح للإستخدام</string>
+    <string name="one_coupon_could_be_add_per_store">يمكن إضافة كوبون واحدة لكل متجر</string>
     <string-array name="language">
         <item>الإنجليزية</item>
         <item>العربية</item>
