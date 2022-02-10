@@ -34,7 +34,7 @@ public class FavoriteActivity extends BaseActivity {
         FavoriteViewModel favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
         activityFavoriteBinding.setFavoriteViewModel(favoriteViewModel);
         activityFavoriteBinding.setLifecycleOwner(this);
-        FavoriteAdapter favoriteAdapter = new FavoriteAdapter(this, new ArrayList<>(),sharedPreferences.getThemeMode(),
+        FavoriteAdapter favoriteAdapter = new FavoriteAdapter(this, new ArrayList<>(), sharedPreferences.getThemeMode(),
                 new FavoriteAdapter.FavoriteClickListener() {
                     @Override
                     public void shareProduct(int position, FavoriteResponse.Favorite favorite) {
@@ -91,7 +91,9 @@ public class FavoriteActivity extends BaseActivity {
                         */
                         favoriteViewModel.reviewCoupon(favorite.getId(), answer ? 1 : 0);
                         if (!answer) {
-                            startActivity(new Intent(getBaseContext(), ContactUsActivity.class));
+                            startActivity(new Intent(getBaseContext(), ContactUsActivity.class).
+                                    putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + favorite.getCompanyName()
+                                            + " , Code : " + favorite.getCouponCode()));
                         }
                     }
 

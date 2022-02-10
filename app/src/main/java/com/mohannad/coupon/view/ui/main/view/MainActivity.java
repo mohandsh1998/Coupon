@@ -155,7 +155,9 @@ public class MainActivity extends BaseActivity {
                   */
                 mainViewModel.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
-                    startActivity(new Intent(getBaseContext(), ContactUsActivity.class));
+                    startActivity(new Intent(getBaseContext(), ContactUsActivity.class).
+                            putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + coupon.getCompanyName()
+                                    + " , Code : " + coupon.getCouponCode()));
                 }
             }
 

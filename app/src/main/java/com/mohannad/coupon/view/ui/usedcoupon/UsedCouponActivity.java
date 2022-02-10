@@ -11,16 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.mohannad.coupon.R;
 import com.mohannad.coupon.data.local.StorageSharedPreferences;
 import com.mohannad.coupon.data.model.Coupon;
-import com.mohannad.coupon.databinding.ActivityHelpBinding;
 import com.mohannad.coupon.databinding.ActivityUsedCouponBinding;
 import com.mohannad.coupon.utils.BaseActivity;
-import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
 import com.mohannad.coupon.view.adapter.usedcoupon.UsedCouponsAdapter;
-import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
-import com.mohannad.coupon.view.ui.help.HelpViewModel;
-import com.mohannad.coupon.view.ui.product.ProductsActivity;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
 
@@ -64,7 +58,9 @@ public class UsedCouponActivity extends BaseActivity {
                   */
                 model.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
-                    startActivity(new Intent(UsedCouponActivity.this, ContactUsActivity.class));
+                    startActivity(new Intent(UsedCouponActivity.this, ContactUsActivity.class).
+                            putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + coupon.getCompanyName()
+                                    + " , Code : " + coupon.getCouponCode()));
                 }
             }
 

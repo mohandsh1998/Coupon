@@ -32,10 +32,17 @@ public class ContactUsViewModel extends BaseViewModel {
 
     private ContactUsRepository contactUsRepository;
     private StorageSharedPreferences sharedPreferences;
+
+    private String couponDetails;
+
     public ContactUsViewModel(@NonNull Application application) {
         super(application);
         contactUsRepository = ContactUsRepository.newInstance();
         sharedPreferences = new StorageSharedPreferences(getApplication());
+    }
+
+    public void setCouponDetails(String couponDetails) {
+        this.couponDetails = couponDetails;
     }
 
     public void onClick() {
@@ -47,7 +54,7 @@ public class ContactUsViewModel extends BaseViewModel {
 
     public void contactUs() {
         // request to contactUs from repository
-        contactUsRepository.contactUs(sharedPreferences.getLanguage(), title.getValue(), email.getValue(), content.getValue(), new ResponseServer<MessageResponse>() {
+        contactUsRepository.contactUs(sharedPreferences.getLanguage(), title.getValue(), email.getValue(), couponDetails + " \n\n " + content.getValue(), new ResponseServer<MessageResponse>() {
             @Override
             public void onSuccess(boolean status, int code, MessageResponse response) {
                 // hide loading

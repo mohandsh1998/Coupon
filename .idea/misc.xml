@@ -71,10 +71,12 @@
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/activity_used_coupon.xml" value="0.12" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/addcoupon.xml" value="0.22" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/companies_layout.xml" value="0.16530797101449277" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_deal.xml" value="0.20416666666666666" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/fragment_stores.xml" value="0.10758196721311475" />
+        <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_ads_deal_rv.xml" value="0.20416666666666666" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_company_rv.xml" value="0.5" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_coupon_rv.xml" value="0.1" />
         <entry key="..\:/CapounApp/Capoun/app/src/main/res/layout/item_coupons_rv.xml" value="0.18" />

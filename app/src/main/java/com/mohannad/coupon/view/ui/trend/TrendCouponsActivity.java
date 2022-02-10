@@ -58,7 +58,9 @@ public class TrendCouponsActivity extends BaseActivity {
                   */
                 model.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
-                    startActivity(new Intent(TrendCouponsActivity.this, ContactUsActivity.class));
+                    startActivity(new Intent(TrendCouponsActivity.this, ContactUsActivity.class).
+                            putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + coupon.getCompanyName()
+                                    + " , Code : " + coupon.getCouponCode()));
                 }
             }
 

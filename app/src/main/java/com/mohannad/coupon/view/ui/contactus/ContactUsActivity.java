@@ -15,13 +15,24 @@ import com.mohannad.coupon.view.ui.auth.changepassword.ChangePasswordViewModel;
 
 public class ContactUsActivity extends BaseActivity {
     ActivityContactUsBinding binding;
+    public static String COUPON_DETAILS = "coupon_details";
+    private String couponDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.contact_us);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_contact_us);
+
+        if (getIntent().hasExtra(COUPON_DETAILS))
+            couponDetails = getIntent().getStringExtra(COUPON_DETAILS);
+
         ContactUsViewModel model = new ViewModelProvider(this).get(ContactUsViewModel.class);
+
+        if (!couponDetails.isEmpty())
+            model.setCouponDetails(couponDetails);
+
         binding.setContactUsViewModel(model);
         binding.setLifecycleOwner(this);
         model.toastMessageSuccess.observe(this, this::showDialog);

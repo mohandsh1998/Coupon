@@ -36,16 +36,11 @@ import com.mohannad.coupon.utils.BaseFragment;
 import com.mohannad.coupon.utils.PaginationListener;
 import com.mohannad.coupon.view.adapter.home.CompaniesAdapter;
 import com.mohannad.coupon.view.adapter.home.CouponsAdapter;
-import com.mohannad.coupon.view.adapter.home.HomePagesAdapter;
-import com.mohannad.coupon.view.ui.auth.login.LoginActivity;
 import com.mohannad.coupon.view.ui.contactus.ContactUsActivity;
 import com.mohannad.coupon.view.ui.product.ProductsActivity;
 import com.mohannad.coupon.view.ui.trend.TrendCouponsActivity;
-import com.mohannad.coupon.view.ui.webview.WebViewActivity;
 
 import java.util.ArrayList;
-
-import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class HomePageFragment extends BaseFragment {
     private static final String TAG = "HomePageFragment";
@@ -184,7 +179,9 @@ public class HomePageFragment extends BaseFragment {
                   */
                 homeViewModel.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
-                    startActivity(new Intent(requireContext(), ContactUsActivity.class));
+                    startActivity(new Intent(requireContext(), ContactUsActivity.class).
+                            putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + coupon.getCompanyName()
+                                    + " , Code : " + coupon.getCouponCode()));
                 }
             }
 

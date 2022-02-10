@@ -93,7 +93,9 @@ public class SearchActivity extends BaseActivity {
                   */
                 model.reviewCoupon(coupon.getId(), answer ? 1 : 0);
                 if (!answer) {
-                    startActivity(new Intent(SearchActivity.this, ContactUsActivity.class));
+                    startActivity(new Intent(SearchActivity.this, ContactUsActivity.class).
+                            putExtra(ContactUsActivity.COUPON_DETAILS, "Company name " + coupon.getCompanyName()
+                                    + " , Code : " + coupon.getCouponCode()));
                 }
             }
 
