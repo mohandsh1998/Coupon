@@ -5,13 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".utils.CouponApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".utils.CouponApplication"
         android:theme="@style/BaseTheme">
 
 
@@ -57,10 +57,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ui.deal.DealCouponsActivity" />
         </activity>
-        <activity
-            android:name=".view.ui.splash.LanguageAndCountryActivity" />
-        <activity
-            android:name=".view.ui.image.ImageActivity" />
+        <activity android:name=".view.ui.splash.LanguageAndCountryActivity" />
+        <activity android:name=".view.ui.image.ImageActivity" />
         <activity
             android:name=".view.ui.search.SearchActivity"
             android:label="@string/results"
@@ -69,8 +67,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ui.search.SearchActivity" />
         </activity>
-        <activity
-            android:name=".view.ui.video.VideoActivity" />
+        <activity android:name=".view.ui.video.VideoActivity" />
         <activity
             android:name=".view.ui.product.ProductsActivity"
             android:label="@string/products"
@@ -79,8 +76,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ui.product.ProductsActivity" />
         </activity>
-        <activity
-            android:name=".view.ui.webview.WebViewActivity" />
+        <activity android:name=".view.ui.webview.WebViewActivity" />
         <activity
             android:name=".view.ui.usedcoupon.UsedCouponActivity"
             android:label="@string/used_coupons"
@@ -121,15 +117,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ui.help.HelpActivity" />
         </activity>
-        <activity
-            android:name=".view.ui.auth.signup.SignUpActivity" />
-        <activity
-            android:name=".view.ui.auth.login.LoginActivity" />
-        <activity
-            android:name=".view.ui.splash.WelcomeActivity" />
+        <activity android:name=".view.ui.auth.signup.SignUpActivity" />
+        <activity android:name=".view.ui.auth.login.LoginActivity" />
+        <activity android:name=".view.ui.splash.WelcomeActivity" />
 
         <activity
-            android:name=".view.ui.splash.SplashActivity">
+            android:name=".view.ui.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -143,8 +137,7 @@
 
         </activity>
 
-        <activity
-            android:name=".view.ui.store.view.StoresActivity" />
+        <activity android:name=".view.ui.store.view.StoresActivity" />
 
         <meta-data
             android:name="android.app.searchable"
